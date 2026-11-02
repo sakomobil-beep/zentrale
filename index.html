@@ -2144,7 +2144,30 @@ nav #fsBox button:hover{background:#475569}
 #tdModal[hidden],#fmModal[hidden]{display:none!important}.tdt{width:100%;table-layout:fixed}.tdt td{padding:3px 14px 3px 0}.tdt td:first-child{width:50%}.tdt td:first-child{font-weight:600}#tdModal h4{margin:16px 0 4px;color:#ea580c}#tdModal ul{margin:0;padding-left:20px;columns:2;column-gap:24px}#tdModal li{margin:2px 0;break-inside:avoid}
 .tdtabs{display:flex;gap:6px;margin:4px 0 8px;border-bottom:2px solid #eee}.tdtabs button{border:0;background:none;padding:8px 14px;font-size:15px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}.tdtabs button.on{border-color:#ea580c;color:#ea580c;font-weight:700}
 #home .qbtn{grid-template-columns:repeat(3,1fr) .8fr;margin-top:8px}#home .qbtn button{padding:7px 6px;font-size:13px}#home .qok{width:100%;margin:0!important;padding:7px!important;font-size:14px!important}#home .qf input,#home .qf select{padding:7px 10px!important;font-size:14px!important}#home .qx h3{margin:0 0 6px}#home .qmsg{margin-top:4px!important;min-height:0}</style>
-</head>
+<style id="mobil">
+@media(max-width:760px){
+body{display:block!important;font-size:15px}
+nav{width:auto!important;position:sticky;top:0;z-index:50;display:flex!important;flex-direction:row!important;flex-wrap:nowrap;overflow-x:auto;padding:6px 8px!important;gap:4px;white-space:nowrap;-webkit-overflow-scrolling:touch}
+nav h1{display:none}
+nav button{width:auto!important;display:inline-block!important;margin:0!important;flex-shrink:0;padding:8px 11px!important;font-size:14px!important}
+nav>*:not(button){flex-shrink:0}
+main{padding:10px!important;max-width:100vw!important;overflow-x:hidden}
+.card{padding:14px!important}
+.tiles{grid-template-columns:1fr 1fr!important;gap:8px!important}
+.tile{padding:12px!important}.tile .v{font-size:20px!important}
+.toprow,.midrow,.skgrid,.skmap,.c2,.engGrid{grid-template-columns:1fr!important}
+.cartop{grid-template-columns:1fr 1fr!important}
+main *{max-width:100%}
+.row>*{min-width:0}
+img,canvas,svg,video,iframe{max-width:100%!important;height:auto}
+table{display:block;overflow-x:auto}
+h1{font-size:22px!important}h2{font-size:17px!important}
+.qbal{flex-wrap:wrap!important;white-space:normal!important;row-gap:4px}.qbal>*{white-space:nowrap}
+nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!important}#fsBox .fst{font-size:11px;white-space:normal;width:170px;padding:4px 6px!important;margin:0!important}#fsBox button{padding:6px 9px!important;font-size:13px!important;width:auto!important;margin:0!important}
+.show{min-height:300px!important;height:auto!important}.wx{min-height:0!important;padding:14px!important}.toprow{gap:12px!important}
+.qx,.qx *{min-width:0}.qx .qm{flex:1 1 auto}
+}
+</style></head>
 <body>
 <nav>
   <h1>👑 Kingmans Zentrale</h1>
@@ -2163,7 +2186,7 @@ nav #fsBox button:hover{background:#475569}
     <img id="sA"><img id="sB">
     <button class="sn" id="sPrev">‹</button><button class="sn r" id="sNext">›</button>
     <div class="sc" id="sCap"></div>
-    <div class="se" id="sEmpty">📷 Noch keine Fotos.<br><small>Unten links auf <b>📷 Fotos hochladen</b> klicken – sie werden verschlüsselt gespeichert.</small></div>
+    <div class="se" id="sEmpty">📷 Noch keine Fotos.<br><small>Im Menü auf <b>📷 Fotos hochladen</b> tippen – sie werden verschlüsselt gespeichert.</small></div>
   </div>
   <a class="wx" id="wx" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">
     <div class="wh">🌡️ Wetter Bad König <small id="wxAt"></small></div>
