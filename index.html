@@ -2163,7 +2163,7 @@ nav #fsBox button:hover{background:#475569}
     <img id="sA"><img id="sB">
     <button class="sn" id="sPrev">‹</button><button class="sn r" id="sNext">›</button>
     <div class="sc" id="sCap"></div>
-    <div class="se" id="sEmpty">📷 Noch keine Fotos.<br><small>Fotos in den Ordner <b>Kingman-Zentrale\Fotos</b> kopieren, dann <b>„Fotos aktualisieren.bat“</b> doppelklicken und hier F5 drücken.</small></div>
+    <div class="se" id="sEmpty">📷 Noch keine Fotos.<br><small>Unten links auf <b>📷 Fotos hochladen</b> klicken – sie werden verschlüsselt gespeichert.</small></div>
   </div>
   <a class="wx" id="wx" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">
     <div class="wh">🌡️ Wetter Bad König <small id="wxAt"></small></div>
@@ -3043,7 +3043,7 @@ async function ghPut(){ghT=null;if(!ghKey)return;if(ghBusy){ghDirty=true;return}
 /* überschreibt die lokalen Speicherfunktionen */
 function load(){if(!db||!db.hb)db=seed();if((db.v||1)<DATA_V){const n=seed();Object.assign(db.hb,n.hb);db.v=DATA_V;save()}}
 function save(){db.savedAt=Date.now();clearTimeout(ghT);ghT=setTimeout(ghPut,1200);fsUi('wait')}
-function fsInit(){const b=$('fsBtn');b.textContent='🔒 Abmelden';b.hidden=false;
+function fsInit(){const b=$('fsBtn');b.textContent='🔒 Abmelden';b.hidden=false;fotoButtons();
   b.onclick=()=>{if(!confirm('Abmelden? Beim nächsten Öffnen brauchst du dein Passwort wieder.'))return;location.reload()};fsUi()}
 function fsUi(s){const st=$('fsSt');if(!st)return;
   if(ghErr){st.className='fst warn';st.innerHTML='☁️ <b>Speichern fehlgeschlagen</b><br>'+wxEsc(ghErr)+'<br><a href="#" id="ghRetry">nochmal versuchen</a>';
@@ -3086,6 +3086,44 @@ async function kzBoot(){
     catch(e){E.textContent=e.message;if(/Token|Schlüssel/.test(e.message)){localStorage.removeItem('kz-tok');stored=null;$('kzTokBox').hidden=false;remote=undefined}
       $('kzGo').disabled=false;$('kzGo').textContent=isNew?'Passwort festlegen':'Öffnen'}};
   $('kzF').onsubmit=go}
+/* ===== Fotos: verschlüsselt im privaten Repo ===== */
+const fCache=new Map();
+function fUrl(p){return `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${p}`}
+async function fotoGet(id){if(fCache.has(id))return fCache.get(id);
+  const r=await fetch(fUrl('fotos/'+id+'.bin'),{headers:{Authorization:'Bearer '+ghTok,Accept:'application/vnd.github.raw+json'}});
+  if(!r.ok)throw new Error('Foto '+r.status);const u=new Uint8Array(await r.arrayBuffer());
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},ghKey,u.slice(12));
+  const url=URL.createObjectURL(new Blob([pt],{type:'image/jpeg'}));
+  if(fCache.size>8){const [k,v]=fCache.entries().next().value;URL.revokeObjectURL(v);fCache.delete(k)}fCache.set(id,url);return url}
+function slide(d){const F=db.fotos||[];if(!F.length)return;sI=(sI+d+F.length)%F.length;const i=sI;
+  const nxt=sFront?$('sB'):$('sA'),cur=sFront?$('sA'):$('sB');sFront=!sFront;
+  $('sCap').textContent=(i+1)+' / '+F.length;clearTimeout(sT);sT=setTimeout(()=>slide(1),7000);
+  fotoGet(F[i].id).then(u=>{nxt.onload=()=>{nxt.classList.add('on');cur.classList.remove('on')};nxt.src=u}).catch(e=>console.warn(e))}
+function initShow(){const F=db.fotos||[];const on=F.length>0;$('sCap').hidden=!on;$('sPrev').hidden=$('sNext').hidden=!on;
+  $('sEmpty').style.display=on?'none':'';if(!on)return;sI=Math.floor(Math.random()*F.length)-1;slide(1);$('sPrev').onclick=()=>slide(-1);$('sNext').onclick=()=>slide(1)}
+async function fotoPrep(file){const bm=await createImageBitmap(file,{imageOrientation:'from-image'});const s=Math.min(1,1920/Math.max(bm.width,bm.height));
+  const c=document.createElement('canvas');c.width=Math.round(bm.width*s);c.height=Math.round(bm.height*s);c.getContext('2d').drawImage(bm,0,0,c.width,c.height);
+  return new Uint8Array(await (await new Promise(r=>c.toBlob(r,'image/jpeg',0.85))).arrayBuffer())}
+async function fotoUpload(files){const st=$('fsSt');let n=0;db.fotos=db.fotos||[];
+  for(const f of files){st.innerHTML='📷 Lade Foto '+(++n)+' von '+files.length+' hoch …';
+    try{const raw=await fotoPrep(f),iv=crypto.getRandomValues(new Uint8Array(12));
+      const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},ghKey,raw)),all=new Uint8Array(12+ct.length);all.set(iv);all.set(ct,12);
+      const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+      const r=await fetch(fUrl('fotos/'+id+'.bin'),{method:'PUT',headers:{Authorization:'Bearer '+ghTok,Accept:'application/vnd.github+json'},body:JSON.stringify({message:'Foto',content:b64(all)})});
+      if(!r.ok)throw new Error('Fehler '+r.status);db.fotos.push({id,name:f.name})}
+    catch(e){alert('„'+f.name+'“ konnte nicht hochgeladen werden: '+e.message)}}
+  save();initShow()}
+async function fotoDel(){const F=db.fotos||[];if(!F.length)return alert('Noch keine Fotos.');const i=sI;
+  if(!confirm('Das gerade gezeigte Foto ('+(i+1)+' / '+F.length+') löschen?'))return;const id=F[i].id;
+  try{const r=await fetch(fUrl('fotos/'+id+'.bin'),{headers:{Authorization:'Bearer '+ghTok,Accept:'application/vnd.github+json'}});const j=await r.json();
+    await fetch(fUrl('fotos/'+id+'.bin'),{method:'DELETE',headers:{Authorization:'Bearer '+ghTok,Accept:'application/vnd.github+json'},body:JSON.stringify({message:'Foto gelöscht',sha:j.sha})})}catch(e){}
+  db.fotos.splice(i,1);save();initShow()}
+function fotoButtons(){const box=$('fsBox');if($('fUp'))return;
+  const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.multiple=true;inp.hidden=true;inp.onchange=()=>{if(inp.files.length)fotoUpload([...inp.files]);inp.value=''};
+  const b1=document.createElement('button');b1.id='fUp';b1.textContent='📷 Fotos hochladen';b1.onclick=()=>inp.click();
+  const b2=document.createElement('button');b2.textContent='🗑 Aktuelles Foto löschen';b2.onclick=fotoDel;
+  box.append(inp,b1,b2)}
+
 kzBoot();
 
 </script>
