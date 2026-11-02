@@ -3066,7 +3066,7 @@ async function ghPut(){ghT=null;if(!ghKey)return;if(ghBusy){ghDirty=true;return}
 /* überschreibt die lokalen Speicherfunktionen */
 function load(){if(!db||!db.hb)db=seed();if((db.v||1)<DATA_V){const n=seed();Object.assign(db.hb,n.hb);db.v=DATA_V;save()}}
 function save(){db.savedAt=Date.now();clearTimeout(ghT);ghT=setTimeout(ghPut,1200);fsUi('wait')}
-function fsInit(){const b=$('fsBtn');b.textContent='🔒 Abmelden';b.hidden=false;fotoButtons();
+function fsInit(){const b=$('fsBtn');b.textContent='🔒 Abmelden';b.hidden=false;fotoButtons();backupButtons();
   b.onclick=()=>{if(!confirm('Abmelden? Beim nächsten Öffnen brauchst du dein Passwort wieder.'))return;location.reload()};fsUi()}
 function fsUi(s){const st=$('fsSt');if(!st)return;
   if(ghErr){st.className='fst warn';st.innerHTML='☁️ <b>Speichern fehlgeschlagen</b><br>'+wxEsc(ghErr)+'<br><a href="#" id="ghRetry">nochmal versuchen</a>';
@@ -3162,6 +3162,25 @@ async function carFoto(){const el=$('carHero');if(!el)return;
     el.style.position='relative';el.append(inp,a)}
   $('carUp').textContent=db.carFoto?'📷 Foto ändern':'📷 Auto-Foto hochladen';
   if(db.carFoto){try{el.style.setProperty('--carimg','url("'+await fotoGet(db.carFoto)+'")');fCache.delete(db.carFoto)}catch(e){console.warn(e)}}}
+
+
+/* ===== Sicherung ===== */
+async function backupDl(){const body=await enc(ghKey,ghSalt,JSON.stringify(db));const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([body],{type:'application/json'}));a.download='zentrale-sicherung-'+iso(new Date())+'.json';a.click();
+  db.lastBackup=Date.now();save()}
+async function backupLoad(f){try{const o=JSON.parse(await f.text());let d;
+    if(o.ct){try{d=JSON.parse(await dec(await kdf(prompt('Passwort dieser Sicherung:')||'',ub64(o.salt)),o))}catch(e){return alert('Passwort falsch oder Datei beschädigt.')}}else d=o;
+    if(!d.hb)return alert('Das ist keine Zentrale-Sicherung.');
+    if(!confirm('Sicherung vom '+new Date(d.savedAt||0).toLocaleString('de-DE')+' einspielen?\n\nDie aktuellen Daten werden dabei ersetzt.'))return;
+    db=d;save();location.reload()}catch(e){alert('Datei konnte nicht gelesen werden.')}}
+function backupButtons(){const box=$('fsBox');if($('bkDl'))return;
+  const b=document.createElement('button');b.id='bkDl';b.textContent='💾 Sicherung herunterladen';b.onclick=backupDl;
+  const inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.hidden=true;inp.onchange=()=>{if(inp.files[0])backupLoad(inp.files[0]);inp.value=''};
+  const r=document.createElement('button');r.textContent='↩ Sicherung einspielen';r.onclick=()=>inp.click();
+  const s=document.createElement('div');s.id='bkInfo';s.style.cssText='font-size:11px;color:#94a3b8;margin-top:2px';
+  const d=db.lastBackup?Math.floor((Date.now()-db.lastBackup)/864e5):null;
+  s.textContent=d==null?'Noch keine Sicherung gemacht':'Letzte Sicherung: '+(d==0?'heute':d==1?'gestern':'vor '+d+' Tagen');if(d==null||d>30)s.style.color='#fbbf24';
+  box.append(b,r,inp,s)}
 
 kzBoot();
 
