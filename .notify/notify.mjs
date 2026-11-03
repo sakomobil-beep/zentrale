@@ -5,13 +5,13 @@ if(!TOPIC)throw new Error('NTFY_TOPIC fehlt');
 const SF='.notify/state.json';let S={};try{S=JSON.parse(fs.readFileSync(SF,'utf8'))}catch{}
 const tz='Europe/Berlin';
 const dstr=d=>d.toLocaleDateString('sv-SE',{timeZone:tz});           // YYYY-MM-DD
-const hour=+new Date().toLocaleString('de-DE',{timeZone:tz,hour:'2-digit',hour12:false});
+const hour=parseInt(new Date().toLocaleString('en-GB',{timeZone:tz,hour:'2-digit',hour12:false}));
 const today=dstr(new Date()),tomorrow=dstr(new Date(Date.now()+864e5));
 const dt=d=>d.toLocaleString('de-DE',{timeZone:tz,weekday:'short',hour:'2-digit',minute:'2-digit'});
 const msgs=[];
 async function push(title,body,tags,prio=3){
-  const r=await fetch('https://ntfy.sh/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:TOPIC,title,message:body,tags:[tags],priority:prio,click:'https://sakomobil-beep.github.io/zentrale/'})});
-  console.log('push',title,r.status)}
+  let r;try{r=await fetch('https://ntfy.sh/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:TOPIC,title,message:body,tags:[tags],priority:prio,click:'https://sakomobil-beep.github.io/zentrale/'})});
+  }catch(e){console.log('push fehlgeschlagen',e.message);throw e}console.log('push',title,r.status)}
 const once=async(key,...a)=>{if(S[key])return;await push(...a);S[key]=today};
 
 /* --- Daten entschlüsseln --- */
