@@ -21,6 +21,8 @@ jobs:
           DATEN_TOKEN: ${{ secrets.DATEN_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           TK_KEY: ${{ secrets.TK_KEY }}
+          GC_TOKEN: ${{ secrets.GC_TOKEN }}
+          GC_CODE: ${{ secrets.GC_CODE }}
         run: node .notify/notify.mjs
       - name: Zustand merken
         run: |

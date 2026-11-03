@@ -2148,6 +2148,7 @@ nav #fsBox button:hover{background:#475569}
 .lnnext{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:12px;background:#0f172a;color:#e2e8f0;margin-bottom:12px}.lnnext .cd{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;color:#facc15;white-space:nowrap}.lnnext small{color:#94a3b8}
 #lnList table{width:100%;border-collapse:collapse}#lnList td,#lnList th{padding:6px 8px;border-bottom:1px solid rgba(148,163,184,.25);text-align:left;vertical-align:top}.lntag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;margin-right:4px;color:#fff}.lntag.starlink{background:#334155}.lntag.spacex{background:#111827}.lntag.nasa{background:#1d4ed8}.lntag.esa{background:#0e7490}.lnst{font-size:12px;color:var(--mut)}
 @media(max-width:700px){#lnList .lnpad{display:none}.lnnext{flex-direction:column;align-items:flex-start}}
+.wschart{display:flex;align-items:flex-end;gap:3px;height:120px;margin:6px 0 4px;padding-bottom:16px;position:relative}.wschart i{flex:1;background:#3E8FCB;border-radius:3px 3px 0 0;min-height:2px;position:relative}.wschart i.we{background:#7FB3DD}.wschart i span{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-size:9px;opacity:.6;font-style:normal;white-space:nowrap}.wsrow{font-size:13px;opacity:.7;margin-top:12px}.wsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:14px}.wsgrid h4{margin:0 0 6px;font-size:14px}.wsl{display:flex;align-items:center;gap:8px;font-size:13px;margin:3px 0}.wsl .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wsl .b{height:6px;background:#3E8FCB;border-radius:3px;opacity:.7}.wsl .c{min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
 </style>
 <style id="mobil">
 @media(max-width:760px){
@@ -2182,6 +2183,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="sky">🌙 Himmel</button>
   <button data-p="garden" hidden>🌶️ Garten</button>
   <button data-p="car">🚗 Dacia</button>
+  <button data-p="web">📈 Website</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2225,6 +2227,25 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div class="ktile" data-go="garden" hidden><div class="ic">🌶️</div><div class="kt">Garten</div><div class="ks" id="homeGarden"></div></div>
     <div class="ktile" data-go="car"><div class="ic">🚗</div><div class="kt">Dacia Sandero</div><div class="ks" id="homeCar"></div></div>
     <div class="ktile soon"><div class="ic">➕</div><div class="kt">Neuer Bereich</div><div class="ks">Sag Claude, was hier rein soll</div></div>
+  </div>
+</main>
+<main id="web" hidden>
+  <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
+    <div id="wsMsg"><small>Lade Statistik …</small></div>
+    <div id="wsBody" hidden>
+      <div class="tiles" id="wsTiles"></div>
+      <div class="wsrow"><span>Besucher pro Tag (30 Tage)</span></div>
+      <div class="wschart" id="wsChart"></div>
+      <div class="wsgrid">
+        <div><h4>📄 Beliebteste Seiten</h4><div id="wsPages"></div></div>
+        <div><h4>🔗 Woher die Besucher kommen</h4><div id="wsRefs"></div></div>
+        <div><h4>🌍 Länder</h4><div id="wsLoc"></div></div>
+        <div><h4>📱 Geräte</h4><div id="wsSize"></div></div>
+        <div><h4>🌐 Browser</h4><div id="wsBr"></div></div>
+        <div><h4>💻 Systeme</h4><div id="wsSys"></div></div>
+      </div>
+      <p style="margin-top:14px"><a href="https://wetter-badkoenig.goatcounter.com/" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter öffnen ›</a></p>
+    </div>
   </div>
 </main>
 <main id="car" hidden>
@@ -3071,7 +3092,29 @@ async function fsConnect(){
     await idbSet(fsH);fsOk=true;await fsSync()}catch(e){if(e.name!='AbortError')alert('Datei konnte nicht verbunden werden: '+e.message)}fsUi()}
 async function fsInit(){$('fsBtn').onclick=fsConnect;if(window.showSaveFilePicker){fsH=await idbGet();
   if(fsH){try{if(await fsH.queryPermission({mode:'readwrite'})=='granted'){fsOk=true;await fsSync()}}catch(e){fsH=null}}}fsUi()}
-function show(p){document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+
+/* ===== Website-Statistik (GoatCounter, per GitHub-Action verschlüsselt abgelegt) ===== */
+let WS=null;
+async function loadWeb(){if(!ghKey||!ghTok){$('wsMsg').innerHTML='<small>Erst entsperren.</small>';return}
+ try{const r=await fetch(fUrl('stats-wetter.enc')+'?t='+Date.now(),{headers:{Authorization:'Bearer '+ghTok,Accept:'application/vnd.github.raw'},cache:'no-store'});
+  if(r.status==404){$('wsMsg').innerHTML='<small>Noch keine Statistik vorhanden. Sobald GoatCounter eingerichtet ist, erscheinen hier die Daten (Aktualisierung stündlich).</small>';return}
+  if(!r.ok)throw new Error('GitHub '+r.status);WS=JSON.parse(await dec(ghKey,JSON.parse(await r.text())));renderWeb()}
+ catch(e){$('wsMsg').innerHTML='<small>Statistik nicht ladbar ('+wxEsc(e.message)+').</small>'}}
+function wsList(id,arr,nm){const a=(arr||[]).slice(0,8),mx=Math.max(1,...a.map(x=>x.count||0));
+ $(id).innerHTML=a.length?a.map(x=>`<div class="wsl"><span class="n" title="${wxEsc(nm(x))}">${wxEsc(nm(x))}</span><span class="b" style="width:${Math.round((x.count||0)/mx*70)}px"></span><span class="c">${(x.count||0).toLocaleString('de-DE')}</span></div>`).join(''):'<small>noch keine Daten</small>'}
+function renderWeb(){const W=WS;if(!W)return;$('wsMsg').innerHTML='';$('wsBody').hidden=false;
+ $('wsAt').textContent='Stand '+new Date(W.at).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Uhr';
+ const days=((W.total&&W.total.stats)||[]).map(d=>({day:d.day,n:d.daily||0})),td=new Date().toLocaleDateString('sv-SE');
+ const sumD=k=>days.slice(-k).reduce((a,d)=>a+d.n,0),today=(days.find(d=>d.day==td)||{n:0}).n;
+ const T=(l,v,s)=>`<div class="tile"><div class="l">${l}</div><div class="v">${v.toLocaleString('de-DE')}</div>${s?`<div class="l">${s}</div>`:''}</div>`;
+ $('wsTiles').innerHTML=T('👤 Heute',today)+T('📅 7 Tage',sumD(7))+T('🗓️ 30 Tage',sumD(30),'Ø '+Math.round(sumD(30)/30)+' pro Tag')+T('👁️ Seitenaufrufe 30 Tage',(W.total&&W.total.total)||0);
+ const mx=Math.max(1,...days.map(d=>d.n));
+ $('wsChart').innerHTML=days.map((d,i)=>{const dt=new Date(d.day+'T12:00'),we=dt.getDay()==0||dt.getDay()==6;return `<i class="${we?'we':''}" title="${dt.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'})}: ${d.n}" style="height:${Math.max(2,d.n/mx*100)}px">${i%5==0||i==days.length-1?`<span>${dt.getDate()}.${dt.getMonth()+1}.</span>`:''}</i>`}).join('');
+ const pn={'/':'Startseite'};wsList('wsPages',W.hits,x=>(x.title&&x.path!='/'?x.title.replace(/ – Wetterstation Bad König| \| .*$/,''):pn[x.path]||x.path));
+ wsList('wsRefs',W.refs,x=>x.name||'direkt / Lesezeichen');wsList('wsLoc',W.loc,x=>x.name||x.id||'?');
+ const sz={phone:'Handy',largephone:'großes Handy',tablet:'Tablet',desktop:'PC/Laptop',desktophd:'großer Bildschirm',unknown:'unbekannt'};
+ wsList('wsSize',W.sizes,x=>sz[x.id]||sz[x.name]||x.name||x.id);wsList('wsBr',W.br,x=>x.name||x.id);wsList('wsSys',W.sys,x=>x.name||x.id)}
+function show(p){if(p=='web')setTimeout(loadWeb,0);document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){

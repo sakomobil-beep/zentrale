@@ -15,13 +15,13 @@ async function push(title,body,tags,prio=3){
 const once=async(key,...a)=>{if(S[key])return;await push(...a);S[key]=today};
 
 /* --- Daten entschlüsseln --- */
-let db=null;
+let db=null,KEY=null;
 if(PW&&TOK){try{
   const r=await fetch('https://api.github.com/repos/sakomobil-beep/zentrale-daten/contents/daten.enc',{headers:{Authorization:'Bearer '+TOK,Accept:'application/vnd.github.raw'}});
   if(!r.ok)throw new Error('GitHub '+r.status);const o=JSON.parse(await r.text());
   const ub=s=>Buffer.from(s,'base64');const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(PW),'PBKDF2',false,['deriveKey']);
-  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:ub(o.salt),iterations:310000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt']);
-  db=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(o.iv)},key,ub(o.ct))));
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:ub(o.salt),iterations:310000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt','encrypt']);
+  db=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(o.iv)},key,ub(o.ct))));KEY=key;
 }catch(e){console.log('Daten nicht lesbar:',e.message)}}
 
 /* --- Müll (Vorabend ab 18 Uhr) --- */
@@ -75,6 +75,22 @@ if(hour>=6&&hour<23){try{
   if(L.length&&wet(L[0]))S.rain=new Date().toISOString(); /* während es regnet: keine erneute Warnung */
 }catch(e){console.log('Radar:',e.message)}}
 
+/* --- Website-Statistik (GoatCounter) → verschlüsselt nach zentrale-daten, stündlich --- */
+if(KEY&&process.env.GC_TOKEN&&(!S.statsAt||Date.now()-new Date(S.statsAt)>50*6e4)){try{
+  const api='https://'+(process.env.GC_CODE||'wetter-badkoenig')+'.goatcounter.com/api/v0',h={Authorization:'Bearer '+process.env.GC_TOKEN,'Content-Type':'application/json'};
+  const end=dstr(new Date(Date.now()+864e5)),start=dstr(new Date(Date.now()-29*864e5)),q='start='+start+'&end='+end;
+  const g=async u=>{const r=await fetch(api+u,{headers:h});if(!r.ok)throw new Error(u+' '+r.status);await new Promise(x=>setTimeout(x,300));return r.json()};
+  const st=async n=>((await g('/stats/'+n+'?'+q+'&limit=10')).stats||[]);
+  const W={at:Date.now(),total:await g('/stats/total?'+q),hits:((await g('/stats/hits?'+q+'&limit=15')).hits||[]).map(x=>({path:x.path,title:x.title,count:x.count})),
+    refs:await st('toprefs'),loc:await st('locations'),sizes:await st('sizes'),br:await st('browsers'),sys:await st('systems')};
+  const iv=crypto.getRandomValues(new Uint8Array(12)),ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},KEY,new TextEncoder().encode(JSON.stringify(W))));
+  const body=JSON.stringify({v:1,iv:Buffer.from(iv).toString('base64'),ct:Buffer.from(ct).toString('base64')});
+  const U='https://api.github.com/repos/sakomobil-beep/zentrale-daten/contents/stats-wetter.enc',GH={Authorization:'Bearer '+TOK,Accept:'application/vnd.github+json'};
+  const old=await fetch(U,{headers:GH});const sha=old.ok?(await old.json()).sha:undefined;
+  const r=await fetch(U,{method:'PUT',headers:GH,body:JSON.stringify({message:'Website-Statistik',content:Buffer.from(body).toString('base64'),...(sha?{sha}:{})})});
+  console.log('Statistik gespeichert',r.status);if(r.ok)S.statsAt=new Date().toISOString();
+}catch(e){console.log('Statistik:',e.message)}}
+
 /* --- aufräumen & speichern --- */
-const cut=dstr(new Date(Date.now()-60*864e5));for(const k in S)if(k!='aurora'&&k!='rain'&&S[k]<cut)delete S[k];
+const cut=dstr(new Date(Date.now()-60*864e5));for(const k in S)if(k!='aurora'&&k!='rain'&&k!='statsAt'&&S[k]<cut)delete S[k];
 fs.writeFileSync(SF,JSON.stringify(S,null,1));
