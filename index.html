@@ -2143,7 +2143,11 @@ nav #fsBox button:hover{background:#475569}
 .fuel .fr.best .fp{color:var(--ok)}.fuel .cl{opacity:.45}
 #tdModal[hidden],#fmModal[hidden]{display:none!important}.tdt{width:100%;table-layout:fixed}.tdt td{padding:3px 14px 3px 0}.tdt td:first-child{width:50%}.tdt td:first-child{font-weight:600}#tdModal h4{margin:16px 0 4px;color:#ea580c}#tdModal ul{margin:0;padding-left:20px;columns:2;column-gap:24px}#tdModal li{margin:2px 0;break-inside:avoid}
 .tdtabs{display:flex;gap:6px;margin:4px 0 8px;border-bottom:2px solid #eee}.tdtabs button{border:0;background:none;padding:8px 14px;font-size:15px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}.tdtabs button.on{border-color:#ea580c;color:#ea580c;font-weight:700}
-#home .qbtn{grid-template-columns:repeat(3,1fr) .8fr;margin-top:8px}#home .qbtn button{padding:7px 6px;font-size:13px}#home .qok{width:100%;margin:0!important;padding:7px!important;font-size:14px!important}#home .qf input,#home .qf select{padding:7px 10px!important;font-size:14px!important}#home .qx h3{margin:0 0 6px}#home .qmsg{margin-top:4px!important;min-height:0}</style>
+#home .qbtn{grid-template-columns:repeat(3,1fr) .8fr;margin-top:8px}#home .qbtn button{padding:7px 6px;font-size:13px}#home .qok{width:100%;margin:0!important;padding:7px!important;font-size:14px!important}#home .qf input,#home .qf select{padding:7px 10px!important;font-size:14px!important}#home .qx h3{margin:0 0 6px}#home .qmsg{margin-top:4px!important;min-height:0}.lntabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.lntabs button{border:1px solid var(--line,#cbd5e1);background:transparent;color:inherit;border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-size:14px}.lntabs button.on{background:#2563eb;color:#fff;border-color:#2563eb}
+.lnnext{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:12px;background:#0f172a;color:#e2e8f0;margin-bottom:12px}.lnnext .cd{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;color:#facc15;white-space:nowrap}.lnnext small{color:#94a3b8}
+#lnList table{width:100%;border-collapse:collapse}#lnList td,#lnList th{padding:6px 8px;border-bottom:1px solid rgba(148,163,184,.25);text-align:left;vertical-align:top}.lntag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;margin-right:4px;color:#fff}.lntag.starlink{background:#334155}.lntag.spacex{background:#111827}.lntag.nasa{background:#1d4ed8}.lntag.esa{background:#0e7490}.lnst{font-size:12px;color:var(--mut)}
+@media(max-width:700px){#lnList .lnpad{display:none}.lnnext{flex-direction:column;align-items:flex-start}}
+</style>
 <style id="mobil">
 @media(max-width:760px){
 body{display:block!important;font-size:15px}
@@ -2435,6 +2439,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div class="aurleg">Balken: Kp in 3-Stunden-Schritten, links gemessen, blasser = Vorhersage. Gestrichelt: ab Kp 6 im Odenwald möglich. Daten: NOAA SWPC.</div>
   </div>
     </div>
+  </div>
+  <div class="card"><h3>🚀 Raketenstarts <small id="lnAt"></small></h3>
+    <div class="lntabs" id="lnTabs"><button class="on" data-f="all">Alle</button><button data-f="starlink">🛰️ Starlink</button><button data-f="spacex">SpaceX</button><button data-f="nasa">NASA</button><button data-f="esa">ESA</button></div>
+    <div id="lnNext"></div><div id="lnList"><small>Lade Startdaten …</small></div>
+    <div class="aurleg">Zeiten in deutscher Zeit. NET = „nicht vor“ – Starts verschieben sich oft kurzfristig. Daten: The Space Devs (Launch Library 2).</div>
   </div>
   <div class="card"><h3>✨ Live-Sternkarte über Bad König</h3>
     <div class="skmap"><canvas id="skyCv" width="1000" height="1000"></canvas>
@@ -2756,6 +2765,28 @@ function drawSky(){const cv=$('skyCv');if(!cv||$('sky').hidden)return;const c=cv
  $('skInfo').innerHTML=(sa>-6?'<b>☀️ Es ist noch hell</b> – Zeit vorspulen, um den Nachthimmel zu sehen.<br>':'')+(info.length?info.join('<br>'):'Gerade keine Planeten und kein Mond über dem Horizont.')}
 function initSkyMap(){$('skOff').oninput=drawSky;$('skNow').onclick=()=>{$('skOff').value=0;drawSky()};$('skLines').onchange=$('skNames').onchange=drawSky;
  document.querySelectorAll('[data-p=sky],[data-go=sky]').forEach(b=>b.addEventListener('click',()=>setTimeout(drawSky,0)));setInterval(drawSky,60000);drawSky()}
+/* ===== Raketenstarts ===== */
+const LN={all:[],f:'all',at:0};
+function lnCats(l){const lsp=((l.launch_service_provider||{}).name||''),ab=[];const add=a=>(a||[]).forEach(x=>{if(x)ab.push((x.abbrev||'')+'|'+(x.name||''))});
+ add([l.launch_service_provider]);add((l.mission||{}).agencies);(l.program||[]).forEach(p=>add(p.agencies));const A=ab.join(' ');const n=(l.name||'')+' '+((l.mission||{}).name||'');const c=[];
+ if(/starlink/i.test(n))c.push('starlink');if(/SpaceX/i.test(lsp)&&!c.includes('starlink'))c.push('spacex');
+ if(/(^|\s)NASA\|/.test(A)||/National Aeronautics/i.test(A))c.push('nasa');if(/(^|\s)ESA\|/.test(A)||/European Space Agency/i.test(A))c.push('esa');return c}
+async function loadLaunches(force){let c=null;try{c=JSON.parse(localStorage.getItem('ln-cache'))}catch(e){}
+ if(c&&!force&&Date.now()-c.at<3*3600000){LN.all=c.d;LN.at=c.at;return renderLaunches()}
+ try{const r=await fetch('https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&mode=normal&hide_recent_previous=true');if(!r.ok)throw r.status;const j=await r.json();
+  LN.all=(j.results||[]).map(l=>({n:l.name||'',t:l.net,st:(l.status||{}).abbrev||'',stn:(l.status||{}).name||'',lsp:(l.launch_service_provider||{}).name||'',pad:((l.pad||{}).location||{}).name||(l.pad||{}).name||'',web:!!l.webcast_live,c:lnCats(l)}));LN.at=Date.now();
+  try{localStorage.setItem('ln-cache',JSON.stringify({at:LN.at,d:LN.all}))}catch(e){}}
+ catch(e){if(c){LN.all=c.d;LN.at=c.at}else{$('lnList').innerHTML='<small>Startdaten gerade nicht erreichbar (Limit des Dienstes: 15 Abrufe/Stunde). <a href="https://nextspaceflight.com/launches/" target="_blank">Bei Next Spaceflight ansehen</a></small>';return}}
+ renderLaunches()}
+const LNTAG={starlink:'Starlink',spacex:'SpaceX',nasa:'NASA',esa:'ESA'};
+function lnFilt(){return LN.all.filter(l=>new Date(l.t)>Date.now()-3600000&&(LN.f=='all'?l.c.length:l.c.includes(LN.f)))}
+function renderLaunches(){const L=lnFilt();$('lnAt').textContent=LN.at?'Stand '+new Date(LN.at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'';
+ $('lnList').innerHTML=L.length?'<table><thead><tr><th>Wann</th><th>Mission</th><th class="lnpad">Startplatz</th></tr></thead><tbody>'+L.slice(0,15).map(l=>{const d=new Date(l.t);return`<tr><td><b>${dtl(d)}</b><br>${hm(d)} Uhr</td><td>${l.c.map(k=>`<span class="lntag ${k}">${LNTAG[k]}</span>`).join('')}${l.n.replace(/</g,'&lt;')}<div class="lnst">${l.lsp} · ${l.st=='Go'?'✅ Go':l.stn}</div></td><td class="lnpad">${l.pad}</td></tr>`}).join('')+'</tbody></table>':'<small>Keine anstehenden Starts in dieser Auswahl.</small>';
+ lnTick();renderBrief&&renderBrief()}
+function lnTick(){const l=lnFilt().find(x=>new Date(x.t)>Date.now());if(!l){$('lnNext').innerHTML='';return}let ms=new Date(l.t)-Date.now();const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+ $('lnNext').innerHTML=`<div class="lnnext"><div class="cd">T− ${d?d+' T ':''}${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}</div><div><b>${l.n.replace(/</g,'&lt;')}</b><br><small>${dtl(new Date(l.t))}, ${hm(new Date(l.t))} Uhr · ${l.pad}</small></div></div>`}
+function initLaunches(){document.querySelectorAll('#lnTabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#lnTabs button').forEach(x=>x.classList.toggle('on',x==b));LN.f=b.dataset.f;renderLaunches()});
+ setInterval(()=>{if(!$('sky').hidden)lnTick()},1000);loadLaunches();setInterval(loadLaunches,3*3600000)}
 /* ===== Polarlicht ===== */
 let AUR=null;
 function aurLevel(k){if(k>=8)return{c:'#e879f9',t:'Extremer Sturm',m:'Polarlicht sehr wahrscheinlich – auch hoch am Himmel und mit bloßem Auge in Farbe!'};
@@ -2873,6 +2904,7 @@ function renderBrief(){if(!$('brief'))return;const now=new Date(),t=iso(now),tm=
  /* Auto */ try{(cDb().dl||[]).forEach(d=>{const n=Math.round((new Date(d.date+'T12:00')-new Date(t+'T12:00'))/86400000);if(n<0)add('🚗','<b>'+wxEsc(d.kind)+' überfällig!</b>',1);else if(n<=14&&n>0)add('🚗',wxEsc(d.kind)+' in <b>'+n+' Tagen</b>')})}catch(e){}
  /* Sprit */ if(TK){const o=TK.st.find(x=>x.isOpen);if(o)add('⛽','E10 ab <b>'+nf(o.price,3)+' €</b> bei '+wxEsc(o.brand||o.name)+' '+wxEsc(o.place))}
  /* Haushalt */ const hb=db.hb[now.getFullYear()+'-'+now.getMonth()];if(hb&&hb.income){const r=hb.income-sum(hb);add('🏦','Noch <b>'+eur(r)+'</b> auf Konto',r<0)}try{const k=kasTotal();add('💶','In der Haushaltskasse: <b>'+eur(k)+'</b>',k<0)}catch(e){}
+ /* Starts */ {const nx=(LN.all||[]).find(x=>x.c.length&&new Date(x.t)>now&&new Date(x.t).toDateString()==now.toDateString());if(nx)add('🚀','Raketenstart heute <b>'+hm(new Date(nx.t))+' Uhr</b>: '+nx.n.replace(/</g,'&lt;'))}
  /* Himmel */ if(AUR&&AUR.now&&AUR.now.kp>=6)add('🌌','<b>Polarlicht möglich!</b> Kp '+nf(AUR.now.kp,1),1);
  try{const W=nightWindow(),vis=Object.keys(PIC).filter(n=>W.some(w=>w.d.getHours()>=17&&w.d.getHours()<=23?planetHor(n,w.d).alt>=15:false));const on=$('aG')&&$('aG').classList.contains('on');
   if(vis.length||on)add('🔭',(on?'<b>Klare Nacht</b> – ':'')+(vis.length?vis.join(' & ')+' heute Abend sichtbar':'gute Bedingungen'))}catch(e){}
@@ -3037,7 +3069,7 @@ function init(){
   $('cPrev').onclick=()=>{cM.setMonth(cM.getMonth()-1);renderCal()};$('cNext').onclick=()=>{cM.setMonth(cM.getMonth()+1);renderCal()};
   $('cToday').onclick=()=>{cM=new Date();cM.setDate(1);renderCal()};
   $('eAdd').onclick=()=>{if(!$('eDate').value||!$('eText').value)return alert('Bitte Datum und Text eingeben');db.cal=db.cal||[];db.cal.push({id:Date.now()+'',date:$('eDate').value,text:$('eText').value});$('eText').value='';save();renderCal();renderUp()};
-  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
+  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
 }
 /* ===== Online-Speicher: verschlüsselt in GitHub (privates Repo) ===== */
 const GH={owner:'sakomobil-beep',repo:'zentrale-daten',path:'daten.enc'};
