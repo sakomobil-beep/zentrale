@@ -79,7 +79,7 @@ if(hour>=6&&hour<23){try{
 if(KEY&&process.env.GC_TOKEN&&(!S.statsAt||Date.now()-new Date(S.statsAt)>50*6e4)){try{
   const api='https://'+(process.env.GC_CODE||'wetter-badkoenig')+'.goatcounter.com/api/v0',h={Authorization:'Bearer '+process.env.GC_TOKEN,'Content-Type':'application/json'};
   const end=dstr(new Date(Date.now()+864e5)),start=dstr(new Date(Date.now()-29*864e5)),q='start='+start+'&end='+end;
-  const g=async u=>{const r=await fetch(api+u,{headers:h});if(!r.ok)throw new Error(u+' '+r.status);await new Promise(x=>setTimeout(x,300));return r.json()};
+  const g=async u=>{const r=await fetch(api+u,{headers:h});if(!r.ok)throw new Error(u+' '+r.status+' '+(await r.text()).slice(0,200));await new Promise(x=>setTimeout(x,300));return r.json()};
   const st=async n=>((await g('/stats/'+n+'?'+q+'&limit=10')).stats||[]);
   const W={at:Date.now(),total:await g('/stats/total?'+q),hits:((await g('/stats/hits?'+q+'&limit=15')).hits||[]).map(x=>({path:x.path,title:x.title,count:x.count})),
     refs:await st('toprefs'),loc:await st('locations'),sizes:await st('sizes'),br:await st('browsers'),sys:await st('systems')};
