@@ -2926,9 +2926,9 @@ function renderBrief(){if(!$('brief'))return;const now=new Date(),t=iso(now),tm=
  tdE.filter(e=>e.c=='own'||e.c=='car').forEach(e=>add('📌','Heute: <b>'+wxEsc(e.full)+'</b>'));tmE.filter(e=>e.c=='own').forEach(e=>add('📌','Morgen: '+wxEsc(e.full)));
  /* Auto */ try{(cDb().dl||[]).forEach(d=>{const n=Math.round((new Date(d.date+'T12:00')-new Date(t+'T12:00'))/86400000);if(n<0)add('🚗','<b>'+wxEsc(d.kind)+' überfällig!</b>',1);else if(n<=14&&n>0)add('🚗',wxEsc(d.kind)+' in <b>'+n+' Tagen</b>')})}catch(e){}
  /* Sprit */ if(TK){const o=TK.st.find(x=>x.isOpen);if(o)add('⛽','E10 ab <b>'+nf(o.price,3)+' €</b> bei '+wxEsc(o.brand||o.name)+' '+wxEsc(o.place))}
- /* Haushalt */ const hb=db.hb[now.getFullYear()+'-'+now.getMonth()];if(hb&&hb.income){const r=hb.income-sum(hb);add('🏦','Noch <b>'+eur(r)+'</b> auf Konto',r<0)}try{const k=kasTotal();add('💶','In der Haushaltskasse: <b>'+eur(k)+'</b>',k<0)}catch(e){}
+ 
  /* Starts */ {const nx=(LN.all||[]).find(x=>x.c.length&&new Date(x.t)>now&&new Date(x.t).toDateString()==now.toDateString());if(nx)add('🚀','Raketenstart heute <b>'+hm(new Date(nx.t))+' Uhr</b>: '+nx.n.replace(/</g,'&lt;'))}
- /* Himmel */ if(AUR&&AUR.now&&AUR.now.kp>=6)add('🌌','<b>Polarlicht möglich!</b> Kp '+nf(AUR.now.kp,1),1);
+ /* Himmel */ if(AUR&&AUR.now){const fu=(AUR.rows||[]).filter(r=>r.t>new Date()&&r.t<new Date(Date.now()+24*3600000)),mx=fu.reduce((a,r)=>r.kp>a.kp?r:a,{kp:0});if(AUR.now.kp>=6)add('🌌','<b>Polarlicht möglich!</b> Kp '+nf(AUR.now.kp,1)+' jetzt',1);else if(mx.kp>=6)add('🌌','<b>Polarlicht möglich!</b> Kp '+nf(mx.kp,1)+' erwartet '+dtl(mx.t)+', '+hm(mx.t)+' Uhr',1)}
  try{const W=nightWindow(),vis=Object.keys(PIC).filter(n=>W.some(w=>w.d.getHours()>=17&&w.d.getHours()<=23?planetHor(n,w.d).alt>=15:false));const on=$('aG')&&$('aG').classList.contains('on');
   if(vis.length||on)add('🔭',(on?'<b>Klare Nacht</b> – ':'')+(vis.length?vis.join(' & ')+' heute Abend sichtbar':'gute Bedingungen'))}catch(e){}
  const p=(SKY.passes||[]).find(x=>x.start.toDateString()==now.toDateString()&&x.start>now);if(p)add('🛰️','ISS heute um <b>'+hm(p.start)+' Uhr</b>');
