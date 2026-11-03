@@ -2020,7 +2020,7 @@ td input{width:100%;border:1px solid transparent;background:transparent}td input
 .wx .wh{font-weight:600;font-size:15px;display:flex;justify-content:space-between;align-items:baseline}.wx .wh small{font-weight:400;opacity:.9;color:#fff;font-size:12px}
 .wx .wt{font-size:52px;font-weight:700;line-height:1}.wx .wf{opacity:.85;font-size:13px;margin-top:-6px}
 .wx .wg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.wx .wg div{background:rgba(255,255,255,.12);border-radius:10px;padding:7px 9px;font-size:12px}.wx .wg b{display:block;font-size:16px}
-.wx .ws{font-size:11px;opacity:.7;margin-top:auto}
+.wx .ws{font-size:11px;opacity:.7}.wx .wsr{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}.wx .wxbtn{flex:none;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.35)}.wx .wxbtn:active{background:rgba(255,255,255,.35)}
 .fb{border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.35}.fb b{display:block;font-size:14px;margin-bottom:2px}
 .fb.jetzt,.fb.nacht{background:#e0f2fe;color:#0c4a6e}.fb.glatt{background:#fef3c7;color:#78350f}.fb.boden{background:#dcfce7;color:#14532d}
 .al{background:#fee2e2;color:#7f1d1d;border-radius:10px;padding:8px 12px;font-size:12px;margin-bottom:6px}.al b{display:block;font-size:13px}
@@ -2188,7 +2188,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div class="sc" id="sCap"></div>
     <div class="se" id="sEmpty">📷 Noch keine Fotos.<br><small>Im Menü auf <b>📷 Fotos hochladen</b> tippen – sie werden verschlüsselt gespeichert.</small></div>
   </div>
-  <a class="wx" id="wx" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">
+  <div class="wx" id="wx">
     <div class="wh">🌡️ Wetter Bad König <small id="wxAt"></small></div>
     <div class="wt" id="wxT">–</div>
     <div class="wf" id="wxF"></div>
@@ -2196,8 +2196,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div id="wxFrost"></div>
     <div id="wxAl"></div>
     <div id="wxAur"></div>
-    <div class="ws">Station IBADKN33 · wetter-badkoenig.de</div>
-  </a>
+    <div class="wsr"><div class="ws">Station IBADKN33 · wetter-badkoenig.de</div><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zum Wetter ›</a></div>
+  </div>
   </div>
   <div class="midrow">
     <div class="card qx">
