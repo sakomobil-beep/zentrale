@@ -20,6 +20,7 @@ jobs:
           ZENTRALE_PW: ${{ secrets.ZENTRALE_PW }}
           DATEN_TOKEN: ${{ secrets.DATEN_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TK_KEY: ${{ secrets.TK_KEY }}
         run: node .notify/notify.mjs
       - name: Zustand merken
         run: |

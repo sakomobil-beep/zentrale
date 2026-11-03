@@ -53,6 +53,15 @@ if(db&&hour>=7){
   const ev=(db.cal||[]).filter(e=>e.date==today).map(e=>e.text);
   if(ev.length)await once('cal-'+today,'📌 Heute',ev.join('\n'),'pushpin',3)}
 
+/* --- Spritpreis (täglich ab 11 Uhr, Tankerkönig) --- */
+if(hour>=11&&process.env.TK_KEY){try{
+  const j=await (await fetch('https://creativecommons.tankerkoenig.de/json/list.php?lat=49.743&lng=9.006&rad=10&sort=price&type=e10&apikey='+encodeURIComponent(process.env.TK_KEY))).json();
+  if(!j.ok)throw new Error(j.message);const op=(j.stations||[]).filter(s=>s.price&&s.isOpen);
+  if(op.length){const p=v=>v.toFixed(3).replace('.',','),b=op[0];
+    const txt=op.slice(0,3).map((s,i)=>(i?'':'👉 ')+p(s.price)+' € – '+(s.brand||s.name)+' '+s.place+' ('+s.dist.toFixed(1).replace('.',',')+' km)').join('\n');
+    await once('sprit-'+today,'⛽ E10 ab '+p(b.price)+' € bei '+(b.brand||b.name),txt,'fuelpump',3)}
+}catch(e){console.log('Sprit:',e.message)}}
+
 /* --- aufräumen & speichern --- */
 const cut=dstr(new Date(Date.now()-60*864e5));for(const k in S)if(k!='aurora'&&S[k]<cut)delete S[k];
 fs.writeFileSync(SF,JSON.stringify(S,null,1));
