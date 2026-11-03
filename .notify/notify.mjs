@@ -62,6 +62,19 @@ if(hour>=11&&process.env.TK_KEY){try{
     await once('sprit-'+today,'⛽ E10 ab '+p(b.price)+' € bei '+(b.brand||b.name),txt,'fuelpump',3)}
 }catch(e){console.log('Sprit:',e.message)}}
 
+/* --- Regen-Radar (DWD RADOLAN über Bright Sky), 6–23 Uhr --- */
+if(hour>=6&&hour<23){try{
+  const j=await (await fetch('https://api.brightsky.dev/radar?lat=49.743&lon=9.006&distance=0&format=plain&tz=Europe/Berlin')).json();
+  const now=Date.now(),L=(j.radar||[]).map(r=>{const v=r.precipitation_5,x=Array.isArray(v)?(Array.isArray(v[0])?v[0][0]:v[0]):v;return{t:new Date(r.timestamp),mm:(+x||0)/100}}).filter(r=>r.t>=now-3e5).sort((a,b)=>a.t-b.t);
+  const wet=r=>r.mm>=0.01,hm=d=>d.toLocaleTimeString('de-DE',{timeZone:tz,hour:'2-digit',minute:'2-digit'});
+  if(L.length&&!wet(L[0])){const first=L.find(r=>wet(r)&&r.t-now<=75*6e4);
+    const last=S.rain?new Date(S.rain).getTime():0;
+    if(first&&now-last>3*36e5){const rest=L.slice(L.indexOf(first)),dry=rest.find(r=>!wet(r)),seg=rest.slice(0,dry?rest.indexOf(dry):rest.length);
+      const mmh=Math.max(...seg.map(r=>r.mm))*12,art=mmh<0.5?'leichter':mmh<4?'mäßiger':'starker',mins=Math.max(5,Math.round((first.t-now)/6e4/5)*5);
+      await push('☔ Regen in ca. '+mins+' Minuten',art[0].toUpperCase()+art.slice(1)+' Regen ab ca. '+hm(first.t)+' Uhr'+(dry?', bis etwa '+hm(dry.t)+' Uhr.':'.')+' Wäsche rein, Fenster zu!','umbrella',4);S.rain=new Date().toISOString()}}
+  if(L.length&&wet(L[0]))S.rain=new Date().toISOString(); /* während es regnet: keine erneute Warnung */
+}catch(e){console.log('Radar:',e.message)}}
+
 /* --- aufräumen & speichern --- */
-const cut=dstr(new Date(Date.now()-60*864e5));for(const k in S)if(k!='aurora'&&S[k]<cut)delete S[k];
+const cut=dstr(new Date(Date.now()-60*864e5));for(const k in S)if(k!='aurora'&&k!='rain'&&S[k]<cut)delete S[k];
 fs.writeFileSync(SF,JSON.stringify(S,null,1));
