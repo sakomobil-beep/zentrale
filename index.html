@@ -2009,7 +2009,7 @@ td input{width:100%;border:1px solid transparent;background:transparent}td input
 .day.o{background:#f9fafb;color:#c0c4cc}.day.t{border:2px solid var(--acc)}
 .day .n{font-weight:600;font-size:13px;margin-bottom:3px}
 .pill{display:block;border-radius:5px;padding:2px 5px;margin-bottom:2px;font-size:11px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rest{background:#4b5563}.papier{background:#2563eb}.bio{background:#92400e}.gelb{background:#eab308;color:#1d2330}.sonder{background:#dc2626}.own{background:#7c3aed}
+.rest{background:#4b5563}.papier{background:#2563eb}.bio{background:#92400e}.gelb{background:#eab308;color:#1d2330}.sonder{background:#dc2626}.own{background:#7c3aed}.gc{background:#0b8043}
 .legend{display:flex;gap:10px;flex-wrap:wrap}.legend .pill{display:inline-block}
 .nx{display:flex;gap:10px;flex-wrap:wrap}.nx>div{border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:150px}
 .toprow{display:grid;grid-template-columns:1fr 310px;gap:16px;margin-bottom:20px}
@@ -2421,6 +2421,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div class="legend" id="legend"></div>
     <div class="cgrid" id="cgrid"></div>
   </div>
+  <div class="card" id="gcBox">
+    <h2 style="font-size:17px">📅 Google Kalender <small id="gcSt" style="font-weight:400;color:var(--mut)"></small></h2>
+    <div class="row" style="gap:8px;flex-wrap:wrap"><input id="gcUrl" placeholder="Link der Apps-Script-Web-App (https://script.google.com/macros/s/…/exec?key=…)" style="flex:1;min-width:260px"><button id="gcSave">Verbinden</button><button class="g" id="gcSync">⟳ Aktualisieren</button><button class="g" id="gcOff">Trennen</button></div>
+    <small>Der Link wird verschlüsselt mit deinen übrigen Daten gespeichert. Termine werden alle 15 Minuten abgeglichen (60 Tage zurück, 1 Jahr voraus).</small>
+  </div>
   <div class="card">
     <h2 style="font-size:17px">Eigener Termin</h2>
     <div class="row"><input id="eDate" type="date"><input id="eText" placeholder="Was?" style="flex:1"><button class="b" id="eAdd">Eintragen</button></div>
@@ -2567,13 +2572,13 @@ const MT={rest:'Restmüll',papier:'Papiertonne',bio:'Biotonne',gelb:'Gelber Sack
 const MS={rest:'Restmüll',papier:'Papier',bio:'Bio',gelb:'Gelber Sack',sonder:'Sonderabfall'};
 let cM=new Date();cM.setDate(1);
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-function evOn(ds){const a=MUELL.filter(e=>e[0]==ds).map(e=>({c:e[1],t:MS[e[1]],full:MT[e[1]]}));(db.cal||[]).filter(e=>e.date==ds).forEach(e=>a.push({c:'own',t:e.text,full:e.text}));((db.car||{}).dl||[]).filter(e=>e.date==ds).forEach(e=>a.push({c:'car',t:'🚗 '+e.kind,full:'🚗 '+e.kind+(e.note?' – '+e.note:'')}));return a}
+function evOn(ds){const a=MUELL.filter(e=>e[0]==ds).map(e=>({c:e[1],t:MS[e[1]],full:MT[e[1]]}));(db.cal||[]).filter(e=>e.date==ds).forEach(e=>a.push({c:'own',t:e.text,full:e.text}));(GC.ev[ds]||[]).forEach(e=>a.push({c:'gc',t:(e.t?e.t+' ':'')+e.s,full:'Google: '+(e.t?e.t+' Uhr ':'')+e.s}));((db.car||{}).dl||[]).filter(e=>e.date==ds).forEach(e=>a.push({c:'car',t:'🚗 '+e.kind,full:'🚗 '+e.kind+(e.note?' – '+e.note:'')}));return a}
 function rel(ds){const t=iso(new Date()),tm=new Date();tm.setDate(tm.getDate()+1);if(ds==t)return 'Heute';if(ds==iso(tm))return 'Morgen';return new Date(ds+'T12:00').toLocaleDateString('de-DE',{weekday:'short',day:'numeric',month:'short'})}
 function nextM(){const t=iso(new Date());const r={};MUELL.forEach(e=>{if(e[0]>=t&&!r[e[1]])r[e[1]]=e[0]});return Object.entries(r).sort((a,b)=>a[1]<b[1]?-1:1)}
 function renderCal(){
   const y=cM.getFullYear(),m=cM.getMonth();$('cTitle').textContent=M[m]+' '+y;
   const nx=nextM();$('nextBox').innerHTML='<h2 style="font-size:17px">Nächste Abholungen</h2><div class="nx">'+(nx.map(([c,d])=>`<div><span class="pill ${c}">${MS[c]}</span><b>${rel(d)}</b></div>`).join('')||'<small>Keine weiteren Termine im Müllkalender 2026.</small>')+'</div>';
-  $('legend').innerHTML=Object.keys(MS).map(k=>`<span class="pill ${k}">${MS[k]}</span>`).join('')+'<span class="pill own">Eigene Termine</span>';
+  $('legend').innerHTML=Object.keys(MS).map(k=>`<span class="pill ${k}">${MS[k]}</span>`).join('')+'<span class="pill own">Eigene Termine</span>'+(GC.n?'<span class="pill gc">Google Kalender</span>':'');
   let h=['Mo','Di','Mi','Do','Fr','Sa','So'].map(d=>`<div class="h">${d}</div>`).join('');
   const st=new Date(y,m,1);st.setDate(st.getDate()-((st.getDay()+6)%7));const td=iso(new Date());
   for(let i=0;i<42;i++){const d=new Date(st);d.setDate(st.getDate()+i);const ds=iso(d);
@@ -2765,6 +2770,22 @@ function drawSky(){const cv=$('skyCv');if(!cv||$('sky').hidden)return;const c=cv
  $('skInfo').innerHTML=(sa>-6?'<b>☀️ Es ist noch hell</b> – Zeit vorspulen, um den Nachthimmel zu sehen.<br>':'')+(info.length?info.join('<br>'):'Gerade keine Planeten und kein Mond über dem Horizont.')}
 function initSkyMap(){$('skOff').oninput=drawSky;$('skNow').onclick=()=>{$('skOff').value=0;drawSky()};$('skLines').onchange=$('skNames').onchange=drawSky;
  document.querySelectorAll('[data-p=sky],[data-go=sky]').forEach(b=>b.addEventListener('click',()=>setTimeout(drawSky,0)));setInterval(drawSky,60000);drawSky()}
+/* ===== Google Kalender ===== */
+const GC={ev:{},n:0,at:0};
+function gcSet(list){GC.ev={};GC.n=0;(list||[]).forEach(e=>{let d=new Date(e.d+'T12:00');const end=new Date((e.e||e.d)+'T12:00');let k=0;do{const ds=iso(d);(GC.ev[ds]=GC.ev[ds]||[]).push({t:k?'':e.t,s:e.s});GC.n++;d.setDate(d.getDate()+1);k++}while(d<=end&&k<60)});
+ Object.values(GC.ev).forEach(a=>a.sort((x,y)=>(x.t||'').localeCompare(y.t||'')))}
+async function gcLoad(){const u=(db.gcal||{}).url;$('gcUrl').value=u||'';if(!u){$('gcSt').textContent='– nicht verbunden';GC.ev={};GC.n=0;return}
+ try{const c=JSON.parse(localStorage.getItem('gc-cache')||'null');if(c&&c.u==u&&!GC.at){gcSet(c.d);GC.at=c.at;gcRedraw()}}catch(e){}
+ $('gcSt').textContent='– lade …';
+ try{const r=await fetch(u+(u.includes('?')?'&':'?')+'_='+Date.now());const j=await r.json();if(j.error)throw j.error;gcSet(j.events);GC.at=Date.now();
+  try{localStorage.setItem('gc-cache',JSON.stringify({u,at:GC.at,d:j.events}))}catch(e){}
+  $('gcSt').textContent='– ✅ verbunden, '+(j.events||[]).length+' Termine, Stand '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}
+ catch(e){$('gcSt').textContent='– ⚠️ nicht erreichbar'+(GC.at?' (zeige letzten Stand)':'')+(typeof e=='string'?': '+e:'')}
+ gcRedraw()}
+function gcRedraw(){try{renderCal();renderUp();renderBrief()}catch(e){}}
+function initGcal(){$('gcSave').onclick=()=>{const u=$('gcUrl').value.trim();if(!/^https:\/\/script\.google(usercontent)?\.com\//.test(u))return alert('Bitte den Web-App-Link von script.google.com einfügen');db.gcal={url:u};save();GC.at=0;gcLoad()};
+ $('gcSync').onclick=gcLoad;$('gcOff').onclick=()=>{if(!confirm('Google Kalender trennen?'))return;db.gcal={};save();try{localStorage.removeItem('gc-cache')}catch(e){}GC.at=0;gcLoad()};
+ gcLoad();setInterval(gcLoad,15*60000)}
 /* ===== Raketenstarts ===== */
 const LN={all:[],f:'all',at:0};
 function lnCats(l){const lsp=((l.launch_service_provider||{}).name||''),ab=[];const add=a=>(a||[]).forEach(x=>{if(x)ab.push((x.abbrev||'')+'|'+(x.name||''))});
@@ -2827,7 +2848,7 @@ function renderHomeSky(){if(AUR&&AUR.now&&AUR.now.kp>=6){$('homeSky').textConten
 function renderUp(){const now=new Date(),days=[];
  for(let i=0;i<14&&days.length<4;i++){const d=new Date(now);d.setDate(now.getDate()+i);const ds=iso(d),ev=evOn(ds);if(ev.length)days.push({d,i,ev})}
  $('upList').innerHTML=days.length?days.map(x=>{const lbl=x.i==0?'HEUTE':x.i==1?'MORGEN':x.d.toLocaleDateString('de-DE',{weekday:'short',day:'numeric',month:'short'});
-  const hint=x.i==1&&x.ev.some(e=>e.c!='own'&&e.c!='sonder')?'<div class="uh">🗑️ Heute Abend rausstellen!</div>':x.i==0&&x.ev.some(e=>e.c!='own'&&e.c!='sonder')&&now.getHours()<7?'<div class="uh">🗑️ Jetzt noch rausstellen!</div>':'';
+  const hint=x.i==1&&x.ev.some(e=>e.c!='own'&&e.c!='gc'&&e.c!='car'&&e.c!='sonder')?'<div class="uh">🗑️ Heute Abend rausstellen!</div>':x.i==0&&x.ev.some(e=>e.c!='own'&&e.c!='gc'&&e.c!='car'&&e.c!='sonder')&&now.getHours()<7?'<div class="uh">🗑️ Jetzt noch rausstellen!</div>':'';
   return `<div class="ui ${x.i<2?'t'+x.i:''}"><div class="ud">${lbl}</div><div class="uw">${x.ev.map(e=>`<span class="pill ${e.c}">${wxEsc(e.c=='sonder'?e.full:e.t)}</span>`).join('')}${hint}</div></div>`}).join(''):'<small>Keine Termine in den nächsten 2 Wochen.</small>'}
 function initQuick(){CATS.forEach(c=>$('qCat').add(new Option(c,c)));$('qCat').value='Sonstiges';$('qDate').value=iso(new Date());
  const val=()=>parseFloat(String($('qAmt').value).replace(',','.')),msg=(ok,t)=>{$('qMsg').style.color=ok?'var(--ok)':'var(--bad)';$('qMsg').textContent=t};
@@ -3069,7 +3090,7 @@ function init(){
   $('cPrev').onclick=()=>{cM.setMonth(cM.getMonth()-1);renderCal()};$('cNext').onclick=()=>{cM.setMonth(cM.getMonth()+1);renderCal()};
   $('cToday').onclick=()=>{cM=new Date();cM.setDate(1);renderCal()};
   $('eAdd').onclick=()=>{if(!$('eDate').value||!$('eText').value)return alert('Bitte Datum und Text eingeben');db.cal=db.cal||[];db.cal.push({id:Date.now()+'',date:$('eDate').value,text:$('eText').value});$('eText').value='';save();renderCal();renderUp()};
-  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
+  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}try{initGcal()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
 }
 /* ===== Online-Speicher: verschlüsselt in GitHub (privates Repo) ===== */
 const GH={owner:'sakomobil-beep',repo:'zentrale-daten',path:'daten.enc'};
