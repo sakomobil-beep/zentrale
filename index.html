@@ -3127,7 +3127,7 @@ function renderWeb(){const W=WS;if(!W)return;$('wsMsg').innerHTML='';$('wsBody')
  $('wsTiles').innerHTML=T('👤 Heute',today)+T('📅 7 Tage',sumD(7))+T('🗓️ 30 Tage',sumD(30),'Ø '+Math.round(sumD(30)/30)+' pro Tag')+T('👁️ Seitenaufrufe 30 Tage',(W.total&&W.total.total)||0);
  const mx=Math.max(1,...days.map(d=>d.n));
  $('wsChart').innerHTML=days.map((d,i)=>{const dt=new Date(d.day+'T12:00'),we=dt.getDay()==0||dt.getDay()==6;return `<i class="${we?'we':''}" title="${dt.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'})}: ${d.n}" style="height:${Math.max(2,d.n/mx*100)}px">${i%5==0||i==days.length-1?`<span>${dt.getDate()}.${dt.getMonth()+1}.</span>`:''}</i>`}).join('');
- const pn={'/':'Startseite'};wsList('wsPages',W.hits,x=>(x.title&&x.path!='/'?x.title.replace(/ – Wetterstation Bad König| \| .*$/,''):pn[x.path]||x.path));
+ const pn={'/':'Startseite'};wsList('wsPages',W.hits,x=>(x.title&&x.path!='/'?x.title.replace(/ – (Private )?Wetterstation Bad König| \| .*$/,''):pn[x.path]||x.path));
  wsList('wsRefs',W.refs,x=>x.name||'direkt / Lesezeichen');wsList('wsLoc',W.loc,x=>x.name||x.id||'?');
  const sz={phone:'Handy',largephone:'großes Handy',tablet:'Tablet',desktop:'PC/Laptop',desktophd:'großer Bildschirm',unknown:'unbekannt'};
  wsList('wsSize',W.sizes,x=>sz[x.id]||sz[x.name]||x.name||x.id);wsList('wsBr',W.br,x=>x.name||x.id);wsList('wsSys',W.sys,x=>x.name||x.id)}
