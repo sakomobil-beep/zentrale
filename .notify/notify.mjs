@@ -81,7 +81,7 @@ try{const r=await fetch('https://wetter-badkoenig.de/fb/sonder.json?v='+Date.now
     if(alt<6*36e5)for(const m of j.meldungen||[]){
       const zeilen=String(m.text||'').split('\n').filter(z=>/^(⚠️|•|🕒)/.test(z)).slice(0,4).join('\n');
       await once('sonder-'+m.typ+'-'+today,'📣 Sondermeldung: '+m.titel+(m.amtlich?' (DWD)':''),
-        (zeilen||m.titel)+'\nBild + Text liegen zum Teilen bereit.',m.amtlich?'rotating_light':'loudspeaker',m.amtlich?5:4,'https://wetter-badkoenig.de/facebook.html')}}
+        (zeilen||m.titel)+(m.amtlich?'\nWird automatisch auf Facebook gepostet.':'\nBild + Text liegen zum Teilen bereit.'),m.amtlich?'rotating_light':'loudspeaker',m.amtlich?5:4,'https://wetter-badkoenig.de/facebook.html')}}
 }catch(e){console.log('Sondermeldung:',e.message)}
 
 /* --- Website-Statistik (GoatCounter) → verschlüsselt nach zentrale-daten, stündlich --- */
