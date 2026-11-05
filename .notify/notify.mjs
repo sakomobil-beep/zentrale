@@ -9,8 +9,8 @@ const hour=parseInt(new Date().toLocaleString('en-GB',{timeZone:tz,hour:'2-digit
 const today=dstr(new Date()),tomorrow=dstr(new Date(Date.now()+864e5));
 const dt=d=>d.toLocaleString('de-DE',{timeZone:tz,weekday:'short',hour:'2-digit',minute:'2-digit'});
 const msgs=[];
-async function push(title,body,tags,prio=3){
-  let r;try{r=await fetch('https://ntfy.sh/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:TOPIC,title,message:body,tags:[tags],priority:prio,click:'https://sakomobil-beep.github.io/zentrale/'})});
+async function push(title,body,tags,prio=3,click='https://sakomobil-beep.github.io/zentrale/'){
+  let r;try{r=await fetch('https://ntfy.sh/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:TOPIC,title,message:body,tags:[tags],priority:prio,click})});
   }catch(e){console.log('push fehlgeschlagen',e.message);throw e}console.log('push',title,r.status)}
 const once=async(key,...a)=>{if(S[key])return;await push(...a);S[key]=today};
 
@@ -74,6 +74,15 @@ if(hour>=6&&hour<23){try{
       await push('☔ Regen in ca. '+mins+' Minuten',art[0].toUpperCase()+art.slice(1)+' Regen ab ca. '+hm(first.t)+' Uhr'+(dry?', bis etwa '+hm(dry.t)+' Uhr.':'.')+' Wäsche rein, Fenster zu!','umbrella',4);S.rain=new Date().toISOString()}}
   if(L.length&&wet(L[0]))S.rain=new Date().toISOString(); /* während es regnet: keine erneute Warnung */
 }catch(e){console.log('Radar:',e.message)}}
+
+/* --- Wetter-Sondermeldungen für Facebook (wetter-badkoenig.de), einmal pro Lage und Tag --- */
+try{const r=await fetch('https://wetter-badkoenig.de/fb/sonder.json?v='+Date.now());
+  if(r.ok){const j=await r.json(),alt=Date.now()-new Date(j.erstellt).getTime();
+    if(alt<6*36e5)for(const m of j.meldungen||[]){
+      const zeilen=String(m.text||'').split('\n').filter(z=>/^(⚠️|•|🕒)/.test(z)).slice(0,4).join('\n');
+      await once('sonder-'+m.typ+'-'+today,'📣 Sondermeldung: '+m.titel+(m.amtlich?' (DWD)':''),
+        (zeilen||m.titel)+'\nBild + Text liegen zum Teilen bereit.',m.amtlich?'rotating_light':'loudspeaker',m.amtlich?5:4,'https://wetter-badkoenig.de/facebook.html')}}
+}catch(e){console.log('Sondermeldung:',e.message)}
 
 /* --- Website-Statistik (GoatCounter) → verschlüsselt nach zentrale-daten, stündlich --- */
 if(KEY&&process.env.GC_TOKEN&&(!S.statsAt||Date.now()-new Date(S.statsAt)>50*6e4)){try{
