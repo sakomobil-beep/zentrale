@@ -58,6 +58,7 @@
   .autopost { border:3px solid #1877f2; background:#eef4ff; } .autopost .vhead { color:#1877f2; font-weight:800; letter-spacing:.03em; }
   .autopost ul { margin:6px 0 0; padding-left:20px; } .autopost li { margin:3px 0; }
   .apb { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.04em; background:#1877f2; color:#fff; border-radius:20px; padding:3px 9px; margin-left:6px; vertical-align:middle; }
+  .pzeit { font-size:.88rem; font-weight:700; color:#1877f2; margin:-4px 0 10px; }
 </style>
 </head>
 <body>
@@ -85,6 +86,7 @@
   <div class="raster">
     <section class="spalte">
       <h2 class="sp">☀️ Morgens <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="pzeit">🕒 Mo–Fr 7:00 Uhr · Sa/So 8:00 Uhr</div>
       <div class="card" id="vidCard" hidden>
         <div class="vhead" id="vTitel">🎬 Video-Wetterbericht</div>
         <div class="datum" id="vDatum"></div>
@@ -100,6 +102,7 @@
     </section>
     <section class="spalte">
       <h2 class="sp">🍽️ Mittags</h2>
+      <div class="pzeit">🕒 bereit ab 12:00 Uhr (Sommer 13:00) · selbst teilen</div>
       <div class="card">
         <div class="vhead">🖼️ Tagesbeitrag · Mittagswetter (zum Selbst-Teilen)</div>
         <div class="datum" id="tDatum">–</div>
@@ -116,11 +119,13 @@
     </section>
     <section class="spalte">
       <h2 class="sp">🌙 Abends <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="pzeit">🕒 Abendbeitrag täglich 18:00 Uhr · Frost-Hinweis selbst teilen</div>
       <div id="abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendbeitrag erscheint gegen 18 Uhr.</div></div>
       <div id="frostBox"></div>
     </section>
     <section class="spalte">
       <h2 class="sp">📅 Sonntagabend <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="pzeit">🕒 Sonntag 20:00 Uhr</div>
       <div class="card">
         <div class="vhead" id="woTitel">📅 Wochenausblick mit Max</div>
         <div class="datum" id="woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
@@ -135,6 +140,7 @@
     </section>
     <section class="spalte">
       <h2 class="sp">⚡ Sondermeldungen <span class="apb">AUTOPOST bei DWD-Warnung</span></h2>
+      <div class="pzeit">🕒 sofort (alle 15 Minuten geprüft) · andere Meldungen selbst teilen</div>
       <div id="specialBox"></div>
       <div id="sonderBox"></div>
     </section>
