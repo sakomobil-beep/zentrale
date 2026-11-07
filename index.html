@@ -2179,6 +2179,61 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 .nt-i input[type=checkbox]{width:20px;height:20px;margin-top:1px;flex-shrink:0;cursor:pointer;accent-color:#16a34a}.nt-t{flex:1;line-height:1.4;cursor:text}.nt-i.done .nt-t{text-decoration:line-through;opacity:.5}
 .nt-d{font-size:11px;opacity:.55;display:block}.nt-i button{border:0;background:none;cursor:pointer;font-size:15px;opacity:.5;padding:0 4px}.nt-i button:hover{opacity:1}
 @media(max-width:700px){.nt-add{grid-template-columns:1fr 1fr}.nt-add input{grid-column:span 2}}
+
+/* ===== Facebook-Bereich (fest eingebaut, früher fb.html) ===== */
+#fbSec { --blau:#3d8fd0; --text:#24364f; }
+#fbSec * { box-sizing:border-box; }
+#fbSec { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--text);
+         background:linear-gradient(#3d8fd0,#a9d5f2 70%,#e4d2b2); min-height:100vh; }
+#fbSec .fbmain { max-width:1240px; margin:0 auto; padding:20px 14px 40px; }
+#fbSec .raster { display:grid; grid-template-columns:1fr; gap:14px; align-items:start; }
+#fbSec .raster > div, #fbSec .raster > section { min-width:0; }
+#fbSec .spalte > .card, #fbSec .spalte > div > .card { margin-bottom:14px; }
+@media (min-width:900px) { #fbSec .raster { grid-template-columns:1fr 1fr; } }
+@media (min-width:1200px) { #fbSec .raster { grid-template-columns:1fr 1fr 1fr; } }
+#fbSec .datum { display:inline-block; background:#eef4fb; color:#24507f; border-radius:20px; padding:3px 10px;
+           font-size:.8rem; font-weight:700; margin:0 0 10px; }
+#fbSec .datum.alt { background:#fff3e0; color:#b45309; }
+#fbSec .frost { border:3px solid #0288d1; }
+#fbSec .frost .vhead { color:#01579b; }
+#fbSec .frost img { margin-bottom:12px; }
+#fbSec .frost .werte { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+#fbSec .frost .werte span { background:#e1f5fe; color:#01579b; border-radius:10px; padding:4px 9px; font-size:.82rem; font-weight:600; }
+#fbSec h2.sp { color:#fff; font-size:1rem; margin:0 0 8px 4px; text-shadow:0 1px 2px #1e3c64; }
+#fbSec h1 { color:#fff; text-align:center; font-size:1.5rem; margin:6px 0 2px; text-shadow:0 2px 3px #1e3c64; }
+#fbSec .sub { color:#eef6ff; text-align:center; margin:0 0 16px; font-size:.95rem; }
+#fbSec .card { background:#fff; border-radius:18px; padding:14px; box-shadow:0 6px 20px rgba(20,50,90,.18); margin-bottom:14px; }
+#fbSec img { width:100%; border-radius:12px; display:block; }
+#fbSec textarea { width:100%; min-height:180px; border:1px solid #cfdbe8; border-radius:12px; padding:12px;
+             font:inherit; font-size:.95rem; color:var(--text); resize:vertical; }
+#fbSec .btns { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+#fbSec button, #fbSec a.btn { border:0; border-radius:12px; padding:14px 10px; font:inherit; font-weight:700; font-size:1rem;
+                  cursor:pointer; text-align:center; text-decoration:none; }
+#fbSec .prim { background:#1877f2; color:#fff; grid-column:1 / -1; font-size:1.1rem; }
+#fbSec .sec { background:#e8f1fb; color:#24507f; }
+#fbSec .hint { font-size:.85rem; color:#5a6b80; margin:10px 2px 0; line-height:1.4; }
+#fbSec video { width:100%; max-height:80vh; border-radius:12px; background:#000; display:block; }
+#fbSec .vhead { font-weight:800; margin:0 0 10px; font-size:1.05rem; }
+#fbSec .vhead.sp { color:#c62828; }
+#fbSec .sonder { border:3px solid #c62828; }
+#fbSec .sonder .vhead { color:#c62828; }
+#fbSec .sonder .badge { display:inline-block; font-size:.75rem; font-weight:700; padding:3px 9px; border-radius:20px; margin-left:6px; vertical-align:2px; }
+#fbSec .badge.amt { background:#fde2e2; color:#b71c1c; }
+#fbSec .badge.mod { background:#ede7f6; color:#5e35b1; }
+#fbSec .sonder img { margin-bottom:12px; }
+#fbSec .abend { border:3px solid #3949ab; }
+#fbSec .abend .vhead { color:#283593; }
+#fbSec .abend img { margin-bottom:12px; }
+#fbSec .ruhig { text-align:center; color:#2e7d32; font-weight:600; }
+#fbSec #fb_ok { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#24364f; color:#fff;
+        padding:10px 18px; border-radius:20px; opacity:0; transition:opacity .3s; pointer-events:none; }
+#fbSec .autopost { border:3px solid #1877f2; background:#eef4ff; }
+#fbSec .autopost .vhead { color:#1877f2; font-weight:800; letter-spacing:.03em; }
+#fbSec .autopost ul { margin:6px 0 0; padding-left:20px; }
+#fbSec .autopost li { margin:3px 0; }
+#fbSec .apb { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.04em; background:#1877f2; color:#fff; border-radius:20px; padding:3px 9px; margin-left:6px; vertical-align:middle; }
+#fbSec .pzeit { font-size:.88rem; font-weight:700; color:#1877f2; margin:-4px 0 10px; }
+#fbSec { border-radius:16px; overflow:hidden; } #fbSec .fbmain { max-width:none; } #fbSec [hidden] { display:none !important; }
 </style></head>
 <body>
 <nav>
@@ -2240,7 +2295,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <main id="web" hidden>
   <div class="card"><h3 style="margin-top:0">📣 Social Media – Beiträge zum Posten</h3>
     <div style="display:grid;grid-template-columns:1fr;gap:10px">
-      <a href="#" onclick="$('fbFrame').scrollIntoView({behavior:'smooth'});return false" style="display:block;text-align:center;padding:14px 10px;border-radius:12px;background:#1877f2;color:#fff;font-weight:700;text-decoration:none">📘 Facebook-Beiträge</a>
+      <a href="#" onclick="$('fbSec').scrollIntoView({behavior:'smooth'});return false" style="display:block;text-align:center;padding:14px 10px;border-radius:12px;background:#1877f2;color:#fff;font-weight:700;text-decoration:none">📘 Facebook-Beiträge</a>
     </div>
     <small style="display:block;margin-top:8px;opacity:.7">Nur hier in der Zentrale erreichbar (geschützt).</small>
     <h4 style="margin:14px 0 6px">🕒 Postzeiten</h4>
@@ -2260,7 +2315,92 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
     <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
   </details>
-  <iframe id="fbFrame" title="Facebook-Beiträge" allow="web-share; clipboard-write" scrolling="no" style="display:block;width:100%;height:900px;border:0;overflow:hidden;background:transparent"></iframe>
+  <template id="fbTpl">
+  <h1>Facebook-Beitrag von heute</h1>
+  <p class="sub" id="fb_stand">wird geladen …</p>
+
+  <div class="card autopost">
+    <div class="vhead">🤖 AUTOPOST FACEBOOK</div>
+    <div>Diese Beiträge werden <b>automatisch</b> auf Facebook gepostet – du musst nichts tun:</div>
+    <ul>
+      <li>🎬 <b>Wettervideo mit Max</b> – morgens (Mo–Fr 7 Uhr, Sa/So 8 Uhr)</li>
+      <li>🌙 <b>Abendbeitrag</b> – gegen 18 Uhr</li>
+      <li>📅 <b>Wochenausblick-Video mit Max</b> – sonntags 20 Uhr</li>
+      <li>⚡ <b>Amtliche DWD-Warnungen</b> als Sondermeldung – sofort</li>
+    </ul>
+    <div class="hint" style="margin:6px 0 0">Selbst teilen: Mittagswetter, Frost-/Kratzen-Hinweis, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
+  </div>
+
+  <div class="card" id="fb_letzte" style="margin:0 0 16px;font-size:.95rem;color:#24507f">
+    <div class="vhead">🕒 Zuletzt erstellt</div>
+    <div id="fb_letzteListe">wird geladen …</div>
+  </div>
+
+  <div class="raster">
+    <section class="spalte">
+      <h2 class="sp">☀️ Morgens <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="pzeit">🕒 Mo–Fr 7:00 Uhr · Sa/So 8:00 Uhr</div>
+      <div class="card" id="fb_vidCard" hidden>
+        <div class="vhead" id="fb_vTitel">🎬 Video-Wetterbericht</div>
+        <div class="datum" id="fb_vDatum"></div>
+        <video id="fb_vid" controls playsinline preload="metadata"></video>
+        <div class="btns">
+          <button class="prim" id="fb_vTeilen">📤 Video teilen</button>
+          <a class="btn sec" id="fb_vLaden" download="odenwald-wetter.mp4" style="grid-column:1 / -1">💾 Video speichern</a>
+        </div>
+        <p class="hint">Tipp: Auf Facebook als <b>Reel</b> hochladen – das Video ist hochkant (9:16) dafür gemacht.</p>
+        <button class="sec" id="fb_vNeu" style="width:100%;margin-top:8px">🔄 Video jetzt neu erstellen</button>
+        <p class="hint" id="fb_vNeuSt">Erstellt Vorhersage und Video mit Max neu (ca. 3–5 Minuten). Wird <b>nicht</b> auf Facebook gepostet – nur zum Ansehen.</p>
+      </div>
+    </section>
+    <section class="spalte">
+      <h2 class="sp">🍽️ Mittags</h2>
+      <div class="pzeit">🕒 bereit ab 12:00 Uhr (Sommer 13:00) · selbst teilen</div>
+      <div class="card">
+        <div class="vhead">🖼️ Tagesbeitrag · Mittagswetter (zum Selbst-Teilen)</div>
+        <div class="datum" id="fb_tDatum">–</div>
+        <img id="fb_bild" alt="Vorhersagebild für Facebook" style="margin-bottom:12px">
+        <textarea id="fb_text" aria-label="Beitragstext"></textarea>
+        <div class="btns">
+          <button class="prim" id="fb_teilen">📤 Teilen (Bild + Text)</button>
+          <button class="sec" id="fb_kopieren">📋 Text kopieren</button>
+          <a class="btn sec" id="fb_laden" download="wetter-bad-koenig.jpg">💾 Bild speichern</a>
+        </div>
+        <p class="hint">Am Handy: <b>„Teilen“</b> antippen → Facebook wählen → als Seite „Private Wetterstation Bad König“ posten.
+          Falls Facebook den Text nicht übernimmt: vorher „Text kopieren“ und im Beitrag einfügen.</p>
+      </div>
+    </section>
+    <section class="spalte">
+      <h2 class="sp">🌙 Abends <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="pzeit">🕒 Abendbeitrag täglich 18:00 Uhr · Frost-Hinweis selbst teilen</div>
+      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendbeitrag erscheint gegen 18 Uhr.</div></div>
+      <div id="fb_frostBox"></div>
+    </section>
+    <section class="spalte">
+      <h2 class="sp">📅 Sonntagabend <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="pzeit">🕒 Sonntag 20:00 Uhr</div>
+      <div class="card">
+        <div class="vhead" id="fb_woTitel">📅 Wochenausblick mit Max</div>
+        <div class="datum" id="fb_woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
+        <video id="fb_woVid" controls playsinline preload="metadata" hidden></video>
+        <div class="btns" id="fb_woBtns" hidden>
+          <button class="prim" id="fb_woTeilen">📤 Video teilen</button>
+          <a class="btn sec" id="fb_woLaden" download="odenwald-wochenausblick.mp4">💾 Video speichern</a>
+        </div>
+        <button class="sec" id="fb_woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen</button>
+        <p class="hint" id="fb_woNeuSt">Erstellt den Wochenausblick neu (ca. 3–5 Minuten). Wird <b>nicht</b> gepostet – das passiert nur automatisch sonntags um 20 Uhr.</p>
+      </div>
+    </section>
+    <section class="spalte">
+      <h2 class="sp">⚡ Sondermeldungen <span class="apb">AUTOPOST bei DWD-Warnung</span></h2>
+      <div class="pzeit">🕒 sofort (alle 15 Minuten geprüft) · andere Meldungen selbst teilen</div>
+      <div id="fb_specialBox"></div>
+      <div id="fb_sonderBox"></div>
+    </section>
+  </div>
+
+<div id="fb_ok"></div></template>
+  <div id="fbSec"></div>
   <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
     <div id="wsMsg"><small>Lade Statistik …</small></div>
     <div id="wsBody" hidden>
@@ -3174,10 +3314,8 @@ function initNotes(){const add=()=>{const t=$('ntText').value.trim();if(!t)retur
  $('ntClr').onclick=()=>{const d=nDb().filter(n=>n.done).length;if(!d)return alert('Keine erledigten Notizen.');if(!confirm(d+' erledigte Notiz(en) entfernen?'))return;db.notes=db.notes.filter(n=>!n.done);save();renderNotes()};renderNotes()}
 /* Facebook-Bereich: fb.html im Rahmen, Zugriff nur nach Entsperren; Schlüssel verschlüsselt in db.fbTok */
 window.kzOk=()=>!!ghKey;window.kzFbTok=()=>(db&&db.fbTok)||'';
-function fbFit(){const f=$('fbFrame');try{const d=f.contentDocument;if(!d||!d.body)return;const h=Math.max(d.body.scrollHeight,d.documentElement.scrollHeight);if(h&&Math.abs(h-f.offsetHeight)>4)f.style.height=h+'px'}catch(e){}}
-function fbOpen(){const f=$('fbFrame');if(!f.src){f.src='fb.html?v='+Date.now();
-    f.onload=()=>{fbFit();try{new ResizeObserver(fbFit).observe(f.contentDocument.body)}catch(e){}clearInterval(window.fbFitT);window.fbFitT=setInterval(fbFit,1500)}}
-  setTimeout(fbFit,100);$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
+function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild(t.content.cloneNode(true));try{fbInit()}catch(e){console.warn(e)}}
+function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
 function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
@@ -3202,6 +3340,337 @@ function init(){
   $('cToday').onclick=()=>{cM=new Date();cM.setDate(1);renderCal()};
   $('eAdd').onclick=()=>{if(!$('eDate').value||!$('eText').value)return alert('Bitte Datum und Text eingeben');db.cal=db.cal||[];db.cal.push({id:Date.now()+'',date:$('eDate').value,text:$('eText').value});$('eText').value='';save();renderCal();renderUp()};
   initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}try{initGcal()}catch(e){console.warn(e)}try{initNotes()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
+}
+/* ===== Facebook-Bereich: Skripte (früher fb.html) ===== */
+function fbInit(){
+
+(function () {
+  var q = '?v=' + Date.now(), quellen = [
+    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['🍽️ Mittags-Beitrag', 'https://wetter-badkoenig.de/fb/post.json'],
+    ['🌙 Abendbeitrag', 'https://wetter-badkoenig.de/fb/abend.json'], ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
+  Promise.all(quellen.map(function (x) {
+    return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  })).then(function (res) {
+    var heute = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+    document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
+      var j = res[i];
+      if (!j || !j.erstellt) return '<div>' + x[0] + ': –</div>';
+      var d = new Date(j.erstellt), tag = d.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+      var t = (tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' })) +
+        ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr';
+      return '<div>' + x[0] + ': <b' + (tag !== heute ? ' style="color:#b45309"' : '') + '>' + t + '</b></div>';
+    }).join('');
+  });
+})();
+(function () {
+  var v = Date.now(), img = 'https://wetter-badkoenig.de/fb/post.jpg?v=' + v, blob = null;
+  function toast(t) { var o = document.getElementById('fb_ok'); o.textContent = t; o.style.opacity = 1; setTimeout(function () { o.style.opacity = 0; }, 1800); }
+  function datumTxt(iso) {
+    var d = new Date(iso), h = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+    var tag = d.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+    var t = (tag === h ? 'Heute, ' : '') + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) +
+      ' · ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+    return { t: '📅 ' + t, alt: tag !== h };
+  }
+  function setzeDatum(el, iso) { var x = datumTxt(iso); el.textContent = x.t + (x.alt ? ' (nicht von heute!)' : ''); el.className = 'datum' + (x.alt ? ' alt' : ''); }
+  document.getElementById('fb_bild').src = img;
+  document.getElementById('fb_laden').href = img;
+  fetch('https://wetter-badkoenig.de/fb/post.json?v=' + v, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+    document.getElementById('fb_text').value = j.text;
+    var d = new Date(j.erstellt); setzeDatum(document.getElementById('fb_tDatum'), j.erstellt);
+    document.getElementById('fb_stand').textContent = 'Erstellt am ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) +
+      ' um ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+  }).catch(function () { document.getElementById('fb_stand').textContent = 'Noch kein Beitrag vorhanden.'; });
+  var vblob = null, vname = 'wetter';
+  function zeigeVideo(n, j) {
+    vname = n; var src = 'https://wetter-badkoenig.de/fb/' + n + '.mp4?v=' + v;
+    document.getElementById('fb_vid').src = src; document.getElementById('fb_vLaden').href = src;
+    var t = document.getElementById('fb_vTitel');
+    t.textContent = '🎬 Video-Wettervorhersage morgens · ' + Math.round(j.dauer) + ' Sek.';
+    t.className = 'vhead';
+    if (j.erstellt) setzeDatum(document.getElementById('fb_vDatum'), j.erstellt); else document.getElementById('fb_vDatum').hidden = true;
+    document.getElementById('fb_vidCard').hidden = false;
+    fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (b) { vblob = b; }).catch(function () {});
+  }
+  var heute = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+  // Morgenvideo: immer eigene Karte
+  fetch('https://wetter-badkoenig.de/fb/wetter.json?v=' + v, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { zeigeVideo('wetter', j); }).catch(function () {});
+  // Wetter-Special (mittags/nachmittags bei neuer Warnung): eigene Karte, nur am selben Tag
+  fetch('https://wetter-badkoenig.de/fb/special.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    if (j.datum !== heute) return;
+    var src = 'https://wetter-badkoenig.de/fb/special.mp4?v=' + v, sb = null, c = document.createElement('div'); c.className = 'card';
+    c.innerHTML = '<div class="vhead sp">⚠️ Wetter-Special-Video · ' + Math.round(j.dauer) + ' Sek.</div><div class="datum"></div>' +
+      '<video controls playsinline preload="metadata"></video><div class="btns"><button class="prim">📤 Special teilen</button>' +
+      '<a class="btn sec" download="odenwald-wetter-special.mp4" style="grid-column:1 / -1">💾 Video speichern</a></div>';
+    c.querySelector('video').src = src; c.querySelector('a').href = src;
+    if (j.erstellt) setzeDatum(c.querySelector('.datum'), j.erstellt);
+    fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (b) { sb = b; }).catch(function () {});
+    c.querySelector('button').onclick = function () {
+      if (sb && navigator.canShare) { var f = new File([sb], 'odenwald-wetter-special.mp4', { type: 'video/mp4' });
+        if (navigator.canShare({ files: [f] })) { navigator.share({ files: [f] }).catch(function () {}); return; } }
+      toast('Video bitte speichern und auf Facebook hochladen');
+    };
+    document.getElementById('fb_specialBox').appendChild(c);
+  }).catch(function () {});
+  document.getElementById('fb_vTeilen').onclick = function () {
+    var t = document.getElementById('fb_text').value;
+    kopieren().finally(function () {
+      if (vblob && navigator.canShare) {
+        var f = new File([vblob], 'odenwald-wetter.mp4', { type: 'video/mp4' });
+        if (navigator.canShare({ files: [f] })) { navigator.share({ files: [f], text: t }).catch(function () {}); return; }
+      }
+      toast('Text kopiert ✓ – Video bitte speichern und auf Facebook hochladen');
+    });
+  };
+  fetch(img, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (b) { blob = b; }).catch(function () {});
+
+  function kopieren(ta) {
+    ta = ta || document.getElementById('fb_text'); var t = ta.value;
+    return (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).catch(function () {
+      ta.select(); document.execCommand('copy');
+    });
+  }
+
+  // ---- Abendbeitrag (ca. 18 Uhr: Ausblick auf morgen, freitags Wochenende) ----
+  fetch('https://wetter-badkoenig.de/fb/abend.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    if (new Date(j.erstellt).toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' }) !== heute) return;
+    var c = document.createElement('div'), src = 'https://wetter-badkoenig.de/fb/abend.jpg?v=' + v, b = null;
+    var stand = new Date(j.erstellt).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    c.className = 'card abend';
+    c.innerHTML = '<div class="vhead">🌙 Abendbeitrag – Ausblick</div><div class="datum">' + datumTxt(j.erstellt).t + '</div><img alt="Abendbeitrag"><textarea aria-label="Text des Abendbeitrags" rows="14"></textarea>' +
+      '<div class="btns"><button class="prim">📤 Abendbeitrag teilen</button><button class="sec">📋 Text kopieren</button>' +
+      '<a class="btn sec" download="wetter-abend.jpg">💾 Bild speichern</a></div>' +
+      '<p class="hint">Erstellt um ' + stand + ' Uhr · wird automatisch auf Facebook gepostet.</p>';
+    c.querySelector('img').src = src; c.querySelector('a').href = src;
+    var ta = c.querySelector('textarea'); ta.value = j.text;
+    fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (x) { b = x; }).catch(function () {});
+    var bt = c.querySelectorAll('button');
+    bt[1].onclick = function () { kopieren(ta).then(function () { toast('Text kopiert ✓'); }); };
+    bt[0].onclick = function () {
+      kopieren(ta).finally(function () {
+        if (b && navigator.canShare) {
+          var f = new File([b], 'wetter-abend.jpg', { type: 'image/jpeg' });
+          if (navigator.canShare({ files: [f] })) { navigator.share({ files: [f], text: ta.value }).catch(function () {}); return; }
+        }
+        toast('Text kopiert ✓ – Bild bitte speichern und auf Facebook hochladen');
+      });
+    };
+    document.getElementById('fb_abendBox').innerHTML = ''; document.getElementById('fb_abendBox').appendChild(c);
+  }).catch(function () {});
+
+  // ---- Frost-/Nebel-Hinweis (persönliche Empfehlung, keine amtliche Warnung) ----
+  (function () {
+    var box = document.getElementById('fb_frostBox');
+    /* Nur wenn Frost SICHER kommt: alle Modelle (ICON-D2, AROME, ECMWF, ICON-EU) und die an die Station angepasste Vorhersage
+       sehen für morgen früh (0–9 Uhr) Frost (≤ 0 °C). Reif bei Plusgraden oder reiner Nebel reichen nicht mehr. */
+    var MODS = ['icon_d2', 'meteofrance_arome_france_hd', 'ecmwf_ifs025', 'icon_eu'];
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=49.750&longitude=9.017&elevation=185&timezone=Europe%2FBerlin&forecast_days=3' +
+      '&models=' + MODS.join(',') + '&hourly=temperature_2m,dew_point_2m,visibility,weather_code,precipitation,wind_speed_10m';
+    var jetzt = new Date(), std = +jetzt.toLocaleString('de-DE', { hour: 'numeric', hour12: false, timeZone: 'Europe/Berlin' });
+    var ziel = new Date(jetzt.getTime() + 864e5);
+    var zielTag = ziel.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+    var morgenWort = 'Morgen früh';
+    var tagName = ziel.toLocaleDateString('de-DE', { weekday: 'long', timeZone: 'Europe/Berlin' });
+    var datumLang = ziel.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Berlin' });
+    Promise.all([
+      fetch(url).then(function (r) { return r.json(); }),
+      fetch('https://wetter-badkoenig.de/fb/daten.json?v=' + v, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+    ]).then(function (res) {
+      var h = res[0].hourly, sicht = 99999, nebel = false, glatt = false, n = 0, mins = [];
+      function ser(k, m) { return h[k + '_' + m] || null; }
+      MODS.forEach(function (m) {
+        var T = ser('temperature_2m', m); if (!T) return;
+        var mn = 99, cnt = 0;
+        h.time.forEach(function (t, i) {
+          var hh = +t.slice(11, 13);
+          if (t.slice(0, 10) !== zielTag || hh > 9 || T[i] === null) return;
+          cnt++; n++; mn = Math.min(mn, T[i]);
+          var V = ser('visibility', m), W = ser('weather_code', m), P = ser('precipitation', m);
+          if (V && V[i] !== null) sicht = Math.min(sicht, V[i]);
+          if ((W && (W[i] === 45 || W[i] === 48)) || (V && V[i] !== null && V[i] < 1000)) nebel = true;
+          if (P && P[i] > 0 && T[i] <= 1) glatt = true;
+        });
+        if (cnt) mins.push(mn);
+      });
+      var tg = res[1] && res[1].tage && res[1].tage.filter(function (x) { return x.datum === zielTag; })[0];
+      if (!n || mins.length < 2) throw 0;
+      var tmin = Math.max.apply(null, mins);                     /* der wärmste Modellwert – so sicher muss der Frost sein */
+      if (tg && tg.tmin != null) tmin = Math.max(tmin, tg.tmin);
+      var frost = tmin <= 0 && mins.length >= 3, reif = false, kratz = frost;
+      nebel = nebel && frost; glatt = glatt && frost;
+      var stand = jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+      if (!kratz && !nebel && !glatt) {
+        var kalt = Math.min.apply(null, mins);
+        box.innerHTML = '<div class="card ruhig">❄️ Kein sicherer Frost – ' + morgenWort.toLowerCase() + ' (' + tagName + ') ' +
+          (kalt <= 0 ? 'zeigen nur einzelne Modelle Frost (' + Math.round(kalt) + ' bis ' + Math.round(tmin) + ' °C), deshalb kein Hinweis' : 'voraussichtlich frostfrei, tiefster Wert um ' + Math.round(tmin) + ' °C') + ' <small style="color:#5a6b80;font-weight:400">(' + mins.length + ' Modelle geprüft um ' + stand + ' Uhr)</small></div>';
+        return;
+      }
+      var tr = Math.round(tmin), tt = (tr <= 0 ? '' : '+') + tr + ' °C';
+      var zeilen = [];
+      zeilen.push('❄️ Kleiner Hinweis für ' + morgenWort.toLowerCase() + ' (' + tagName + ')');
+      zeilen.push('');
+      if (kratz) zeilen.push('🌡️ Die Temperaturen gehen in der Nacht auf etwa ' + tt + ' zurück' + ' – alle Wettermodelle sind sich einig: Es gibt Frost.');
+      if (kratz) zeilen.push('🧊 Plant am besten ein paar Minuten zum Scheibenkratzen ein, bevor ihr losfahrt.');
+      if (glatt) zeilen.push('⚠️ Dazu ist etwas Niederschlag möglich – auf Brücken, in Waldstücken und auf Nebenstraßen kann es glatt werden.');
+      else if (frost) zeilen.push('🛣️ Auf Brücken, in Senken und im Wald kann es stellenweise glatt sein.');
+      if (nebel) zeilen.push('🌫️ Auch Nebel ist möglich' + (sicht < 500 ? ', teils mit Sichtweiten unter 500 m' : '') + ' – Licht an und Abstand halten.');
+      zeilen.push('');
+      zeilen.push('🚗 Wer früh zur Arbeit oder zur Schule fährt: etwas mehr Zeit einplanen und vorsichtig fahren!');
+      zeilen.push('');
+      zeilen.push('Das ist keine amtliche Warnung, nur eine Empfehlung von eurer privaten Wetterstation. 😊');
+      zeilen.push('Kommt gut an! 👋');
+      zeilen.push('');
+      zeilen.push('🌐 wetter-badkoenig.de');
+      zeilen.push('#Odenwald #Odenwaldkreis #BadKönig #Wetter #Frost');
+      var text = zeilen.join('\n');
+
+      // Bild zeichnen (1080 × 1080)
+      var cv = document.createElement('canvas'); cv.width = cv.height = 1080; var g = cv.getContext('2d');
+      var gr = g.createLinearGradient(0, 0, 0, 1080); gr.addColorStop(0, '#0d47a1'); gr.addColorStop(.6, '#4fc3f7'); gr.addColorStop(1, '#e1f5fe');
+      g.fillStyle = gr; g.fillRect(0, 0, 1080, 1080);
+      g.fillStyle = 'rgba(255,255,255,.55)';
+      for (var k = 0; k < 90; k++) { var x = (k * 397) % 1080, y = (k * 211) % 760; g.beginPath(); g.arc(x, y, 2 + (k % 4), 0, 7); g.fill(); }
+      g.textAlign = 'center'; g.fillStyle = '#fff'; g.shadowColor = 'rgba(0,30,80,.5)'; g.shadowBlur = 12;
+      g.font = '700 46px system-ui, sans-serif'; g.fillText('Private Wetterstation Bad König', 540, 90);
+      g.font = '170px system-ui, sans-serif'; g.fillText(nebel && !kratz ? '🌫️' : '❄️', 540, 300);
+      g.font = '800 82px system-ui, sans-serif'; g.fillText(morgenWort + ':', 540, 430);
+      g.fillText(kratz ? 'Kratzen einplanen!' : 'Nebel möglich!', 540, 525);
+      g.font = '700 56px system-ui, sans-serif'; g.fillText('Tiefstwert um ' + tt, 540, 625);
+      var info = [frost ? '🧊 Frost / Glätte möglich' : (kratz ? '🧊 Reif auf den Scheiben möglich' : ''), nebel ? '🌫️ Nebel möglich' : ''].filter(Boolean).join('   ');
+      g.font = '600 44px system-ui, sans-serif'; g.fillText(info, 540, 705);
+      g.shadowBlur = 0; g.fillStyle = 'rgba(255,255,255,.92)'; g.beginPath(); g.roundRect ? g.roundRect(70, 775, 940, 195, 30) : g.rect(70, 775, 940, 195); g.fill();
+      g.fillStyle = '#01579b'; g.font = '700 46px system-ui, sans-serif'; g.fillText('🚗 Fahrt vorsichtig & plant Zeit ein', 540, 855);
+      g.font = '500 32px system-ui, sans-serif'; g.fillStyle = '#37587a'; g.fillText(datumLang, 540, 905); g.font = 'italic 500 28px system-ui, sans-serif'; g.fillText('Empfehlung – keine amtliche Warnung', 540, 942);
+      g.fillStyle = '#01579b'; g.font = '700 40px system-ui, sans-serif'; g.fillText('wetter-badkoenig.de', 540, 1035);
+      var src = cv.toDataURL('image/jpeg', .9), b = null;
+      cv.toBlob(function (x) { b = x; }, 'image/jpeg', .9);
+
+      var c = document.createElement('div'); c.className = 'card frost';
+      c.innerHTML = '<div class="vhead">' + (kratz ? '❄️' : '🌫️') + ' Hinweis: ' + (kratz ? 'Frost / Kratzen' : 'Nebel') + ' für ' + morgenWort.toLowerCase() +
+        '<span class="badge mod" style="display:inline-block;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:6px;background:#e1f5fe;color:#01579b">deine Empfehlung</span></div>' +
+        '<div class="datum">📅 Für ' + datumLang + ' · berechnet ' + stand + ' Uhr</div>' +
+        '<div class="werte"><span>🌡️ Tiefstwert ' + tt + '</span>' + (frost ? '<span>🧊 Frost</span>' : reif ? '<span>🧊 Reif möglich</span>' : '') +
+        (nebel ? '<span>🌫️ Sicht ab ' + (sicht >= 1000 ? Math.round(sicht / 1000) + ' km' : Math.round(sicht / 10) * 10 + ' m') + '</span>' : '') + (glatt ? '<span>⚠️ Glätte</span>' : '') + '</div>' +
+        '<img alt="Frost-Hinweis"><textarea aria-label="Text des Frost-Hinweises" rows="12"></textarea>' +
+        '<div class="btns"><button class="prim">📤 Hinweis teilen</button><button class="sec">📋 Text kopieren</button>' +
+        '<a class="btn sec" download="frost-hinweis.jpg">💾 Bild speichern</a></div>' +
+        '<p class="hint">Wird nicht automatisch gepostet – du entscheidest selbst. Text vorher gern anpassen.</p>';
+      c.querySelector('img').src = src; c.querySelector('a').href = src;
+      var ta = c.querySelector('textarea'); ta.value = text;
+      var bt = c.querySelectorAll('button');
+      bt[1].onclick = function () { kopieren(ta).then(function () { toast('Text kopiert ✓'); }); };
+      bt[0].onclick = function () {
+        kopieren(ta).finally(function () {
+          if (b && navigator.canShare) {
+            var f = new File([b], 'frost-hinweis.jpg', { type: 'image/jpeg' });
+            if (navigator.canShare({ files: [f] })) { navigator.share({ files: [f], text: ta.value }).catch(function () {}); return; }
+          }
+          toast('Text kopiert ✓ – Bild bitte speichern und auf Facebook hochladen');
+        });
+      };
+      box.appendChild(c);
+    }).catch(function () { box.innerHTML = '<div class="card ruhig" style="color:#5a6b80">Frost-Check gerade nicht möglich.</div>'; });
+  })();
+
+  // ---- Wetter-Sondermeldungen (Gewitter, Schnee, Glätte, Sturm …) ----
+  fetch('https://wetter-badkoenig.de/fb/sonder.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var box = document.getElementById('fb_sonderBox'), alter = (Date.now() - new Date(j.erstellt).getTime()) / 36e5;
+    var stand = new Date(j.erstellt).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    if (!j.meldungen.length || alter > 6) {
+      box.innerHTML = '<div class="card ruhig">✅ Keine Sondermeldung nötig – kein Unwetter, Schnee oder Glätte in Sicht' +
+        (alter <= 6 ? ' <small style="color:#5a6b80;font-weight:400">(geprüft ' + stand + ' Uhr)</small>' : '') + '</div>';
+      return;
+    }
+    j.meldungen.forEach(function (m, i) {
+      var c = document.createElement('div'), src = 'https://wetter-badkoenig.de/fb/' + m.bild + '?v=' + v, b = null;
+      c.className = 'card sonder';
+      c.innerHTML = '<div class="vhead">' + m.emoji + ' Sondermeldung: ' + m.titel +
+        '<span class="badge ' + (m.amtlich ? 'amt">amtliche DWD-Warnung' : 'mod">laut Vorhersage') + '</span></div>' +
+        '<div class="datum">' + datumTxt(j.erstellt).t + '</div><img alt="Sondermeldung ' + m.titel + '"><textarea aria-label="Text der Sondermeldung"></textarea>' +
+        '<div class="btns"><button class="prim">📤 Sondermeldung teilen</button><button class="sec">📋 Text kopieren</button>' +
+        '<a class="btn sec" download="sondermeldung-' + m.typ + '.jpg">💾 Bild speichern</a></div>' +
+        '<p class="hint">Stand ' + stand + ' Uhr · wird stündlich neu geprüft.</p>';
+      c.querySelector('img').src = src; c.querySelector('a').href = src;
+      var ta = c.querySelector('textarea'); ta.value = m.text;
+      fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (x) { b = x; }).catch(function () {});
+      var bt = c.querySelectorAll('button');
+      bt[1].onclick = function () { kopieren(ta).then(function () { toast('Text kopiert ✓'); }); };
+      bt[0].onclick = function () {
+        kopieren(ta).finally(function () {
+          if (b && navigator.canShare) {
+            var f = new File([b], 'sondermeldung-' + m.typ + '.jpg', { type: 'image/jpeg' });
+            if (navigator.canShare({ files: [f] })) { navigator.share({ files: [f], text: ta.value }).catch(function () {}); return; }
+          }
+          toast('Text kopiert ✓ – Bild bitte speichern und auf Facebook hochladen');
+        });
+      };
+      box.appendChild(c);
+    });
+  }).catch(function () {});
+  document.getElementById('fb_kopieren').onclick = function () { kopieren().then(function () { toast('Text kopiert ✓'); }); };
+  document.getElementById('fb_teilen').onclick = function () {
+    var t = document.getElementById('fb_text').value;
+    kopieren().finally(function () {
+      if (blob && navigator.canShare) {
+        var f = new File([blob], 'wetter-bad-koenig.jpg', { type: 'image/jpeg' });
+        if (navigator.canShare({ files: [f] })) {
+          navigator.share({ files: [f], text: t }).catch(function () {});
+          return;
+        }
+      }
+      toast('Text kopiert ✓ – Bild bitte speichern und auf Facebook hochladen');
+    });
+  };
+})();
+
+
+/* Wochenausblick (Sonntagabend) anzeigen */
+(function () {
+  var v = Date.now();
+  fetch('https://wetter-badkoenig.de/fb/woche.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var src = 'https://wetter-badkoenig.de/fb/woche.mp4?v=' + v, V = document.getElementById('fb_woVid');
+    V.src = src; V.hidden = false; document.getElementById('fb_woBtns').hidden = false; document.getElementById('fb_woLaden').href = src;
+    document.getElementById('fb_woTitel').textContent = '📅 Wochenausblick mit Max · ' + Math.round(j.dauer) + ' Sek.';
+    var d = new Date(j.erstellt);
+    document.getElementById('fb_woDatum').textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) + ', ' +
+      d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+    document.getElementById('fb_woTeilen').onclick = function () {
+      fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+        var f = new File([b], 'odenwald-wochenausblick.mp4', { type: 'video/mp4' });
+        if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: 'Wochenausblick Odenwald' });
+        alert('Teilen geht hier nicht – bitte „Video speichern“ nutzen.');
+      }).catch(function () {});
+    };
+  }).catch(function () {});
+})();
+/* Videos von Hand neu erstellen: startet den GitHub-Ablauf „video-neu.yml“ mit dem Schlüssel aus der Zentrale */
+function neuKnopf(bid, sid, art) {
+  var B = document.getElementById('fb_'+bid), S = document.getElementById('fb_'+sid);
+  var API = 'https://api.github.com/repos/sakomobil-beep/wetterstation/actions/workflows/video-neu.yml';
+  function tok() { try { return window.kzFbTok(); } catch (e) { return ''; } }
+  function hdr() { return { Authorization: 'Bearer ' + tok(), Accept: 'application/vnd.github+json' }; }
+  function lauf() { return fetch(API + '/runs?per_page=1&t=' + Date.now(), { headers: hdr(), cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { return j.workflow_runs && j.workflow_runs[0]; }); }
+  function warte(start, n) {
+    lauf().then(function (r) {
+      if (!r || new Date(r.created_at).getTime() < start - 60000) { if (n < 8) return setTimeout(function () { warte(start, n + 1); }, 8000); throw new Error('Lauf nicht gefunden'); }
+      if (r.status !== 'completed') { S.innerHTML = '⏳ Video wird erstellt … (' + Math.round((Date.now() - start) / 60000) + ' Min.)'; return setTimeout(function () { warte(start, n + 1); }, 15000); }
+      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! Neues Video wird geladen … <small>(die Website braucht noch ca. 1 Minute)</small>'; setTimeout(function () { fbReload(); }, 60000); }
+      else { S.innerHTML = '❌ Das hat nicht geklappt (' + r.conclusion + '). <a href="' + r.html_url + '" target="_blank" rel="noopener">Details bei GitHub</a>'; B.disabled = false; }
+    }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
+  }
+  B.onclick = function () {
+    if (!tok()) { S.innerHTML = '🔑 Noch kein Schlüssel hinterlegt – oben im Tab „Website“ eintragen.'; return; }
+    B.disabled = true; S.textContent = '🚀 Starte …'; var start = Date.now();
+    fetch(API + '/dispatches', { method: 'POST', headers: hdr(), body: JSON.stringify({ ref: 'main', inputs: { art: art } }) }).then(function (r) {
+      if (r.status === 204) { S.textContent = '⏳ Gestartet – das dauert ca. 3–5 Minuten …'; setTimeout(function () { warte(start, 0); }, 6000); }
+      else if (r.status === 401 || r.status === 403 || r.status === 404) throw new Error('Der Schlüssel wird nicht akzeptiert (Fehler ' + r.status + '). Rechte prüfen: Repo „wetterstation“, Actions: Lesen und Schreiben.');
+      else throw new Error('GitHub antwortet mit Fehler ' + r.status);
+    }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
+  };
+}
+neuKnopf('vNeu', 'vNeuSt', 'tag');
+neuKnopf('woNeu', 'woNeuSt', 'woche');
+
 }
 /* ===== Online-Speicher: verschlüsselt in GitHub (privates Repo) ===== */
 const GH={owner:'sakomobil-beep',repo:'zentrale-daten',path:'daten.enc'};
