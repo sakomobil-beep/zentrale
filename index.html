@@ -3478,7 +3478,7 @@ function fbInit(){
       var tg = res[1] && res[1].tage && res[1].tage.filter(function (x) { return x.datum === zielTag; })[0];
       if (!n || mins.length < 2) throw 0;
       var tmin = Math.max.apply(null, mins);                     /* der wärmste Modellwert – so sicher muss der Frost sein */
-      if (tg && tg.tmin != null) tmin = Math.max(tmin, tg.tmin);
+      if (tg && (tg.frost_min != null || tg.tmin != null)) tmin = Math.max(tmin, tg.frost_min != null ? tg.frost_min : tg.tmin);
       var frost = tmin <= 0 && mins.length >= 3, reif = false, kratz = frost;
       nebel = nebel && frost; glatt = glatt && frost;
       var stand = jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
