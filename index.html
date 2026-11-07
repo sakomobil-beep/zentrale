@@ -2311,7 +2311,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <li>📅 <b>Wochenausblick-Video mit Max</b> – sonntags 20 Uhr</li>
       <li>⚡ <b>Amtliche DWD-Warnungen</b> als Sondermeldung – sofort</li>
     </ul>
-    <div class="hint" style="margin:6px 0 0">Selbst teilen: Mittagswetter, Frost-/Kratzen-Hinweis, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
+    <div class="hint" style="margin:6px 0 0">Selbst teilen: Mittagswetter, Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
   </div>
 
   <div class="card" id="fb_letzte" style="margin:0 0 16px;font-size:.95rem;color:#24507f">
@@ -2372,6 +2372,23 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         </div>
         <button class="sec" id="fb_woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen</button>
         <p class="hint" id="fb_woNeuSt">Erstellt den Wochenausblick neu (ca. 3–5 Minuten). Wird <b>nicht</b> gepostet – das passiert nur automatisch sonntags um 20 Uhr.</p>
+      </div>
+    </section>
+    <section class="spalte">
+      <h2 class="sp">🎓 Themenvideos</h2>
+      <div class="pzeit">🕒 nach Bedarf · selbst teilen (Querformat, ca. 10 Min.)</div>
+      <div class="card">
+        <div class="vhead" id="fb_thTitel">🎓 Max erklärt</div>
+        <div class="datum" id="fb_thDatum">Noch kein Themenvideo vorhanden.</div>
+        <video id="fb_thVid" controls playsinline preload="metadata" hidden></video>
+        <textarea id="fb_thText" aria-label="Beitragstext zum Themenvideo" hidden></textarea>
+        <div class="btns" id="fb_thBtns" hidden>
+          <button class="prim" id="fb_thTeilen">📤 Video teilen</button>
+          <button class="sec" id="fb_thKopie">📋 Text kopieren</button>
+          <a class="btn sec" id="fb_thLaden" download="max-erklaert.mp4">💾 Video speichern</a>
+        </div>
+        <button class="sec" id="fb_thNeu" style="width:100%;margin-top:8px">🔄 Themenvideo neu erstellen</button>
+        <p class="hint" id="fb_thNeuSt">Erstellt das Themenvideo neu (ca. 8–12 Minuten Rechenzeit). Wird <b>nicht</b> automatisch gepostet.</p>
       </div>
     </section>
     <section class="spalte">
@@ -3652,6 +3669,26 @@ function neuKnopf(bid, sid, art) {
   };
 }
 neuKnopf('vNeu', 'vNeuSt', 'tag');
+(function () {
+  var v = Date.now(), B = 'https://wetter-badkoenig.de/fb/';
+  fetch(B + 'thema.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var src = B + 'thema.mp4?v=' + v, V = document.getElementById('fb_thVid'), T = document.getElementById('fb_thText');
+    V.src = src; V.hidden = false; T.value = j.beitrag || ''; T.hidden = false; document.getElementById('fb_thBtns').hidden = false;
+    document.getElementById('fb_thLaden').href = src;
+    document.getElementById('fb_thTitel').textContent = '🎓 ' + (j.titel || 'Max erklärt') + ' · ' + Math.round(j.dauer / 60) + ' Min.';
+    var d = new Date(j.erstellt);
+    document.getElementById('fb_thDatum').textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { day: 'numeric', month: 'long' }) + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+    document.getElementById('fb_thKopie').onclick = function () { navigator.clipboard.writeText(T.value).then(function () { alert('Text kopiert'); }); };
+    document.getElementById('fb_thTeilen').onclick = function () {
+      fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+        var f = new File([b], 'max-erklaert.mp4', { type: 'video/mp4' });
+        if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], text: T.value, title: j.titel });
+        alert('Teilen geht hier nicht – bitte „Video speichern“ nutzen und den Text kopieren.');
+      }).catch(function () {});
+    };
+  }).catch(function () {});
+})();
+neuKnopf('thNeu', 'thNeuSt', 'thema');
 neuKnopf('woNeu', 'woNeuSt', 'woche');
 
 }
