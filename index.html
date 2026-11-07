@@ -2260,7 +2260,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
     <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
   </details>
-  <iframe id="fbFrame" title="Facebook-Beiträge" allow="web-share; clipboard-write" style="width:100%;height:calc(100vh - 120px);min-height:600px;border:0;border-radius:12px;background:#fff"></iframe>
+  <iframe id="fbFrame" title="Facebook-Beiträge" allow="web-share; clipboard-write" scrolling="no" style="display:block;width:100%;height:900px;border:0;overflow:hidden;background:transparent"></iframe>
   <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
     <div id="wsMsg"><small>Lade Statistik …</small></div>
     <div id="wsBody" hidden>
@@ -3174,7 +3174,10 @@ function initNotes(){const add=()=>{const t=$('ntText').value.trim();if(!t)retur
  $('ntClr').onclick=()=>{const d=nDb().filter(n=>n.done).length;if(!d)return alert('Keine erledigten Notizen.');if(!confirm(d+' erledigte Notiz(en) entfernen?'))return;db.notes=db.notes.filter(n=>!n.done);save();renderNotes()};renderNotes()}
 /* Facebook-Bereich: fb.html im Rahmen, Zugriff nur nach Entsperren; Schlüssel verschlüsselt in db.fbTok */
 window.kzOk=()=>!!ghKey;window.kzFbTok=()=>(db&&db.fbTok)||'';
-function fbOpen(){const f=$('fbFrame');if(!f.src)f.src='fb.html?v='+Date.now();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
+function fbFit(){const f=$('fbFrame');try{const d=f.contentDocument;if(!d||!d.body)return;const h=Math.max(d.body.scrollHeight,d.documentElement.scrollHeight);if(h&&Math.abs(h-f.offsetHeight)>4)f.style.height=h+'px'}catch(e){}}
+function fbOpen(){const f=$('fbFrame');if(!f.src){f.src='fb.html?v='+Date.now();
+    f.onload=()=>{fbFit();try{new ResizeObserver(fbFit).observe(f.contentDocument.body)}catch(e){}clearInterval(window.fbFitT);window.fbFitT=setInterval(fbFit,1500)}}
+  setTimeout(fbFit,100);$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
 function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
