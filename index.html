@@ -2190,7 +2190,6 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="garden" hidden>🌶️ Garten</button>
   <button data-p="car">🚗 Dacia</button>
   <button data-p="web">📈 Website</button>
-  <button data-p="fb">📘 Facebook</button>
   <button data-p="notes">📝 Notizen</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2238,18 +2237,10 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="g" id="ntClr">🧹 Erledigte entfernen</button><small style="opacity:.6;align-self:center">Tipp: Auf einen Text tippen, um ihn zu ändern.</small></div>
   </div>
 </main>
-<main id="fb" hidden>
-  <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
-      <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
-    <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
-  </details>
-  <iframe id="fbFrame" title="Facebook-Beiträge" allow="web-share; clipboard-write" style="width:100%;height:calc(100vh - 120px);min-height:600px;border:0;border-radius:12px;background:#fff"></iframe>
-</main>
 <main id="web" hidden>
   <div class="card"><h3 style="margin-top:0">📣 Social Media – Beiträge zum Posten</h3>
     <div style="display:grid;grid-template-columns:1fr;gap:10px">
-      <a href="#" onclick="show('fb');return false" style="display:block;text-align:center;padding:14px 10px;border-radius:12px;background:#1877f2;color:#fff;font-weight:700;text-decoration:none">📘 Facebook-Beiträge</a>
+      <a href="#" onclick="$('fbFrame').scrollIntoView({behavior:'smooth'});return false" style="display:block;text-align:center;padding:14px 10px;border-radius:12px;background:#1877f2;color:#fff;font-weight:700;text-decoration:none">📘 Facebook-Beiträge</a>
     </div>
     <small style="display:block;margin-top:8px;opacity:.7">Nur hier in der Zentrale erreichbar (geschützt).</small>
     <h4 style="margin:14px 0 6px">🕒 Postzeiten</h4>
@@ -2262,6 +2253,13 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <tr><td style="padding:4px 6px">bei Bedarf</td><td style="padding:4px 6px">❄️ Sondermeldungen (Gewitter, Schnee, Glätte)</td><td style="padding:4px 6px">von Hand teilen</td></tr>
     </table>
   </div>
+  <div id="fbSec"></div>
+  <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
+      <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
+    <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
+  </details>
+  <iframe id="fbFrame" title="Facebook-Beiträge" allow="web-share; clipboard-write" style="width:100%;height:calc(100vh - 120px);min-height:600px;border:0;border-radius:12px;background:#fff"></iframe>
   <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
     <div id="wsMsg"><small>Lade Statistik …</small></div>
     <div id="wsBody" hidden>
@@ -3178,7 +3176,7 @@ window.kzOk=()=>!!ghKey;window.kzFbTok=()=>(db&&db.fbTok)||'';
 function fbOpen(){const f=$('fbFrame');if(!f.src)f.src='fb.html?v='+Date.now();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web')setTimeout(loadWeb,0);if(p=='fb')setTimeout(fbOpen,0);document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){
