@@ -22,7 +22,7 @@
   .raster > div, .raster > section { min-width:0; }
   .spalte > .card, .spalte > div > .card { margin-bottom:14px; }
   @media (min-width:900px) { .raster { grid-template-columns:1fr 1fr; } }
-  @media (min-width:1200px) { .raster { grid-template-columns:1fr 1fr 1fr 1fr; } }
+  @media (min-width:1200px) { .raster { grid-template-columns:1fr 1fr 1fr; } }
   .datum { display:inline-block; background:#eef4fb; color:#24507f; border-radius:20px; padding:3px 10px;
            font-size:.8rem; font-weight:700; margin:0 0 10px; }
   .datum.alt { background:#fff3e0; color:#b45309; }
@@ -71,6 +71,7 @@
     <ul>
       <li>🎬 <b>Wettervideo mit Max</b> – morgens (Mo–Fr 7 Uhr, Sa/So 8 Uhr)</li>
       <li>🌙 <b>Abendbeitrag</b> – gegen 18 Uhr</li>
+      <li>📅 <b>Wochenausblick-Video mit Max</b> – sonntags 20 Uhr</li>
       <li>⚡ <b>Amtliche DWD-Warnungen</b> als Sondermeldung – sofort</li>
     </ul>
     <div class="hint" style="margin:6px 0 0">Selbst teilen: Mittagswetter, Frost-/Kratzen-Hinweis, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
@@ -119,6 +120,20 @@
       <div id="frostBox"></div>
     </section>
     <section class="spalte">
+      <h2 class="sp">📅 Sonntagabend <span class="apb">AUTOPOST FACEBOOK</span></h2>
+      <div class="card">
+        <div class="vhead" id="woTitel">📅 Wochenausblick mit Max</div>
+        <div class="datum" id="woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
+        <video id="woVid" controls playsinline preload="metadata" hidden></video>
+        <div class="btns" id="woBtns" hidden>
+          <button class="prim" id="woTeilen">📤 Video teilen</button>
+          <a class="btn sec" id="woLaden" download="odenwald-wochenausblick.mp4">💾 Video speichern</a>
+        </div>
+        <button class="sec" id="woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen</button>
+        <p class="hint" id="woNeuSt">Erstellt den Wochenausblick neu (ca. 3–5 Minuten). Wird <b>nicht</b> gepostet – das passiert nur automatisch sonntags um 20 Uhr.</p>
+      </div>
+    </section>
+    <section class="spalte">
       <h2 class="sp">⚡ Sondermeldungen <span class="apb">AUTOPOST bei DWD-Warnung</span></h2>
       <div id="specialBox"></div>
       <div id="sonderBox"></div>
@@ -130,7 +145,7 @@
 (function () {
   var q = '?v=' + Date.now(), quellen = [
     ['🎬 Wettervideo', 'fb/wetter.json'], ['🍽️ Mittags-Beitrag', 'fb/post.json'],
-    ['🌙 Abendbeitrag', 'fb/abend.json'], ['⚡ Sondermeldungen (Prüfung)', 'fb/sonder.json']];
+    ['🌙 Abendbeitrag', 'fb/abend.json'], ['📅 Wochenausblick', 'fb/woche.json'], ['⚡ Sondermeldungen (Prüfung)', 'fb/sonder.json']];
   Promise.all(quellen.map(function (x) {
     return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   })).then(function (res) {
@@ -407,9 +422,28 @@
 })();
 </script>
 <script>
-/* Video von Hand neu erstellen: startet den GitHub-Ablauf „video-neu.yml“ mit dem Schlüssel aus der Zentrale */
+/* Wochenausblick (Sonntagabend) anzeigen */
 (function () {
-  var B = document.getElementById('vNeu'), S = document.getElementById('vNeuSt');
+  var v = Date.now();
+  fetch('fb/woche.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var src = 'fb/woche.mp4?v=' + v, V = document.getElementById('woVid');
+    V.src = src; V.hidden = false; document.getElementById('woBtns').hidden = false; document.getElementById('woLaden').href = src;
+    document.getElementById('woTitel').textContent = '📅 Wochenausblick mit Max · ' + Math.round(j.dauer) + ' Sek.';
+    var d = new Date(j.erstellt);
+    document.getElementById('woDatum').textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) + ', ' +
+      d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+    document.getElementById('woTeilen').onclick = function () {
+      fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+        var f = new File([b], 'odenwald-wochenausblick.mp4', { type: 'video/mp4' });
+        if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: 'Wochenausblick Odenwald' });
+        alert('Teilen geht hier nicht – bitte „Video speichern“ nutzen.');
+      }).catch(function () {});
+    };
+  }).catch(function () {});
+})();
+/* Videos von Hand neu erstellen: startet den GitHub-Ablauf „video-neu.yml“ mit dem Schlüssel aus der Zentrale */
+function neuKnopf(bid, sid, art) {
+  var B = document.getElementById(bid), S = document.getElementById(sid);
   var API = 'https://api.github.com/repos/sakomobil-beep/wetterstation/actions/workflows/video-neu.yml';
   function tok() { try { return parent.kzFbTok(); } catch (e) { return ''; } }
   function hdr() { return { Authorization: 'Bearer ' + tok(), Accept: 'application/vnd.github+json' }; }
@@ -418,20 +452,22 @@
     lauf().then(function (r) {
       if (!r || new Date(r.created_at).getTime() < start - 60000) { if (n < 8) return setTimeout(function () { warte(start, n + 1); }, 8000); throw new Error('Lauf nicht gefunden'); }
       if (r.status !== 'completed') { S.innerHTML = '⏳ Video wird erstellt … (' + Math.round((Date.now() - start) / 60000) + ' Min.)'; return setTimeout(function () { warte(start, n + 1); }, 15000); }
-      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! Neues Video wird geladen …'; setTimeout(function () { location.reload(); }, 60000); S.innerHTML += ' <small>(die Website braucht noch ca. 1 Minute)</small>'; }
+      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! Neues Video wird geladen … <small>(die Website braucht noch ca. 1 Minute)</small>'; setTimeout(function () { location.reload(); }, 60000); }
       else { S.innerHTML = '❌ Das hat nicht geklappt (' + r.conclusion + '). <a href="' + r.html_url + '" target="_blank" rel="noopener">Details bei GitHub</a>'; B.disabled = false; }
     }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
   }
   B.onclick = function () {
-    if (!tok()) { S.innerHTML = '🔑 Noch kein Schlüssel hinterlegt – oben in der Zentrale im Bereich „Facebook“ eintragen.'; return; }
+    if (!tok()) { S.innerHTML = '🔑 Noch kein Schlüssel hinterlegt – oben im Tab „Website“ eintragen.'; return; }
     B.disabled = true; S.textContent = '🚀 Starte …'; var start = Date.now();
-    fetch(API + '/dispatches', { method: 'POST', headers: hdr(), body: JSON.stringify({ ref: 'main' }) }).then(function (r) {
+    fetch(API + '/dispatches', { method: 'POST', headers: hdr(), body: JSON.stringify({ ref: 'main', inputs: { art: art } }) }).then(function (r) {
       if (r.status === 204) { S.textContent = '⏳ Gestartet – das dauert ca. 3–5 Minuten …'; setTimeout(function () { warte(start, 0); }, 6000); }
       else if (r.status === 401 || r.status === 403 || r.status === 404) throw new Error('Der Schlüssel wird nicht akzeptiert (Fehler ' + r.status + '). Rechte prüfen: Repo „wetterstation“, Actions: Lesen und Schreiben.');
       else throw new Error('GitHub antwortet mit Fehler ' + r.status);
     }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
   };
-})();
+}
+neuKnopf('vNeu', 'vNeuSt', 'tag');
+neuKnopf('woNeu', 'woNeuSt', 'woche');
 </script>
 </body>
 </html>
