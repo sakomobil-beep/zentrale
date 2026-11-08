@@ -2245,6 +2245,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="garden" hidden>🌶️ Garten</button>
   <button data-p="car">🚗 Dacia</button>
   <button data-p="web">📈 Website</button>
+  <button data-p="wf">🌦️ Wetterfunktionen</button>
   <button data-p="notes">📝 Notizen</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2291,6 +2292,130 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <div id="ntList"></div>
     <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="g" id="ntClr">🧹 Erledigte entfernen</button><small style="opacity:.6;align-self:center">Tipp: Auf einen Text tippen, um ihn zu ändern.</small></div>
   </div>
+</main>
+<main id="wf" hidden>
+<style>
+#wf .wfh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+#wf details{border-top:1px solid rgba(128,128,128,.25);padding:8px 0}
+#wf details:first-of-type{border-top:0}
+#wf summary{cursor:pointer;font-weight:600;font-size:1.02em}
+#wf ul{margin:6px 0 4px 0;padding-left:20px;line-height:1.5}
+#wf li{margin:2px 0}
+#wf .tg{display:inline-block;font-size:.78em;padding:1px 7px;border-radius:9px;background:rgba(80,140,220,.18);margin-left:4px;font-weight:500}
+#wf .wfgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+#wf table{width:100%;border-collapse:collapse;font-size:.93em}
+#wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
+</style>
+<div class="card">
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 08.11.2026</small></div>
+  <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
+  <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
+</div>
+
+<div class="wfgrid">
+<div class="card">
+<h3 style="margin-top:0">🖥️ Website – Hauptmenü</h3>
+<details open><summary>Aktuell (Startseite)</summary><ul>
+<li>Live-Messwerte der Station über Weather Underground, jede Minute aktualisiert</li>
+<li>Aufbau: amtliche DWD-Warnungen oben, dann Bereiche <b>Jetzt / Heute / Was kommt / Rückblick</b></li>
+<li>Kasten „Jetzt“: Sonnenauf-/-untergang mit Tageslänge, Mondauf-/-untergang, Mondphase</li>
+<li>Frostwarner (Hinweis bei Frost/Glätte)</li>
+<li>Vergleichstag „heute vor 1 Jahr“ (bis eigene Daten da sind mit Station IBADKN32)</li>
+<li>Regen-Nowcast aus dem DWD-Radar (nächste 2 Stunden)</li>
+<li>Radar mit Reitern Regen, Blitze, Wind, Wolken, Temperatur, Schnee (Nov.–März); Reiter wird automatisch nach Wetterlage gewählt</li>
+<li>Blauer Video-Knopf unter dem Schlossbild → Max-Wettervideo mit Videothek der letzten 7 Tage</li>
+<li>Knopf „Folge uns auf Facebook“, unauffälliger Besuchszähler im Fußbereich</li>
+<li>Saison-Deko: Halloween bis 31.10., Herbstblätter ab 01.11., Weihnachtslook 23.11.–28.12.</li>
+</ul></details>
+<details><summary>Vorhersage</summary><ul>
+<li><b>Präzisions-Vorhersage 2.0:</b> Mischung aus ICON-D2, ICON-EU, AROME und ECMWF, automatisch gewichtet nach eigener Trefferquote</li>
+<li>Lernende Korrektur mit den eigenen Stationsdaten (nachts/tagsüber, Wind)</li>
+<li>Nur heute + 3 Tage mit Zahlen, danach eine Tendenz-Karte ohne Zahlen</li>
+<li>„Stundenverlauf · Station Bad König“; bei „Heute“ ab Mittag der Tiefstwert der kommenden Nacht</li>
+<li>Bereich <b>Odenwaldkreis</b>: eigene Reliefkarte mit Mümling, Orte Oberzent, Michelstadt, Bad König, Höchst, Breuberg, Brensbach; 3-Tage-Vorhersage je Ort mit eigener Höhe und eigener Lernkurve</li>
+<li>Frostnächte in der Vorhersage</li>
+</ul></details>
+<details><summary>Grafiken · Wochengrafiken</summary><ul>
+<li>Verläufe aller Messwerte, Zeiträume u. a. 24 h, 14 Tage, 1 Monat</li>
+<li>Wochengrafiken als eigener Tab</li>
+</ul></details>
+<details><summary>Historie · Statistik · Klima</summary><ul>
+<li>Historie: Datum wählbar, Tageszusammenfassung + Tagesdiagramm (wie Weather Underground)</li>
+<li>Statistik mit Jahressumme Regen und Frost-Statistik; Lücke 01.–19.01.2026 mit IBADKN32 aufgefüllt</li>
+<li>Luftdruck vor der Kalibrierung (05.11.2026, +5,4 hPa) rückwirkend korrigiert</li>
+<li>Klima-Tab</li>
+</ul></details>
+<details><summary>Station · Solarwetter · Winterprognose · Webcams</summary><ul>
+<li><b>Station:</b> Infos zur Bresser 8-in-1, Link zum Wetter-Widget</li>
+<li><b>Solarwetter:</b> Sonnenwind, Live-Animationen (Polarlichtoval, Koronagraph), Deutschlandkarte mit Polarlicht-Wahrscheinlichkeit in %, Rückblick historische Sonnenstürme</li>
+<li><b>Winterprognose 2026/27</b></li>
+<li><b>Webcams</b> aus der Umgebung (werden erst auf Klick geladen)</li>
+</ul></details>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">📚 Themenseiten &amp; Extras</h3>
+<details open><summary>Themenseiten (eigene Menüreihe)</summary><ul>
+<li><b>El Niño 2026/27</b> – mit YouTube-Videos und dem Themenvideo „Max erklärt: Der Rekord-El-Niño 2026“ <span class="tg">Update nach JMA 10.11. / NOAA 12.11.</span></li>
+<li><b>Polarwirbel</b> – Stand 03.11.2026</li>
+<li><b>Vulkane</b> – wie Ausbrüche das Weltwetter beeinflussen</li>
+<li><b>Sommer 2026</b> – der Jahrhundertsommer</li>
+<li><b>UAP Observatory</b> (uap.html, observatory.html) – viele Fall-Seiten mit Aufklappmenüs, Live-Himmel/ISS</li>
+</ul></details>
+<details><summary>Wetter-Widget für fremde Websites</summary><ul>
+<li>Kostenloser Baukasten unter widget.html, Daten werden regelmäßig per Ablauf erneuert</li>
+</ul></details>
+<details><summary>App &amp; Suchmaschinen</summary><ul>
+<li>Als App aufs Handy installierbar</li>
+<li>Bei Google (Search Console, Sitemap) und Bing angemeldet; Beschreibung, Vorschaubild, robots.txt</li>
+<li>Besucherstatistik über GoatCounter → hier im Tab „📈 Website“</li>
+</ul></details>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">🎬 Max-Videos &amp; Facebook</h3>
+<details open><summary>Wettervideos mit Max</summary><ul>
+<li>Comic-Moderator Max (Odenwälder Outdoor-Guide), Stimme Conrad, ganz leise Hintergrundmusik</li>
+<li>Gilt für den ganzen Odenwald („Odenwald-Wetter“), Bad König wird erwähnt</li>
+<li>Nutzt die Präzisions-Vorhersage; Freizeittipps und Kleidung passend zum Wetter; Hintergründe passend zur Lage (eigene gemalte Regionsbilder)</li>
+<li>Inhalt: Rückblick gestern, Vorhersage, bestes Zeitfenster, Sonnenstunden, Himmelsereignisse</li>
+<li><b>Morgenvideo</b> immer normal; <b>Special-Videos</b> bei Unwetter/Schnee/Sturm extra</li>
+<li><b>Wochenausblick</b> jeden Sonntag 20 Uhr</li>
+<li><b>„Max erklärt“</b>-Themenvideos (lang, sachlich) – selbst teilen, auch auf YouTube</li>
+<li>Videos werden nach 7 Tagen gelöscht (montags nachts, inkl. Git-Historie)</li>
+</ul></details>
+<details><summary>Facebook-Zeitplan (Seite „Private Wetterstation Bad König“)</summary>
+<table><tr><th>Wann</th><th>Was</th><th>Wie</th></tr>
+<tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Wettervideo</td><td>automatisch</td></tr>
+<tr><td>Mittags</td><td>Tagesbeitrag „Mittagswetter“ (Bild + Text)</td><td>selbst teilen</td></tr>
+<tr><td>18 Uhr</td><td>Abendbeitrag (Nacht-Look), freitags Wochenende</td><td>automatisch</td></tr>
+<tr><td>So 20 Uhr</td><td>Wochenausblick-Video</td><td>automatisch</td></tr>
+<tr><td>sofort</td><td>amtliche DWD-Warnungen</td><td>automatisch</td></tr>
+<tr><td>bei Bedarf</td><td>Vorhersage-Sondermeldungen, Frost-/Kratzen-Hinweis (nur bei sicherem Frost)</td><td>selbst teilen</td></tr>
+</table>
+<ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; Make.com ist gestoppt und bleibt als Reserve</li>
+<li>cron-job.org weckt den Morgen-Post pünktlich (7:02 + 8:02 Uhr), weil GitHub-Zeitpläne oft verspätet sind</li>
+<li>Alles zum Teilen + Knöpfe „Video neu erstellen“ → hier im Tab „📈 Website“</li></ul>
+</details>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">🔔 Push-Nachrichten (ntfy)</h3><ul>
+<li>✅ Erfolgreicher Facebook-Post (Video, Abendbeitrag, Wochenausblick, Sondermeldung)</li>
+<li>🌧️ <b>Regen im Anmarsch</b> – Radar zeigt Regen in Bad König in den nächsten 60 Min. (1× pro Schauer, nachts leise) <span class="tg">neu 08.11.</span></li>
+<li>⚠️ Sondermeldung zum Posten bereit (über die Zentrale)</li>
+</ul>
+<h3>⚙️ Hintergrund-Abläufe (GitHub)</h3>
+<table><tr><th>Ablauf</th><th>Aufgabe</th></tr>
+<tr><td>Facebook-Vorhersage + Video</td><td>Beiträge, Videos, Posten; alle 15 Min. DWD-Warnungen, Sondermeldungen, Regen-Push</td></tr>
+<tr><td>Vorhersage lernen</td><td>Trefferquote der Modelle, Korrektur Bad König + Odenwald-Orte</td></tr>
+<tr><td>Widget-Daten</td><td>Daten für das Wetter-Widget</td></tr>
+<tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten)</td></tr>
+<tr><td>Historie aufräumen</td><td>alte Videos montags dauerhaft löschen</td></tr>
+</table>
+<p style="margin:8px 0 0;opacity:.75"><small>Wichtige Secrets im Repo „wetterstation“: FB_PAGE_TOKEN, FB_PAGE_ID, NTFY_TOPIC (Make-Secrets bleiben als Reserve).</small></p>
+</div>
+</div>
 </main>
 <main id="web" hidden>
   <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
