@@ -3655,7 +3655,7 @@ function fbInit(){
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
       return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
-    var namen = ['🎬 Wettervideo', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '📅 Wochenausblick', '⚡ Sondermeldungen'];
+    var namen = ['🎬 Wettervideo', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '📅 Wochenausblick mit Max', '⚡ Sondermeldungen'];
     var art = ['🤖', '✋', '🤖', '🤖', '🤖 bei DWD'];
     var format = ['🎥 Video', '🖼️ Bild', '🖼️ Bild', '🎥 Video', '🖼️ Bild'];
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
