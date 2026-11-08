@@ -2257,6 +2257,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="wf">🌦️ Wetterfunktionen</button>
   <button data-p="mx">🎬 Was kann Max</button>
   <button data-p="notes">📝 Notizen</button>
+  <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2296,17 +2297,18 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   </div>
 </main>
 <main id="notes" hidden>
-  <div class="nt-tabs"><button class="on" data-nt="todo">📝 To-dos</button><button data-nt="ideen">💡 Ideen <span id="idCnt"></span></button></div>
-  <div class="card" id="ideenCard" hidden><h3 style="margin-top:0">💡 Ideen für Verbesserungen</h3>
-    <div class="nt-add"><input id="idText" placeholder="Neue Idee …"><input id="idCat" list="ntCats" placeholder="Bereich (z. B. Max)"><button class="b" id="idAdd">➕ Hinzufügen</button></div>
-    <div id="idList"></div>
-    <small style="opacity:.6;display:block;margin-top:10px">„➜ To-do“ übernimmt die Idee in die To-do-Liste. Auf einen Text tippen, um ihn zu ändern.</small>
-  </div>
   <div class="card" id="todoCard"><h3 style="margin-top:0">📝 Notizen &amp; To-dos <small id="ntCnt" style="font-weight:400;opacity:.6"></small></h3>
     <div class="nt-add"><input id="ntText" placeholder="Neue Notiz oder Aufgabe …"><input id="ntCat" list="ntCats" placeholder="Bereich (z. B. Wetter-Website)"><datalist id="ntCats"></datalist><button class="b" id="ntAdd">➕ Hinzufügen</button></div>
     <div class="nt-f" id="ntF"></div>
     <div id="ntList"></div>
     <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="g" id="ntClr">🧹 Erledigte entfernen</button><small style="opacity:.6;align-self:center">Tipp: Auf einen Text tippen, um ihn zu ändern.</small></div>
+  </div>
+</main>
+<main id="ideen" hidden>
+  <div class="card" id="ideenCard"><h3 style="margin-top:0">💡 Ideen für Verbesserungen</h3>
+    <div class="nt-add"><input id="idText" placeholder="Neue Idee …"><input id="idCat" list="ntCats" placeholder="Bereich (z. B. Max)"><button class="b" id="idAdd">➕ Hinzufügen</button></div>
+    <div id="idList"></div>
+    <small style="opacity:.6;display:block;margin-top:10px">„➜ To-do“ übernimmt die Idee in die To-do-Liste. Auf einen Text tippen, um ihn zu ändern.</small>
   </div>
 </main>
 <main id="wf" hidden>
@@ -2438,6 +2440,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>20:50 Uhr</small></td><td>(Zentrale) „💡 Ideen“ ist jetzt ein eigener Menüpunkt unter „📝 Notizen“ (statt Unterreiter neben den To-dos)</td></tr>
 <tr><td>08.11.2026<br><small>20:20 Uhr</small></td><td>Wochenausblick mit Max: wurde um 20 Uhr nicht erstellt (GitHub-Zeitplan verspätet, Weckruf von cron-job.org durfte das Video nicht bauen) – jetzt erstellt auch der Weckruf das Video (nur sonntags ab 20 Uhr). Heute um 20:20 Uhr nachgeholt (Facebook + Instagram)</td></tr>
 <tr><td>08.11.2026<br><small>19:05 Uhr</small></td><td>(Zentrale) Haushaltsbuch: Monatswechsel direkt bei „Ausgaben“ – Pfeile ◀ ▶, Monatsanzeige und „Heute“-Knopf</td></tr>
 <tr><td>08.11.2026<br><small>18:55 Uhr</small></td><td>Vorhersage „Heute“ (Station Bad König und Odenwaldkreis, Karte + Liste): Wort „Nacht“ vor dem Tiefstwert entfernt – Anzeige nur noch z. B. „10° / 1°“ (Wert bleibt der Tiefstwert der kommenden Nacht)</td></tr>
