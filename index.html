@@ -2405,6 +2405,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>🌧️ <b>Regen im Anmarsch</b> – Radar zeigt Regen in Bad König in den nächsten 60 Min. (1× pro Schauer, nachts leise) <span class="tg">neu 08.11.</span></li>
 <li>⚠️ <b>Amtliche DWD-Warnung</b> für Bad König – jede neue Warnung sofort, mit Gültigkeit und Beschreibung; Priorität nach Stufe (gering leise … extrem dringend) <span class="tg">neu 08.11.</span></li>
 <li>⚠️ Sondermeldung zum Posten bereit (über die Zentrale)</li>
+<li>🛰️ <b>Solarwetter-Check</b> – Datenquelle der Solarwetter-Seite ausgefallen/veraltet (max. 1× pro Tag je Quelle) bzw. „wieder OK“</li>
 </ul>
 <h3>⚙️ Hintergrund-Abläufe (GitHub)</h3>
 <table><tr><th>Ablauf</th><th>Aufgabe</th></tr>
@@ -2412,6 +2413,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>Vorhersage lernen</td><td>Trefferquote der Modelle, Korrektur Bad König + Odenwald-Orte</td></tr>
 <tr><td>Widget-Daten</td><td>Daten für das Wetter-Widget</td></tr>
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten)</td></tr>
+<tr><td>Solarwetter-Check</td><td>alle 6 Std.: 14 NOAA/SDO-Quellen prüfen (erreichbar, aktuell)</td></tr>
 <tr><td>Historie aufräumen</td><td>alte Videos montags dauerhaft löschen</td></tr>
 </table>
 <p style="margin:8px 0 0;opacity:.75"><small>Wichtige Secrets im Repo „wetterstation“: FB_PAGE_TOKEN, FB_PAGE_ID, NTFY_TOPIC (Make-Secrets bleiben als Reserve).</small></p>
@@ -2420,6 +2422,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>11:50 Uhr</small></td><td>Solarwetter-Check: alle 6 Stunden werden die 14 Datenquellen der Solarwetter-Seite (NOAA, SDO) geprüft – Push bei Ausfall oder veralteten Daten, Push „wieder OK“ wenn behoben; erster Lauf: alles ok</td></tr>
 <tr><td>08.11.2026<br><small>11:30 Uhr</small></td><td>Solarwetter, Tabelle „Wahrscheinlichkeiten“: „Sturm heute“ zeigt jetzt Messung + Prognose (vorher Strich); NOAA-Werte werden nach Ausgabedatum richtig auf Heute/Morgen/Übermorgen verteilt (ab ca. 23 Uhr waren sie sonst um einen Tag verschoben)</td></tr>
 <tr><td>08.11.2026<br><small>11:22 Uhr</small></td><td>Zentrale, Tageszusammenfassung: „Heute Abend rausstellen“ nur noch bei Müllterminen (Google-Kalender-Einträge wie „Kalenderwoche 46“ erschienen fälschlich als Müll)</td></tr>
 <tr><td>08.11.2026<br><small>10:43 Uhr</small></td><td>Max-Videos: im Kopfband oben rechts steht unter dem Datum jetzt die Uhrzeit der Erstellung</td></tr>
