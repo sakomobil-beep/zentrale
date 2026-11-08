@@ -2440,6 +2440,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
 <tr><td>08.11.2026<br><small>21:40 Uhr</small></td><td>Rekorde: Rückblick auf „Aktuell“ um Kacheln „Nassester Tag“ und „Stärkste Böe“ erweitert; neuer Jahresrekord (heute/gestern) bekommt das Schildchen „🏆 Neuer Rekord!“ und oben auf „Aktuell“ erscheint ein Hinweis; Rekorde werden in fb/rekorde.json fortgeschrieben (ab Messbeginn 20.01.2026), bei neuem Rekord kommt eine ntfy-Push; Max erwähnt neue Jahresrekorde im Morgenvideo</td></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>Vorhersage-Tab: Knopf „📊 Wie genau war die Vorhersage?“ (oben rechts) öffnet ein Fenster mit Trefferquote – gestern vorhergesagt (Vorabend, sonst früh) vs. gemessen (Höchst-/Tiefstwert, Regen), Schnitt und Trefferquote der letzten 14 Tage, Balken der letzten 7 Tage. Daten in fb/treffer.json, täglich automatisch ergänzt (fb_post.py), rückwirkend ab 06.11.2026</td></tr>
 <tr><td>08.11.2026<br><small>20:50 Uhr</small></td><td>(Zentrale) „💡 Ideen“ ist jetzt ein eigener Menüpunkt unter „📝 Notizen“ (statt Unterreiter neben den To-dos)</td></tr>
@@ -3603,7 +3604,10 @@ function renderNotes(){const N=nDb(),open=N.filter(n=>!n.done);
   r.querySelector('input').onchange=e=>{n.done=e.target.checked;save();renderNotes()};
   r.querySelector('button').onclick=()=>{if(!confirm('Notiz löschen?'))return;db.notes=N.filter(x=>x!==n);save();renderNotes()};
   r.querySelector('.nt-t').onclick=()=>{const t=prompt('Notiz ändern:',n.text);if(t&&t.trim()){n.text=t.trim();save();renderNotes()}}})}
-function initNotes(){const add=()=>{const t=$('ntText').value.trim();if(!t)return;nDb().push({id:Date.now()+'',text:t,cat:$('ntCat').value.trim()||'Allgemein',done:false,date:new Date().toISOString().slice(0,10)});$('ntText').value='';save();ntFil='offen';renderNotes();$('ntText').focus()};
+/* Von Claude vorgemerkte To-dos: werden einmalig in die Liste übernommen (danach normal bearbeit-/löschbar) */
+const TODO_NEU=[["t-wu-cache","🌐 Wetter-Website","Wetterdaten zwischenspeichern: Tageswerte des Jahres täglich in eine Datei (data/jahr-2026.json) schreiben, Website lädt nur noch heute live von Weather Underground – weniger Abrufe, schneller, ausfallsicher. Vorher prüfen, wie viele Abrufe die Seite heute macht."]];
+function todoNeu(){const N=nDb();db.todoSeen=db.todoSeen||[];let ch=false;TODO_NEU.forEach(t=>{if(db.todoSeen.includes(t[0]))return;N.push({id:t[0],text:t[2],cat:t[1],done:false,date:new Date().toISOString().slice(0,10)});db.todoSeen.push(t[0]);ch=true});if(ch)save()}
+function initNotes(){todoNeu();const add=()=>{const t=$('ntText').value.trim();if(!t)return;nDb().push({id:Date.now()+'',text:t,cat:$('ntCat').value.trim()||'Allgemein',done:false,date:new Date().toISOString().slice(0,10)});$('ntText').value='';save();ntFil='offen';renderNotes();$('ntText').focus()};
  $('ntAdd').onclick=add;$('ntText').onkeydown=e=>{if(e.key=='Enter')add()};
  $('ntClr').onclick=()=>{const d=nDb().filter(n=>n.done).length;if(!d)return alert('Keine erledigten Notizen.');if(!confirm(d+' erledigte Notiz(en) entfernen?'))return;db.notes=db.notes.filter(n=>!n.done);save();renderNotes()};renderNotes()}
 
