@@ -2227,7 +2227,14 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #fbSec .ruhig { text-align:center; color:#2e7d32; font-weight:600; }
 #fbSec #fb_ok { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#24364f; color:#fff;
         padding:10px 18px; border-radius:20px; opacity:0; transition:opacity .3s; pointer-events:none; }
-#fbSec .autopost { border:3px solid #1877f2; background:#eef4ff; }
+#fbSec #fb_letzte { border:3px solid #1877f2; background:#eef4ff; margin:0 0 16px; }
+#fbSec #fb_letzte .vhead { color:#1877f2; font-weight:800; }
+#fbSec .ue-wrap { overflow-x:auto; }
+#fbSec table.ue { width:100%; border-collapse:collapse; font-size:.92rem; color:#1e3a5f; }
+#fbSec table.ue th { text-align:left; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; opacity:.7; padding:4px 8px; border-bottom:2px solid #c9dbf5; }
+#fbSec table.ue td { padding:6px 8px; border-bottom:1px solid #d9e6f7; vertical-align:top; white-space:nowrap; }
+#fbSec table.ue td.alt { color:#b45309; font-weight:700; }
+#fbSec table.ue td.neu { font-weight:700; }
 #fbSec .autopost .vhead { color:#1877f2; font-weight:800; letter-spacing:.03em; }
 #fbSec .autopost ul { margin:6px 0 0; padding-left:20px; }
 #fbSec .autopost li { margin:3px 0; }
@@ -2422,6 +2429,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>12:05 Uhr</small></td><td>Tab „📈 Website“ übersichtlicher: Autopost-Kasten und „Zuletzt“-Liste zu einer Tabelle „📋 Übersicht Facebook“ zusammengefasst (Beitrag · Auto/selbst · Erstellt · Zuletzt gepostet · Nächster Termin); doppelte Zeit-Zeilen in den Spalten entfernt, kürzere „🤖 AUTO“-Markierung, Schlüssel-Kasten ans Ende verschoben</td></tr>
 <tr><td>08.11.2026<br><small>12:00 Uhr</small></td><td>Kasten „Zuletzt erstellt, gepostet &amp; geplant“: zusätzlich „🗓️ geplant: Datum + Uhrzeit“ des nächsten Posts (Video Mo–Fr 7 Uhr / Sa–So 8 Uhr, Mittag 12 Uhr, Abend 18 Uhr, Wochenausblick So 20 Uhr, Sondermeldungen laufend)</td></tr>
 <tr><td>08.11.2026<br><small>11:58 Uhr</small></td><td>Facebook-Bereich: Hinweis „gepostet um …“ an den Video-/Beitragskarten wieder entfernt – steht jetzt zentral im Kasten „Zuletzt erstellt &amp; gepostet“</td></tr>
 <tr><td>08.11.2026<br><small>11:55 Uhr</small></td><td>Facebook-Bereich, Kasten „Zuletzt erstellt &amp; gepostet“: unter jedem Eintrag steht jetzt der letzte erfolgreiche Facebook-Post (Datum + Uhrzeit, orange wenn nicht von heute); Postzeit wird jetzt auch bei Sondermeldungen gemerkt</td></tr>
@@ -2442,36 +2450,20 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </div>
 </main>
 <main id="web" hidden>
-  <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
-      <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
-    <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
-  </details>
   <template id="fbTpl">
   <h1>Facebook-Beitrag von heute</h1>
   <p class="sub" id="fb_stand">wird geladen …</p>
 
-  <div class="card autopost">
-    <div class="vhead">🤖 AUTOPOST FACEBOOK</div>
-    <div>Diese Beiträge werden <b>automatisch</b> auf Facebook gepostet – du musst nichts tun:</div>
-    <ul>
-      <li>🎬 <b>Wettervideo mit Max</b> – morgens (Mo–Fr 7 Uhr, Sa/So 8 Uhr)</li>
-      <li>🌙 <b>Abendbeitrag</b> – gegen 18 Uhr</li>
-      <li>📅 <b>Wochenausblick-Video mit Max</b> – sonntags 20 Uhr</li>
-      <li>⚡ <b>Amtliche DWD-Warnungen</b> als Sondermeldung – sofort</li>
-    </ul>
-    <div class="hint" style="margin:6px 0 0">Selbst teilen: Mittagswetter, Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
-  </div>
-
-  <div class="card" id="fb_letzte" style="margin:0 0 16px;font-size:.95rem;color:#24507f">
-    <div class="vhead">🕒 Zuletzt erstellt, gepostet &amp; geplant</div>
-    <div id="fb_letzteListe">wird geladen …</div>
+  <div class="card" id="fb_letzte">
+    <div class="vhead">📋 Übersicht Facebook</div>
+    <div class="ue-wrap"><table class="ue"><thead><tr><th>Beitrag</th><th>Posten</th><th>Erstellt</th><th>Zuletzt gepostet</th><th>Nächster Termin</th></tr></thead>
+    <tbody id="fb_letzteListe"><tr><td colspan="5">wird geladen …</td></tr></tbody></table></div>
+    <div class="hint" style="margin:8px 0 0">🤖 = postet automatisch · ✋ = selbst teilen. Ebenfalls selbst teilen: Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
   </div>
 
   <div class="raster">
     <section class="spalte">
-      <h2 class="sp">☀️ Morgens <span class="apb">AUTOPOST FACEBOOK</span></h2>
-      <div class="pzeit">🕒 Mo–Fr 7:00 Uhr · Sa/So 8:00 Uhr</div>
+      <h2 class="sp">☀️ Morgens <span class="apb">🤖 AUTO</span></h2>
       <div class="card" id="fb_vidCard" hidden>
         <div class="vhead" id="fb_vTitel">🎬 Video-Wetterbericht</div>
         <div class="datum" id="fb_vDatum"></div>
@@ -2487,7 +2479,6 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </section>
     <section class="spalte">
       <h2 class="sp">🍽️ Mittags</h2>
-      <div class="pzeit">🕒 bereit ab 12:00 Uhr (Sommer 13:00) · selbst teilen</div>
       <div class="card">
         <div class="vhead">🖼️ Tagesbeitrag · Mittagswetter (zum Selbst-Teilen)</div>
         <div class="datum" id="fb_tDatum">–</div>
@@ -2503,14 +2494,12 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
     <section class="spalte">
-      <h2 class="sp">🌙 Abends <span class="apb">AUTOPOST FACEBOOK</span></h2>
-      <div class="pzeit">🕒 Abendbeitrag täglich 18:00 Uhr · Frost-Hinweis selbst teilen</div>
+      <h2 class="sp">🌙 Abends <span class="apb">🤖 AUTO</span></h2>
       <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendbeitrag erscheint gegen 18 Uhr.</div></div>
       <div id="fb_frostBox"></div>
     </section>
     <section class="spalte">
-      <h2 class="sp">📅 Sonntagabend <span class="apb">AUTOPOST FACEBOOK</span></h2>
-      <div class="pzeit">🕒 Sonntag 20:00 Uhr</div>
+      <h2 class="sp">📅 Sonntagabend <span class="apb">🤖 AUTO</span></h2>
       <div class="card">
         <div class="vhead" id="fb_woTitel">📅 Wochenausblick mit Max</div>
         <div class="datum" id="fb_woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
@@ -2525,7 +2514,6 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </section>
     <section class="spalte">
       <h2 class="sp">🎓 Themenvideos</h2>
-      <div class="pzeit">🕒 nach Bedarf · selbst teilen (Querformat, ca. 10 Min.)</div>
       <div class="card">
         <div class="vhead" id="fb_thTitel">🎓 Max erklärt</div>
         <div class="datum" id="fb_thDatum">Noch kein Themenvideo vorhanden.</div>
@@ -2541,8 +2529,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
     <section class="spalte">
-      <h2 class="sp">⚡ Sondermeldungen <span class="apb">AUTOPOST bei DWD-Warnung</span></h2>
-      <div class="pzeit">🕒 sofort (alle 15 Minuten geprüft) · andere Meldungen selbst teilen</div>
+      <h2 class="sp">⚡ Sondermeldungen <span class="apb">🤖 AUTO bei DWD-Warnung</span></h2>
       <div id="fb_specialBox"></div>
       <div id="fb_sonderBox"></div>
     </section>
@@ -2567,6 +2554,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <p style="margin-top:14px"><a href="https://wetter-badkoenig.goatcounter.com/" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter öffnen ›</a></p>
     </div>
   </div>
+  <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
+      <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
+    <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
+  </details>
 </main>
 <main id="car" hidden>
 <div id="tdModal" hidden onclick="if(event.target===this)this.hidden=true" style="position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center"><div style="background:#fff;color:#222;max-width:720px;width:92%;max-height:88vh;overflow:auto;border-radius:16px;padding:22px 28px;position:relative"><button onclick="document.getElementById('tdModal').hidden=true" style="position:absolute;top:12px;right:14px;border:0;background:none;font-size:22px;cursor:pointer">✕</button><h3 style="margin-top:0">🚗 Technische Daten – Sandero Stepway TCe 110 Extreme</h3><div class="tdtabs"><button class="on" onclick="tdTab(this,'tdAus')">Ausstattung</button><button onclick="tdTab(this,'tdMotor')">Motor &amp; Maße</button></div><div id="tdAus"><table class="tdt"><tr><td>Marke</td><td>Dacia</td></tr><tr><td>Modell</td><td>Sandero III</td></tr><tr><td>Version</td><td>TCe 110</td></tr><tr><td>Kraftstoff</td><td>Benzin</td></tr><tr><td>Innenraum</td><td>Extreme-spezifisches Interieur</td></tr><tr><td>Sitzbezüge</td><td>Extreme-spezifische Stoffpolsterung</td></tr></table><h4>Zusatzausstattung</h4><ul><li>UP&amp;GO-Paket</li></ul><h4>Sicherheit</h4><ul><li>Front-Airbags (Fahrer und Beifahrer)</li><li>Seiten-Thorax-Airbags vorne und Vorhang-Airbags</li><li>ABS</li><li>Automatischer Notbremsassistent</li><li>Bremsassistent</li><li>Feste Sicherheitsgurte vorne, mit Gurtstraffer</li><li>3 Dreipunkt-Sicherheitsgurte hinten</li><li>Totwinkel-Warner</li><li>Müdigkeitswarner</li><li>Spurhalteassistent</li><li>ISOFIX an den äußeren Rücksitzen</li><li>Parksensoren vorne &amp; hinten</li><li>Rückfahrkamera</li><li>Vorrüstung für Alkohol-Wegfahrsperre</li><li>Nebelscheinwerfer</li><li>Notruf 112 (eCall)</li><li>Tempomat</li><li>Geschwindigkeitswarner (Tempolimit)</li><li>Reifendruck-Kontrollsystem</li><li>Reserverad</li></ul><h4>Fahrerplatz</h4><ul><li>Bordcomputer</li><li>Automatisches Fahrlicht</li><li>Schaltpunktanzeige (Schaltgetriebe)</li><li>Zentralverriegelung</li><li>Beheizbare Heckscheibe</li><li>Elektrisch verstell- und beheizbare Außenspiegel</li></ul><h4>Komfort</h4><ul><li>Klimaautomatik</li><li>3 Kopfstützen hinten</li><li>Hohe Mittelkonsole mit Armlehne und Ablagefach</li><li>Elektrische Parkbremse</li><li>Kofferraumbeleuchtung</li><li>Elektrische Fensterheber vorne (Fahrerseite mit Impulsfunktion)</li><li>Elektrische Fensterheber hinten</li><li>Kofferraumboden</li><li>Schlüsselloser Tankdeckel</li><li>Sitzheizung vorne</li><li>Rückbank 1/3 – 2/3 umklappbar</li><li>Höhenverstellbarer Fahrersitz</li><li>Keycard Handsfree (schlüsselloses Starten)</li><li>Lederlenkrad</li><li>Lenkrad höhen- und tiefenverstellbar</li></ul><h4>Design</h4><ul><li>Blinker mit Komfort-Impulsfunktion</li><li>Modulare Dachreling</li><li>Stoßfänger vorne und hinten in Wagenfarbe</li><li>LED-Tagfahrlicht in Y-Lichtsignatur</li><li>Eco-LED-Scheinwerfer (Abblendlicht LED, Fernlicht Halogen)</li><li>16″-Leichtmetallfelgen „Mahalia“</li><li>Extreme-spezifische Stoffpolsterung</li></ul><h4>Multimedia</h4><ul><li>Kartenpaket</li><li>TFT-Display im Kombiinstrument</li><li>Media Nav: 8″-Bildschirm, Navigation, 6 Lautsprecher, Bluetooth</li></ul></div><div id="tdMotor" hidden><h4>Motorisierung</h4><table class="tdt"><tr><td>Motor</td><td>TCe 110</td></tr><tr><td>Max. Leistung</td><td>81 kW (110 PS)</td></tr><tr><td>Max. Drehmoment</td><td>200 Nm</td></tr><tr><td>Getriebe</td><td>6-Gang-Schaltgetriebe</td></tr><tr><td>Antrieb</td><td>Frontantrieb</td></tr><tr><td>Hubraum</td><td>999 cm³</td></tr><tr><td>Kraftstoff</td><td>Benzin</td></tr></table><h4>Verbrauch (WLTP)</h4><table class="tdt"><tr><td>Verbrauch kombiniert</td><td>5,6 l/100 km</td></tr><tr><td>CO₂-Emission kombiniert</td><td>128 g/km</td></tr><tr><td>Energiekosten (Herstellerangabe)</td><td>84 €/Monat</td></tr></table><h4>Fahrleistung</h4><table class="tdt"><tr><td>Höchstgeschwindigkeit</td><td>180 km/h</td></tr><tr><td>0–100 km/h</td><td>10,0 s</td></tr></table><h4>Reifen &amp; Bremsen</h4><table class="tdt"><tr><td>Reifen vorne/hinten</td><td>205/60 R16</td></tr><tr><td>Bremsen vorne</td><td>Scheibenbremsen</td></tr><tr><td>Bremsen hinten</td><td>Trommelbremsen</td></tr></table><h4>Abmessungen</h4><table class="tdt"><tr><td>Länge</td><td>4.102 mm</td></tr><tr><td>Breite</td><td>1.853 mm</td></tr><tr><td>Breite inkl. Außenspiegel</td><td>2.012 mm</td></tr><tr><td>Höhe mit geöffneter Heckklappe</td><td>1.976 mm</td></tr><tr><td>Radstand</td><td>2.604 mm</td></tr><tr><td>Wendekreis</td><td>10,64 m</td></tr><tr><td>Kofferraum minimal</td><td>312–396 l</td></tr><tr><td>Kofferraum maximal</td><td>1.108–1.153 l</td></tr><tr><td>Tank</td><td>50 l</td></tr></table><h4>Gewichte</h4><table class="tdt"><tr><td>Leergewicht fahrbereit (inkl. 75 kg Fahrer)</td><td>1.170 kg</td></tr><tr><td>Zulässiges Gesamtgewicht</td><td>1.585 kg</td></tr><tr><td>Zulässiges Gesamtzuggewicht</td><td>2.685 kg</td></tr><tr><td>Anhängelast gebremst</td><td>1.100 kg</td></tr><tr><td>Anhängelast ungebremst</td><td>585 kg</td></tr></table><h4>Sonstiges</h4><table class="tdt"><tr><td>Sitzplätze</td><td>5</td></tr><tr><td>Türen</td><td>5</td></tr></table></div></div></div>
@@ -3507,10 +3499,10 @@ function fbInit(){
       var t = tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' });
       return { t: nurTag ? t : t + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr', heute: tag === heute };
     }
+    function zeitTxt(iso, nurTag) { var w = wann(iso, nurTag); return { t: w.t, cls: w.heute ? 'neu' : 'alt' }; }
     function plan(i) {
       var k = postKey[i], jetzt = new Date();
-      if (k === 'sonder') return '<br><small style="opacity:.75">↳ 🗓️ geplant: laufend, Prüfung alle 15 Min. – amtliche DWD-Warnungen sofort</small>';
-      // Berliner Uhrzeit: nächster Termin ab jetzt suchen
+      if (k === 'sonder') return 'laufend (alle 15 Min.)';
       function bt(d) { var o = {}; new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short', hourCycle: 'h23' }).formatToParts(d).forEach(function (x) { o[x.type] = x.value; }); return o; }
       for (var t = 0; t < 8 * 24 * 60; t += 15) {
         var d = new Date(Math.ceil(jetzt.getTime() / 9e5) * 9e5 + t * 6e4), o = bt(d), h = +o.hour, m = +o.minute, wd = o.weekday.replace('.', '');
@@ -3521,26 +3513,22 @@ function fbInit(){
         else if (k === 'woche') ok = m === 0 && h === 20 && wd === 'So';
         if (!ok) continue;
         var tag = o.year + '-' + o.month + '-' + o.day;
-        if (k && G[k] === tag) continue;                       // heute schon gepostet -> nächster Termin
-        var txt = (tag === heute ? 'heute' : o.weekday + ', ' + o.day + '.' + o.month + '.') + ', ' + o.hour + ':' + o.minute + ' Uhr';
-        return '<br><small style="opacity:.75">↳ 🗓️ geplant: <b>' + txt + '</b>' + (k ? '' : ' (neuer Beitrag zum Teilen)') + '</small>';
+        if (k && G[k] === tag) continue;
+        return (tag === heute ? 'heute' : o.weekday + ', ' + o.day + '.' + o.month + '.') + ', ' + o.hour + ':' + o.minute + ' Uhr';
       }
-      return '';
+      return '–';
     }
     function gepostet(i) {
       var k = postKey[i];
-      if (!k) return '<br><small style="opacity:.75">↳ wird nicht automatisch gepostet (selbst teilen)</small>';
+      if (!k) return { t: '—', cls: '' };
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
-      var w = z ? wann(z) : tag ? wann(tag + 'T12:00:00', true) : null;
-      return '<br><small>↳ ✅ zuletzt gepostet: ' + (w ? '<b' + (w.heute ? '' : ' style="color:#b45309"') + '>' + w.t + '</b>' : '<b>noch nie</b>') + '</small>';
+      return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
+    var namen = ['🎬 Wettervideo', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '📅 Wochenausblick', '⚡ Sondermeldungen'];
+    var art = ['🤖', '✋', '🤖', '🤖', '🤖 bei DWD'];
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
-      var j = res[i];
-      if (!j || !j.erstellt) return '<div>' + x[0] + ': –' + gepostet(i) + plan(i) + '</div>';
-      var d = new Date(j.erstellt), tag = d.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
-      var t = (tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' })) +
-        ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr';
-      return '<div>' + x[0] + ': <b' + (tag !== heute ? ' style="color:#b45309"' : '') + '>' + t + '</b>' + gepostet(i) + plan(i) + '</div>';
+      var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
+      return '<tr><td>' + namen[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
     }).join('');
   });
 })();
