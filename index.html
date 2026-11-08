@@ -3664,6 +3664,9 @@ function renderNotes(){const N=nDb(),open=N.filter(n=>!n.done);
   r.querySelector('.nt-t').onclick=()=>{const t=prompt('Notiz ändern:',n.text);if(t&&t.trim()){n.text=t.trim();save();renderNotes()}}})}
 /* Von Claude vorgemerkte To-dos: werden einmalig in die Liste übernommen (danach normal bearbeit-/löschbar) */
 const TODO_NEU=[["t-wu-live","🌐 Wetter-Website","Live-Werte vom Widget (alle 10 Min.) auch für die Website nutzen, damit Besucher gar nicht mehr selbst bei Weather Underground abrufen (Teil 1 – Wetterarchiv – ist erledigt)."],["t-wu-cache","🌐 Wetter-Website","Wetterdaten zwischenspeichern: Tageswerte des Jahres täglich in eine Datei (data/jahr-2026.json) schreiben, Website lädt nur noch heute live von Weather Underground – weniger Abrufe, schneller, ausfallsicher. Vorher prüfen, wie viele Abrufe die Seite heute macht."]];
+/* einmalige Änderungen an Ideen (z. B. zurückgestellt) */
+const IDEE_PATCH=[["p-heute-blick","Heute auf einen Blick","⏸️ zurückgestellt (08.11.2026): "]];
+function ideePatch(){const I=iDb();db.todoSeen=db.todoSeen||[];let ch=false;IDEE_PATCH.forEach(p=>{if(db.todoSeen.includes(p[0]))return;I.forEach(n=>{if(n.text.includes(p[1])&&!n.text.startsWith(p[2])){n.text=p[2]+n.text;ch=true}});db.todoSeen.push(p[0]);ch=true});if(ch)save()}
 function todoNeu(){const N=nDb();db.todoSeen=db.todoSeen||[];let ch=false;TODO_NEU.forEach(t=>{if(db.todoSeen.includes(t[0]))return;N.push({id:t[0],text:t[2],cat:t[1],done:false,date:new Date().toISOString().slice(0,10)});db.todoSeen.push(t[0]);ch=true});if(ch)save()}
 function initNotes(){todoNeu();const add=()=>{const t=$('ntText').value.trim();if(!t)return;nDb().push({id:Date.now()+'',text:t,cat:$('ntCat').value.trim()||'Allgemein',done:false,date:new Date().toISOString().slice(0,10)});$('ntText').value='';save();ntFil='offen';renderNotes();$('ntText').focus()};
  $('ntAdd').onclick=add;$('ntText').onkeydown=e=>{if(e.key=='Enter')add()};
@@ -3679,7 +3682,7 @@ function renderIdeas(){const I=iDb();$('idCnt').textContent=I.length?'('+I.lengt
   r.querySelector('.id-b').onclick=()=>{nDb().push({id:Date.now()+'',text:n.text,cat:n.cat,done:false,date:new Date().toISOString().slice(0,10)});db.ideas=I.filter(x=>x!==n);save();renderIdeas();renderNotes()};
   r.querySelector('.id-x').onclick=()=>{if(!confirm('Idee löschen?'))return;db.ideas=I.filter(x=>x!==n);save();renderIdeas()};
   r.querySelector('.nt-t').onclick=()=>{const t=prompt('Idee ändern:',n.text);if(t&&t.trim()){n.text=t.trim();save();renderIdeas()}}})}
-function initIdeas(){const add=()=>{const t=$('idText').value.trim();if(!t)return;iDb().push({id:'i'+Date.now(),text:t,cat:$('idCat').value.trim()||'Allgemein',date:new Date().toISOString().slice(0,10)});$('idText').value='';save();renderIdeas()};
+function initIdeas(){ideePatch();const add=()=>{const t=$('idText').value.trim();if(!t)return;iDb().push({id:'i'+Date.now(),text:t,cat:$('idCat').value.trim()||'Allgemein',date:new Date().toISOString().slice(0,10)});$('idText').value='';save();renderIdeas()};
  $('idAdd').onclick=add;$('idText').onkeydown=e=>{if(e.key=='Enter')add()};
  document.querySelectorAll('.nt-tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nt-tabs button').forEach(x=>x.classList.toggle('on',x==b));$('ideenCard').hidden=b.dataset.nt!='ideen';$('todoCard').hidden=b.dataset.nt!='todo'});
  renderIdeas()}
