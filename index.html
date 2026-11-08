@@ -2253,6 +2253,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="car">🚗 Dacia</button>
   <button data-p="web">📈 Website</button>
   <button data-p="wf">🌦️ Wetterfunktionen</button>
+  <button data-p="mx">🎬 Was kann Max</button>
   <button data-p="notes">📝 Notizen</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2429,6 +2430,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>12:20 Uhr</small></td><td>Neuer Tab „🎬 Was kann Max“ in der Zentrale: alle Funktionen von Max mit eigenem Änderungsprotokoll</td></tr>
 <tr><td>08.11.2026<br><small>12:10 Uhr</small></td><td>Max-Videos: neue Wetterlage „Schauer“ (Vorhersage Schauer oder Regenrisiko ≥ 60 % bei unter 5 mm) mit eigenem gemalten Bild schauer-odenwald.jpg (Sonne, Schauer in der Ferne, Regenbogen) – Max in Regenjacke, ohne Schirm, ohne Regentropfen; Dauerregen bleibt wie bisher. Wetterbilder (schnee-, nebel-, schauer- …) erscheinen nur noch bei passender Lage, nicht mehr zufällig</td></tr>
 <tr><td>08.11.2026<br><small>12:05 Uhr</small></td><td>Tab „📈 Website“ übersichtlicher: Autopost-Kasten und „Zuletzt“-Liste zu einer Tabelle „📋 Übersicht Facebook“ zusammengefasst (Beitrag · Auto/selbst · Erstellt · Zuletzt gepostet · Nächster Termin); doppelte Zeit-Zeilen in den Spalten entfernt, kürzere „🤖 AUTO“-Markierung, Schlüssel-Kasten ans Ende verschoben</td></tr>
 <tr><td>08.11.2026<br><small>12:00 Uhr</small></td><td>Kasten „Zuletzt erstellt, gepostet &amp; geplant“: zusätzlich „🗓️ geplant: Datum + Uhrzeit“ des nächsten Posts (Video Mo–Fr 7 Uhr / Sa–So 8 Uhr, Mittag 12 Uhr, Abend 18 Uhr, Wochenausblick So 20 Uhr, Sondermeldungen laufend)</td></tr>
@@ -2448,6 +2450,131 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>08.11.2026<br><small>00:33 Uhr</small></td><td>Eigene Reliefkarte des Odenwaldkreises mit Mümling in der Vorhersage; Odenwaldkreis zeigt ab Mittag den Tiefstwert der Nacht</td></tr>
 </table>
 <small style="opacity:.65">Neue Änderungen kommen künftig oben dazu – immer mit Datum und Uhrzeit.</small>
+</div>
+</main>
+<main id="mx" hidden>
+<style>
+#mx details{border-top:1px solid rgba(128,128,128,.25);padding:8px 0}
+#mx details:first-of-type{border-top:0}
+#mx summary{cursor:pointer;font-weight:600;font-size:1.02em}
+#mx ul{margin:6px 0 4px 0;padding-left:20px;line-height:1.5}
+#mx li{margin:2px 0}
+#mx .tg{display:inline-block;font-size:.78em;padding:1px 7px;border-radius:9px;background:rgba(80,140,220,.18);margin-left:4px;font-weight:500}
+#mx .mxgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+#mx table{width:100%;border-collapse:collapse;font-size:.93em}
+#mx td,#mx th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
+</style>
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 08.11.2026</small></div>
+  <p style="margin:4px 0 0;opacity:.8">Alle Funktionen unseres Comic-Moderators Max in den Wettervideos – zum Prüfen, was gut läuft und was verbessert werden soll. Auf eine Überschrift tippen zum Aufklappen.</p>
+</div>
+
+<div class="mxgrid">
+<div class="card">
+<h3 style="margin-top:0">🧑 Wer ist Max?</h3>
+<ul>
+<li>Max, 34, Wanderführer aus <b>Vielbrunn</b>, Hobby-Römerforscher (Limes), „Odenwälder Outdoor-Guide“</li>
+<li>Rucksack immer zu schwer, mag Glühwein lieber als Kälte, Lieblingsplatz bei Regen: Odenwald-Therme</li>
+<li>Gezeichnet als Comic-Figur mit Lippenbewegung zur Stimme, Blinzeln, Zeigen und Winken</li>
+<li>Stimme: <b>Conrad</b> (Microsoft-Neuralstimme), natürlichere Aussprache, Pausen und Tempo je Abschnitt</li>
+<li>Ganz leise Hintergrundmusik „Calm Acoustic Nature Music – Loop“ (Sonican, Pixabay), wird automatisch leiser, wenn Max spricht</li>
+<li>Persönliche Bemerkungen aus seinem Leben – an etwa jedem dritten Tag, passend zum Wetter</li>
+<li>Sagt „Odenwald“ (für Zuschauer im ganzen Kreis), erwähnt aber immer Bad König und die Station</li>
+<li>Montags stellt er sich kurz vor („Für alle, die neu dabei sind …“)</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">🎞️ Ablauf des Morgenvideos</h3>
+<table>
+<tr><th>Teil</th><th>Inhalt</th></tr>
+<tr><td>1. Begrüßung</td><td>wechselnde Grüße („Ei gude, Odenwald!“ …), kurzer Hinweis auf DWD-Warnung, falls aktiv</td></tr>
+<tr><td>2. Rückblick</td><td>gestern an der Station Bad König gemessen (Höchst-/Tiefstwert, Regen); Kälterekord-Nacht wird erwähnt</td></tr>
+<tr><td>3. Heute</td><td>Vorhersage mit Tafel, bestes Zeitfenster für draußen, Sonnenstunden</td></tr>
+<tr><td>4. Max-Tipp</td><td>Freizeittipp im Odenwald passend zu Wetter und Jahreszeit</td></tr>
+<tr><td>5. Morgen</td><td>Vorhersage für den nächsten Tag mit Tafel</td></tr>
+<tr><td>6. Wochenende</td><td>Mo–Fr: Ausblick Samstag/Sonntag mit Tafel</td></tr>
+<tr><td>7. Abschluss</td><td>Himmelsereignisse (Polarlicht, Vollmond, Sterne – nur wenn passend), Hinweis auf wetter-badkoenig.de, wetterabhängiger Abschiedsgruß</td></tr>
+</table>
+<p style="margin:8px 0 0;opacity:.75"><small>Dauer ca. 1 Minute · Hochformat 9:16 (Reel) · Untertitel · Kopfband „ODENWALD-WETTER“ mit Datum + Uhrzeit</small></p>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">🌦️ Wetter – Kleidung – Hintergrund</h3>
+<table>
+<tr><th>Lage</th><th>Max trägt</th><th>Hintergrund / Effekt</th></tr>
+<tr><td>☀️ sonnig ab 20 °C</td><td>oranges T-Shirt, Cap, Sonnenbrille</td><td>Odenwald-Bilder</td></tr>
+<tr><td>🌤️ warm ab 20 °C</td><td>blaues Funktions-Shirt</td><td>Odenwald-Bilder</td></tr>
+<tr><td>⛅ normal</td><td>Softshell + orange Weste</td><td>Odenwald-Bilder</td></tr>
+<tr><td>🍂 kühl bis 11 °C</td><td>Softshell + dunkle Weste, grüne Strickmütze</td><td>Odenwald-Bilder</td></tr>
+<tr><td>🌦️ Schauer <span class="tg">neu</span></td><td>gelbe Regenjacke + Friesennerz-Hut, ohne Schirm</td><td>schauer-Bild (Sonne, Schauer in der Ferne, Regenbogen), keine Tropfen</td></tr>
+<tr><td>🌧️ Regen</td><td>gelbe Regenjacke + Schirm</td><td>Regen-Hintergrund, fallende Tropfen + Spritzer</td></tr>
+<tr><td>⛈️ Gewitter</td><td>gelbe Regenjacke</td><td>Gewitter-Hintergrund, Regen + Blitze</td></tr>
+<tr><td>💨 Sturm</td><td>Softshell, zerzauste Haare, Kappe fliegt weg</td><td>Sturm-Hintergrund, wackelnder Baum, wirbelnde Blätter, schräger Regen</td></tr>
+<tr><td>❄️ Schnee / bis 4 °C</td><td>rote Daunenjacke, Bommelmütze, Schal (+ Schneeschippe bei Schnee)</td><td>Winter-/schnee-Bilder</td></tr>
+<tr><td>🧊 Frost</td><td>rote Daunenjacke, Bommelmütze, Schal</td><td>Frost-Hintergrund</td></tr>
+<tr><td>🌫️ Nebel</td><td>Strickmütze</td><td>nebel-Bild (Mümlingtal)</td></tr>
+</table>
+<p style="margin:8px 0 0;opacity:.75"><small>Eigene gemalte Bilder (aktuell 22 + Schauer) ersetzen reihum die gezeichneten Szenen; Bilder zum genannten Ort (z. B. Burg Breuberg) erscheinen beim passenden Tipp; Saisonbilder (_advent, _winter, _herbst, _sommer) nur in ihrer Zeit; Wetterbilder nur bei passender Lage.</small></p>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">🧠 Wie Max schlau bleibt</h3>
+<ul>
+<li>Vorhersage aus der <b>Präzisions-Vorhersage 2.0</b> (ICON-D2, ICON-EU, AROME, ECMWF, gewichtet nach Trefferquote) für den <b>ganzen Odenwaldkreis</b>, mit Lernkurve je Ort</li>
+<li>Tiefstwerte als Mittel der Talorte, Frost nach dem kältesten Talort</li>
+<li><b>72 Freizeittipps</b> nach Wetter und Jahreszeit (Therme, Felsenmeer, Burg Breuberg, Limes, Elfenbeinmuseum, Schlitten auf der Tromm …) – kein Tipp doppelt innerhalb von 14 Tagen</li>
+<li>Bei Gewitter Sicherheitstipp statt Ausflug</li>
+<li>Abschiedsgruß und Bemerkungen passend zum Wetter, mehrere Varianten, damit es nicht jeden Tag gleich klingt</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">📼 Video-Arten</h3>
+<table>
+<tr><th>Video</th><th>Wann</th><th>Facebook</th></tr>
+<tr><td>🎬 Morgenvideo</td><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr (immer normal, nie Special)</td><td>🤖 automatisch</td></tr>
+<tr><td>⚠️ Wetter-Special</td><td>bei neuer DWD-Warnung, Schnee, Sturm ≥ 60 km/h, strengem Frost ≤ −5 °C, Hitze ≥ 30 °C, Starkregen ≥ 20 mm, Gewitter (Prüfung mittags + nachmittags), roter Kopf „WETTER-SPECIAL“</td><td>✋ selbst teilen</td></tr>
+<tr><td>📅 Wochenausblick</td><td>sonntags 20 Uhr: Mo–Mi mit Werten, Do/Fr als Tendenz</td><td>🤖 automatisch</td></tr>
+<tr><td>🎓 Max erklärt</td><td>Themenvideo im Querformat, ca. 10 Min., sachlich, eigene Grafiken (1. Thema: Rekord-El-Niño 2026, 6 Kapitel) – auch auf der El-Niño-Seite</td><td>✋ selbst (+ YouTube)</td></tr>
+</table>
+<ul style="margin-top:8px">
+<li>Jedes Video lässt sich in der Zentrale per Knopf <b>neu erstellen</b> (ohne Posten)</li>
+<li>Videothek der letzten 7 Tage auf wetter-badkoenig.de (blauer Video-Knopf), ältere Videos werden montags endgültig gelöscht</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">💡 Mögliche Verbesserungen</h3>
+<ul>
+<li>Mehr eigene Bilder für Regen, Gewitter, Sturm (bisher gezeichnet) und weitere Schauer-Bilder</li>
+<li>Abendvideo mit Max (statt nur Bild-Beitrag)?</li>
+<li>Specials automatisch posten (bisher selbst teilen)?</li>
+<li>Weitere „Max erklärt“-Themen (z. B. Polarwirbel, Polarlicht, Vulkane)</li>
+</ul>
+<p style="margin:6px 0 0;opacity:.7"><small>Sag einfach, was davon umgesetzt werden soll – oder was dir an Max noch fehlt.</small></p>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
+<table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>12:10 Uhr</small></td><td>Neue Wetterlage „Schauer“ mit eigenem Bild (Sonne, Schauer in der Ferne, Regenbogen), Max ohne Schirm, ohne Tropfen; Wetterbilder nur noch bei passender Lage</td></tr>
+<tr><td>08.11.2026<br><small>10:43 Uhr</small></td><td>Kopfband oben rechts: Uhrzeit unter dem Datum</td></tr>
+<tr><td>07.11.2026</td><td>„Max erklärt“-Themenvideos, erstes Thema Rekord-El-Niño 2026 (auch auf der El-Niño-Seite)</td></tr>
+<tr><td>07.11.2026</td><td>Wochenausblick als eigenes Video sonntags 20 Uhr (nicht im Sonntagmorgen-Video)</td></tr>
+<tr><td>07.11.2026</td><td>Rückblick mit gestrigen Messwerten, bestes Zeitfenster + Sonnenstunden, Himmelsereignisse</td></tr>
+<tr><td>07.11.2026</td><td>Umstellung auf den ganzen Odenwald („Odenwald-Wetter“), Odenwald-Modellmischung mit Lernkurve je Ort</td></tr>
+<tr><td>06.11.2026</td><td>Morgenvideo immer normal, Specials nur als eigenes Video</td></tr>
+<tr><td>06.11.2026</td><td>Stimme Conrad bleibt; abwechslungsreichere Texte, natürlichere Aussprache, Pausen und Tempo</td></tr>
+<tr><td>06.11.2026</td><td>Wetter-Hintergründe passend zur Lage (Regen, Sturm mit wackelndem Baum/fliegender Kappe, Schnee mit Schippe)</td></tr>
+<tr><td>06.11.2026</td><td>Max nutzt die Präzisions-Vorhersage der Website</td></tr>
+<tr><td>06.11.2026</td><td>Tipps wechseln (kein Tipp doppelt), Kleidung je nach Wetterlage</td></tr>
+<tr><td>05.11.2026</td><td>Dezente Hintergrundmusik, zweimal leiser gestellt</td></tr>
+<tr><td>05.11.2026</td><td>Name „Max“, Umbenennung „Private Wetterstation Bad König“</td></tr>
+<tr><td>Anfang<br>11/2026</td><td>Start: täglicher Video-Wetterbericht mit dem Odenwälder Outdoor-Guide, eigene Regionsbilder als Hintergründe</td></tr>
+</table>
+<small style="opacity:.65">Neue Änderungen an Max kommen künftig oben dazu – immer mit Datum und Uhrzeit.</small>
+</div>
 </div>
 </main>
 <main id="web" hidden>
