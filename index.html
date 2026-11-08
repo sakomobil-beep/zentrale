@@ -2422,6 +2422,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>11:58 Uhr</small></td><td>Facebook-Bereich: Hinweis „gepostet um …“ an den Video-/Beitragskarten wieder entfernt – steht jetzt zentral im Kasten „Zuletzt erstellt &amp; gepostet“</td></tr>
 <tr><td>08.11.2026<br><small>11:55 Uhr</small></td><td>Facebook-Bereich, Kasten „Zuletzt erstellt &amp; gepostet“: unter jedem Eintrag steht jetzt der letzte erfolgreiche Facebook-Post (Datum + Uhrzeit, orange wenn nicht von heute); Postzeit wird jetzt auch bei Sondermeldungen gemerkt</td></tr>
 <tr><td>08.11.2026<br><small>11:50 Uhr</small></td><td>Solarwetter-Check: alle 6 Stunden werden die 14 Datenquellen der Solarwetter-Seite (NOAA, SDO) geprüft – Push bei Ausfall oder veralteten Daten, Push „wieder OK“ wenn behoben; erster Lauf: alles ok</td></tr>
 <tr><td>08.11.2026<br><small>11:30 Uhr</small></td><td>Solarwetter, Tabelle „Wahrscheinlichkeiten“: „Sturm heute“ zeigt jetzt Messung + Prognose (vorher Strich); NOAA-Werte werden nach Ausgabedatum richtig auf Heute/Morgen/Übermorgen verteilt (ab ca. 23 Uhr waren sie sonst um einen Tag verschoben)</td></tr>
@@ -3532,15 +3533,6 @@ function fbInit(){
       ' · ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
     return { t: '📅 ' + t, alt: tag !== h };
   }
-  function postZeit(el, key, erstellt) {
-    fetch('https://wetter-badkoenig.de/fb/gepostet.json?v=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (g) {
-      var z = g[key + '_zeit'], tag = function (x) { return new Date(x).toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' }); };
-      var txt = z && erstellt && tag(z) === tag(erstellt) && new Date(z) >= new Date(erstellt) - 36e5
-        ? ' · ✅ gepostet um ' + new Date(z).toLocaleTimeString('de-DE', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit' }) + ' Uhr'
-        : (g[key] === tag(erstellt) ? ' · ✅ gepostet' : ' · noch nicht gepostet');
-      el.textContent = el.textContent.replace(/ · (✅ gepostet.*|noch nicht gepostet)$/, '') + txt;
-    }).catch(function () {});
-  }
   function setzeDatum(el, iso) { var x = datumTxt(iso); el.textContent = x.t + (x.alt ? ' (nicht von heute!)' : ''); el.className = 'datum' + (x.alt ? ' alt' : ''); }
   document.getElementById('fb_bild').src = img;
   document.getElementById('fb_laden').href = img;
@@ -3557,7 +3549,7 @@ function fbInit(){
     var t = document.getElementById('fb_vTitel');
     t.textContent = '🎬 Video-Wettervorhersage morgens · ' + Math.round(j.dauer) + ' Sek.';
     t.className = 'vhead';
-    if (j.erstellt) { setzeDatum(document.getElementById('fb_vDatum'), j.erstellt); postZeit(document.getElementById('fb_vDatum'), 'video', j.erstellt); } else document.getElementById('fb_vDatum').hidden = true;
+    if (j.erstellt) setzeDatum(document.getElementById('fb_vDatum'), j.erstellt); else document.getElementById('fb_vDatum').hidden = true;
     document.getElementById('fb_vidCard').hidden = false;
     fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (b) { vblob = b; }).catch(function () {});
   }
@@ -3610,7 +3602,6 @@ function fbInit(){
       '<div class="btns"><button class="prim">📤 Abendbeitrag teilen</button><button class="sec">📋 Text kopieren</button>' +
       '<a class="btn sec" download="wetter-abend.jpg">💾 Bild speichern</a></div>' +
       '<p class="hint">Erstellt um ' + stand + ' Uhr · wird automatisch auf Facebook gepostet.</p>';
-    try { postZeit(c.querySelector('.datum'), 'abend', j.erstellt); } catch (e) {}
     c.querySelector('img').src = src; c.querySelector('a').href = src;
     var ta = c.querySelector('textarea'); ta.value = j.text;
     fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (x) { b = x; }).catch(function () {});
@@ -3804,7 +3795,6 @@ function fbInit(){
     var d = new Date(j.erstellt);
     document.getElementById('fb_woDatum').textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) + ', ' +
       d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
-    postZeit(document.getElementById('fb_woDatum'), 'woche', j.erstellt);
     document.getElementById('fb_woTeilen').onclick = function () {
       fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
         var f = new File([b], 'odenwald-wochenausblick.mp4', { type: 'video/mp4' });
