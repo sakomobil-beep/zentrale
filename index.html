@@ -2420,6 +2420,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>11:22 Uhr</small></td><td>Zentrale, Tageszusammenfassung: „Heute Abend rausstellen“ nur noch bei Müllterminen (Google-Kalender-Einträge wie „Kalenderwoche 46“ erschienen fälschlich als Müll)</td></tr>
 <tr><td>08.11.2026<br><small>10:43 Uhr</small></td><td>Max-Videos: im Kopfband oben rechts steht unter dem Datum jetzt die Uhrzeit der Erstellung</td></tr>
 <tr><td>08.11.2026<br><small>10:37 Uhr</small></td><td>Facebook-Bereich: bei Morgenvideo, Abendbeitrag und Wochenausblick steht hinter dem Datum jetzt die Uhrzeit des Posts („✅ gepostet um … Uhr“)</td></tr>
 <tr><td>08.11.2026<br><small>10:31 Uhr</small></td><td>Alten (defekten) Regen-Push der Zentrale entfernt – nur noch der neue Regen-Push der Wetterstation, keine doppelten Nachrichten</td></tr>
@@ -3262,7 +3263,7 @@ function renderBrief(){if(!$('brief'))return;const now=new Date(),t=iso(now),tm=
    if(win.length>=3){const lo=Math.round(Math.min(...win.map(h=>h.temp))),hi=Math.round(Math.max(...win.map(h=>h.temp)));
     if(ev)x+=' · heute Nacht bis '+lo+' °C';else if(hi>Math.round(GWX.cur.temp))x+=' · heute bis '+hi+' °C';else x+=' · heute Abend um '+lo+' °C'}}add('🌡️',x)}
  if(GWX&&GWX.f)add('❄️','<b>'+wxEsc(GWX.f.title.replace(/^\S+\s/,''))+'</b>'+(gOutside().length?' – Pflanzen reinholen!':''),1);
- /* Müll & Termine */ const tdE=evOn(t),tmE=evOn(iso(tm));const mT=tdE.filter(e=>e.c!='own'&&e.c!='car'),mM=tmE.filter(e=>e.c!='own'&&e.c!='car');
+ /* Müll & Termine */ const tdE=evOn(t),tmE=evOn(iso(tm));const isM=e=>Object.prototype.hasOwnProperty.call(MT,e.c),mT=tdE.filter(isM),mM=tmE.filter(isM);
  if(mM.length)add('🗑️','<b>'+mM.map(e=>e.t).join(', ')+'</b> morgen – heute Abend rausstellen');else if(mT.length&&now.getHours()<9)add('🗑️','<b>'+mT.map(e=>e.t).join(', ')+'</b> heute');
  tdE.filter(e=>e.c=='own'||e.c=='car').forEach(e=>add('📌','Heute: <b>'+wxEsc(e.full)+'</b>'));tmE.filter(e=>e.c=='own').forEach(e=>add('📌','Morgen: '+wxEsc(e.full)));
  /* Auto */ try{(cDb().dl||[]).forEach(d=>{const n=Math.round((new Date(d.date+'T12:00')-new Date(t+'T12:00'))/86400000);if(n<0)add('🚗','<b>'+wxEsc(d.kind)+' überfällig!</b>',1);else if(n<=14&&n>0)add('🚗',wxEsc(d.kind)+' in <b>'+n+' Tagen</b>')})}catch(e){}
