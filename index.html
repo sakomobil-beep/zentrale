@@ -2441,6 +2441,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
+<tr><td>08.11.2026<br><small>22:10 Uhr</small></td><td>Eigenes Wetterarchiv: alle Tageswerte (01.–19.01. von IBADKN32, ab 20.01.2026 eigene Station) und Stundenwerte liegen jetzt in data/archiv auf wetter-badkoenig.de; Workflow „Wetterarchiv“ ergänzt jede Nacht den Vortag (cron-job.org 0:15 Uhr, Reserve GitHub 0:25 Uhr). Website liest Statistik, Rekorde, Klima und Grafiken aus dem Archiv – live bei Weather Underground nur noch die neuesten Tage. Zentrale (Tab „📈 Website“): Kasten „💾 Sicherung deiner Wetterdaten“ – Tageswerte/Stundenwerte als CSV für Excel, komplettes Archiv als JSON</td></tr>
 <tr><td>08.11.2026<br><small>21:40 Uhr</small></td><td>Rekorde: Rückblick auf „Aktuell“ um Kacheln „Nassester Tag“ und „Stärkste Böe“ erweitert; neuer Jahresrekord (heute/gestern) bekommt das Schildchen „🏆 Neuer Rekord!“ und oben auf „Aktuell“ erscheint ein Hinweis; Rekorde werden in fb/rekorde.json fortgeschrieben (ab Messbeginn 20.01.2026), bei neuem Rekord kommt eine ntfy-Push; Max erwähnt neue Jahresrekorde im Morgenvideo</td></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>Vorhersage-Tab: Knopf „📊 Wie genau war die Vorhersage?“ (oben rechts) öffnet ein Fenster mit Trefferquote – gestern vorhergesagt (Vorabend, sonst früh) vs. gemessen (Höchst-/Tiefstwert, Regen), Schnitt und Trefferquote der letzten 14 Tage, Balken der letzten 7 Tage. Daten in fb/treffer.json, täglich automatisch ergänzt (fb_post.py), rückwirkend ab 06.11.2026</td></tr>
 <tr><td>08.11.2026<br><small>20:50 Uhr</small></td><td>(Zentrale) „💡 Ideen“ ist jetzt ein eigener Menüpunkt unter „📝 Notizen“ (statt Unterreiter neben den To-dos)</td></tr>
@@ -2691,6 +2692,16 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 
 <div id="fb_ok"></div></template>
   <div id="fbSec"></div>
+  <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
+    <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
+    <div id="archInfo"><small>Lade Übersicht …</small></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <button class="b" id="archCsv">📊 Tageswerte als Excel-Datei (CSV)</button>
+      <button class="g" id="archCsvH">🕒 Stundenwerte als CSV</button>
+      <button class="g" id="archJson">🗄️ Komplettes Archiv (JSON)</button>
+    </div>
+    <small id="archSt" style="display:block;margin-top:8px;opacity:.7"></small>
+  </div>
   <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
     <div id="wsMsg"><small>Lade Statistik …</small></div>
     <div id="wsBody" hidden>
@@ -3605,7 +3616,7 @@ function renderNotes(){const N=nDb(),open=N.filter(n=>!n.done);
   r.querySelector('button').onclick=()=>{if(!confirm('Notiz löschen?'))return;db.notes=N.filter(x=>x!==n);save();renderNotes()};
   r.querySelector('.nt-t').onclick=()=>{const t=prompt('Notiz ändern:',n.text);if(t&&t.trim()){n.text=t.trim();save();renderNotes()}}})}
 /* Von Claude vorgemerkte To-dos: werden einmalig in die Liste übernommen (danach normal bearbeit-/löschbar) */
-const TODO_NEU=[["t-wu-cache","🌐 Wetter-Website","Wetterdaten zwischenspeichern: Tageswerte des Jahres täglich in eine Datei (data/jahr-2026.json) schreiben, Website lädt nur noch heute live von Weather Underground – weniger Abrufe, schneller, ausfallsicher. Vorher prüfen, wie viele Abrufe die Seite heute macht."]];
+const TODO_NEU=[["t-wu-live","🌐 Wetter-Website","Live-Werte vom Widget (alle 10 Min.) auch für die Website nutzen, damit Besucher gar nicht mehr selbst bei Weather Underground abrufen (Teil 1 – Wetterarchiv – ist erledigt)."],["t-wu-cache","🌐 Wetter-Website","Wetterdaten zwischenspeichern: Tageswerte des Jahres täglich in eine Datei (data/jahr-2026.json) schreiben, Website lädt nur noch heute live von Weather Underground – weniger Abrufe, schneller, ausfallsicher. Vorher prüfen, wie viele Abrufe die Seite heute macht."]];
 function todoNeu(){const N=nDb();db.todoSeen=db.todoSeen||[];let ch=false;TODO_NEU.forEach(t=>{if(db.todoSeen.includes(t[0]))return;N.push({id:t[0],text:t[2],cat:t[1],done:false,date:new Date().toISOString().slice(0,10)});db.todoSeen.push(t[0]);ch=true});if(ch)save()}
 function initNotes(){todoNeu();const add=()=>{const t=$('ntText').value.trim();if(!t)return;nDb().push({id:Date.now()+'',text:t,cat:$('ntCat').value.trim()||'Allgemein',done:false,date:new Date().toISOString().slice(0,10)});$('ntText').value='';save();ntFil='offen';renderNotes();$('ntText').focus()};
  $('ntAdd').onclick=add;$('ntText').onkeydown=e=>{if(e.key=='Enter')add()};
@@ -3625,13 +3636,34 @@ function initIdeas(){const add=()=>{const t=$('idText').value.trim();if(!t)retur
  $('idAdd').onclick=add;$('idText').onkeydown=e=>{if(e.key=='Enter')add()};
  document.querySelectorAll('.nt-tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nt-tabs button').forEach(x=>x.classList.toggle('on',x==b));$('ideenCard').hidden=b.dataset.nt!='ideen';$('todoCard').hidden=b.dataset.nt!='todo'});
  renderIdeas()}
+
+/* ===== Sicherung Wetterarchiv (Dateien von wetter-badkoenig.de/data/archiv) ===== */
+const ARCH_URL='https://wetter-badkoenig.de/data/archiv/';
+async function archIdx(){const r=await fetch(ARCH_URL+'index.json?'+Date.now());if(!r.ok)throw new Error('Archiv nicht erreichbar');return r.json()}
+async function archAll(filter){const I=await archIdx(),out={};for(const f of I.dateien.filter(filter)){$('archSt').textContent='Lade '+f+' …';const r=await fetch(ARCH_URL+f+'?'+Date.now());if(r.ok)out[f]=await r.json()}return {I,out}}
+function archSave(name,text,type){const b=new Blob(['﻿'+text],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
+const dez=v=>v==null?'':String(v).replace('.',',');
+async function archLoad(){try{const I=await archIdx();const n=I.dateien.filter(f=>f.startsWith('stunden-')).length;
+ $('archInfo').innerHTML=`<small>Messbeginn <b>${I.messbeginn.split('-').reverse().join('.')}</b> · gesichert bis <b>${(I.letzter_tag||'–').split('-').reverse().join('.')}</b> · ${I.dateien.length} Dateien (${n} Monate Stundenwerte) · Stand ${new Date(I.stand).toLocaleString('de-DE')}</small>`}
+ catch(e){$('archInfo').innerHTML='<small>Archiv noch nicht verfügbar – wird beim ersten nächtlichen Lauf angelegt.</small>'}}
+function archInit(){
+ $('archCsv').onclick=async()=>{try{const {out}=await archAll(f=>f.startsWith('tage-'));const K=[['tempHigh','Höchst °C'],['tempLow','Tiefst °C'],['tempAvg','Mittel °C'],['precipTotal','Regen l/m²'],['windspeedHigh','Wind max km/h'],['windgustHigh','Böe max km/h'],['pressureMax','Druck max hPa'],['pressureMin','Druck min hPa'],['dewptAvg','Taupunkt °C']];
+  let c='Datum;'+K.map(k=>k[1]).join(';')+';Feuchte Ø %;UV max;Quelle\n';
+  Object.values(out).forEach(A=>A.tage.forEach(t=>{const m=t.metric||{};c+=t.obsTimeLocal.slice(0,10).split('-').reverse().join('.')+';'+K.map(k=>dez(m[k[0]])).join(';')+';'+dez(t.humidityAvg)+';'+dez(t.uvHigh)+';'+(t.quelle||'IBADKN33')+'\n'}));
+  archSave('Wetterdaten-Bad-Koenig-Tageswerte-'+new Date().toISOString().slice(0,10)+'.csv',c,'text/csv');$('archSt').textContent='✅ Tageswerte gespeichert.'}catch(e){$('archSt').textContent='Fehler: '+e.message}};
+ $('archCsvH').onclick=async()=>{try{const {out}=await archAll(f=>f.startsWith('stunden-'));let c='Datum;Uhrzeit;Temperatur °C;Taupunkt °C;Feuchte %;Druck hPa;Wind km/h;Böe km/h;Windrichtung °;Regen l/m²;Sonne W/m²;UV\n';
+  Object.values(out).forEach(A=>Object.values(A.tage).forEach(L=>L.forEach(o=>{const m=o.metric||{},d=new Date(o.epoch*1000);const p=m.pressureMax!=null&&m.pressureMin!=null?Math.round((m.pressureMax+m.pressureMin)*50)/100:'';
+   c+=d.toLocaleDateString('de-DE')+';'+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+';'+[m.tempAvg,m.dewptAvg,o.humidityAvg,p,m.windspeedAvg,m.windgustHigh,o.winddirAvg,m.precipTotal,o.solarRadiationHigh,o.uvHigh].map(dez).join(';')+'\n'})));
+  archSave('Wetterdaten-Bad-Koenig-Stundenwerte-'+new Date().toISOString().slice(0,10)+'.csv',c,'text/csv');$('archSt').textContent='✅ Stundenwerte gespeichert.'}catch(e){$('archSt').textContent='Fehler: '+e.message}};
+ $('archJson').onclick=async()=>{try{const {I,out}=await archAll(()=>true);archSave('Wetterarchiv-Bad-Koenig-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify({index:I,dateien:out}),'application/json');$('archSt').textContent='✅ Komplettes Archiv gespeichert.'}catch(e){$('archSt').textContent='Fehler: '+e.message}};
+ archLoad()}
 /* Facebook-Bereich: fb.html im Rahmen, Zugriff nur nach Entsperren; Schlüssel verschlüsselt in db.fbTok */
 window.kzOk=()=>!!ghKey;window.kzFbTok=()=>(db&&db.fbTok)||'';
 function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild(t.content.cloneNode(true));try{fbInit()}catch(e){console.warn(e)}}
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0);setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){
