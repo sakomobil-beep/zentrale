@@ -2334,7 +2334,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">🖥️ Website – Hauptmenü</h3>
 <details open><summary>Aktuell (Startseite)</summary><ul>
-<li>Live-Messwerte der Station: zuerst aus der eigenen Datei data/live.json (Server holt sie alle 10 Min. bei Weather Underground, cron-job.org „Live-Daten“); nur wenn sie älter als 15 Min. ist, ruft der Besucher selbst bei WU ab <span class="tg">neu 08.11.</span></li>
+<li>Live-Messwerte der Station: aktuelle Werte über den Cloudflare-Zwischenspeicher (Worker „wetter-badkoenig“, wetter-badkoenig.sakomobil.workers.dev, kostenloser Tarif, höchstens 1 WU-Abruf pro Minute, Schlüssel als Geheimnis WU_KEY bei Cloudflare); Tagesverlauf und Reserve: eigene Datei data/live.json (Server holt sie alle 10 Min. bei Weather Underground, cron-job.org „Live-Daten“); nur wenn sie älter als 15 Min. ist, ruft der Besucher selbst bei WU ab <span class="tg">neu 08.11.</span></li>
 <li>Aufbau: amtliche DWD-Warnungen oben, dann Bereiche <b>Jetzt / Heute / Was kommt / Rückblick</b></li>
 <li>Kasten „Jetzt“: Sonnenauf-/-untergang mit Tageslänge, Mondauf-/-untergang, Mondphase</li>
 <li>Frostwarner (Hinweis bei Frost/Glätte)</li>
@@ -2454,6 +2454,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>23:05 Uhr</small></td><td>Cloudflare-Zwischenspeicher für Live-Werte: kostenloses Cloudflare-Konto, Worker „wetter-badkoenig“ (wetter-badkoenig.sakomobil.workers.dev) holt die aktuellen Werte von IBADKN33 höchstens einmal pro Minute bei Weather Underground; die Website nimmt die aktuellen Werte von dort, den Tagesverlauf weiter aus data/live.json. Fällt der Worker aus oder ist das Tageslimit (100.000 Abrufe) erreicht, gilt automatisch wieder data/live.json</td></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
 <tr><td>08.11.2026<br><small>23:55 Uhr</small></td><td>Max: „Wetter-Wissen in 20 Sekunden“ – montags, mittwochs, freitags und samstags ein Fun-Fact am Ende des Morgenvideos (vor der Verabschiedung) mit eigener gelber Tafel „WETTER-WISSEN“; 48 Fun-Facts in data/wetterwissen.json, passend zur Wetterlage (Nebel, Frost, Schnee, Regen, Gewitter, Sturm, Sonne) und Jahreszeit, Wiederholung frühestens nach ca. 30 Tagen; nicht in Special-Videos</td></tr>
 <tr><td>08.11.2026<br><small>23:40 Uhr</small></td><td>Weihnachts-Max (23.11.–28.12.): Weihnachtsmütze mit Bommel und rot-grün gestreifter Schal (bei Sturm nicht), Advents-Hintergründe mit Lichterketten (Raureif-Landschaft, bei Winterwetter verschneit; eigene Bilder mit Endung „_advent“ werden abwechselnd genutzt), Wetter-Hintergründe bei Regen/Schnee/Sturm haben Vorrang; Grüße zum 1.–4. Advent, an Heiligabend und Weihnachten, sonst ab und zu „Eine schöne Adventszeit!“</td></tr>
