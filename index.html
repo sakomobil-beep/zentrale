@@ -2422,6 +2422,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>12:00 Uhr</small></td><td>Kasten „Zuletzt erstellt, gepostet &amp; geplant“: zusätzlich „🗓️ geplant: Datum + Uhrzeit“ des nächsten Posts (Video Mo–Fr 7 Uhr / Sa–So 8 Uhr, Mittag 12 Uhr, Abend 18 Uhr, Wochenausblick So 20 Uhr, Sondermeldungen laufend)</td></tr>
 <tr><td>08.11.2026<br><small>11:58 Uhr</small></td><td>Facebook-Bereich: Hinweis „gepostet um …“ an den Video-/Beitragskarten wieder entfernt – steht jetzt zentral im Kasten „Zuletzt erstellt &amp; gepostet“</td></tr>
 <tr><td>08.11.2026<br><small>11:55 Uhr</small></td><td>Facebook-Bereich, Kasten „Zuletzt erstellt &amp; gepostet“: unter jedem Eintrag steht jetzt der letzte erfolgreiche Facebook-Post (Datum + Uhrzeit, orange wenn nicht von heute); Postzeit wird jetzt auch bei Sondermeldungen gemerkt</td></tr>
 <tr><td>08.11.2026<br><small>11:50 Uhr</small></td><td>Solarwetter-Check: alle 6 Stunden werden die 14 Datenquellen der Solarwetter-Seite (NOAA, SDO) geprüft – Push bei Ausfall oder veralteten Daten, Push „wieder OK“ wenn behoben; erster Lauf: alles ok</td></tr>
@@ -2463,7 +2464,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   </div>
 
   <div class="card" id="fb_letzte" style="margin:0 0 16px;font-size:.95rem;color:#24507f">
-    <div class="vhead">🕒 Zuletzt erstellt &amp; gepostet</div>
+    <div class="vhead">🕒 Zuletzt erstellt, gepostet &amp; geplant</div>
     <div id="fb_letzteListe">wird geladen …</div>
   </div>
 
@@ -3506,6 +3507,26 @@ function fbInit(){
       var t = tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' });
       return { t: nurTag ? t : t + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr', heute: tag === heute };
     }
+    function plan(i) {
+      var k = postKey[i], jetzt = new Date();
+      if (k === 'sonder') return '<br><small style="opacity:.75">↳ 🗓️ geplant: laufend, Prüfung alle 15 Min. – amtliche DWD-Warnungen sofort</small>';
+      // Berliner Uhrzeit: nächster Termin ab jetzt suchen
+      function bt(d) { var o = {}; new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short', hourCycle: 'h23' }).formatToParts(d).forEach(function (x) { o[x.type] = x.value; }); return o; }
+      for (var t = 0; t < 8 * 24 * 60; t += 15) {
+        var d = new Date(Math.ceil(jetzt.getTime() / 9e5) * 9e5 + t * 6e4), o = bt(d), h = +o.hour, m = +o.minute, wd = o.weekday.replace('.', '');
+        var we = wd === 'Sa' || wd === 'So', ok = false;
+        if (k === 'video') ok = m === 0 && h === (we ? 8 : 7);
+        else if (k === null) ok = m === 0 && h === 12;
+        else if (k === 'abend') ok = m === 0 && h === 18;
+        else if (k === 'woche') ok = m === 0 && h === 20 && wd === 'So';
+        if (!ok) continue;
+        var tag = o.year + '-' + o.month + '-' + o.day;
+        if (k && G[k] === tag) continue;                       // heute schon gepostet -> nächster Termin
+        var txt = (tag === heute ? 'heute' : o.weekday + ', ' + o.day + '.' + o.month + '.') + ', ' + o.hour + ':' + o.minute + ' Uhr';
+        return '<br><small style="opacity:.75">↳ 🗓️ geplant: <b>' + txt + '</b>' + (k ? '' : ' (neuer Beitrag zum Teilen)') + '</small>';
+      }
+      return '';
+    }
     function gepostet(i) {
       var k = postKey[i];
       if (!k) return '<br><small style="opacity:.75">↳ wird nicht automatisch gepostet (selbst teilen)</small>';
@@ -3515,11 +3536,11 @@ function fbInit(){
     }
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i];
-      if (!j || !j.erstellt) return '<div>' + x[0] + ': –' + gepostet(i) + '</div>';
+      if (!j || !j.erstellt) return '<div>' + x[0] + ': –' + gepostet(i) + plan(i) + '</div>';
       var d = new Date(j.erstellt), tag = d.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
       var t = (tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' })) +
         ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr';
-      return '<div>' + x[0] + ': <b' + (tag !== heute ? ' style="color:#b45309"' : '') + '>' + t + '</b>' + gepostet(i) + '</div>';
+      return '<div>' + x[0] + ': <b' + (tag !== heute ? ' style="color:#b45309"' : '') + '>' + t + '</b>' + gepostet(i) + plan(i) + '</div>';
     }).join('');
   });
 })();
