@@ -2334,7 +2334,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">🖥️ Website – Hauptmenü</h3>
 <details open><summary>Aktuell (Startseite)</summary><ul>
-<li>Live-Messwerte der Station über Weather Underground, jede Minute aktualisiert</li>
+<li>Live-Messwerte der Station: zuerst aus der eigenen Datei data/live.json (Server holt sie alle 10 Min. bei Weather Underground, cron-job.org „Live-Daten“); nur wenn sie älter als 15 Min. ist, ruft der Besucher selbst bei WU ab <span class="tg">neu 08.11.</span></li>
 <li>Aufbau: amtliche DWD-Warnungen oben, dann Bereiche <b>Jetzt / Heute / Was kommt / Rückblick</b></li>
 <li>Kasten „Jetzt“: Sonnenauf-/-untergang mit Tageslänge, Mondauf-/-untergang, Mondphase</li>
 <li>Frostwarner (Hinweis bei Frost/Glätte)</li>
@@ -2342,7 +2342,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>Regen-Nowcast aus dem DWD-Radar (nächste 2 Stunden)</li>
 <li>Radar mit Reitern Regen, Blitze, Wind, Wolken, Temperatur, Schnee (Nov.–März); Reiter wird automatisch nach Wetterlage gewählt</li>
 <li>Blauer Video-Knopf unter dem Schlossbild → Max-Wettervideo mit Videothek der letzten 7 Tage</li>
-<li>Knopf „Folge uns auf Facebook“, unauffälliger Besuchszähler im Fußbereich</li>
+<li>Rückblick: Jahresrekorde als Kacheln – heißester, kältester, nassester Tag, stärkste Böe, Monatsregen; neuer Rekord (heute/gestern) bekommt „🏆 Neuer Rekord!“ und einen Hinweis oben auf „Aktuell“ <span class="tg">neu 08.11.</span></li>
+<li>Knöpfe „Folge uns auf Facebook“ und „Folge uns auf Instagram“ (@wetterstation_badkoenig), Links auch in der Fußzeile; unauffälliger Besuchszähler im Fußbereich</li>
 <li>Saison-Deko: Halloween bis 31.10., Herbstblätter ab 01.11., Weihnachtslook 23.11.–28.12.</li>
 </ul></details>
 <details><summary>Vorhersage</summary><ul>
@@ -2352,9 +2353,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>„Stundenverlauf · Station Bad König“; bei „Heute“ ab Mittag der Tiefstwert der kommenden Nacht</li>
 <li>Bereich <b>Odenwaldkreis</b>: eigene Reliefkarte mit Mümling, Orte Oberzent, Michelstadt, Bad König, Höchst, Breuberg, Brensbach; 3-Tage-Vorhersage je Ort mit eigener Höhe und eigener Lernkurve</li>
 <li>Frostnächte in der Vorhersage</li>
+<li>„Heute“ zeigt Höchst-/Tiefstwert ohne das Wort „Nacht“ (z. B. 10° / 1°)</li>
+<li>Knopf <b>„📊 Wie genau war die Vorhersage?“</b> → Fenster mit Trefferquote: gestern vorhergesagt vs. gemessen, Schnitt + Quote der letzten 14 Tage, Balken 7 Tage (Daten fb/treffer.json, ab 06.11.2026) <span class="tg">neu 08.11.</span></li>
 </ul></details>
 <details><summary>Grafiken · Wochengrafiken</summary><ul>
-<li>Verläufe aller Messwerte, Zeiträume u. a. 24 h, 14 Tage, 1 Monat</li>
+<li>Verläufe aller Messwerte, Zeiträume u. a. 24 h, 14 Tage, 1 Monat – ältere Tage kommen aus dem eigenen Wetterarchiv</li>
 <li>Wochengrafiken als eigener Tab</li>
 </ul></details>
 <details><summary>Historie · Statistik · Klima</summary><ul>
@@ -2362,6 +2365,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>Statistik mit Jahressumme Regen und Frost-Statistik; Lücke 01.–19.01.2026 mit IBADKN32 aufgefüllt</li>
 <li>Luftdruck vor der Kalibrierung (05.11.2026, +5,4 hPa) rückwirkend korrigiert</li>
 <li>Klima-Tab</li>
+<li><b>Eigenes Wetterarchiv</b> (data/archiv): alle Tageswerte seit 01.01.2026 (01.–19.01. IBADKN32) und Stundenwerte seit 20.01.2026, jede Nacht um 0:15 Uhr um den Vortag ergänzt; Statistik, Rekorde, Klima und Grafiken lesen daraus. Sicherung als CSV/JSON → Zentrale, Tab „📈 Website“ <span class="tg">neu 08.11.</span></li>
 </ul></details>
 <details><summary>Station · Solarwetter · Winterprognose · Webcams</summary><ul>
 <li><b>Station:</b> Infos zur Bresser 8-in-1, Link zum Wetter-Widget</li>
@@ -2386,6 +2390,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <details><summary>App &amp; Suchmaschinen</summary><ul>
 <li>Als App aufs Handy installierbar</li>
 <li>Bei Google (Search Console, Sitemap) und Bing angemeldet; Beschreibung, Vorschaubild, robots.txt</li>
+<li><b>IndexNow:</b> jede geänderte Seite wird sofort an Bing &amp; Co. gemeldet, montags alle Seiten; lastmod in der Sitemap aktualisiert sich automatisch (hilft Google) <span class="tg">neu 08.11.</span></li>
+<li>Impressum/Datenschutz nennt Facebook und Instagram</li>
 <li>Besucherstatistik über GoatCounter → hier im Tab „📈 Website“</li>
 </ul></details>
 </div>
@@ -2396,13 +2402,13 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>Comic-Moderator Max (Odenwälder Outdoor-Guide), Stimme Conrad, ganz leise Hintergrundmusik</li>
 <li>Gilt für den ganzen Odenwald („Odenwald-Wetter“), Bad König wird erwähnt</li>
 <li>Nutzt die Präzisions-Vorhersage; Freizeittipps und Kleidung passend zum Wetter; Hintergründe passend zur Lage (eigene gemalte Regionsbilder; Wetterlagen Regen, Schauer, Schnee, Nebel, Sturm, Gewitter, Frost)</li>
-<li>Inhalt: Rückblick gestern, Vorhersage, bestes Zeitfenster, Sonnenstunden, Himmelsereignisse</li>
+<li>Inhalt: Rückblick gestern (inkl. neuer Jahresrekorde), Vorhersage, bestes Zeitfenster, Sonnenstunden, Himmelsereignisse</li>
 <li><b>Morgenvideo</b> immer normal; <b>Special-Videos</b> bei Unwetter/Schnee/Sturm extra</li>
 <li><b>Wochenausblick</b> jeden Sonntag 20 Uhr</li>
 <li><b>„Max erklärt“</b>-Themenvideos (lang, sachlich) – selbst teilen, auch auf YouTube</li>
 <li>Videos werden nach 7 Tagen gelöscht (montags nachts, inkl. Git-Historie)</li>
 </ul></details>
-<details><summary>Facebook-Zeitplan (Seite „Private Wetterstation Bad König“)</summary>
+<details><summary>Facebook- &amp; Instagram-Zeitplan (Seite „Private Wetterstation Bad König“, Instagram @wetterstation_badkoenig)</summary>
 <table><tr><th>Wann</th><th>Was</th><th>Wie</th></tr>
 <tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Wettervideo</td><td>automatisch</td></tr>
 <tr><td>Mittags</td><td>Tagesbeitrag „Mittagswetter“ (Bild + Text)</td><td>selbst teilen</td></tr>
@@ -2411,8 +2417,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>sofort</td><td>amtliche DWD-Warnungen</td><td>automatisch</td></tr>
 <tr><td>bei Bedarf</td><td>Vorhersage-Sondermeldungen, Frost-/Kratzen-Hinweis (nur bei sicherem Frost)</td><td>selbst teilen</td></tr>
 </table>
-<ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; Make.com ist gestoppt und bleibt als Reserve</li>
-<li>cron-job.org weckt den Morgen-Post pünktlich (7:02 + 8:02 Uhr), weil GitHub-Zeitpläne oft verspätet sind</li>
+<ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; alle Autoposts gehen auch auf <b>Instagram</b>; das Skript holt sich den Seiten-Token selbst aus dem hinterlegten Token; Make.com ist gestoppt und bleibt als Reserve</li>
+<li>cron-job.org weckt pünktlich, weil GitHub-Zeitpläne oft verspätet sind: „Wettervideo Facebook Weckruf“ (7:02/8:02), „Abend Weckruf“ (18:02), „Sonntag Wochenausblick Weckruf“ (So 20:02, baut auch das Wochenvideo), „Wetterarchiv“ (0:15), „Live-Daten“ (alle 10 Min.)</li>
 <li>Alles zum Teilen + Knöpfe „Video neu erstellen“ → hier im Tab „📈 Website“</li></ul>
 </details>
 </div>
@@ -2423,13 +2429,16 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>🌧️ <b>Regen im Anmarsch</b> – Radar zeigt Regen in Bad König in den nächsten 60 Min. (1× pro Schauer, nachts leise) <span class="tg">neu 08.11.</span></li>
 <li>⚠️ <b>Amtliche DWD-Warnung</b> für Bad König – jede neue Warnung sofort, mit Gültigkeit und Beschreibung; Priorität nach Stufe (gering leise … extrem dringend) <span class="tg">neu 08.11.</span></li>
 <li>⚠️ Sondermeldung zum Posten bereit (über die Zentrale)</li>
+<li>🏆 <b>Neuer Rekord</b> an der Station (wärmster/kältester/nassester Tag, stärkste Böe des Jahres) <span class="tg">neu 08.11.</span></li>
 <li>🛰️ <b>Solarwetter-Check</b> – Datenquelle der Solarwetter-Seite ausgefallen/veraltet (max. 1× pro Tag je Quelle) bzw. „wieder OK“</li>
 </ul>
 <h3>⚙️ Hintergrund-Abläufe (GitHub)</h3>
 <table><tr><th>Ablauf</th><th>Aufgabe</th></tr>
 <tr><td>Facebook-Vorhersage + Video</td><td>Beiträge, Videos, Posten; alle 15 Min. DWD-Warnungen, Sondermeldungen, Regen-Push, DWD-Warn-Push</td></tr>
 <tr><td>Vorhersage lernen</td><td>Trefferquote der Modelle, Korrektur Bad König + Odenwald-Orte</td></tr>
-<tr><td>Widget-Daten</td><td>Daten für das Wetter-Widget</td></tr>
+<tr><td>Widget-Daten</td><td>Daten für das Wetter-Widget + Live-Datei data/live.json für die Website</td></tr>
+<tr><td>Wetterarchiv</td><td>jede Nacht Tages- und Stundenwerte des Vortags in data/archiv sichern</td></tr>
+<tr><td>Suchmaschinen melden (IndexNow)</td><td>geänderte Seiten an Bing &amp; Co. melden, Sitemap-Datum aktualisieren</td></tr>
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten)</td></tr>
 <tr><td>Solarwetter-Check</td><td>alle 6 Std.: 14 NOAA/SDO-Quellen prüfen (erreichbar, aktuell)</td></tr>
 <tr><td>Historie aufräumen</td><td>alte Videos montags dauerhaft löschen</td></tr>
