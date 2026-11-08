@@ -2403,6 +2403,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>Gilt für den ganzen Odenwald („Odenwald-Wetter“), Bad König wird erwähnt</li>
 <li>Nutzt die Präzisions-Vorhersage; Freizeittipps und Kleidung passend zum Wetter; Hintergründe passend zur Lage (eigene gemalte Regionsbilder; Wetterlagen Regen, Schauer, Schnee, Nebel, Sturm, Gewitter, Frost)</li>
 <li>Inhalt: Rückblick gestern (inkl. neuer Jahresrekorde), Vorhersage, bestes Zeitfenster, Sonnenstunden, Himmelsereignisse</li>
+<li><b>Regionale Termine:</b> Feiertage Hessen, Beginn/Ende der Schulferien, Weihnachtsmärkte und eigene Termine aus „🎪 Termine für Max“ (Tab „📈 Website“) – 1–3 Tage vorher und am Tag selbst, im Wochenausblick alle Termine der Woche <span class="tg">neu 08.11.</span></li>
 <li><b>Morgenvideo</b> immer normal; <b>Special-Videos</b> bei Unwetter/Schnee/Sturm extra</li>
 <li><b>Wochenausblick</b> jeden Sonntag 20 Uhr</li>
 <li><b>„Max erklärt“</b>-Themenvideos (lang, sachlich) – selbst teilen, auch auf YouTube</li>
@@ -2438,6 +2439,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>Facebook-Vorhersage + Video</td><td>Beiträge, Videos, Posten; alle 15 Min. DWD-Warnungen, Sondermeldungen, Regen-Push, DWD-Warn-Push</td></tr>
 <tr><td>Vorhersage lernen</td><td>Trefferquote der Modelle, Korrektur Bad König + Odenwald-Orte</td></tr>
 <tr><td>Widget-Daten</td><td>Daten für das Wetter-Widget + Live-Datei data/live.json für die Website</td></tr>
+<tr><td>Termine für Max</td><td>Termin aus der Zentrale in data/termine.json eintragen oder löschen</td></tr>
 <tr><td>Wetterarchiv</td><td>jede Nacht Tages- und Stundenwerte des Vortags in data/archiv sichern</td></tr>
 <tr><td>Suchmaschinen melden (IndexNow)</td><td>geänderte Seiten an Bing &amp; Co. melden, Sitemap-Datum aktualisieren</td></tr>
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten)</td></tr>
@@ -2451,6 +2453,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
+<tr><td>08.11.2026<br><small>23:10 Uhr</small></td><td>Max: regionale Termine – Feiertage Hessen (automatisch berechnet), Schulferien Hessen bis 2029 (laut Kultusministerium), Weihnachtsmärkte (Michelstadt 27.11.–20.12. Mi–So, Erbacher Schlossweihnacht Adventswochenenden Fr–So, Bad Königer Nikolausmarkt 11.–13.12.) in data/termine.json; Max erwähnt Termine 1–3 Tage vorher und am Tag selbst (max. einer pro Video), Wochenausblick nennt die Termine der Woche. Zentrale (Tab „📈 Website“): Kasten „🎪 Termine für Max“ zum Ansehen, Eintragen und Löschen (Workflow „Termine für Max“)</td></tr>
 <tr><td>08.11.2026<br><small>22:35 Uhr</small></td><td>Instagram: Beiträge und Reels bekommen statt der Facebook-Hashtags einen festen Instagram-Hashtag-Block: #odenwald #odenwaldwetter #badkönig #wetter #odenwaldkreis #michelstadt #erbach #höchst #breuberg #wetterbericht #hessen #wettervorhersage (Facebook unverändert)</td></tr>
 <tr><td>08.11.2026<br><small>22:30 Uhr</small></td><td>Instagram-Story morgens (nur Instagram, Autopost zusammen mit dem Morgenvideo, Mo–Fr 7 Uhr / Sa–So 8 Uhr): Bild „Odenwald-Wetter heute“ (Symbol, Höchst/Tiefst Täler, Regenrisiko, Böen, Höhen, Hinweis z. B. Scheiben kratzen) – fb/story.jpg, Push „Instagram-Story gepostet“. Zentrale: Vorschau-Karte „📸 Instagram-Story morgens“ unter Morgens; Übersicht mit neuer Spalte „Wo“ (Symbole f = Facebook, ig = Instagram) und Zeile „Morgen-Story“</td></tr>
 <tr><td>08.11.2026<br><small>22:05 Uhr</small></td><td>Live-Werte für Besucher: Workflow „Widget-Daten“ schreibt zusätzlich data/live.json (aktuelle Werte + heutiger Tagesverlauf); die Website liest zuerst diese Datei und ruft nur noch selbst bei Weather Underground ab, wenn sie älter als 15 Minuten ist. Damit es zuverlässig alle 10 Minuten läuft: cron-job.org-Job „Live-Daten“ (widget.yml)</td></tr>
@@ -2526,6 +2529,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <table>
 <tr><th>Teil</th><th>Inhalt</th></tr>
 <tr><td>1. Begrüßung</td><td>wechselnde Grüße („Ei gude, Odenwald!“ …), kurzer Hinweis auf DWD-Warnung, falls aktiv</td></tr>
+<tr><td>Termine</td><td>Feiertage Hessen (berechnet), Beginn/Ende Schulferien, Weihnachtsmärkte und eigene Termine – 1–3 Tage vorher und am Tag selbst, max. einer pro Video; im Wochenausblick „Und im Kalender diese Woche …“</td></tr>
 <tr><td>2. Rückblick</td><td>gestern an der Station Bad König gemessen (Höchst-/Tiefstwert, Regen); Kälterekord-Nacht wird erwähnt; neue Jahresrekorde (wärmster/kältester/nassester Tag, stärkste Böe) mit altem Rekordwert</td></tr>
 <tr><td>3. Heute</td><td>Vorhersage mit Tafel, bestes Zeitfenster für draußen, Sonnenstunden</td></tr>
 <tr><td>4. Max-Tipp</td><td>Freizeittipp im Odenwald passend zu Wetter und Jahreszeit</td></tr>
@@ -2596,6 +2600,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>23:10 Uhr</small></td><td>Regionale Termine: Feiertage Hessen, Schulferien, Weihnachtsmärkte und eigene Termine (data/termine.json, Formular „🎪 Termine für Max“ im Tab „📈 Website“) – Hinweis im Morgenvideo, Wochenliste im Wochenausblick; fest eingebaute Weihnachtsmarkt-/Nikolausmarkt-Sätze ersetzt</td></tr>
 <tr><td>08.11.2026<br><small>21:40 Uhr</small></td><td>Max erwähnt im Rückblick neue Jahresrekorde der Station (wärmster/kältester/nassester Tag, stärkste Böe) mit altem Rekordwert</td></tr>
 <tr><td>08.11.2026<br><small>14:55 Uhr</small></td><td>Neuer Veranstaltungs-Tipp: Bad Königer Nikolausmarkt (Innenstadt am Schloss, Fr 11.12. ab 17 Uhr, Sa 12.12. ab 16 Uhr, So 13.12. ab 14 Uhr); Vorankündigung vom 8. bis 10.12.</td></tr>
 <tr><td>08.11.2026<br><small>12:10 Uhr</small></td><td>Neue Wetterlage „Schauer“ mit eigenem Bild (Sonne, Schauer in der Ferne, Regenbogen), Max ohne Schirm, ohne Tropfen; Wetterbilder nur noch bei passender Lage</td></tr>
@@ -2712,6 +2717,24 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 
 <div id="fb_ok"></div><style>.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}</style></template>
   <div id="fbSec"></div>
+  <div class="card" id="tmCard"><h3 style="margin-top:0">🎪 Termine für Max</h3>
+    <p style="margin:4px 0 10px;opacity:.8">Max erwähnt Termine 1–3 Tage vorher und am Tag selbst (höchstens einen pro Video), im Wochenausblick alle Termine der Woche. Feiertage und Schulferien in Hessen kennt er automatisch.</p>
+    <div id="tmList"><small>Lade Termine …</small></div>
+    <details style="margin-top:10px"><summary style="cursor:pointer;font-weight:600">➕ Neuen Termin eintragen</summary>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:8px">
+        <input id="tmName" placeholder="Name, z. B. Weihnachtsmarkt Höchst">
+        <input id="tmOrt" placeholder="Ort, z. B. in der Ortsmitte von Höchst">
+        <label style="font-size:13px">von <input id="tmVon" type="date"></label>
+        <label style="font-size:13px">bis <input id="tmBis" type="date"></label>
+        <input id="tmZeit" placeholder="Uhrzeit, z. B. ab 15 Uhr">
+        <input id="tmInfo" placeholder="Zusatz, z. B. nur am Wochenende">
+      </div>
+      <div style="margin-top:8px;font-size:13px">Nur an diesen Tagen (leer = jeden Tag):
+        <span id="tmWt"><label style="margin-right:6px"><input type="checkbox" value="0"> Mo</label><label style="margin-right:6px"><input type="checkbox" value="1"> Di</label><label style="margin-right:6px"><input type="checkbox" value="2"> Mi</label><label style="margin-right:6px"><input type="checkbox" value="3"> Do</label><label style="margin-right:6px"><input type="checkbox" value="4"> Fr</label><label style="margin-right:6px"><input type="checkbox" value="5"> Sa</label><label style="margin-right:6px"><input type="checkbox" value="6"> So</label></span></div>
+      <button class="b" id="tmAdd" style="margin-top:8px">💾 Termin speichern</button>
+    </details>
+    <small id="tmSt" style="display:block;margin-top:8px;opacity:.75"></small>
+  </div>
   <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
     <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
     <div id="archInfo"><small>Lade Übersicht …</small></div>
@@ -3657,6 +3680,24 @@ function initIdeas(){const add=()=>{const t=$('idText').value.trim();if(!t)retur
  document.querySelectorAll('.nt-tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nt-tabs button').forEach(x=>x.classList.toggle('on',x==b));$('ideenCard').hidden=b.dataset.nt!='ideen';$('todoCard').hidden=b.dataset.nt!='todo'});
  renderIdeas()}
 
+
+/* ===== Termine für Max (data/termine.json auf wetter-badkoenig.de, Änderungen über Workflow „Termine für Max“) ===== */
+const TM_API='https://api.github.com/repos/sakomobil-beep/wetterstation/actions/workflows/termine.yml/dispatches';
+const tmDat=d=>d?d.split('-').reverse().join('.'):'';
+async function tmLoad(){try{const r=await fetch('https://wetter-badkoenig.de/data/termine.json?'+Date.now());const T=await r.json();const W=['Mo','Di','Mi','Do','Fr','Sa','So'];
+ const L=(T.termine||[]).map(t=>{const zeit=t.daten?Object.entries(t.daten).map(([d,z])=>tmDat(d).slice(0,6)+' '+z).join(', '):tmDat(t.von)+(t.bis&&t.bis!==t.von?' – '+tmDat(t.bis):'')+(t.wochentage?' ('+t.wochentage.map(i=>W[i]).join(', ')+')':'')+(t.zeit?' · '+t.zeit:'');
+  return `<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 0;border-top:1px solid rgba(128,128,128,.2)"><div><b>${esc(t.name)}</b> <small style="opacity:.7">${esc(t.ort||'')}</small><br><small>📅 ${esc(zeit)}${t.info?' · '+esc(t.info):''}</small></div><button class="g" data-tdel="${esc(t.id)}" title="Löschen">🗑️</button></div>`}).join('');
+ const F=(T.ferien||[]).filter(f=>f.bis>=new Date().toISOString().slice(0,10)).slice(0,2).map(f=>f.name+' '+tmDat(f.von)+' – '+tmDat(f.bis)).join(' · ');
+ $('tmList').innerHTML=(L||'<small>Noch keine Termine.</small>')+(F?'<small style="display:block;margin-top:8px;opacity:.7">🎒 Nächste Schulferien: '+F+'</small>':'');
+ $('tmList').querySelectorAll('[data-tdel]').forEach(b=>b.onclick=()=>{if(confirm('Termin löschen?'))tmSend({aktion:'loeschen',tid:b.dataset.tdel})})}
+ catch(e){$('tmList').innerHTML='<small>Termine konnten nicht geladen werden.</small>'}}
+async function tmSend(inp){const tok=window.kzFbTok&&window.kzFbTok();if(!tok){$('tmSt').textContent='🔑 Noch kein GitHub-Schlüssel hinterlegt (siehe Facebook-Bereich oben).';return}
+ $('tmSt').textContent='⏳ Wird gespeichert …';try{const r=await fetch(TM_API,{method:'POST',headers:{Authorization:'Bearer '+tok,Accept:'application/vnd.github+json'},body:JSON.stringify({ref:'main',inputs:inp})});
+ if(r.status!==204)throw new Error('GitHub antwortet '+r.status);$('tmSt').textContent='✅ Gespeichert – die Liste aktualisiert sich in ca. 1–2 Minuten.';setTimeout(tmLoad,90000)}catch(e){$('tmSt').textContent='❌ '+e.message}}
+function tmInit(){$('tmAdd').onclick=()=>{const n=$('tmName').value.trim(),v=$('tmVon').value;if(!n||!v)return alert('Bitte mindestens Name und Datum (von) eintragen.');
+ const wt=[...$('tmWt').querySelectorAll('input:checked')].map(x=>x.value).join(',');
+ tmSend({aktion:'neu',name:n,ort:$('tmOrt').value.trim(),von:v,bis:$('tmBis').value||v,zeit:$('tmZeit').value.trim(),info:$('tmInfo').value.trim(),wochentage:wt});
+ ['tmName','tmOrt','tmVon','tmBis','tmZeit','tmInfo'].forEach(i=>$(i).value='');$('tmWt').querySelectorAll('input').forEach(x=>x.checked=false)};tmLoad()}
 /* ===== Sicherung Wetterarchiv (Dateien von wetter-badkoenig.de/data/archiv) ===== */
 const ARCH_URL='https://wetter-badkoenig.de/data/archiv/';
 async function archIdx(){const r=await fetch(ARCH_URL+'index.json?'+Date.now());if(!r.ok)throw new Error('Archiv nicht erreichbar');return r.json()}
@@ -3683,7 +3724,7 @@ function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0);setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0);setTimeout(()=>{if(!window._archI){window._archI=1;archInit();tmInit()}else{archLoad();tmLoad()}},0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){
