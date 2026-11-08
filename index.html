@@ -2422,6 +2422,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>11:55 Uhr</small></td><td>Facebook-Bereich, Kasten „Zuletzt erstellt &amp; gepostet“: unter jedem Eintrag steht jetzt der letzte erfolgreiche Facebook-Post (Datum + Uhrzeit, orange wenn nicht von heute); Postzeit wird jetzt auch bei Sondermeldungen gemerkt</td></tr>
 <tr><td>08.11.2026<br><small>11:50 Uhr</small></td><td>Solarwetter-Check: alle 6 Stunden werden die 14 Datenquellen der Solarwetter-Seite (NOAA, SDO) geprüft – Push bei Ausfall oder veralteten Daten, Push „wieder OK“ wenn behoben; erster Lauf: alles ok</td></tr>
 <tr><td>08.11.2026<br><small>11:30 Uhr</small></td><td>Solarwetter, Tabelle „Wahrscheinlichkeiten“: „Sturm heute“ zeigt jetzt Messung + Prognose (vorher Strich); NOAA-Werte werden nach Ausgabedatum richtig auf Heute/Morgen/Übermorgen verteilt (ab ca. 23 Uhr waren sie sonst um einen Tag verschoben)</td></tr>
 <tr><td>08.11.2026<br><small>11:22 Uhr</small></td><td>Zentrale, Tageszusammenfassung: „Heute Abend rausstellen“ nur noch bei Müllterminen (Google-Kalender-Einträge wie „Kalenderwoche 46“ erschienen fälschlich als Müll)</td></tr>
@@ -2461,7 +2462,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   </div>
 
   <div class="card" id="fb_letzte" style="margin:0 0 16px;font-size:.95rem;color:#24507f">
-    <div class="vhead">🕒 Zuletzt erstellt</div>
+    <div class="vhead">🕒 Zuletzt erstellt &amp; gepostet</div>
     <div id="fb_letzteListe">wird geladen …</div>
   </div>
 
@@ -3494,17 +3495,30 @@ function fbInit(){
   var q = '?v=' + Date.now(), quellen = [
     ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['🍽️ Mittags-Beitrag', 'https://wetter-badkoenig.de/fb/post.json'],
     ['🌙 Abendbeitrag', 'https://wetter-badkoenig.de/fb/abend.json'], ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
+  var postKey = ['video', null, 'abend', 'woche', 'sonder'];
   Promise.all(quellen.map(function (x) {
     return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
-  })).then(function (res) {
-    var heute = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+  }).concat([fetch('https://wetter-badkoenig.de/fb/gepostet.json' + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })])).then(function (res) {
+    var heute = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' }), G = res[quellen.length] || {};
+    function wann(iso, nurTag) {
+      var d = new Date(iso), tag = d.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+      var t = tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' });
+      return { t: nurTag ? t : t + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr', heute: tag === heute };
+    }
+    function gepostet(i) {
+      var k = postKey[i];
+      if (!k) return '<br><small style="opacity:.75">↳ wird nicht automatisch gepostet (selbst teilen)</small>';
+      var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
+      var w = z ? wann(z) : tag ? wann(tag + 'T12:00:00', true) : null;
+      return '<br><small>↳ ✅ zuletzt gepostet: ' + (w ? '<b' + (w.heute ? '' : ' style="color:#b45309"') + '>' + w.t + '</b>' : '<b>noch nie</b>') + '</small>';
+    }
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i];
-      if (!j || !j.erstellt) return '<div>' + x[0] + ': –</div>';
+      if (!j || !j.erstellt) return '<div>' + x[0] + ': –' + gepostet(i) + '</div>';
       var d = new Date(j.erstellt), tag = d.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
       var t = (tag === heute ? 'heute' : d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'Europe/Berlin' })) +
         ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr';
-      return '<div>' + x[0] + ': <b' + (tag !== heute ? ' style="color:#b45309"' : '') + '>' + t + '</b></div>';
+      return '<div>' + x[0] + ': <b' + (tag !== heute ? ' style="color:#b45309"' : '') + '>' + t + '</b>' + gepostet(i) + '</div>';
     }).join('');
   });
 })();
