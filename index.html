@@ -2179,6 +2179,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 .nt-i input[type=checkbox]{width:20px;height:20px;margin-top:1px;flex-shrink:0;cursor:pointer;accent-color:#16a34a}.nt-t{flex:1;line-height:1.4;cursor:text}.nt-i.done .nt-t{text-decoration:line-through;opacity:.5}
 .nt-d{font-size:11px;opacity:.55;display:block}.nt-i button{border:0;background:none;cursor:pointer;font-size:15px;opacity:.5;padding:0 4px}.nt-i button:hover{opacity:1}
 @media(max-width:700px){.nt-add{grid-template-columns:1fr 1fr}.nt-add input{grid-column:span 2}}
+.nt-tabs{display:flex;gap:8px;margin-bottom:12px}.nt-tabs button{border:1px solid var(--line);background:var(--card,#fff);border-radius:10px;padding:8px 16px;cursor:pointer;font:inherit;font-weight:600;color:inherit}.nt-tabs button.on{background:#2563eb;color:#fff;border-color:#2563eb}
+.id-i .id-b{border:1px solid var(--line)!important;border-radius:8px;font-size:12px!important;opacity:1!important;padding:3px 8px!important;white-space:nowrap}
 
 /* ===== Facebook-Bereich (fest eingebaut, früher fb.html) ===== */
 #fbSec { --blau:#3d8fd0; --text:#24364f; }
@@ -2294,7 +2296,13 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   </div>
 </main>
 <main id="notes" hidden>
-  <div class="card"><h3 style="margin-top:0">📝 Notizen &amp; To-dos <small id="ntCnt" style="font-weight:400;opacity:.6"></small></h3>
+  <div class="nt-tabs"><button class="on" data-nt="todo">📝 To-dos</button><button data-nt="ideen">💡 Ideen <span id="idCnt"></span></button></div>
+  <div class="card" id="ideenCard" hidden><h3 style="margin-top:0">💡 Ideen für Verbesserungen</h3>
+    <div class="nt-add"><input id="idText" placeholder="Neue Idee …"><input id="idCat" list="ntCats" placeholder="Bereich (z. B. Max)"><button class="b" id="idAdd">➕ Hinzufügen</button></div>
+    <div id="idList"></div>
+    <small style="opacity:.6;display:block;margin-top:10px">„➜ To-do“ übernimmt die Idee in die To-do-Liste. Auf einen Text tippen, um ihn zu ändern.</small>
+  </div>
+  <div class="card" id="todoCard"><h3 style="margin-top:0">📝 Notizen &amp; To-dos <small id="ntCnt" style="font-weight:400;opacity:.6"></small></h3>
     <div class="nt-add"><input id="ntText" placeholder="Neue Notiz oder Aufgabe …"><input id="ntCat" list="ntCats" placeholder="Bereich (z. B. Wetter-Website)"><datalist id="ntCats"></datalist><button class="b" id="ntAdd">➕ Hinzufügen</button></div>
     <div class="nt-f" id="ntF"></div>
     <div id="ntList"></div>
@@ -3591,6 +3599,21 @@ function renderNotes(){const N=nDb(),open=N.filter(n=>!n.done);
 function initNotes(){const add=()=>{const t=$('ntText').value.trim();if(!t)return;nDb().push({id:Date.now()+'',text:t,cat:$('ntCat').value.trim()||'Allgemein',done:false,date:new Date().toISOString().slice(0,10)});$('ntText').value='';save();ntFil='offen';renderNotes();$('ntText').focus()};
  $('ntAdd').onclick=add;$('ntText').onkeydown=e=>{if(e.key=='Enter')add()};
  $('ntClr').onclick=()=>{const d=nDb().filter(n=>n.done).length;if(!d)return alert('Keine erledigten Notizen.');if(!confirm(d+' erledigte Notiz(en) entfernen?'))return;db.notes=db.notes.filter(n=>!n.done);save();renderNotes()};renderNotes()}
+
+/* ===== Ideen (Unterreiter von Notizen) ===== */
+const ID_SEED=[["🌐 Website", "„Heute auf einen Blick“ + wischbare 24-h-Leiste im Vorhersage-Tab (am Handy am wirkungsvollsten)"], ["🌐 Website", "Trefferquote-Seite: gestern vorhergesagt vs. gemessen – schafft Vertrauen"], ["🌐 Website", "Rekorde & Extremwerte seit Jan. 2026 (wärmster/kältester/nassester Tag, stärkste Böe) mit „Neuer Rekord!“"], ["🌐 Website", "Leser-Wettermeldungen: Besucher melden Schnee/Glätte/Nebel per Klick, Anzeige auf Odenwald-Karte"], ["🎬 Max", "Regionale Termine automatisch: Weihnachtsmärkte im Odenwald, Feiertage, Ferienbeginn Hessen"], ["🎬 Max", "„Wetter-Wissen in 20 Sekunden“ – kurzer Fun-Fact am Videoende"], ["🎬 Max", "Weihnachts-Max ab 23.11. (Mütze, Schal, verschneiter Hintergrund)"], ["🎬 Max", "Jahresrückblick-Video Ende Dezember: Wetterjahr 2026 im Odenwald"], ["🎬 Max", "Untertitel im Video – viele schauen ohne Ton (⭐ Empfehlung)"], ["📘 Facebook", "Wöchentliche Umfrage, z. B. „Weiße Weihnachten im Odenwald?“"], ["📘 Facebook", "Leserfotos-Aktion mit „Foto der Woche“"], ["📘 Facebook", "Monatsbilanz als Grafik am 1. jedes Monats"], ["📸 Instagram", "Max-Videos als Reels posten – deutlich mehr Reichweite (⭐ Empfehlung)"], ["📸 Instagram", "Story-Autopost morgens mit den Tageswerten"], ["📸 Instagram", "Feste Hashtags: #odenwald #badkönig #odenwaldwetter #wetter"]];
+function iDb(){if(!db.ideas){const d=new Date().toISOString().slice(0,10);db.ideas=ID_SEED.map((x,i)=>({id:'i'+Date.now()+i,cat:x[0],text:x[1],date:d}));save()}return db.ideas}
+function renderIdeas(){const I=iDb();$('idCnt').textContent=I.length?'('+I.length+')':'';
+ const cats=[...new Set(I.map(n=>n.cat||'Allgemein'))];
+ $('idList').innerHTML=I.length?cats.map(c=>`<div class="nt-g">${esc(c)}</div>`+I.filter(n=>(n.cat||'Allgemein')==c).map(n=>`<div class="nt-i id-i" data-id="${n.id}"><div class="nt-t">${esc(n.text)}<span class="nt-d">${n.date?n.date.split('-').reverse().join('.'):''}</span></div><button class="id-b" title="In To-dos übernehmen">➜ To-do</button><button class="id-x" title="Löschen">✕</button></div>`).join('')).join(''):'<small>Keine Ideen.</small>';
+ $('idList').querySelectorAll('.id-i').forEach(r=>{const n=I.find(x=>x.id==r.dataset.id);
+  r.querySelector('.id-b').onclick=()=>{nDb().push({id:Date.now()+'',text:n.text,cat:n.cat,done:false,date:new Date().toISOString().slice(0,10)});db.ideas=I.filter(x=>x!==n);save();renderIdeas();renderNotes()};
+  r.querySelector('.id-x').onclick=()=>{if(!confirm('Idee löschen?'))return;db.ideas=I.filter(x=>x!==n);save();renderIdeas()};
+  r.querySelector('.nt-t').onclick=()=>{const t=prompt('Idee ändern:',n.text);if(t&&t.trim()){n.text=t.trim();save();renderIdeas()}}})}
+function initIdeas(){const add=()=>{const t=$('idText').value.trim();if(!t)return;iDb().push({id:'i'+Date.now(),text:t,cat:$('idCat').value.trim()||'Allgemein',date:new Date().toISOString().slice(0,10)});$('idText').value='';save();renderIdeas()};
+ $('idAdd').onclick=add;$('idText').onkeydown=e=>{if(e.key=='Enter')add()};
+ document.querySelectorAll('.nt-tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nt-tabs button').forEach(x=>x.classList.toggle('on',x==b));$('ideenCard').hidden=b.dataset.nt!='ideen';$('todoCard').hidden=b.dataset.nt!='todo'});
+ renderIdeas()}
 /* Facebook-Bereich: fb.html im Rahmen, Zugriff nur nach Entsperren; Schlüssel verschlüsselt in db.fbTok */
 window.kzOk=()=>!!ghKey;window.kzFbTok=()=>(db&&db.fbTok)||'';
 function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild(t.content.cloneNode(true));try{fbInit()}catch(e){console.warn(e)}}
@@ -3620,7 +3643,7 @@ function init(){
   $('cPrev').onclick=()=>{cM.setMonth(cM.getMonth()-1);renderCal()};$('cNext').onclick=()=>{cM.setMonth(cM.getMonth()+1);renderCal()};
   $('cToday').onclick=()=>{cM=new Date();cM.setDate(1);renderCal()};
   $('eAdd').onclick=()=>{if(!$('eDate').value||!$('eText').value)return alert('Bitte Datum und Text eingeben');db.cal=db.cal||[];db.cal.push({id:Date.now()+'',date:$('eDate').value,text:$('eText').value});$('eText').value='';save();renderCal();renderUp()};
-  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}try{initGcal()}catch(e){console.warn(e)}try{initNotes()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
+  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}try{initGcal()}catch(e){console.warn(e)}try{initNotes()}catch(e){console.warn(e)}try{initIdeas()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
 }
 /* ===== Facebook-Bereich: Skripte (früher fb.html) ===== */
 function fbInit(){
