@@ -2410,7 +2410,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </ul></details>
 <details><summary>Facebook- &amp; Instagram-Zeitplan (Seite „Private Wetterstation Bad König“, Instagram @wetterstation_badkoenig)</summary>
 <table><tr><th>Wann</th><th>Was</th><th>Wie</th></tr>
-<tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Wettervideo</td><td>automatisch</td></tr>
+<tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Wettervideo (Facebook + Instagram-Reel)</td><td>automatisch</td></tr>
+<tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Instagram-Story „Odenwald-Wetter heute“ (nur Instagram, 24 h sichtbar) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
 <tr><td>Mittags</td><td>Tagesbeitrag „Mittagswetter“ (Bild + Text)</td><td>selbst teilen</td></tr>
 <tr><td>18 Uhr</td><td>Abendbeitrag (Nacht-Look), freitags Wochenende</td><td>automatisch</td></tr>
 <tr><td>So 20 Uhr</td><td>Wochenausblick-Video</td><td>automatisch</td></tr>
@@ -2425,7 +2426,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 
 <div class="card">
 <h3 style="margin-top:0">🔔 Push-Nachrichten (ntfy)</h3><ul>
-<li>✅ Erfolgreicher Facebook-Post (Video, Abendbeitrag, Wochenausblick, Sondermeldung)</li>
+<li>✅ Erfolgreicher Facebook-Post (Video, Abendbeitrag, Wochenausblick, Sondermeldung) und Instagram-Story</li>
 <li>🌧️ <b>Regen im Anmarsch</b> – Radar zeigt Regen in Bad König in den nächsten 60 Min. (1× pro Schauer, nachts leise) <span class="tg">neu 08.11.</span></li>
 <li>⚠️ <b>Amtliche DWD-Warnung</b> für Bad König – jede neue Warnung sofort, mit Gültigkeit und Beschreibung; Priorität nach Stufe (gering leise … extrem dringend) <span class="tg">neu 08.11.</span></li>
 <li>⚠️ Sondermeldung zum Posten bereit (über die Zentrale)</li>
@@ -2450,6 +2451,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
+<tr><td>08.11.2026<br><small>22:30 Uhr</small></td><td>Instagram-Story morgens (nur Instagram, Autopost zusammen mit dem Morgenvideo, Mo–Fr 7 Uhr / Sa–So 8 Uhr): Bild „Odenwald-Wetter heute“ (Symbol, Höchst/Tiefst Täler, Regenrisiko, Böen, Höhen, Hinweis z. B. Scheiben kratzen) – fb/story.jpg, Push „Instagram-Story gepostet“. Zentrale: Vorschau-Karte „📸 Instagram-Story morgens“ unter Morgens; Übersicht mit neuer Spalte „Wo“ (Symbole f = Facebook, ig = Instagram) und Zeile „Morgen-Story“</td></tr>
 <tr><td>08.11.2026<br><small>22:05 Uhr</small></td><td>Live-Werte für Besucher: Workflow „Widget-Daten“ schreibt zusätzlich data/live.json (aktuelle Werte + heutiger Tagesverlauf); die Website liest zuerst diese Datei und ruft nur noch selbst bei Weather Underground ab, wenn sie älter als 15 Minuten ist. Damit es zuverlässig alle 10 Minuten läuft: cron-job.org-Job „Live-Daten“ (widget.yml)</td></tr>
 <tr><td>08.11.2026<br><small>22:10 Uhr</small></td><td>Eigenes Wetterarchiv: alle Tageswerte (01.–19.01. von IBADKN32, ab 20.01.2026 eigene Station) und Stundenwerte liegen jetzt in data/archiv auf wetter-badkoenig.de; Workflow „Wetterarchiv“ ergänzt jede Nacht den Vortag (cron-job.org 0:15 Uhr, Reserve GitHub 0:25 Uhr). Website liest Statistik, Rekorde, Klima und Grafiken aus dem Archiv – live bei Weather Underground nur noch die neuesten Tage. Zentrale (Tab „📈 Website“): Kasten „💾 Sicherung deiner Wetterdaten“ – Tageswerte/Stundenwerte als CSV für Excel, komplettes Archiv als JSON</td></tr>
 <tr><td>08.11.2026<br><small>21:40 Uhr</small></td><td>Rekorde: Rückblick auf „Aktuell“ um Kacheln „Nassester Tag“ und „Stärkste Böe“ erweitert; neuer Jahresrekord (heute/gestern) bekommt das Schildchen „🏆 Neuer Rekord!“ und oben auf „Aktuell“ erscheint ein Hinweis; Rekorde werden in fb/rekorde.json fortgeschrieben (ab Messbeginn 20.01.2026), bei neuem Rekord kommt eine ntfy-Push; Max erwähnt neue Jahresrekorde im Morgenvideo</td></tr>
@@ -2621,14 +2623,21 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 
   <div class="card" id="fb_letzte">
     <div class="vhead">📋 Übersicht Facebook &amp; Instagram <small style="opacity:.7;font-weight:normal">(Autoposts gehen auch auf Instagram @wetterstation_badkoenig)</small></div>
-    <div class="ue-wrap"><table class="ue"><thead><tr><th>Beitrag</th><th>Format</th><th>Posten</th><th>Erstellt</th><th>Zuletzt gepostet</th><th>Nächster Termin</th></tr></thead>
-    <tbody id="fb_letzteListe"><tr><td colspan="5">wird geladen …</td></tr></tbody></table></div>
-    <div class="hint" style="margin:8px 0 0">🤖 = postet automatisch · ✋ = selbst teilen. Ebenfalls selbst teilen: Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
+    <div class="ue-wrap"><table class="ue"><thead><tr><th>Beitrag</th><th>Wo</th><th>Format</th><th>Posten</th><th>Erstellt</th><th>Zuletzt gepostet</th><th>Nächster Termin</th></tr></thead>
+    <tbody id="fb_letzteListe"><tr><td colspan="7">wird geladen …</td></tr></tbody></table></div>
+    <div class="hint" style="margin:8px 0 0"><span class="pf fb">f</span> = Facebook · <span class="pf ig">ig</span> = Instagram · 🤖 = postet automatisch · ✋ = selbst teilen. Ebenfalls selbst teilen: Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
   </div>
 
   <div class="raster">
     <section class="spalte">
       <h2 class="sp">☀️ Morgens <span class="apb">🤖 AUTO</span></h2>
+      <div class="card" id="fb_storyCard" hidden>
+        <div class="vhead"><span class="pf ig">ig</span> 📸 Instagram-Story morgens <small style="font-weight:normal;opacity:.75">· nur Instagram · 🤖 Autopost mit dem Morgenvideo</small></div>
+        <div class="datum" id="fb_sDatum"></div>
+        <img id="fb_story" alt="Instagram-Story von heute" style="display:block;width:100%;max-width:260px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
+        <div class="btns"><a class="btn sec" id="fb_sLaden" download="odenwald-wetter-story.jpg" style="grid-column:1 / -1">💾 Story-Bild speichern</a></div>
+        <p class="hint">Verschwindet auf Instagram nach 24 Stunden von selbst.</p>
+      </div>
       <div class="card" id="fb_vidCard" hidden>
         <div class="vhead" id="fb_vTitel">🎬 Video-Wetterbericht</div>
         <div class="datum" id="fb_vDatum"></div>
@@ -2700,7 +2709,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </section>
   </div>
 
-<div id="fb_ok"></div></template>
+<div id="fb_ok"></div><style>.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}</style></template>
   <div id="fbSec"></div>
   <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
     <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
@@ -3703,9 +3712,9 @@ function fbInit(){
 
 (function () {
   var q = '?v=' + Date.now(), quellen = [
-    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['🍽️ Mittags-Beitrag', 'https://wetter-badkoenig.de/fb/post.json'],
+    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🍽️ Mittags-Beitrag', 'https://wetter-badkoenig.de/fb/post.json'],
     ['🌙 Abendbeitrag', 'https://wetter-badkoenig.de/fb/abend.json'], ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
-  var postKey = ['video', null, 'abend', 'woche', 'sonder'];
+  var postKey = ['video', 'story', null, 'abend', 'woche', 'sonder'];
   Promise.all(quellen.map(function (x) {
     return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   }).concat([fetch('https://wetter-badkoenig.de/fb/gepostet.json' + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })])).then(function (res) {
@@ -3723,7 +3732,7 @@ function fbInit(){
       for (var t = 0; t < 8 * 24 * 60; t += 15) {
         var d = new Date(Math.ceil(jetzt.getTime() / 9e5) * 9e5 + t * 6e4), o = bt(d), h = +o.hour, m = +o.minute, wd = o.weekday.replace('.', '');
         var we = wd === 'Sa' || wd === 'So', ok = false;
-        if (k === 'video') ok = m === 0 && h === (we ? 8 : 7);
+        if (k === 'video' || k === 'story') ok = m === 0 && h === (we ? 8 : 7);
         else if (k === null) ok = m === 0 && h === 12;
         else if (k === 'abend') ok = m === 0 && h === 18;
         else if (k === 'woche') ok = m === 0 && h === 20 && wd === 'So';
@@ -3740,12 +3749,14 @@ function fbInit(){
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
       return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
-    var namen = ['🎬 Wettervideo mit Max', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '📅 Wochenausblick mit Max', '⚡ Sondermeldungen'];
-    var art = ['🤖', '✋', '🤖', '🤖', '🤖 bei DWD'];
-    var format = ['🎥 Video', '🖼️ Bild', '🖼️ Bild', '🎥 Video', '🖼️ Bild'];
+    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '📅 Wochenausblick mit Max', '⚡ Sondermeldungen'];
+    var art = ['🤖', '🤖', '✋', '🤖', '🤖', '🤖 bei DWD'];
+    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Bild', '🎥 Video', '🖼️ Bild'];
+    var FB = '<span class="pf fb" title="Facebook">f</span>', IG = '<span class="pf ig" title="Instagram">ig</span>';
+    var wo = [FB + IG, IG + ' <small>nur Instagram</small>', FB, FB + IG, FB + IG, FB + IG];
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
-      return '<tr><td>' + namen[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
+      return '<tr><td>' + namen[i] + '</td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
     }).join('');
   });
 })();
@@ -3780,6 +3791,13 @@ function fbInit(){
     fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (b) { vblob = b; }).catch(function () {});
   }
   var heute = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+  // Instagram-Story (nur Instagram, Autopost morgens)
+  fetch('https://wetter-badkoenig.de/fb/story.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var src = 'https://wetter-badkoenig.de/fb/story.jpg?v=' + v;
+    document.getElementById('fb_story').src = src; document.getElementById('fb_sLaden').href = src;
+    if (j.erstellt) setzeDatum(document.getElementById('fb_sDatum'), j.erstellt);
+    document.getElementById('fb_storyCard').hidden = false;
+  }).catch(function () {});
   // Morgenvideo: immer eigene Karte
   fetch('https://wetter-badkoenig.de/fb/wetter.json?v=' + v, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { zeigeVideo('wetter', j); }).catch(function () {});
   // Wetter-Special (mittags/nachmittags bei neuer Warnung): eigene Karte, nur am selben Tag
