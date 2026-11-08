@@ -2430,6 +2430,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>08.11.2026<br><small>19:05 Uhr</small></td><td>(Zentrale) Haushaltsbuch: Monatswechsel direkt bei „Ausgaben“ – Pfeile ◀ ▶, Monatsanzeige und „Heute“-Knopf</td></tr>
 <tr><td>08.11.2026<br><small>18:55 Uhr</small></td><td>Vorhersage „Heute“ (Station Bad König und Odenwaldkreis, Karte + Liste): Wort „Nacht“ vor dem Tiefstwert entfernt – Anzeige nur noch z. B. „10° / 1°“ (Wert bleibt der Tiefstwert der kommenden Nacht)</td></tr>
 <tr><td>08.11.2026<br><small>18:50 Uhr</small></td><td>Suchmaschinen: IndexNow eingebaut (Workflow „Suchmaschinen melden“) – jede geänderte Seite wird sofort an Bing &amp; Co. gemeldet, montags zusätzlich alle Seiten; dazu aktualisiert sich das lastmod-Datum in der sitemap.xml automatisch (hilft Google). Erste Meldung: 50 Seiten, von Bing angenommen (202)</td></tr>
 <tr><td>08.11.2026<br><small>18:25 Uhr</small></td><td>Instagram @wetterstation_badkoenig auf der Website: Knopf „Folge uns auf Instagram“ unter dem Facebook-Knopf (Startseite), Link „📸 Instagram“ in der Fußzeile, Impressum/Datenschutz um Instagram ergänzt; Zentrale: „📋 Übersicht Facebook &amp; Instagram“</td></tr>
@@ -2975,7 +2976,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </div>
   </div>
   <div class="card">
-    <h2 style="font-size:17px">Ausgaben</h2>
+    <div class="row" style="justify-content:space-between;align-items:center"><h2 style="font-size:17px;margin:0">Ausgaben</h2><div class="row" style="gap:6px"><button class="g" id="aPrev" title="Vormonat">◀</button><b id="aMon" style="min-width:130px;text-align:center"></b><button class="g" id="aNext" title="Nächster Monat">▶</button><button class="g" id="aNow">Heute</button></div></div>
     <table><thead><tr><th style="width:120px">Datum</th><th>Beschreibung</th><th style="width:170px">Kategorie</th><th class="n" style="width:110px">Betrag €</th><th style="width:30px"></th></tr></thead><tbody id="rows"></tbody></table>
     <div class="row" style="margin-top:12px">
       <input id="nDate" type="date"><input id="nDesc" placeholder="Beschreibung" style="flex:1">
@@ -3028,7 +3029,7 @@ const $=id=>document.getElementById(id);
 const key=()=>$('year').value+'-'+$('month').value;
 function cur(){return db.hb[key()]||(db.hb[key()]={income:0,items:[]})}
 function sum(e){return e.items.reduce((s,i)=>s+(+i.amt||0),0)}
-function render(){
+function render(){try{$('aMon').textContent=$('month').selectedOptions[0].text+' '+$('year').value}catch(e){}
   const e=cur(),out=sum(e),rest=e.income-out;
   $('income').value=e.income||'';
   $('tIn').textContent=eur(+e.income||0);$('tOut').textContent=eur(out);
@@ -3606,6 +3607,8 @@ function init(){
   CATS.forEach(c=>$('nCat').add(new Option(c,c)));
   $('year').value=now.getFullYear();$('month').value=now.getMonth();
   $('year').onchange=$('month').onchange=render;
+  const aGo=d=>{let y=+$('year').value,m=+$('month').value+d;if(m<0){m=11;y--}if(m>11){m=0;y++}if(![...$('year').options].some(o=>+o.value===y))$('year').add(new Option(y,y));$('year').value=y;$('month').value=m;render()};
+  $('aPrev').onclick=()=>aGo(-1);$('aNext').onclick=()=>aGo(1);$('aNow').onclick=()=>{const n=new Date();$('year').value=n.getFullYear();$('month').value=n.getMonth();render()};
   $('income').onchange=()=>{cur().income=+$('income').value||0;save();render()};
   $('add').onclick=()=>{const amt=+$('nAmt').value;if(!$('nDesc').value||!amt)return alert('Bitte Beschreibung und Betrag eingeben');cur().items.push({date:$('nDate').value,desc:$('nDesc').value,cat:$('nCat').value,amt});$('nDesc').value=$('nAmt').value='';save();render()};
   $('copyPrev').onclick=()=>{let y=+$('year').value,m=+$('month').value-1;if(m<0){m=11;y--}const p=db.hb[y+'-'+m];if(!p)return alert('Kein Vormonat vorhanden');if(cur().items.length&&!confirm('Aktuelle Ausgaben ersetzen?'))return;cur().items=p.items.map(i=>({...i,date:''}));if(!cur().income)cur().income=p.income;save();render()};
