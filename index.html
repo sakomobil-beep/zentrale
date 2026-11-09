@@ -2795,6 +2795,27 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 
 <div id="fb_ok"></div><style>.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}</style></template>
   <div id="fbSec"></div>
+  <div class="card" id="ablCard"><h3 style="margin-top:0">⏰ Abläufe &amp; Weckrufe</h3>
+    <p style="margin:4px 0 10px;opacity:.8">Was wann von allein läuft – damit du nicht im Code nachsehen musst. Alle Zeiten in Ortszeit, Sommer- und Winterzeit sind getrennt hinterlegt.</p>
+    <div class="ue-wrap"><table class="ue"><thead><tr><th>Zeit</th><th>Was passiert</th><th>Weckruf bei cron-job.org</th></tr></thead><tbody>
+      <tr><td>6:30</td><td>Vorhersage holen, Bilder und Morgenvideo bauen</td><td>–</td></tr>
+      <tr><td>7:00 <small>Mo–Fr</small></td><td>Morgenvideo + Morgen-Story posten</td><td>Wettervideo Facebook Weckruf · 7:02</td></tr>
+      <tr><td>8:00 <small>Sa/So</small></td><td>Morgenvideo + Morgen-Story posten</td><td>Wochenende Morgen Weckruf · 8:02</td></tr>
+      <tr><td>12:00</td><td>Mittagskarte bauen und posten; Special-Video bei neuer DWD-Warnung</td><td>Mittag Weckruf · 12:02</td></tr>
+      <tr><td>15:00</td><td>Special-Video, falls eine neue Warnung dazukommt</td><td>–</td></tr>
+      <tr><td>19:00 <small>Mo–Sa</small></td><td>Abendvideo aus dem Studio + Abend-Story bauen und posten</td><td>Abend Weckruf · 19:02</td></tr>
+      <tr><td>20:00 <small>So</small></td><td>Wochenausblick mit Max</td><td>Sonntag Wochenausblick Weckruf · 20:02</td></tr>
+      <tr><td>alle 15 Min</td><td>Sondermeldungen prüfen, Regen-Push, DWD-Warn-Push</td><td>–</td></tr>
+      <tr><td>alle 10 Min</td><td>Live-Werte der Station für Website und Widget</td><td>Live-Daten</td></tr>
+      <tr><td>0:25</td><td>Wetterarchiv um den Vortag ergänzen</td><td>Wetterarchiv · 0:15</td></tr>
+      <tr><td>alle 3 Std</td><td>Vorhersage-Lernkurve nachführen (Trefferquote)</td><td>–</td></tr>
+      <tr><td>alle 6 Std</td><td>Solarwetter-Quellen prüfen (Push bei Ausfall)</td><td>–</td></tr>
+      <tr><td>Mo 1:47</td><td>Videos älter als 7 Tage aus der Historie räumen</td><td>–</td></tr>
+      <tr><td>Mo 3:17</td><td>Suchmaschinen über Änderungen informieren (IndexNow)</td><td>–</td></tr>
+      <tr><td>30.12. 17:15</td><td>Jahresrückblick-Video bauen (Post um 18 Uhr)</td><td>–</td></tr>
+    </tbody></table></div>
+    <div class="hint" style="margin:8px 0 0">Die Weckrufe gibt es, weil GitHub seine eigenen Zeitpläne oft mit Verspätung startet. Sie rufen denselben Ablauf von Hand auf; der Ablauf prüft dann selbst die Uhrzeit und macht nur das, was dran ist. Ein Weckruf zur falschen Zeit schadet also nicht.</div>
+  </div>
   <div class="card" id="tmCard"><h3 style="margin-top:0">🎪 Termine für Max</h3>
     <p style="margin:4px 0 10px;opacity:.8">Max erwähnt Termine 1–3 Tage vorher und am Tag selbst (höchstens einen pro Video), im Wochenausblick alle Termine der Woche. Feiertage und Schulferien in Hessen kennt er automatisch.</p>
     <div id="tmList"><small>Lade Termine …</small></div>
@@ -2813,16 +2834,6 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </details>
     <small id="tmSt" style="display:block;margin-top:8px;opacity:.75"></small>
   </div>
-  <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
-    <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
-    <div id="archInfo"><small>Lade Übersicht …</small></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-      <button class="b" id="archCsv">📊 Tageswerte als Excel-Datei (CSV)</button>
-      <button class="g" id="archCsvH">🕒 Stundenwerte als CSV</button>
-      <button class="g" id="archJson">🗄️ Komplettes Archiv (JSON)</button>
-    </div>
-    <small id="archSt" style="display:block;margin-top:8px;opacity:.7"></small>
-  </div>
   <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
     <div id="wsMsg"><small>Lade Statistik …</small></div>
     <div id="wsBody" hidden>
@@ -2839,6 +2850,16 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
       <p style="margin-top:14px"><a href="https://wetter-badkoenig.goatcounter.com/" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter öffnen ›</a></p>
     </div>
+  </div>
+  <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
+    <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
+    <div id="archInfo"><small>Lade Übersicht …</small></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <button class="b" id="archCsv">📊 Tageswerte als Excel-Datei (CSV)</button>
+      <button class="g" id="archCsvH">🕒 Stundenwerte als CSV</button>
+      <button class="g" id="archJson">🗄️ Komplettes Archiv (JSON)</button>
+    </div>
+    <small id="archSt" style="display:block;margin-top:8px;opacity:.7"></small>
   </div>
   <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
