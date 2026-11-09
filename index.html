@@ -2417,15 +2417,15 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <table><tr><th>Wann</th><th>Was</th><th>Wie</th></tr>
 <tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Wettervideo (Facebook + Instagram-Reel)</td><td>automatisch</td></tr>
 <tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Instagram-Story „Odenwald-Wetter heute“ (nur Instagram, 24 h sichtbar) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
-<tr><td>Mittags</td><td>Tagesbeitrag „Mittagswetter“ (Bild + Text)</td><td>selbst teilen</td></tr>
-<tr><td>18 Uhr</td><td>Abendbeitrag (Nacht-Look), freitags Wochenende</td><td>automatisch</td></tr>
+<tr><td>Mittags 12 Uhr</td><td>Mittagskarte „Nachmittag im Odenwaldkreis“: Reliefkarte mit den Werten bis zum Abend je Ort + Messwert der Station</td><td>automatisch</td></tr>
+<tr><td>19 Uhr (Mo–Sa)</td><td>Abendvideo mit Max aus dem Studio + Abend-Story (Instagram), freitags Wochenende; sonntags nicht</td><td>automatisch</td></tr>
 <tr><td>So 20 Uhr</td><td>Wochenausblick-Video</td><td>automatisch</td></tr>
 <tr><td>30.12. 18 Uhr</td><td>Jahresrückblick-Video mit Max (Facebook + Instagram) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
 <tr><td>sofort</td><td>amtliche DWD-Warnungen</td><td>automatisch</td></tr>
 <tr><td>bei Bedarf</td><td>Vorhersage-Sondermeldungen, Frost-/Kratzen-Hinweis (nur bei sicherem Frost)</td><td>selbst teilen</td></tr>
 </table>
 <ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; alle Autoposts gehen auch auf <b>Instagram</b> (dort mit festem Hashtag-Block #odenwald #odenwaldwetter #badkönig #wetter #odenwaldkreis #michelstadt #erbach #höchst #breuberg #wetterbericht #hessen #wettervorhersage); das Skript holt sich den Seiten-Token selbst aus dem hinterlegten Token; Make.com ist gestoppt und bleibt als Reserve; Schutz gegen Doppelposts: vor jedem Post wird der aktuelle Merkzettel (fb/gepostet.json) frisch bei GitHub geprüft</li>
-<li>cron-job.org weckt pünktlich, weil GitHub-Zeitpläne oft verspätet sind: „Wettervideo Facebook Weckruf“ (7:02/8:02), „Abend Weckruf“ (18:02), „Sonntag Wochenausblick Weckruf“ (So 20:02, baut auch das Wochenvideo), „Wetterarchiv“ (0:15), „Live-Daten“ (alle 10 Min.)</li>
+<li>cron-job.org weckt pünktlich, weil GitHub-Zeitpläne oft verspätet sind: „Wettervideo Facebook Weckruf“ (7:02/8:02), „Abend Weckruf“ (<b>muss auf 19:02 umgestellt werden</b>), „Sonntag Wochenausblick Weckruf“ (So 20:02, baut auch das Wochenvideo), „Wetterarchiv“ (0:15), „Live-Daten“ (alle 10 Min.)</li>
 <li>Alles zum Teilen + Knöpfe „Video neu erstellen“ → hier im Tab „📈 Website“</li></ul>
 </details>
 </div>
@@ -2449,7 +2449,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>Wetterarchiv</td><td>jede Nacht Tages- und Stundenwerte des Vortags in data/archiv sichern</td></tr>
 <tr><td>Suchmaschinen melden (IndexNow)</td><td>geänderte Seiten an Bing &amp; Co. melden, Sitemap-Datum aktualisieren</td></tr>
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten)</td></tr>
-<tr><td>Mittagswetter neu erstellen</td><td>Tagesbeitrag (Bild + Text) mit aktueller Vorhersage neu bauen (ohne Posten)</td></tr>
+<tr><td>Mittagskarte neu erstellen</td><td>Karte des Kreises mit dem Rest des Tages neu bauen (ohne Posten)</td></tr>
 <tr><td>Solarwetter-Check</td><td>alle 6 Std.: 14 NOAA/SDO-Quellen prüfen (erreichbar, aktuell)</td></tr>
 <tr><td>Historie aufräumen</td><td>alte Videos montags dauerhaft löschen</td></tr>
 </table>
@@ -2459,6 +2459,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>23:58 Uhr</small></td><td><b>Neuer Posting-Plan.</b> Abends: Das Studio-Video mit Max ersetzt den bisherigen Bild-Beitrag und geht <b>Mo–Sa um 19 Uhr</b> automatisch auf Facebook und Instagram (als Reel), Beschreibung ist der ausführliche Abendtext wie bisher; sonntags entfällt es, da kommt um 20 Uhr der Wochenausblick. Dazu neu die <b>Abend-Story</b> (Instagram, 19 Uhr) mit dem Wetter für morgen – Gegenstück zur Morgen-Story, in Abendfarben. Mittags: statt des Tagesbeitrags jetzt die <b>Mittagskarte „Nachmittag im Odenwaldkreis“</b> – Reliefkarte mit den Höchstwerten bis zum Abend je Ort, dazu der aktuelle Messwert der Station Bad König aus data/live.json, mit Quellenhinweis „Messwert aus Bad König · übrige Orte aus der Modellmischung“; geht um 12 Uhr automatisch raus. Der Mittagslauf läuft jetzt ganzjährig um 12 Uhr (vorher im Sommer um 13 Uhr). Das alte Tagesbild bleibt als Reserve zum Selbst-Teilen in der Zentrale. Der Frost-/Kratzen-Hinweis bleibt bewusst von Hand – automatisch gehen nur amtliche DWD-Warnungen raus. Frostschwelle vereinheitlicht: Story und Tipp rechnen jetzt wie der Tagesbeitrag mit dem kältesten Talort statt mit dem Mittel der Täler</td></tr>
 <tr><td>09.11.2026<br><small>23:10 Uhr</small></td><td>Abendvideo (Studio): Max arbeitet jetzt mit der <b>Reliefkarte des Odenwaldkreises</b> auf dem Bildschirm. Nach der MORGEN-Kachel kommt die Karte „MORGEN IM KREIS“ mit den Höchstwerten für Breuberg, Höchst, Bad König, Mossautal, Michelstadt und Oberzent – die Orte erscheinen nacheinander, während Max den mildesten und den kühlsten nennt. Steht im Kreis Frost an, folgt zusätzlich die Karte „HEUTE NACHT“ mit den Tiefstwerten (Frostorte blau mit *). Die Ortswerte kommen aus derselben Modellmischung wie die Odenwald-Vorhersage (ICON-D2, AROME, ECMWF, ICON-EU, je mit Ortshöhe und gelernter Korrektur) und stehen jetzt als „orte“ in fb/daten.json; Kartengrundlage ist die vorhandene data/odenwald-relief.png</td></tr>
 <tr><td>09.11.2026<br><small>22:55 Uhr</small></td><td>Abendvideo (Studio): zusätzlich eine <b>Fassung im Format 4:5</b> (1080×1350, Video mittig, links und rechts Holzfarbe) als fb/abendvideo-feed.mp4 – Instagram nimmt Hochkant (9:16) nur als Reel an, im normalen Feed wird es abgelehnt. Knopf „💾 Fassung 4:5 für den Instagram-Feed“ in der Abendvideo-Karte der Zentrale</td></tr>
 <tr><td>09.11.2026<br><small>22:50 Uhr</small></td><td>Das Abendvideo aus dem Studio steht jetzt auch in der Tabelle „📋 Übersicht Facebook &amp; Instagram“ (Zeile „🎙️ Abendvideo mit Max (Studio)“: 🎥 Video, ✋ selbst teilen, Termin „nur per Knopf“). Dabei die Terminspalte sauber getrennt: eigener Schlüssel für den festen Termin (Mittagswetter 12 Uhr) und für den Eintrag in gepostet.json – Beiträge ohne Autopost zeigen bei „Zuletzt gepostet“ weiter „—“</td></tr>
@@ -2622,6 +2623,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>23:58 Uhr</small></td><td><b>Neuer Posting-Plan.</b> Abends: Das Studio-Video mit Max ersetzt den bisherigen Bild-Beitrag und geht <b>Mo–Sa um 19 Uhr</b> automatisch auf Facebook und Instagram (als Reel), Beschreibung ist der ausführliche Abendtext wie bisher; sonntags entfällt es, da kommt um 20 Uhr der Wochenausblick. Dazu neu die <b>Abend-Story</b> (Instagram, 19 Uhr) mit dem Wetter für morgen – Gegenstück zur Morgen-Story, in Abendfarben. Mittags: statt des Tagesbeitrags jetzt die <b>Mittagskarte „Nachmittag im Odenwaldkreis“</b> – Reliefkarte mit den Höchstwerten bis zum Abend je Ort, dazu der aktuelle Messwert der Station Bad König aus data/live.json, mit Quellenhinweis „Messwert aus Bad König · übrige Orte aus der Modellmischung“; geht um 12 Uhr automatisch raus. Der Mittagslauf läuft jetzt ganzjährig um 12 Uhr (vorher im Sommer um 13 Uhr). Das alte Tagesbild bleibt als Reserve zum Selbst-Teilen in der Zentrale. Der Frost-/Kratzen-Hinweis bleibt bewusst von Hand – automatisch gehen nur amtliche DWD-Warnungen raus. Frostschwelle vereinheitlicht: Story und Tipp rechnen jetzt wie der Tagesbeitrag mit dem kältesten Talort statt mit dem Mittel der Täler</td></tr>
 <tr><td>09.11.2026<br><small>23:10 Uhr</small></td><td>Abendvideo (Studio): Max arbeitet jetzt mit der <b>Reliefkarte des Odenwaldkreises</b> auf dem Bildschirm. Nach der MORGEN-Kachel kommt die Karte „MORGEN IM KREIS“ mit den Höchstwerten für Breuberg, Höchst, Bad König, Mossautal, Michelstadt und Oberzent – die Orte erscheinen nacheinander, während Max den mildesten und den kühlsten nennt. Steht im Kreis Frost an, folgt zusätzlich die Karte „HEUTE NACHT“ mit den Tiefstwerten (Frostorte blau mit *). Die Ortswerte kommen aus derselben Modellmischung wie die Odenwald-Vorhersage (ICON-D2, AROME, ECMWF, ICON-EU, je mit Ortshöhe und gelernter Korrektur) und stehen jetzt als „orte“ in fb/daten.json; Kartengrundlage ist die vorhandene data/odenwald-relief.png</td></tr>
 <tr><td>09.11.2026<br><small>22:55 Uhr</small></td><td>Abendvideo (Studio): zusätzlich eine <b>Fassung im Format 4:5</b> (1080×1350, Video mittig, links und rechts Holzfarbe) als fb/abendvideo-feed.mp4 – Instagram nimmt Hochkant (9:16) nur als Reel an, im normalen Feed wird es abgelehnt. Knopf „💾 Fassung 4:5 für den Instagram-Feed“ in der Abendvideo-Karte der Zentrale</td></tr>
 <tr><td>09.11.2026<br><small>22:45 Uhr</small></td><td>Neues <b>Abendvideo mit Max aus dem Studio</b> („Odenwald am Abend“, ca. 1 Min.): Max sitzt ohne Rucksack an einem Holztisch, hinter ihm Holzvertäfelung, Fenster mit Schlossblick und ein Bildschirm, auf dem die Karten erscheinen. Ablauf: Begrüßung · „Der Tag in Zahlen“ (Höchstwert, Nacht, Regen – aus der Vorhersage für heute) · Morgen · Übermorgen (freitags das Wochenende) · Verabschiedung. Max ist nur in diesem Video im Studio, alle anderen Videos bleiben draußen. Wird <b>nicht</b> automatisch erstellt oder gepostet: Karte „🎙️ Abendvideo“ im Bereich „🌙 Abends“ (Tab „📈 Website“) mit Knopf „🔄 Abendvideo jetzt neu erstellen“; Technik: wetter_video.py --abend, Datei fb/abendvideo.mp4, Workflow video-neu.yml Auswahl „abend“. Der bisherige Abendbeitrag (Bild + Text, Autopost 18 Uhr) bleibt unverändert. Noch offen: weitere Themen (Heute vor einem Jahr, Himmel heute Nacht, Kurz erklärt, Termine)</td></tr>
@@ -2686,9 +2688,19 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
     <section class="spalte">
-      <h2 class="sp">🍽️ Mittags</h2>
+      <h2 class="sp">🍽️ Mittags <span class="apb">🤖 AUTO</span></h2>
+      <div class="card" id="fb_mkCard">
+        <div class="vhead">🗺️ Mittagskarte · Rest des Tages <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 12 Uhr</small></div>
+        <div class="datum" id="fb_mkDatum">wird geladen …</div>
+        <img id="fb_mkBild" alt="Karte des Odenwaldkreises mit dem Rest des Tages" style="margin-bottom:12px">
+        <textarea id="fb_mkText" aria-label="Text der Mittagskarte"></textarea>
+        <div class="btns">
+          <button class="sec" id="fb_mkKopie">📋 Text kopieren</button>
+          <a class="btn sec" id="fb_mkLaden" download="odenwald-mittag.jpg">💾 Bild speichern</a>
+        </div>
+      </div>
       <div class="card">
-        <div class="vhead">🖼️ Tagesbeitrag · Mittagswetter (zum Selbst-Teilen)</div>
+        <div class="vhead">🖼️ Tagesbild (Reserve, zum Selbst-Teilen)</div>
         <div class="datum" id="fb_tDatum">–</div>
         <img id="fb_bild" alt="Vorhersagebild für Facebook" style="margin-bottom:12px">
         <textarea id="fb_text" aria-label="Beitragstext"></textarea>
@@ -2704,10 +2716,10 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
     <section class="spalte">
-      <h2 class="sp">🌙 Abends <span class="apb">🤖 AUTO</span></h2>
-      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendbeitrag erscheint gegen 18 Uhr.</div></div>
+      <h2 class="sp">🌙 Abends · 19 Uhr (Mo–Sa) <span class="apb">🤖 AUTO</span></h2>
+      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendtext für das Video erscheint um 19 Uhr.</div></div>
       <div class="card">
-        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 👤 selbst teilen</small></div>
+        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr (Mo–Sa)</small></div>
         <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – unten auf „neu erstellen“ tippen.</div>
         <video id="fb_avVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns" id="fb_avBtns" hidden>
@@ -2717,7 +2729,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         </div>
         <p class="hint">Hochkant (9:16) nimmt Instagram nur als <b>Reel</b> an. Für den normalen Feed die Fassung 4:5 nehmen.</p>
         <button class="sec" id="fb_avNeu" style="width:100%;margin-top:8px">🔄 Abendvideo jetzt neu erstellen</button>
-        <p class="hint" id="fb_avNeuSt">Erstellt das Abendvideo aus dem Studio neu (ca. 3–5 Minuten). Wird <b>nicht</b> gepostet.</p>
+        <p class="hint" id="fb_avNeuSt">Erstellt das Abendvideo neu (ca. 3–5 Minuten). Der Knopf postet <b>nicht</b> – das passiert automatisch um 19 Uhr.</p>
+        <div style="margin-top:10px"><img id="fb_asBild" alt="Abend-Story für Instagram" style="display:block;width:100%;max-width:200px;border-radius:12px"><div class="hint">Abend-Story (Instagram, automatisch um 19 Uhr)</div></div>
       </div>
       <div id="fb_frostBox"></div>
     </section>
@@ -3808,11 +3821,11 @@ function fbInit(){
 
 (function () {
   var q = '?v=' + Date.now(), quellen = [
-    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🍽️ Mittags-Beitrag', 'https://wetter-badkoenig.de/fb/post.json'],
-    ['🌙 Abendbeitrag', 'https://wetter-badkoenig.de/fb/abend.json'], ['🎙️ Abendvideo (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'],
+    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte', 'https://wetter-badkoenig.de/fb/mittag.json'],
+    ['🌙 Abendvideo (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'], ['🌙 Abend-Story', 'https://wetter-badkoenig.de/fb/abendstory.json'],
     ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
-  var postKey = ['video', 'story', null, 'abend', null, 'woche', 'jahr', 'sonder'];        // Schlüssel in gepostet.json (null = wird nie automatisch gepostet)
-  var planKey = ['video', 'story', 'mittag', 'abend', null, 'woche', 'jahr', 'sonder'];    // fester Termin (null = nur per Knopf)
+  var postKey = ['video', 'story', 'mittag', 'abend', 'abendstory', 'woche', 'jahr', 'sonder'];   // Schlüssel in gepostet.json
+  var planKey = ['video', 'story', 'mittag', 'abend', 'abend', 'woche', 'jahr', 'sonder'];        // fester Termin
   Promise.all(quellen.map(function (x) {
     return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   }).concat([fetch('https://wetter-badkoenig.de/fb/gepostet.json' + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })])).then(function (res) {
@@ -3833,7 +3846,7 @@ function fbInit(){
         var we = wd === 'Sa' || wd === 'So', ok = false;
         if (k === 'video' || k === 'story') ok = m === 0 && h === (we ? 8 : 7);
         else if (k === 'mittag') ok = m === 0 && h === 12;
-        else if (k === 'abend') ok = m === 0 && h === 18;
+        else if (k === 'abend') ok = m === 0 && h === 19 && wd !== 'So';
         else if (k === 'woche') ok = m === 0 && h === 20 && wd === 'So';
         else if (k === 'jahr') ok = m === 0 && h === 18 && o.day === '30' && o.month === '12';
         if (!ok) continue;
@@ -3849,11 +3862,11 @@ function fbInit(){
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
       return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
-    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '🎙️ Abendvideo mit Max (Studio)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen'];
-    var art = ['🤖', '🤖', '✋', '🤖', '✋', '🤖', '🤖 30.12.', '🤖 bei DWD'];
-    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Bild', '🎥 Video', '🎥 Video', '🎥 Video', '🖼️ Bild'];
+    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🗺️ Mittagskarte (Rest des Tages)', '🎙️ Abendvideo mit Max (Studio)', '🌙 Abend-Story (Wetter morgen)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen'];
+    var art = ['🤖', '🤖', '🤖', '🤖 Mo–Sa', '🤖 Mo–Sa', '🤖', '🤖 30.12.', '🤖 bei DWD'];
+    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🎥 Video', '🖼️ Story', '🎥 Video', '🎥 Video', '🖼️ Bild'];
     var FB = '<span class="pf fb" title="Facebook">f</span>', IG = '<span class="pf ig" title="Instagram">ig</span>';
-    var wo = [FB + IG, IG + ' <small>nur Instagram</small>', FB, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG];
+    var wo = [FB + IG, IG + ' <small>nur Instagram</small>', FB + IG, FB + IG, IG + ' <small>nur Instagram</small>', FB + IG, FB + IG, FB + IG];
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
       return '<tr><td>' + namen[i] + '</td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
@@ -4233,6 +4246,22 @@ neuKnopf('woNeu', 'woNeuSt', 'woche');
   }).catch(function () {});
 })();
 neuKnopf('avNeu', 'avNeuSt', 'abend');
+(function () {
+  var v = Date.now(), B = 'https://wetter-badkoenig.de/fb/';
+  fetch(B + 'mittag.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var src = B + 'mittag.jpg?v=' + v;
+    document.getElementById('fb_mkBild').src = src;
+    document.getElementById('fb_mkLaden').href = src;
+    document.getElementById('fb_mkText').value = j.text || '';
+    var d = new Date(j.erstellt), heute = new Date().toLocaleDateString('sv-SE') === d.toLocaleDateString('sv-SE');
+    var el = document.getElementById('fb_mkDatum');
+    el.textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) + ', ' +
+      d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr' + (heute ? '' : ' (nicht von heute!)');
+    el.className = 'datum' + (heute ? '' : ' alt');
+    document.getElementById('fb_mkKopie').onclick = function () { navigator.clipboard.writeText(j.text || '').then(function () { alert('Text kopiert'); }); };
+  }).catch(function () { document.getElementById('fb_mkDatum').textContent = 'Noch keine Mittagskarte vorhanden – kommt um 12 Uhr.'; });
+  fetch(B + 'abendstory.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (r.ok) document.getElementById('fb_asBild').src = B + 'abendstory.jpg?v=' + v; }).catch(function () {});
+})();
 neuKnopf('mNeu', 'mNeuSt', 'mittag');
 
 }
