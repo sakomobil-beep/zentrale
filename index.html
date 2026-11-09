@@ -2448,6 +2448,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>Wetterarchiv</td><td>jede Nacht Tages- und Stundenwerte des Vortags in data/archiv sichern</td></tr>
 <tr><td>Suchmaschinen melden (IndexNow)</td><td>geänderte Seiten an Bing &amp; Co. melden, Sitemap-Datum aktualisieren</td></tr>
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten)</td></tr>
+<tr><td>Mittagswetter neu erstellen</td><td>Tagesbeitrag (Bild + Text) mit aktueller Vorhersage neu bauen (ohne Posten)</td></tr>
 <tr><td>Solarwetter-Check</td><td>alle 6 Std.: 14 NOAA/SDO-Quellen prüfen (erreichbar, aktuell)</td></tr>
 <tr><td>Historie aufräumen</td><td>alte Videos montags dauerhaft löschen</td></tr>
 </table>
@@ -2457,6 +2458,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>12:55 Uhr</small></td><td>Mittagswetter (Tagesbeitrag zum Selbst-Teilen): neuer Knopf „🔄 Mittagswetter jetzt neu erstellen“ im Facebook-Bereich der Zentrale (Tab „📈 Website“) – baut Bild + Text mit der aktuellen Vorhersage neu (ca. 1–2 Min., ohne Posten, ohne Video); Workflow „video-neu.yml“ hat dafür die neue Auswahl „mittag“. Anlass: Der Mittagslauf von GitHub (12 Uhr) kam verspätet, der Beitrag stand noch auf 07:02 Uhr</td></tr>
 <tr><td>08.11.2026<br><small>23:05 Uhr</small></td><td>Cloudflare-Zwischenspeicher für Live-Werte: kostenloses Cloudflare-Konto, Worker „wetter-badkoenig“ (wetter-badkoenig.sakomobil.workers.dev) holt die aktuellen Werte von IBADKN33 höchstens einmal pro Minute bei Weather Underground; die Website nimmt die aktuellen Werte von dort, den Tagesverlauf weiter aus data/live.json. Fällt der Worker aus oder ist das Tageslimit (100.000 Abrufe) erreicht, gilt automatisch wieder data/live.json</td></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
 <tr><td>08.11.2026<br><small>23:59 Uhr</small></td><td>Jahresrückblick-Video „Das Wetterjahr im Odenwald“ mit Max (ca. 3–4 Min.): Jahr in Zahlen, Temperaturkurve, Regen je Monat mit Klimamittel, Rekorde (nur eigene Messwerte), Höhepunkte (Hitzewelle, Trockenphase, Frostserie, erster Herbstfrost), Vergleich mit dem Klimamittel 1991–2020, „Unser Jahr“, Abschied. Daten aus dem Wetterarchiv. Wird am 30.12. um 17:15 Uhr gebaut (Workflow „Jahresrückblick-Video“) und um 18 Uhr mit dem Abend-Weckruf auf Facebook + Instagram gepostet. Zentrale: Karte „🎆 Jahresrückblick mit Max“ (Vorschau, Neu erstellen ohne Posten), Zeile in der Übersicht</td></tr>
@@ -2686,6 +2688,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         </div>
         <p class="hint">Am Handy: <b>„Teilen“</b> antippen → Facebook wählen → als Seite „Private Wetterstation Bad König“ posten.
           Falls Facebook den Text nicht übernimmt: vorher „Text kopieren“ und im Beitrag einfügen.</p>
+        <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagswetter jetzt neu erstellen</button>
+        <p class="hint" id="fb_mNeuSt">Erstellt Bild und Text mit der aktuellen Vorhersage neu (ca. 1–2 Minuten). Wird <b>nicht</b> gepostet.</p>
       </div>
     </section>
     <section class="spalte">
@@ -4145,8 +4149,8 @@ function neuKnopf(bid, sid, art) {
   function warte(start, n) {
     lauf().then(function (r) {
       if (!r || new Date(r.created_at).getTime() < start - 60000) { if (n < 8) return setTimeout(function () { warte(start, n + 1); }, 8000); throw new Error('Lauf nicht gefunden'); }
-      if (r.status !== 'completed') { S.innerHTML = '⏳ Video wird erstellt … (' + Math.round((Date.now() - start) / 60000) + ' Min.)'; return setTimeout(function () { warte(start, n + 1); }, 15000); }
-      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! Neues Video wird geladen … <small>(die Website braucht noch ca. 1 Minute)</small>'; setTimeout(function () { fbReload(); }, 60000); }
+      if (r.status !== 'completed') { S.innerHTML = '⏳ ' + (art === 'mittag' ? 'Beitrag' : 'Video') + ' wird erstellt … (' + Math.round((Date.now() - start) / 60000) + ' Min.)'; return setTimeout(function () { warte(start, n + 1); }, 15000); }
+      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! ' + (art === 'mittag' ? 'Neuer Beitrag' : 'Neues Video') + ' wird geladen … <small>(die Website braucht noch ca. 1 Minute)</small>'; setTimeout(function () { fbReload(); }, 60000); }
       else { S.innerHTML = '❌ Das hat nicht geklappt (' + r.conclusion + '). <a href="' + r.html_url + '" target="_blank" rel="noopener">Details bei GitHub</a>'; B.disabled = false; }
     }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
   }
@@ -4154,7 +4158,7 @@ function neuKnopf(bid, sid, art) {
     if (!tok()) { S.innerHTML = '🔑 Noch kein Schlüssel hinterlegt – oben im Tab „Website“ eintragen.'; return; }
     B.disabled = true; S.textContent = '🚀 Starte …'; var start = Date.now();
     fetch(API + '/dispatches', { method: 'POST', headers: hdr(), body: JSON.stringify({ ref: 'main', inputs: { art: art } }) }).then(function (r) {
-      if (r.status === 204) { S.textContent = '⏳ Gestartet – das dauert ca. 3–5 Minuten …'; setTimeout(function () { warte(start, 0); }, 6000); }
+      if (r.status === 204) { S.textContent = '⏳ Gestartet – das dauert ca. ' + (art === 'mittag' ? '1–2' : '3–5') + ' Minuten …'; setTimeout(function () { warte(start, 0); }, 6000); }
       else if (r.status === 401 || r.status === 403 || r.status === 404) throw new Error('Der Schlüssel wird nicht akzeptiert (Fehler ' + r.status + '). Rechte prüfen: Repo „wetterstation“, Actions: Lesen und Schreiben.');
       else throw new Error('GitHub antwortet mit Fehler ' + r.status);
     }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
@@ -4182,6 +4186,7 @@ neuKnopf('vNeu', 'vNeuSt', 'tag');
 })();
 neuKnopf('thNeu', 'thNeuSt', 'thema');
 neuKnopf('woNeu', 'woNeuSt', 'woche');
+neuKnopf('mNeu', 'mNeuSt', 'mittag');
 
 }
 /* ===== Online-Speicher: verschlüsselt in GitHub (privates Repo) ===== */
