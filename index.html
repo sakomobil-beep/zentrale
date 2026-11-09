@@ -2459,6 +2459,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>22:50 Uhr</small></td><td>Das Abendvideo aus dem Studio steht jetzt auch in der Tabelle „📋 Übersicht Facebook &amp; Instagram“ (Zeile „🎙️ Abendvideo mit Max (Studio)“: 🎥 Video, ✋ selbst teilen, Termin „nur per Knopf“). Dabei die Terminspalte sauber getrennt: eigener Schlüssel für den festen Termin (Mittagswetter 12 Uhr) und für den Eintrag in gepostet.json – Beiträge ohne Autopost zeigen bei „Zuletzt gepostet“ weiter „—“</td></tr>
 <tr><td>09.11.2026<br><small>22:45 Uhr</small></td><td>Neues <b>Abendvideo mit Max aus dem Studio</b> („Odenwald am Abend“, ca. 1 Min.): Max sitzt ohne Rucksack an einem Holztisch, hinter ihm Holzvertäfelung, Fenster mit Schlossblick und ein Bildschirm, auf dem die Karten erscheinen. Ablauf: Begrüßung · „Der Tag in Zahlen“ (Höchstwert, Nacht, Regen – aus der Vorhersage für heute) · Morgen · Übermorgen (freitags das Wochenende) · Verabschiedung. Max ist nur in diesem Video im Studio, alle anderen Videos bleiben draußen. Wird <b>nicht</b> automatisch erstellt oder gepostet: Karte „🎙️ Abendvideo“ im Bereich „🌙 Abends“ (Tab „📈 Website“) mit Knopf „🔄 Abendvideo jetzt neu erstellen“; Technik: wetter_video.py --abend, Datei fb/abendvideo.mp4, Workflow video-neu.yml Auswahl „abend“. Der bisherige Abendbeitrag (Bild + Text, Autopost 18 Uhr) bleibt unverändert. Noch offen: weitere Themen (Heute vor einem Jahr, Himmel heute Nacht, Kurz erklärt, Termine)</td></tr>
 <tr><td>09.11.2026<br><small>19:25 Uhr</small></td><td>Doppelpost behoben: Der Abendbeitrag kam am 09.11. um 18:03 und 18:05 Uhr zweimal auf Facebook/Instagram – zwei Läufe (GitHub-Zeitplan 18 Uhr + cron-job.org-Weckruf 18:02) starteten fast gleichzeitig, der zweite arbeitete mit dem alten Merkzettel. Jetzt prüft fb_senden.py direkt vor jedem Post (Video, Story, Abend, Wochenausblick, Sondermeldungen, Jahresrückblick) den aktuellen Stand von fb/gepostet.json bei GitHub und überspringt, was schon gepostet ist</td></tr>
 <tr><td>09.11.2026<br><small>13:05 Uhr</small></td><td>„Bodenfrost möglich“ in Facebook-/Instagram-Beiträgen (Tageshinweise und Abendbeitrag „Heute Nacht“) und im Vorhersagetext der Website erscheint jetzt nur noch, wenn die Nacht klar und windstill ist (Ø Wolken ≤ 30 %, Ø Wind ≤ 10 km/h, Nacht 20–8 Uhr). Vorher reichte ein Tiefstwert bis +3 °C. Das Frostband auf der Startseite hatte diese Bedingung schon</td></tr>
@@ -3802,8 +3803,10 @@ function fbInit(){
 (function () {
   var q = '?v=' + Date.now(), quellen = [
     ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🍽️ Mittags-Beitrag', 'https://wetter-badkoenig.de/fb/post.json'],
-    ['🌙 Abendbeitrag', 'https://wetter-badkoenig.de/fb/abend.json'], ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
-  var postKey = ['video', 'story', null, 'abend', 'woche', 'jahr', 'sonder'];
+    ['🌙 Abendbeitrag', 'https://wetter-badkoenig.de/fb/abend.json'], ['🎙️ Abendvideo (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'],
+    ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
+  var postKey = ['video', 'story', null, 'abend', null, 'woche', 'jahr', 'sonder'];        // Schlüssel in gepostet.json (null = wird nie automatisch gepostet)
+  var planKey = ['video', 'story', 'mittag', 'abend', null, 'woche', 'jahr', 'sonder'];    // fester Termin (null = nur per Knopf)
   Promise.all(quellen.map(function (x) {
     return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   }).concat([fetch('https://wetter-badkoenig.de/fb/gepostet.json' + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })])).then(function (res) {
@@ -3815,20 +3818,21 @@ function fbInit(){
     }
     function zeitTxt(iso, nurTag) { var w = wann(iso, nurTag); return { t: w.t, cls: w.heute ? 'neu' : 'alt' }; }
     function plan(i) {
-      var k = postKey[i], jetzt = new Date();
+      var k = planKey[i], jetzt = new Date();
+      if (k === null) return 'nur per Knopf';
       if (k === 'sonder') return 'laufend (alle 15 Min.)';
       function bt(d) { var o = {}; new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short', hourCycle: 'h23' }).formatToParts(d).forEach(function (x) { o[x.type] = x.value; }); return o; }
       for (var t = 0; t < 8 * 24 * 60; t += 15) {
         var d = new Date(Math.ceil(jetzt.getTime() / 9e5) * 9e5 + t * 6e4), o = bt(d), h = +o.hour, m = +o.minute, wd = o.weekday.replace('.', '');
         var we = wd === 'Sa' || wd === 'So', ok = false;
         if (k === 'video' || k === 'story') ok = m === 0 && h === (we ? 8 : 7);
-        else if (k === null) ok = m === 0 && h === 12;
+        else if (k === 'mittag') ok = m === 0 && h === 12;
         else if (k === 'abend') ok = m === 0 && h === 18;
         else if (k === 'woche') ok = m === 0 && h === 20 && wd === 'So';
         else if (k === 'jahr') ok = m === 0 && h === 18 && o.day === '30' && o.month === '12';
         if (!ok) continue;
         var tag = o.year + '-' + o.month + '-' + o.day;
-        if (k && G[k] === tag) continue;
+        if (G[k] === tag) continue;
         return (tag === heute ? 'heute' : o.weekday + ', ' + o.day + '.' + o.month + '.') + ', ' + o.hour + ':' + o.minute + ' Uhr';
       }
       return '–';
@@ -3839,11 +3843,11 @@ function fbInit(){
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
       return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
-    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen'];
-    var art = ['🤖', '🤖', '✋', '🤖', '🤖', '🤖 30.12.', '🤖 bei DWD'];
-    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Bild', '🎥 Video', '🎥 Video', '🖼️ Bild'];
+    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🍽️ Mittagswetter', '🌙 Abendbeitrag', '🎙️ Abendvideo mit Max (Studio)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen'];
+    var art = ['🤖', '🤖', '✋', '🤖', '✋', '🤖', '🤖 30.12.', '🤖 bei DWD'];
+    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Bild', '🎥 Video', '🎥 Video', '🎥 Video', '🖼️ Bild'];
     var FB = '<span class="pf fb" title="Facebook">f</span>', IG = '<span class="pf ig" title="Instagram">ig</span>';
-    var wo = [FB + IG, IG + ' <small>nur Instagram</small>', FB, FB + IG, FB + IG, FB + IG, FB + IG];
+    var wo = [FB + IG, IG + ' <small>nur Instagram</small>', FB, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG];
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
       return '<tr><td>' + namen[i] + '</td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
