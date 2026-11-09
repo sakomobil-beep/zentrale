@@ -2352,7 +2352,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>Nur heute + 3 Tage mit Zahlen, danach eine Tendenz-Karte ohne Zahlen</li>
 <li>„Stundenverlauf · Station Bad König“; bei „Heute“ ab Mittag der Tiefstwert der kommenden Nacht</li>
 <li>Bereich <b>Odenwaldkreis</b>: eigene Reliefkarte mit Mümling, Orte Oberzent, Michelstadt, Bad König, Höchst, Breuberg, Brensbach; 3-Tage-Vorhersage je Ort mit eigener Höhe und eigener Lernkurve</li>
-<li>Frostnächte in der Vorhersage</li>
+<li>Frostnächte in der Vorhersage; „Bodenfrost möglich“ (Tiefstwert bis +2/+3 °C) nur bei klarer, windstiller Nacht (Wolken ≤ 30 %, Wind ≤ 10 km/h) – gilt auch für Facebook/Instagram-Beiträge</li>
 <li>„Heute“ zeigt Höchst-/Tiefstwert ohne das Wort „Nacht“ (z. B. 10° / 1°)</li>
 <li>Knopf <b>„📊 Wie genau war die Vorhersage?“</b> → Fenster mit Trefferquote: gestern vorhergesagt vs. gemessen, Schnitt + Quote der letzten 14 Tage, Balken 7 Tage (Daten fb/treffer.json, ab 06.11.2026) <span class="tg">neu 08.11.</span></li>
 </ul></details>
@@ -2458,6 +2458,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>13:05 Uhr</small></td><td>„Bodenfrost möglich“ in Facebook-/Instagram-Beiträgen (Tageshinweise und Abendbeitrag „Heute Nacht“) und im Vorhersagetext der Website erscheint jetzt nur noch, wenn die Nacht klar und windstill ist (Ø Wolken ≤ 30 %, Ø Wind ≤ 10 km/h, Nacht 20–8 Uhr). Vorher reichte ein Tiefstwert bis +3 °C. Das Frostband auf der Startseite hatte diese Bedingung schon</td></tr>
 <tr><td>09.11.2026<br><small>12:55 Uhr</small></td><td>Mittagswetter (Tagesbeitrag zum Selbst-Teilen): neuer Knopf „🔄 Mittagswetter jetzt neu erstellen“ im Facebook-Bereich der Zentrale (Tab „📈 Website“) – baut Bild + Text mit der aktuellen Vorhersage neu (ca. 1–2 Min., ohne Posten, ohne Video); Workflow „video-neu.yml“ hat dafür die neue Auswahl „mittag“. Anlass: Der Mittagslauf von GitHub (12 Uhr) kam verspätet, der Beitrag stand noch auf 07:02 Uhr</td></tr>
 <tr><td>08.11.2026<br><small>23:05 Uhr</small></td><td>Cloudflare-Zwischenspeicher für Live-Werte: kostenloses Cloudflare-Konto, Worker „wetter-badkoenig“ (wetter-badkoenig.sakomobil.workers.dev) holt die aktuellen Werte von IBADKN33 höchstens einmal pro Minute bei Weather Underground; die Website nimmt die aktuellen Werte von dort, den Tagesverlauf weiter aus data/live.json. Fällt der Worker aus oder ist das Tageslimit (100.000 Abrufe) erreicht, gilt automatisch wieder data/live.json</td></tr>
 <tr><td>08.11.2026<br><small>21:20 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Wetterdaten von Weather Underground als Jahresdatei zwischenspeichern</td></tr>
