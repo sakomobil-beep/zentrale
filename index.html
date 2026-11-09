@@ -2406,6 +2406,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li><b>Regionale Termine:</b> Feiertage Hessen, Beginn/Ende der Schulferien, Weihnachtsmärkte und eigene Termine aus „🎪 Termine für Max“ (Tab „📈 Website“) – 1–3 Tage vorher und am Tag selbst, im Wochenausblick alle Termine der Woche <span class="tg">neu 08.11.</span></li>
 <li><b>Morgenvideo</b> immer normal; <b>Special-Videos</b> bei Unwetter/Schnee/Sturm extra</li>
 <li><b>Wochenausblick</b> jeden Sonntag 20 Uhr</li>
+<li><b>Abendvideo aus dem Studio</b> („Odenwald am Abend“): per Knopf in der Zentrale, zum Selbst-Teilen – kein Autopost</li>
 <li><b>„Max erklärt“</b>-Themenvideos (lang, sachlich) – selbst teilen, auch auf YouTube</li>
 <li><b>Jahresrückblick</b> „Das Wetterjahr im Odenwald“: am 30.12. um 18 Uhr automatisch (Facebook + Instagram), aus dem Wetterarchiv <span class="tg">neu 08.11.</span></li>
 <li><b>Wetter-Wissen in 20 Sekunden</b> (Mo, Mi, Fr, Sa): Fun-Fact passend zu Wetter und Jahreszeit mit eigener Tafel <span class="tg">neu 08.11.</span></li>
@@ -2458,6 +2459,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>22:45 Uhr</small></td><td>Neues <b>Abendvideo mit Max aus dem Studio</b> („Odenwald am Abend“, ca. 1 Min.): Max sitzt ohne Rucksack an einem Holztisch, hinter ihm Holzvertäfelung, Fenster mit Schlossblick und ein Bildschirm, auf dem die Karten erscheinen. Ablauf: Begrüßung · „Der Tag in Zahlen“ (Höchstwert, Nacht, Regen – aus der Vorhersage für heute) · Morgen · Übermorgen (freitags das Wochenende) · Verabschiedung. Max ist nur in diesem Video im Studio, alle anderen Videos bleiben draußen. Wird <b>nicht</b> automatisch erstellt oder gepostet: Karte „🎙️ Abendvideo“ im Bereich „🌙 Abends“ (Tab „📈 Website“) mit Knopf „🔄 Abendvideo jetzt neu erstellen“; Technik: wetter_video.py --abend, Datei fb/abendvideo.mp4, Workflow video-neu.yml Auswahl „abend“. Der bisherige Abendbeitrag (Bild + Text, Autopost 18 Uhr) bleibt unverändert. Noch offen: weitere Themen (Heute vor einem Jahr, Himmel heute Nacht, Kurz erklärt, Termine)</td></tr>
 <tr><td>09.11.2026<br><small>19:25 Uhr</small></td><td>Doppelpost behoben: Der Abendbeitrag kam am 09.11. um 18:03 und 18:05 Uhr zweimal auf Facebook/Instagram – zwei Läufe (GitHub-Zeitplan 18 Uhr + cron-job.org-Weckruf 18:02) starteten fast gleichzeitig, der zweite arbeitete mit dem alten Merkzettel. Jetzt prüft fb_senden.py direkt vor jedem Post (Video, Story, Abend, Wochenausblick, Sondermeldungen, Jahresrückblick) den aktuellen Stand von fb/gepostet.json bei GitHub und überspringt, was schon gepostet ist</td></tr>
 <tr><td>09.11.2026<br><small>13:05 Uhr</small></td><td>„Bodenfrost möglich“ in Facebook-/Instagram-Beiträgen (Tageshinweise und Abendbeitrag „Heute Nacht“) und im Vorhersagetext der Website erscheint jetzt nur noch, wenn die Nacht klar und windstill ist (Ø Wolken ≤ 30 %, Ø Wind ≤ 10 km/h, Nacht 20–8 Uhr). Vorher reichte ein Tiefstwert bis +3 °C. Das Frostband auf der Startseite hatte diese Bedingung schon</td></tr>
 <tr><td>09.11.2026<br><small>12:55 Uhr</small></td><td>Mittagswetter (Tagesbeitrag zum Selbst-Teilen): neuer Knopf „🔄 Mittagswetter jetzt neu erstellen“ im Facebook-Bereich der Zentrale (Tab „📈 Website“) – baut Bild + Text mit der aktuellen Vorhersage neu (ca. 1–2 Min., ohne Posten, ohne Video); Workflow „video-neu.yml“ hat dafür die neue Auswahl „mittag“. Anlass: Der Mittagslauf von GitHub (12 Uhr) kam verspätet, der Beitrag stand noch auf 07:02 Uhr</td></tr>
@@ -2518,7 +2520,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #mx td,#mx th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 08.11.2026</small></div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 09.11.2026</small></div>
   <p style="margin:4px 0 0;opacity:.8">Alle Funktionen unseres Comic-Moderators Max in den Wettervideos – zum Prüfen, was gut läuft und was verbessert werden soll. Auf eine Überschrift tippen zum Aufklappen.</p>
 </div>
 
@@ -2594,6 +2596,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>🎬 Morgenvideo</td><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr (immer normal, nie Special)</td><td>🤖 automatisch</td></tr>
 <tr><td>⚠️ Wetter-Special</td><td>bei neuer DWD-Warnung, Schnee, Sturm ≥ 60 km/h, strengem Frost ≤ −5 °C, Hitze ≥ 30 °C, Starkregen ≥ 20 mm, Gewitter (Prüfung mittags + nachmittags), roter Kopf „WETTER-SPECIAL“</td><td>✋ selbst teilen</td></tr>
 <tr><td>📅 Wochenausblick</td><td>sonntags 20 Uhr: Mo–Mi mit Werten, Do/Fr als Tendenz</td><td>🤖 automatisch</td></tr>
+<tr><td>🎙️ Abendvideo (Studio)</td><td>Max sitzt im Studio am Tisch: Der Tag in Zahlen, morgen, übermorgen (freitags Wochenende); Karten auf dem Bildschirm an der Wand</td><td>👤 per Knopf, selbst teilen</td></tr>
 <tr><td>🎓 Max erklärt</td><td>Themenvideo im Querformat, ca. 10 Min., sachlich, eigene Grafiken (1. Thema: Rekord-El-Niño 2026, 6 Kapitel) – auch auf der El-Niño-Seite</td><td>✋ selbst (+ YouTube)</td></tr>
 </table>
 <ul style="margin-top:8px">
@@ -2616,6 +2619,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>09.11.2026<br><small>22:45 Uhr</small></td><td>Neues <b>Abendvideo mit Max aus dem Studio</b> („Odenwald am Abend“, ca. 1 Min.): Max sitzt ohne Rucksack an einem Holztisch, hinter ihm Holzvertäfelung, Fenster mit Schlossblick und ein Bildschirm, auf dem die Karten erscheinen. Ablauf: Begrüßung · „Der Tag in Zahlen“ (Höchstwert, Nacht, Regen – aus der Vorhersage für heute) · Morgen · Übermorgen (freitags das Wochenende) · Verabschiedung. Max ist nur in diesem Video im Studio, alle anderen Videos bleiben draußen. Wird <b>nicht</b> automatisch erstellt oder gepostet: Karte „🎙️ Abendvideo“ im Bereich „🌙 Abends“ (Tab „📈 Website“) mit Knopf „🔄 Abendvideo jetzt neu erstellen“; Technik: wetter_video.py --abend, Datei fb/abendvideo.mp4, Workflow video-neu.yml Auswahl „abend“. Der bisherige Abendbeitrag (Bild + Text, Autopost 18 Uhr) bleibt unverändert. Noch offen: weitere Themen (Heute vor einem Jahr, Himmel heute Nacht, Kurz erklärt, Termine)</td></tr>
 <tr><td>08.11.2026<br><small>23:59 Uhr</small></td><td>Jahresrückblick-Video „Das Wetterjahr im Odenwald“ mit Max (ca. 3–4 Min.): Jahr in Zahlen, Temperaturkurve, Regen je Monat mit Klimamittel, Rekorde (nur eigene Messwerte), Höhepunkte (Hitzewelle, Trockenphase, Frostserie, erster Herbstfrost), Vergleich mit dem Klimamittel 1991–2020, „Unser Jahr“, Abschied. Daten aus dem Wetterarchiv. Wird am 30.12. um 17:15 Uhr gebaut (Workflow „Jahresrückblick-Video“) und um 18 Uhr mit dem Abend-Weckruf auf Facebook + Instagram gepostet. Zentrale: Karte „🎆 Jahresrückblick mit Max“ (Vorschau, Neu erstellen ohne Posten), Zeile in der Übersicht</td></tr>
 <tr><td>08.11.2026<br><small>23:55 Uhr</small></td><td>Max: „Wetter-Wissen in 20 Sekunden“ – montags, mittwochs, freitags und samstags ein Fun-Fact am Ende des Morgenvideos (vor der Verabschiedung) mit eigener gelber Tafel „WETTER-WISSEN“; 48 Fun-Facts in data/wetterwissen.json, passend zur Wetterlage (Nebel, Frost, Schnee, Regen, Gewitter, Sturm, Sonne) und Jahreszeit, Wiederholung frühestens nach ca. 30 Tagen; nicht in Special-Videos</td></tr>
 <tr><td>08.11.2026<br><small>23:40 Uhr</small></td><td>Weihnachts-Max (23.11.–28.12.): Weihnachtsmütze mit Bommel und rot-grün gestreifter Schal (bei Sturm nicht), Advents-Hintergründe mit Lichterketten (Raureif-Landschaft, bei Winterwetter verschneit; eigene Bilder mit Endung „_advent“ werden abwechselnd genutzt), Wetter-Hintergründe bei Regen/Schnee/Sturm haben Vorrang; Grüße zum 1.–4. Advent, an Heiligabend und Weihnachten, sonst ab und zu „Eine schöne Adventszeit!“</td></tr>
@@ -2697,6 +2701,17 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <section class="spalte">
       <h2 class="sp">🌙 Abends <span class="apb">🤖 AUTO</span></h2>
       <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendbeitrag erscheint gegen 18 Uhr.</div></div>
+      <div class="card">
+        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 👤 selbst teilen</small></div>
+        <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – unten auf „neu erstellen“ tippen.</div>
+        <video id="fb_avVid" controls playsinline preload="metadata" hidden></video>
+        <div class="btns" id="fb_avBtns" hidden>
+          <button class="prim" id="fb_avTeilen">📤 Video teilen</button>
+          <a class="btn sec" id="fb_avLaden" download="odenwald-abendwetter.mp4">💾 Video speichern</a>
+        </div>
+        <button class="sec" id="fb_avNeu" style="width:100%;margin-top:8px">🔄 Abendvideo jetzt neu erstellen</button>
+        <p class="hint" id="fb_avNeuSt">Erstellt das Abendvideo aus dem Studio neu (ca. 3–5 Minuten). Wird <b>nicht</b> gepostet.</p>
+      </div>
       <div id="fb_frostBox"></div>
     </section>
     <section class="spalte">
@@ -4188,6 +4203,25 @@ neuKnopf('vNeu', 'vNeuSt', 'tag');
 })();
 neuKnopf('thNeu', 'thNeuSt', 'thema');
 neuKnopf('woNeu', 'woNeuSt', 'woche');
+(function () {
+  var v = Date.now();
+  fetch('https://wetter-badkoenig.de/fb/abendvideo.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+    var src = 'https://wetter-badkoenig.de/fb/abendvideo.mp4?v=' + v, V = document.getElementById('fb_avVid');
+    V.src = src; V.hidden = false; document.getElementById('fb_avBtns').hidden = false; document.getElementById('fb_avLaden').href = src;
+    document.getElementById('fb_avTitel').firstChild.textContent = '🎙️ Abendvideo mit Max aus dem Studio · ' + Math.round(j.dauer) + ' Sek. ';
+    var d = new Date(j.erstellt);
+    document.getElementById('fb_avDatum').textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) + ', ' +
+      d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+    document.getElementById('fb_avTeilen').onclick = function () {
+      fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+        var f = new File([b], 'odenwald-abendwetter.mp4', { type: 'video/mp4' });
+        if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: 'Odenwald-Wetter am Abend' });
+        alert('Teilen geht hier nicht – bitte „Video speichern“ nutzen.');
+      }).catch(function () {});
+    };
+  }).catch(function () {});
+})();
+neuKnopf('avNeu', 'avNeuSt', 'abend');
 neuKnopf('mNeu', 'mNeuSt', 'mittag');
 
 }
