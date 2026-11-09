@@ -2425,7 +2425,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>bei Bedarf</td><td>Vorhersage-Sondermeldungen, Frost-/Kratzen-Hinweis (nur bei sicherem Frost)</td><td>selbst teilen</td></tr>
 </table>
 <ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; alle Autoposts gehen auch auf <b>Instagram</b> (dort mit festem Hashtag-Block #odenwald #odenwaldwetter #badkönig #wetter #odenwaldkreis #michelstadt #erbach #höchst #breuberg #wetterbericht #hessen #wettervorhersage); das Skript holt sich den Seiten-Token selbst aus dem hinterlegten Token; Make.com ist gestoppt und bleibt als Reserve; Schutz gegen Doppelposts: vor jedem Post wird der aktuelle Merkzettel (fb/gepostet.json) frisch bei GitHub geprüft</li>
-<li>cron-job.org weckt pünktlich, weil GitHub-Zeitpläne oft verspätet sind: „Wettervideo Facebook Weckruf“ (7:02/8:02), „Abend Weckruf“ (<b>muss auf 19:02 umgestellt werden</b>), „Sonntag Wochenausblick Weckruf“ (So 20:02, baut auch das Wochenvideo), „Wetterarchiv“ (0:15), „Live-Daten“ (alle 10 Min.)</li>
+<li>cron-job.org weckt pünktlich, weil GitHub-Zeitpläne oft verspätet sind: „Wettervideo Facebook Weckruf“ (7:02 werktags), „Wochenende Morgen Weckruf“ (8:02 Sa/So), „Mittag Weckruf“ (12:02), „Abend Weckruf“ (19:02, Mo–Sa), „Sonntag Wochenausblick Weckruf“ (So 20:02), „Wetterarchiv“ (0:15), „Live-Daten“ (alle 10 Min.). Alle rufen denselben Ablauf auf (facebook-post.yml); Mittags- und Abendschritt entscheiden selbst anhand der Uhrzeit, ob sie dran sind, und der Morgenlauf hält sich ab 11 Uhr heraus, damit nichts doppelt gebaut wird</li>
 <li>Alles zum Teilen + Knöpfe „Video neu erstellen“ → hier im Tab „📈 Website“</li></ul>
 </details>
 </div>
@@ -2459,6 +2459,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>10.11.2026<br><small>00:30 Uhr</small></td><td>Tab „📈 Website“ aufgeräumt: Facebook-Bereich jetzt streng nach Tagesablauf sortiert – ☀️ Morgens 7 Uhr (Video + Story) · 🍽️ Mittags 12 Uhr (Mittagskarte, Tagesbild als Reserve) · 🌙 Abends 19 Uhr (Abendvideo + Abend-Story + Beitragstext) · 📅 Sonntag 20 Uhr · ⚡ Bei Wetterlage · 🎓 Besondere Videos. Jede Karte trägt jetzt ihre Postzeit und ob sie automatisch läuft oder selbst geteilt wird; die Legende unter der Übersicht listet beides vollständig auf. Knopf „Mittagskarte jetzt neu erstellen“ sitzt jetzt bei der Mittagskarte statt beim Tagesbild. Veraltete Hinweise entfernt (z. B. „als Reel hochladen“ beim Morgenvideo, das längst automatisch als Reel gepostet wird)</td></tr>
 <tr><td>09.11.2026<br><small>23:58 Uhr</small></td><td><b>Neuer Posting-Plan.</b> Abends: Das Studio-Video mit Max ersetzt den bisherigen Bild-Beitrag und geht <b>Mo–Sa um 19 Uhr</b> automatisch auf Facebook und Instagram (als Reel), Beschreibung ist der ausführliche Abendtext wie bisher; sonntags entfällt es, da kommt um 20 Uhr der Wochenausblick. Dazu neu die <b>Abend-Story</b> (Instagram, 19 Uhr) mit dem Wetter für morgen – Gegenstück zur Morgen-Story, in Abendfarben. Mittags: statt des Tagesbeitrags jetzt die <b>Mittagskarte „Nachmittag im Odenwaldkreis“</b> – Reliefkarte mit den Höchstwerten bis zum Abend je Ort, dazu der aktuelle Messwert der Station Bad König aus data/live.json, mit Quellenhinweis „Messwert aus Bad König · übrige Orte aus der Modellmischung“; geht um 12 Uhr automatisch raus. Der Mittagslauf läuft jetzt ganzjährig um 12 Uhr (vorher im Sommer um 13 Uhr). Das alte Tagesbild bleibt als Reserve zum Selbst-Teilen in der Zentrale. Der Frost-/Kratzen-Hinweis bleibt bewusst von Hand – automatisch gehen nur amtliche DWD-Warnungen raus. Frostschwelle vereinheitlicht: Story und Tipp rechnen jetzt wie der Tagesbeitrag mit dem kältesten Talort statt mit dem Mittel der Täler</td></tr>
 <tr><td>09.11.2026<br><small>23:10 Uhr</small></td><td>Abendvideo (Studio): Max arbeitet jetzt mit der <b>Reliefkarte des Odenwaldkreises</b> auf dem Bildschirm. Nach der MORGEN-Kachel kommt die Karte „MORGEN IM KREIS“ mit den Höchstwerten für Breuberg, Höchst, Bad König, Mossautal, Michelstadt und Oberzent – die Orte erscheinen nacheinander, während Max den mildesten und den kühlsten nennt. Steht im Kreis Frost an, folgt zusätzlich die Karte „HEUTE NACHT“ mit den Tiefstwerten (Frostorte blau mit *). Die Ortswerte kommen aus derselben Modellmischung wie die Odenwald-Vorhersage (ICON-D2, AROME, ECMWF, ICON-EU, je mit Ortshöhe und gelernter Korrektur) und stehen jetzt als „orte“ in fb/daten.json; Kartengrundlage ist die vorhandene data/odenwald-relief.png</td></tr>
 <tr><td>09.11.2026<br><small>22:55 Uhr</small></td><td>Abendvideo (Studio): zusätzlich eine <b>Fassung im Format 4:5</b> (1080×1350, Video mittig, links und rechts Holzfarbe) als fb/abendvideo-feed.mp4 – Instagram nimmt Hochkant (9:16) nur als Reel an, im normalen Feed wird es abgelehnt. Knopf „💾 Fassung 4:5 für den Instagram-Feed“ in der Abendvideo-Karte der Zentrale</td></tr>
@@ -2654,41 +2655,43 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </main>
 <main id="web" hidden>
   <template id="fbTpl">
-  <h1>Facebook-Beitrag von heute</h1>
+  <h1>Facebook &amp; Instagram · Tagesplan</h1>
   <p class="sub" id="fb_stand">wird geladen …</p>
 
   <div class="card" id="fb_letzte">
     <div class="vhead">📋 Übersicht Facebook &amp; Instagram <small style="opacity:.7;font-weight:normal">(Autoposts gehen auch auf Instagram @wetterstation_badkoenig)</small></div>
     <div class="ue-wrap"><table class="ue"><thead><tr><th>Beitrag</th><th>Wo</th><th>Format</th><th>Posten</th><th>Erstellt</th><th>Zuletzt gepostet</th><th>Nächster Termin</th></tr></thead>
     <tbody id="fb_letzteListe"><tr><td colspan="7">wird geladen …</td></tr></tbody></table></div>
-    <div class="hint" style="margin:8px 0 0"><span class="pf fb">f</span> = Facebook · <span class="pf ig">ig</span> = Instagram · 🤖 = postet automatisch · ✋ = selbst teilen. Ebenfalls selbst teilen: Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Sondermeldungen ohne amtliche Warnung.</div>
+    <div class="hint" style="margin:8px 0 0"><span class="pf fb">f</span> = Facebook · <span class="pf ig">ig</span> = Instagram · 🤖 = postet automatisch · ✋ = du teilst selbst.<br>Automatisch gehen raus: Morgenvideo mit Story (7 Uhr, Sa/So 8 Uhr), Mittagskarte (12 Uhr), Abendvideo mit Story (19 Uhr, Mo–Sa), Wochenausblick (So 20 Uhr) und amtliche DWD-Warnungen.<br>Selbst teilen: Tagesbild, Frost-/Kratzen-Hinweis, Themenvideos, Special-Videos und Hinweise ohne amtliche Warnung.</div>
   </div>
 
   <div class="raster">
+
     <section class="spalte">
-      <h2 class="sp">☀️ Morgens <span class="apb">🤖 AUTO</span></h2>
-      <div class="card" id="fb_storyCard" hidden>
-        <div class="vhead"><span class="pf ig">ig</span> 📸 Instagram-Story morgens <small style="font-weight:normal;opacity:.75">· nur Instagram · 🤖 Autopost mit dem Morgenvideo</small></div>
-        <div class="datum" id="fb_sDatum"></div>
-        <img id="fb_story" alt="Instagram-Story von heute" style="display:block;width:100%;max-width:260px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
-        <div class="btns"><a class="btn sec" id="fb_sLaden" download="odenwald-wetter-story.jpg" style="grid-column:1 / -1">💾 Story-Bild speichern</a></div>
-        <p class="hint">Verschwindet auf Instagram nach 24 Stunden von selbst.</p>
-      </div>
+      <h2 class="sp">☀️ Morgens · 7 Uhr <small style="font-weight:normal;opacity:.7">(Sa/So 8 Uhr)</small> <span class="apb">🤖 AUTO</span></h2>
       <div class="card" id="fb_vidCard" hidden>
-        <div class="vhead" id="fb_vTitel">🎬 Video-Wetterbericht</div>
+        <div class="vhead" id="fb_vTitel">🎬 Wettervideo mit Max</div>
         <div class="datum" id="fb_vDatum"></div>
         <video id="fb_vid" controls playsinline preload="metadata"></video>
         <div class="btns">
           <button class="prim" id="fb_vTeilen">📤 Video teilen</button>
           <a class="btn sec" id="fb_vLaden" download="odenwald-wetter.mp4" style="grid-column:1 / -1">💾 Video speichern</a>
         </div>
-        <p class="hint">Tipp: Auf Facebook als <b>Reel</b> hochladen – das Video ist hochkant (9:16) dafür gemacht.</p>
+        <p class="hint">Geht automatisch auf Facebook und als Reel auf Instagram. Teilen und Speichern nur, falls du es zusätzlich woanders brauchst.</p>
         <button class="sec" id="fb_vNeu" style="width:100%;margin-top:8px">🔄 Video jetzt neu erstellen</button>
-        <p class="hint" id="fb_vNeuSt">Erstellt Vorhersage und Video mit Max neu (ca. 3–5 Minuten). Wird <b>nicht</b> auf Facebook gepostet – nur zum Ansehen.</p>
+        <p class="hint" id="fb_vNeuSt">Baut Vorhersage und Video neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
+      </div>
+      <div class="card" id="fb_storyCard" hidden>
+        <div class="vhead"><span class="pf ig">ig</span> 📸 Morgen-Story <small style="font-weight:normal;opacity:.75">· nur Instagram · 🤖 mit dem Morgenvideo</small></div>
+        <div class="datum" id="fb_sDatum"></div>
+        <img id="fb_story" alt="Instagram-Story von heute" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
+        <div class="btns"><a class="btn sec" id="fb_sLaden" download="odenwald-wetter-story.jpg" style="grid-column:1 / -1">💾 Story-Bild speichern</a></div>
+        <p class="hint">Verschwindet auf Instagram nach 24 Stunden von selbst.</p>
       </div>
     </section>
+
     <section class="spalte">
-      <h2 class="sp">🍽️ Mittags <span class="apb">🤖 AUTO</span></h2>
+      <h2 class="sp">🍽️ Mittags · 12 Uhr <span class="apb">🤖 AUTO</span></h2>
       <div class="card" id="fb_mkCard">
         <div class="vhead">🗺️ Mittagskarte · Rest des Tages <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 12 Uhr</small></div>
         <div class="datum" id="fb_mkDatum">wird geladen …</div>
@@ -2698,9 +2701,12 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <button class="sec" id="fb_mkKopie">📋 Text kopieren</button>
           <a class="btn sec" id="fb_mkLaden" download="odenwald-mittag.jpg">💾 Bild speichern</a>
         </div>
+        <p class="hint">Reliefkarte des Kreises mit den Höchstwerten bis zum Abend, dazu der Messwert unserer Station.</p>
+        <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagskarte jetzt neu erstellen</button>
+        <p class="hint" id="fb_mNeuSt">Baut Karte und Tagesbild mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
-      <div class="card">
-        <div class="vhead">🖼️ Tagesbild (Reserve, zum Selbst-Teilen)</div>
+      <div class="card ruhig">
+        <div class="vhead">🖼️ Tagesbild <small style="font-weight:normal;opacity:.75">· ✋ Reserve zum Selbst-Teilen</small></div>
         <div class="datum" id="fb_tDatum">–</div>
         <img id="fb_bild" alt="Vorhersagebild für Facebook" style="margin-bottom:12px">
         <textarea id="fb_text" aria-label="Beitragstext"></textarea>
@@ -2709,35 +2715,40 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <button class="sec" id="fb_kopieren">📋 Text kopieren</button>
           <a class="btn sec" id="fb_laden" download="wetter-bad-koenig.jpg">💾 Bild speichern</a>
         </div>
-        <p class="hint">Am Handy: <b>„Teilen“</b> antippen → Facebook wählen → als Seite „Private Wetterstation Bad König“ posten.
-          Falls Facebook den Text nicht übernimmt: vorher „Text kopieren“ und im Beitrag einfügen.</p>
-        <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagswetter jetzt neu erstellen</button>
-        <p class="hint" id="fb_mNeuSt">Erstellt Bild und Text mit der aktuellen Vorhersage neu (ca. 1–2 Minuten). Wird <b>nicht</b> gepostet.</p>
+        <p class="hint">Wird nicht automatisch gepostet – nur falls du mal zusätzlich etwas teilen willst.
+          Am Handy: „Teilen“ → Facebook → als Seite posten. Übernimmt Facebook den Text nicht: vorher „Text kopieren“.</p>
       </div>
     </section>
+
     <section class="spalte">
-      <h2 class="sp">🌙 Abends · 19 Uhr (Mo–Sa) <span class="apb">🤖 AUTO</span></h2>
-      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendtext für das Video erscheint um 19 Uhr.</div></div>
+      <h2 class="sp">🌙 Abends · 19 Uhr <small style="font-weight:normal;opacity:.7">(Mo–Sa)</small> <span class="apb">🤖 AUTO</span></h2>
       <div class="card">
-        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr (Mo–Sa)</small></div>
-        <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – unten auf „neu erstellen“ tippen.</div>
+        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr</small></div>
+        <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – kommt um 19 Uhr.</div>
         <video id="fb_avVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns" id="fb_avBtns" hidden>
           <button class="prim" id="fb_avTeilen">📤 Video teilen</button>
           <a class="btn sec" id="fb_avLaden" download="odenwald-abendwetter.mp4">💾 Video speichern</a>
           <a class="btn sec" id="fb_avFeed" download="odenwald-abendwetter-feed.mp4" style="grid-column:1 / -1">💾 Fassung 4:5 für den Instagram-Feed</a>
         </div>
-        <p class="hint">Hochkant (9:16) nimmt Instagram nur als <b>Reel</b> an. Für den normalen Feed die Fassung 4:5 nehmen.</p>
+        <p class="hint">Sonntags entfällt es – da kommt um 20 Uhr der Wochenausblick.
+          Beim Selbst-Teilen: Hochkant nimmt Instagram nur als <b>Reel</b>, für den normalen Feed die Fassung 4:5.</p>
         <button class="sec" id="fb_avNeu" style="width:100%;margin-top:8px">🔄 Abendvideo jetzt neu erstellen</button>
-        <p class="hint" id="fb_avNeuSt">Erstellt das Abendvideo neu (ca. 3–5 Minuten). Der Knopf postet <b>nicht</b> – das passiert automatisch um 19 Uhr.</p>
-        <div style="margin-top:10px"><img id="fb_asBild" alt="Abend-Story für Instagram" style="display:block;width:100%;max-width:200px;border-radius:12px"><div class="hint">Abend-Story (Instagram, automatisch um 19 Uhr)</div></div>
+        <p class="hint" id="fb_avNeuSt">Baut das Abendvideo neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
+      <div class="card">
+        <div class="vhead"><span class="pf ig">ig</span> 🌙 Abend-Story <small style="font-weight:normal;opacity:.75">· nur Instagram · 🤖 mit dem Abendvideo</small></div>
+        <img id="fb_asBild" alt="Abend-Story für Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
+        <p class="hint">Das Wetter für morgen auf einen Blick. Verschwindet nach 24 Stunden.</p>
+      </div>
+      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Beitragstext zum Abendvideo erscheint um 19 Uhr.</div></div>
       <div id="fb_frostBox"></div>
     </section>
+
     <section class="spalte">
-      <h2 class="sp">📅 Sonntagabend <span class="apb">🤖 AUTO</span></h2>
+      <h2 class="sp">📅 Sonntag · 20 Uhr <span class="apb">🤖 AUTO</span></h2>
       <div class="card">
-        <div class="vhead" id="fb_woTitel">📅 Wochenausblick mit Max</div>
+        <div class="vhead" id="fb_woTitel">📅 Wochenausblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost So 20 Uhr</small></div>
         <div class="datum" id="fb_woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
         <video id="fb_woVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns" id="fb_woBtns" hidden>
@@ -2745,19 +2756,18 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <a class="btn sec" id="fb_woLaden" download="odenwald-wochenausblick.mp4">💾 Video speichern</a>
         </div>
         <button class="sec" id="fb_woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen</button>
-        <p class="hint" id="fb_woNeuSt">Erstellt den Wochenausblick neu (ca. 3–5 Minuten). Wird <b>nicht</b> gepostet – das passiert nur automatisch sonntags um 20 Uhr.</p>
+        <p class="hint" id="fb_woNeuSt">Baut den Wochenausblick neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
+
     <section class="spalte">
-      <h2 class="sp">🎓 Themenvideos</h2>
-      <div class="card" id="fb_jahrCard">
-        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🎆 Jahresrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 30.12. um 18 Uhr</small></div>
-        <div class="datum" id="fb_jDatum">noch nicht erstellt</div>
-        <video id="fb_jVid" controls playsinline preload="metadata" hidden></video>
-        <div class="btns"><button class="sec" id="fb_jNeu" style="grid-column:1 / -1">🔄 Vorschau neu erstellen (ohne Posten)</button>
-          <a class="btn sec" id="fb_jLaden" download="wetterjahr-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
-        <p class="hint" id="fb_jSt">Wird am 30.12. automatisch mit allen Werten bis 29.12. gebaut. Die Vorschau nutzt die Werte bis gestern.</p>
-      </div>
+      <h2 class="sp">⚡ Bei Wetterlage <span class="apb">🤖 AUTO bei DWD-Warnung</span></h2>
+      <div id="fb_specialBox"></div>
+      <div id="fb_sonderBox"></div>
+    </section>
+
+    <section class="spalte">
+      <h2 class="sp">🎓 Besondere Videos <small style="font-weight:normal;opacity:.7">(✋ selbst teilen)</small></h2>
       <div class="card">
         <div class="vhead" id="fb_thTitel">🎓 Max erklärt</div>
         <div class="datum" id="fb_thDatum">Noch kein Themenvideo vorhanden.</div>
@@ -2769,14 +2779,18 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <a class="btn sec" id="fb_thLaden" download="max-erklaert.mp4">💾 Video speichern</a>
         </div>
         <button class="sec" id="fb_thNeu" style="width:100%;margin-top:8px">🔄 Themenvideo neu erstellen</button>
-        <p class="hint" id="fb_thNeuSt">Erstellt das Themenvideo neu (ca. 8–12 Minuten Rechenzeit). Wird <b>nicht</b> automatisch gepostet.</p>
+        <p class="hint" id="fb_thNeuSt">Baut das Themenvideo neu (ca. 8–12 Min.). Wird <b>nicht</b> automatisch gepostet.</p>
+      </div>
+      <div class="card" id="fb_jahrCard">
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🎆 Jahresrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 30.12. um 18 Uhr</small></div>
+        <div class="datum" id="fb_jDatum">noch nicht erstellt</div>
+        <video id="fb_jVid" controls playsinline preload="metadata" hidden></video>
+        <div class="btns"><button class="sec" id="fb_jNeu" style="grid-column:1 / -1">🔄 Vorschau neu erstellen (ohne Posten)</button>
+          <a class="btn sec" id="fb_jLaden" download="wetterjahr-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
+        <p class="hint" id="fb_jSt">Wird am 30.12. automatisch mit allen Werten bis 29.12. gebaut. Die Vorschau nutzt die Werte bis gestern.</p>
       </div>
     </section>
-    <section class="spalte">
-      <h2 class="sp">⚡ Sondermeldungen <span class="apb">🤖 AUTO bei DWD-Warnung</span></h2>
-      <div id="fb_specialBox"></div>
-      <div id="fb_sonderBox"></div>
-    </section>
+
   </div>
 
 <div id="fb_ok"></div><style>.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}</style></template>
