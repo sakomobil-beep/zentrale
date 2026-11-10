@@ -2325,7 +2325,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 08.11.2026</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 10.11.2026</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2333,6 +2333,13 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="wfgrid">
 <div class="card">
 <h3 style="margin-top:0">🖥️ Website – Hauptmenü</h3>
+<details open><summary>🌙 Dark Mode (alle hellen Seiten)</summary><ul>
+<li>Automatisch: ab Sonnenuntergang in Bad König dunkel, ab Sonnenaufgang wieder hell (Zeiten werden im Browser berechnet)</li>
+<li>Runder Knopf oben rechts (🌙 / ☀️) zum Umschalten von Hand – die Wahl gilt bis zum nächsten Sonnenauf- bzw. -untergang, danach übernimmt wieder die Automatik</li>
+<li>Gilt für Startseite mit allen Tabs, El Niño, Polarwirbel, Vulkane, Sommer 2026, Impressum und Widget-Baukasten; die UAP-Seiten sind ohnehin dunkel; die Zentrale bleibt bewusst ohne Dark Mode</li>
+<li>Fremde Inhalte (Radar, Webcams, YouTube, DWD-Karten) bleiben wie geliefert; Bilder werden leicht abgedunkelt</li>
+<li>Technik: Datei theme.js im Repo wetterstation <span class="tg">neu 10.11.</span></li>
+</ul></details>
 <details open><summary>Aktuell (Startseite)</summary><ul>
 <li>Live-Messwerte der Station: aktuelle Werte über den Cloudflare-Zwischenspeicher (Worker „wetter-badkoenig“, wetter-badkoenig.sakomobil.workers.dev, kostenloser Tarif, höchstens 1 WU-Abruf pro Minute, Schlüssel als Geheimnis WU_KEY bei Cloudflare); Tagesverlauf und Reserve: eigene Datei data/live.json (Server holt sie alle 10 Min. bei Weather Underground, cron-job.org „Live-Daten“); nur wenn sie älter als 15 Min. ist, ruft der Besucher selbst bei WU ab <span class="tg">neu 08.11.</span></li>
 <li>Aufbau: amtliche DWD-Warnungen oben, dann Bereiche <b>Jetzt / Heute / Was kommt / Rückblick</b></li>
@@ -2459,6 +2466,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>10.11.2026<br><small>18:50 Uhr</small></td><td><b>Dark Mode für wetter-badkoenig.de</b>: Die Seite wird ab Sonnenuntergang in Bad König automatisch dunkel (dunkles Blaugrau, hellere Kästen, hellgraue Schrift) und ab Sonnenaufgang wieder hell. Neuer runder Knopf oben rechts (🌙/☀️) zum Umschalten von Hand; die Wahl gilt bis zum nächsten Sonnenauf- bzw. -untergang. Gilt für die Startseite mit allen Tabs, die Themenseiten El Niño, Polarwirbel, Vulkane, Sommer 2026, das Impressum und den Widget-Baukasten. Fremde Inhalte (Radar, Webcams, YouTube, DWD-Karten) bleiben unverändert. Die Zentrale bekommt keinen Dark Mode. Technik: neue Datei theme.js, Service-Worker-Cache auf v45</td></tr>
 <tr><td>10.11.2026<br><small>12:52 Uhr</small></td><td>(Zentrale) Haushaltsbuch, Kasten „Geld erfassen“: neuer Button <b>„🏦→🐷 In Sparschwein“</b> – Betrag wird als Ausgabe vom Konto (Kategorie „Sparen“) gebucht und gleichzeitig im Sparschwein gutgeschrieben; Gesamtbetrag bleibt gleich</td></tr>
 <tr><td>10.11.2026<br><small>00:30 Uhr</small></td><td>Tab „📈 Website“ aufgeräumt: Facebook-Bereich jetzt streng nach Tagesablauf sortiert – ☀️ Morgens 7 Uhr (Video + Story) · 🍽️ Mittags 12 Uhr (Mittagskarte, Tagesbild als Reserve) · 🌙 Abends 19 Uhr (Abendvideo + Abend-Story + Beitragstext) · 📅 Sonntag 20 Uhr · ⚡ Bei Wetterlage · 🎓 Besondere Videos. Jede Karte trägt jetzt ihre Postzeit und ob sie automatisch läuft oder selbst geteilt wird; die Legende unter der Übersicht listet beides vollständig auf. Knopf „Mittagskarte jetzt neu erstellen“ sitzt jetzt bei der Mittagskarte statt beim Tagesbild. Veraltete Hinweise entfernt (z. B. „als Reel hochladen“ beim Morgenvideo, das längst automatisch als Reel gepostet wird)</td></tr>
 <tr><td>10.11.2026<br><small>00:40 Uhr</small></td><td>Tab „📈 Website“ aufgeräumt: Reihenfolge jetzt <b>Facebook-Tagesplan → ⏰ Abläufe &amp; Weckrufe → 🎪 Termine für Max → 📈 Besucher → 💾 Sicherung → 🔑 Schlüssel</b>. Neue Karte <b>„⏰ Abläufe &amp; Weckrufe“</b> mit allen automatischen Läufen (Zeit, was passiert, zugehöriger Weckruf bei cron-job.org) – vom Morgenlauf 6:30 über Mittagskarte, Abendvideo und Sondermeldungen bis zu Archiv, Lernkurve, Solar-Check und Jahresrückblick. Besucherstatistik vor die Sicherung gezogen, damit die Website-Themen beieinander stehen. Weckrufe bei cron-job.org angepasst: „Abend Weckruf“ von 18:02 auf <b>19:02</b> (Mo–Sa), neuer <b>„Mittag Weckruf“ 12:02</b>. Dazu behoben: Beim Start über einen Weckruf lief zusätzlich der komplette Morgenlauf mit – Daten wären zweimal geholt und das Morgenvideo mittags grundlos neu gebaut worden. Der Morgenlauf steigt beim Weckruf ab 11 Uhr jetzt von selbst aus; Mittags- und Abendschritt laufen dafür auch per Weckruf mit (vorher gar nicht)</td></tr>
