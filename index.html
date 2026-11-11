@@ -2241,6 +2241,12 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #fbSec .autopost ul { margin:6px 0 0; padding-left:20px; }
 #fbSec .autopost li { margin:3px 0; }
 #fbSec .apb { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.04em; background:#1877f2; color:#fff; border-radius:20px; padding:3px 9px; margin-left:6px; vertical-align:middle; }
+#fbSec .apb.man { background:#ef6c00; }
+#fbSec .fbinfo { border-left:5px solid #1877f2; font-size:.92rem; }
+#fbSec .fbinfo table { width:100%; border-collapse:collapse; }
+#fbSec .fbinfo td { padding:3px 4px; vertical-align:top; }
+#fbSec .fbinfo td:first-child { color:#5a6b80; white-space:nowrap; width:1%; padding-right:10px; }
+#fbSec .fbinfo .neu { font-weight:700; } #fbSec .fbinfo .alt { color:#b45309; font-weight:700; }
 #fbSec .pzeit { font-size:.88rem; font-weight:700; color:#1877f2; margin:-4px 0 10px; }
 #fbSec { border-radius:16px; overflow:hidden; } #fbSec .fbmain { max-width:none; } #fbSec [hidden] { display:none !important; }
 </style></head>
@@ -2467,6 +2473,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>00:50 Uhr</small></td><td>(Zentrale) Tab „📈 Website“, Facebook-Bereich neu geordnet: Unter der Übersicht steht jetzt <b>jeder Beitrag einzeln in derselben Reihenfolge und mit genau demselben Namen wie in der Tabelle</b> (Wettervideo mit Max · Morgen-Story · Mittagskarte · Mittags-Story · Abendvideo mit Max · Abend-Story · Wochenausblick · Jahresrückblick · Sondermeldungen). Jeder Beitrag hat oben das Schild <b>🤖 AUTOPOST</b> oder <b>✋ MANUELL POSTEN</b> und einen Infokasten mit Wo/Format, Postzeit, wann er erstellt wird, zuletzt erstellt, zuletzt gepostet und nächster Post; darunter wie bisher Vorschau, Speichern, Teilen und Neu erstellen. Der Beitragstext zum Abendvideo steht jetzt beim Abendvideo. Alles zum Selbst-Teilen (Frost-/Nebel-Hinweis, Special-Videos, Tagesbild, „Max erklärt“) ist im letzten Block „✋ Zum Selbst-Teilen“ gesammelt</td></tr>
 <tr><td>12.11.2026<br><small>00:35 Uhr</small></td><td><b>Drei Storys am Tag auch auf Facebook.</b> Morgen-Story (7 Uhr, Sa/So 8 Uhr) und Abend-Story (19 Uhr, Mo–Sa) gehen jetzt zusätzlich zu Instagram auch als Story auf die Facebook-Seite. Neu: <b>Mittags-Story</b> um 12 Uhr – die Mittagskarte im Hochformat 1080×1920 (fb/mittagstory.jpg) auf Facebook und Instagram; der normale Mittagsbeitrag bleibt. Facebook und Instagram werden je Story getrennt gemerkt (gepostet.json: fb_story, fb_mittagstory, fb_abendstory), damit ein Fehler auf einer Plattform die andere nicht blockiert; Push meldet, wo die Story online ging. Keine neuen cron-job.org-Weckrufe nötig. Zentrale: Übersicht mit Zeile „Mittags-Story“, alle Storys mit f + ig, neue Vorschau-Karte „Mittags-Story“</td></tr>
 <tr><td>10.11.2026<br><small>20:40 Uhr</small></td><td>Neuer Veranstaltungs-Tipp für Max: Lichterpfad „Christmas Lights“ im Kurpark an den Seen in Bad König, 13.11.2026 bis 10.01.2027, täglich ab 17 Uhr (letzter Einlass 20 Uhr), Kinder bis 14 Jahre frei, Hunde willkommen (Infos: christmas-lights.de). Max kündigt es ab 11.11. an („morgen öffnet …“ am 12.11.) und nennt es ab dem 13.11. als Tipp des Tages; auch im Wochenausblick. Eingetragen in data/termine.json (sichtbar unter „🎪 Termine für Max“)</td></tr>
 <tr><td>10.11.2026<br><small>19:30 Uhr</small></td><td>Dark Mode nachgebessert: Die Tageskarten und der große Tageskopf im Vorhersage-Tab blieben im Dunkeln hell (Farbverläufe), dadurch war die hellgraue Schrift kaum lesbar. Helle Farbverläufe werden jetzt im Dark Mode automatisch in dunkle Töne umgefärbt (Farbton bleibt erkennbar), der helle Deko-Kreis im Tageskopf ist nur noch angedeutet; mittelgraue Schrift wird zusätzlich aufgehellt. Gilt für alle Seiten mit Dark Mode. Service-Worker-Cache auf v46</td></tr>
@@ -2684,7 +2691,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <div class="raster">
 
     <section class="spalte">
-      <h2 class="sp">☀️ Morgens · 7 Uhr <small style="font-weight:normal;opacity:.7">(Sa/So 8 Uhr)</small> <span class="apb">🤖 AUTO</span></h2>
+      <h2 class="sp">🎬 Wettervideo mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_0">wird geladen …</div>
       <div class="card" id="fb_vidCard" hidden>
         <div class="vhead" id="fb_vTitel">🎬 Wettervideo mit Max</div>
         <div class="datum" id="fb_vDatum"></div>
@@ -2697,6 +2705,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <button class="sec" id="fb_vNeu" style="width:100%;margin-top:8px">🔄 Video jetzt neu erstellen</button>
         <p class="hint" id="fb_vNeuSt">Baut Vorhersage und Video neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
+    </section>
+
+    <section class="spalte">
+      <h2 class="sp">📸 Morgen-Story (Wetter heute) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_1">wird geladen …</div>
       <div class="card" id="fb_storyCard" hidden>
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Morgen-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Morgenvideo</small></div>
         <div class="datum" id="fb_sDatum"></div>
@@ -2707,7 +2720,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </section>
 
     <section class="spalte">
-      <h2 class="sp">🍽️ Mittags · 12 Uhr <span class="apb">🤖 AUTO</span></h2>
+      <h2 class="sp">🗺️ Mittagskarte (Rest des Tages) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_2">wird geladen …</div>
       <div class="card" id="fb_mkCard">
         <div class="vhead">🗺️ Mittagskarte · Rest des Tages <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 12 Uhr</small></div>
         <div class="datum" id="fb_mkDatum">wird geladen …</div>
@@ -2721,28 +2735,21 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagskarte jetzt neu erstellen</button>
         <p class="hint" id="fb_mNeuSt">Baut Karte, Mittags-Story und Tagesbild mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
+    </section>
+
+    <section class="spalte">
+      <h2 class="sp">📸 Mittags-Story (Karte) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_3">wird geladen …</div>
       <div class="card">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Mittags-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit der Mittagskarte</small></div>
         <img id="fb_msBild" alt="Mittags-Story für Facebook und Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <p class="hint">Die Mittagskarte im Story-Format. Verschwindet nach 24 Stunden.</p>
       </div>
-      <div class="card ruhig">
-        <div class="vhead">🖼️ Tagesbild <small style="font-weight:normal;opacity:.75">· ✋ Reserve zum Selbst-Teilen</small></div>
-        <div class="datum" id="fb_tDatum">–</div>
-        <img id="fb_bild" alt="Vorhersagebild für Facebook" style="margin-bottom:12px">
-        <textarea id="fb_text" aria-label="Beitragstext"></textarea>
-        <div class="btns">
-          <button class="prim" id="fb_teilen">📤 Teilen (Bild + Text)</button>
-          <button class="sec" id="fb_kopieren">📋 Text kopieren</button>
-          <a class="btn sec" id="fb_laden" download="wetter-bad-koenig.jpg">💾 Bild speichern</a>
-        </div>
-        <p class="hint">Wird nicht automatisch gepostet – nur falls du mal zusätzlich etwas teilen willst.
-          Am Handy: „Teilen“ → Facebook → als Seite posten. Übernimmt Facebook den Text nicht: vorher „Text kopieren“.</p>
-      </div>
     </section>
 
     <section class="spalte">
-      <h2 class="sp">🌙 Abends · 19 Uhr <small style="font-weight:normal;opacity:.7">(Mo–Sa)</small> <span class="apb">🤖 AUTO</span></h2>
+      <h2 class="sp">🎙️ Abendvideo mit Max (Studio) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_4">wird geladen …</div>
       <div class="card">
         <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr</small></div>
         <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – kommt um 19 Uhr.</div>
@@ -2757,17 +2764,22 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <button class="sec" id="fb_avNeu" style="width:100%;margin-top:8px">🔄 Abendvideo jetzt neu erstellen</button>
         <p class="hint" id="fb_avNeuSt">Baut das Abendvideo neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
+      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Beitragstext zum Abendvideo erscheint um 19 Uhr.</div></div>
+    </section>
+
+    <section class="spalte">
+      <h2 class="sp">🌙 Abend-Story (Wetter morgen) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_5">wird geladen …</div>
       <div class="card">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🌙 Abend-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Abendvideo</small></div>
         <img id="fb_asBild" alt="Abend-Story für Facebook und Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <p class="hint">Das Wetter für morgen auf einen Blick. Verschwindet nach 24 Stunden.</p>
       </div>
-      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Beitragstext zum Abendvideo erscheint um 19 Uhr.</div></div>
-      <div id="fb_frostBox"></div>
     </section>
 
     <section class="spalte">
-      <h2 class="sp">📅 Sonntag · 20 Uhr <span class="apb">🤖 AUTO</span></h2>
+      <h2 class="sp">📅 Wochenausblick mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_6">wird geladen …</div>
       <div class="card">
         <div class="vhead" id="fb_woTitel">📅 Wochenausblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost So 20 Uhr</small></div>
         <div class="datum" id="fb_woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
@@ -2782,13 +2794,42 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     </section>
 
     <section class="spalte">
-      <h2 class="sp">⚡ Bei Wetterlage <span class="apb">🤖 AUTO bei DWD-Warnung</span></h2>
-      <div id="fb_specialBox"></div>
+      <h2 class="sp">🎆 Jahresrückblick mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_7">wird geladen …</div>
+      <div class="card" id="fb_jahrCard">
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🎆 Jahresrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 30.12. um 18 Uhr</small></div>
+        <div class="datum" id="fb_jDatum">noch nicht erstellt</div>
+        <video id="fb_jVid" controls playsinline preload="metadata" hidden></video>
+        <div class="btns"><button class="sec" id="fb_jNeu" style="grid-column:1 / -1">🔄 Vorschau neu erstellen (ohne Posten)</button>
+          <a class="btn sec" id="fb_jLaden" download="wetterjahr-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
+        <p class="hint" id="fb_jSt">Wird am 30.12. automatisch mit allen Werten bis 29.12. gebaut. Die Vorschau nutzt die Werte bis gestern.</p>
+      </div>
+    </section>
+
+    <section class="spalte">
+      <h2 class="sp">⚡ Sondermeldungen <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="card fbinfo" id="fbi_8">wird geladen …</div>
       <div id="fb_sonderBox"></div>
     </section>
 
     <section class="spalte">
-      <h2 class="sp">🎓 Besondere Videos <small style="font-weight:normal;opacity:.7">(✋ selbst teilen)</small></h2>
+      <h2 class="sp">✋ Zum Selbst-Teilen <span class="apb man">✋ MANUELL POSTEN</span></h2>
+      <div class="card fbinfo"><b>Wird nicht automatisch gepostet.</b> Hier liegt alles, was du bei Bedarf selbst teilst: Frost-/Nebel-Hinweis, Special-Videos, Tagesbild und „Max erklärt“.</div>
+      <div id="fb_frostBox"></div>
+      <div id="fb_specialBox"></div>
+      <div class="card ruhig">
+        <div class="vhead">🖼️ Tagesbild <small style="font-weight:normal;opacity:.75">· ✋ Reserve zum Selbst-Teilen</small></div>
+        <div class="datum" id="fb_tDatum">–</div>
+        <img id="fb_bild" alt="Vorhersagebild für Facebook" style="margin-bottom:12px">
+        <textarea id="fb_text" aria-label="Beitragstext"></textarea>
+        <div class="btns">
+          <button class="prim" id="fb_teilen">📤 Teilen (Bild + Text)</button>
+          <button class="sec" id="fb_kopieren">📋 Text kopieren</button>
+          <a class="btn sec" id="fb_laden" download="wetter-bad-koenig.jpg">💾 Bild speichern</a>
+        </div>
+        <p class="hint">Wird nicht automatisch gepostet – nur falls du mal zusätzlich etwas teilen willst.
+          Am Handy: „Teilen“ → Facebook → als Seite posten. Übernimmt Facebook den Text nicht: vorher „Text kopieren“.</p>
+      </div>
       <div class="card">
         <div class="vhead" id="fb_thTitel">🎓 Max erklärt</div>
         <div class="datum" id="fb_thDatum">Noch kein Themenvideo vorhanden.</div>
@@ -2801,14 +2842,6 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         </div>
         <button class="sec" id="fb_thNeu" style="width:100%;margin-top:8px">🔄 Themenvideo neu erstellen</button>
         <p class="hint" id="fb_thNeuSt">Baut das Themenvideo neu (ca. 8–12 Min.). Wird <b>nicht</b> automatisch gepostet.</p>
-      </div>
-      <div class="card" id="fb_jahrCard">
-        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🎆 Jahresrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 30.12. um 18 Uhr</small></div>
-        <div class="datum" id="fb_jDatum">noch nicht erstellt</div>
-        <video id="fb_jVid" controls playsinline preload="metadata" hidden></video>
-        <div class="btns"><button class="sec" id="fb_jNeu" style="grid-column:1 / -1">🔄 Vorschau neu erstellen (ohne Posten)</button>
-          <a class="btn sec" id="fb_jLaden" download="wetterjahr-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
-        <p class="hint" id="fb_jSt">Wird am 30.12. automatisch mit allen Werten bis 29.12. gebaut. Die Vorschau nutzt die Werte bis gestern.</p>
       </div>
     </section>
 
@@ -3928,6 +3961,21 @@ function fbInit(){
     var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Story', '🎥 Video', '🖼️ Story', '🎥 Video', '🎥 Video', '🖼️ Bild'];
     var FB = '<span class="pf fb" title="Facebook">f</span>', IG = '<span class="pf ig" title="Instagram">ig</span>';
     var wo = [FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG];
+    var postTxt = ['🤖 Autopost täglich 7 Uhr (Sa/So 8 Uhr) · Facebook + Reel auf Instagram', '🤖 Autopost täglich 7 Uhr (Sa/So 8 Uhr) mit dem Wettervideo', '🤖 Autopost täglich 12 Uhr', '🤖 Autopost täglich 12 Uhr mit der Mittagskarte',
+      '🤖 Autopost Mo–Sa 19 Uhr (sonntags nicht)', '🤖 Autopost Mo–Sa 19 Uhr mit dem Abendvideo', '🤖 Autopost sonntags 20 Uhr', '🤖 Autopost am 30.12. um 18 Uhr', '🤖 Autopost nur amtliche DWD-Warnungen (Prüfung alle 15 Min.) · übrige Hinweise ✋ selbst teilen'];
+    var erstTxt = ['täglich ca. 6:30 Uhr', 'täglich ca. 6:30 Uhr (mit dem Wettervideo)', 'täglich ca. 12 Uhr', 'täglich ca. 12 Uhr (mit der Mittagskarte)', 'Mo–Sa ca. 19 Uhr', 'Mo–Sa ca. 19 Uhr (mit dem Abendvideo)', 'sonntags ca. 20 Uhr', 'am 30.12. um 17:15 Uhr', 'laufend alle 15 Minuten'];
+    quellen.forEach(function (x, i) {
+      var el = document.getElementById('fbi_' + i); if (!el) return;
+      var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: 'noch nicht erstellt', cls: '' }, g = gepostet(i);
+      el.innerHTML = '<table>' +
+        '<tr><td>Beitrag</td><td><b>' + namen[i] + '</b></td></tr>' +
+        '<tr><td>Wo</td><td>' + wo[i] + ' · ' + format[i] + '</td></tr>' +
+        '<tr><td>Posten</td><td><b>' + postTxt[i] + '</b></td></tr>' +
+        '<tr><td>Wird erstellt</td><td>' + erstTxt[i] + '</td></tr>' +
+        '<tr><td>Zuletzt erstellt</td><td class="' + e.cls + '">' + e.t + '</td></tr>' +
+        '<tr><td>Zuletzt gepostet</td><td class="' + g.cls + '">' + g.t + '</td></tr>' +
+        '<tr><td>Nächster Post</td><td><b>' + plan(i) + '</b></td></tr></table>';
+    });
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
       return '<tr><td>' + namen[i] + '</td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
