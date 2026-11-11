@@ -2325,7 +2325,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 10.11.2026</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2423,9 +2423,10 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <details><summary>Facebook- &amp; Instagram-Zeitplan (Seite „Private Wetterstation Bad König“, Instagram @wetterstation_badkoenig)</summary>
 <table><tr><th>Wann</th><th>Was</th><th>Wie</th></tr>
 <tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Wettervideo (Facebook + Instagram-Reel)</td><td>automatisch</td></tr>
-<tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Instagram-Story „Odenwald-Wetter heute“ (nur Instagram, 24 h sichtbar) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
+<tr><td>Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td>Morgen-Story „Odenwald-Wetter heute“ (Facebook + Instagram, 24 h sichtbar) <span class="tg">neu 12.11.</span></td><td>automatisch</td></tr>
 <tr><td>Mittags 12 Uhr</td><td>Mittagskarte „Nachmittag im Odenwaldkreis“: Reliefkarte mit den Werten bis zum Abend je Ort + Messwert der Station</td><td>automatisch</td></tr>
-<tr><td>19 Uhr (Mo–Sa)</td><td>Abendvideo mit Max aus dem Studio + Abend-Story (Instagram), freitags Wochenende; sonntags nicht</td><td>automatisch</td></tr>
+<tr><td>Mittags 12 Uhr</td><td>Mittags-Story: die Mittagskarte im Hochformat (Facebook + Instagram) <span class="tg">neu 12.11.</span></td><td>automatisch</td></tr>
+<tr><td>19 Uhr (Mo–Sa)</td><td>Abendvideo mit Max aus dem Studio + Abend-Story (Facebook + Instagram), freitags Wochenende; sonntags nicht</td><td>automatisch</td></tr>
 <tr><td>So 20 Uhr</td><td>Wochenausblick-Video</td><td>automatisch</td></tr>
 <tr><td>30.12. 18 Uhr</td><td>Jahresrückblick-Video mit Max (Facebook + Instagram) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
 <tr><td>sofort</td><td>amtliche DWD-Warnungen</td><td>automatisch</td></tr>
@@ -2466,6 +2467,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>00:35 Uhr</small></td><td><b>Drei Storys am Tag auch auf Facebook.</b> Morgen-Story (7 Uhr, Sa/So 8 Uhr) und Abend-Story (19 Uhr, Mo–Sa) gehen jetzt zusätzlich zu Instagram auch als Story auf die Facebook-Seite. Neu: <b>Mittags-Story</b> um 12 Uhr – die Mittagskarte im Hochformat 1080×1920 (fb/mittagstory.jpg) auf Facebook und Instagram; der normale Mittagsbeitrag bleibt. Facebook und Instagram werden je Story getrennt gemerkt (gepostet.json: fb_story, fb_mittagstory, fb_abendstory), damit ein Fehler auf einer Plattform die andere nicht blockiert; Push meldet, wo die Story online ging. Keine neuen cron-job.org-Weckrufe nötig. Zentrale: Übersicht mit Zeile „Mittags-Story“, alle Storys mit f + ig, neue Vorschau-Karte „Mittags-Story“</td></tr>
 <tr><td>10.11.2026<br><small>20:40 Uhr</small></td><td>Neuer Veranstaltungs-Tipp für Max: Lichterpfad „Christmas Lights“ im Kurpark an den Seen in Bad König, 13.11.2026 bis 10.01.2027, täglich ab 17 Uhr (letzter Einlass 20 Uhr), Kinder bis 14 Jahre frei, Hunde willkommen (Infos: christmas-lights.de). Max kündigt es ab 11.11. an („morgen öffnet …“ am 12.11.) und nennt es ab dem 13.11. als Tipp des Tages; auch im Wochenausblick. Eingetragen in data/termine.json (sichtbar unter „🎪 Termine für Max“)</td></tr>
 <tr><td>10.11.2026<br><small>19:30 Uhr</small></td><td>Dark Mode nachgebessert: Die Tageskarten und der große Tageskopf im Vorhersage-Tab blieben im Dunkeln hell (Farbverläufe), dadurch war die hellgraue Schrift kaum lesbar. Helle Farbverläufe werden jetzt im Dark Mode automatisch in dunkle Töne umgefärbt (Farbton bleibt erkennbar), der helle Deko-Kreis im Tageskopf ist nur noch angedeutet; mittelgraue Schrift wird zusätzlich aufgehellt. Gilt für alle Seiten mit Dark Mode. Service-Worker-Cache auf v46</td></tr>
 <tr><td>10.11.2026<br><small>18:50 Uhr</small></td><td><b>Dark Mode für wetter-badkoenig.de</b>: Die Seite wird ab Sonnenuntergang in Bad König automatisch dunkel (dunkles Blaugrau, hellere Kästen, hellgraue Schrift) und ab Sonnenaufgang wieder hell. Neuer runder Knopf oben rechts (🌙/☀️) zum Umschalten von Hand; die Wahl gilt bis zum nächsten Sonnenauf- bzw. -untergang. Gilt für die Startseite mit allen Tabs, die Themenseiten El Niño, Polarwirbel, Vulkane, Sommer 2026, das Impressum und den Widget-Baukasten. Fremde Inhalte (Radar, Webcams, YouTube, DWD-Karten) bleiben unverändert. Die Zentrale bekommt keinen Dark Mode. Technik: neue Datei theme.js, Service-Worker-Cache auf v45</td></tr>
@@ -2696,11 +2698,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <p class="hint" id="fb_vNeuSt">Baut Vorhersage und Video neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
       <div class="card" id="fb_storyCard" hidden>
-        <div class="vhead"><span class="pf ig">ig</span> 📸 Morgen-Story <small style="font-weight:normal;opacity:.75">· nur Instagram · 🤖 mit dem Morgenvideo</small></div>
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Morgen-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Morgenvideo</small></div>
         <div class="datum" id="fb_sDatum"></div>
         <img id="fb_story" alt="Instagram-Story von heute" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <div class="btns"><a class="btn sec" id="fb_sLaden" download="odenwald-wetter-story.jpg" style="grid-column:1 / -1">💾 Story-Bild speichern</a></div>
-        <p class="hint">Verschwindet auf Instagram nach 24 Stunden von selbst.</p>
+        <p class="hint">Verschwindet auf Facebook und Instagram nach 24 Stunden von selbst.</p>
       </div>
     </section>
 
@@ -2717,7 +2719,12 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         </div>
         <p class="hint">Reliefkarte des Kreises mit den Höchstwerten bis zum Abend, dazu der Messwert unserer Station.</p>
         <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagskarte jetzt neu erstellen</button>
-        <p class="hint" id="fb_mNeuSt">Baut Karte und Tagesbild mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
+        <p class="hint" id="fb_mNeuSt">Baut Karte, Mittags-Story und Tagesbild mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
+      </div>
+      <div class="card">
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Mittags-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit der Mittagskarte</small></div>
+        <img id="fb_msBild" alt="Mittags-Story für Facebook und Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
+        <p class="hint">Die Mittagskarte im Story-Format. Verschwindet nach 24 Stunden.</p>
       </div>
       <div class="card ruhig">
         <div class="vhead">🖼️ Tagesbild <small style="font-weight:normal;opacity:.75">· ✋ Reserve zum Selbst-Teilen</small></div>
@@ -2751,8 +2758,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <p class="hint" id="fb_avNeuSt">Baut das Abendvideo neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
       <div class="card">
-        <div class="vhead"><span class="pf ig">ig</span> 🌙 Abend-Story <small style="font-weight:normal;opacity:.75">· nur Instagram · 🤖 mit dem Abendvideo</small></div>
-        <img id="fb_asBild" alt="Abend-Story für Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🌙 Abend-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Abendvideo</small></div>
+        <img id="fb_asBild" alt="Abend-Story für Facebook und Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <p class="hint">Das Wetter für morgen auf einen Blick. Verschwindet nach 24 Stunden.</p>
       </div>
       <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Beitragstext zum Abendvideo erscheint um 19 Uhr.</div></div>
@@ -2815,7 +2822,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <tr><td>6:30</td><td>Vorhersage holen, Bilder und Morgenvideo bauen</td><td>–</td></tr>
       <tr><td>7:00 <small>Mo–Fr</small></td><td>Morgenvideo + Morgen-Story posten</td><td>Wettervideo Facebook Weckruf · 7:02</td></tr>
       <tr><td>8:00 <small>Sa/So</small></td><td>Morgenvideo + Morgen-Story posten</td><td>Wochenende Morgen Weckruf · 8:02</td></tr>
-      <tr><td>12:00</td><td>Mittagskarte bauen und posten; Special-Video bei neuer DWD-Warnung</td><td>Mittag Weckruf · 12:02</td></tr>
+      <tr><td>12:00</td><td>Mittagskarte + Mittags-Story bauen und posten; Special-Video bei neuer DWD-Warnung</td><td>Mittag Weckruf · 12:02</td></tr>
       <tr><td>15:00</td><td>Special-Video, falls eine neue Warnung dazukommt</td><td>–</td></tr>
       <tr><td>19:00 <small>Mo–Sa</small></td><td>Abendvideo aus dem Studio + Abend-Story bauen und posten</td><td>Abend Weckruf · 19:02</td></tr>
       <tr><td>20:00 <small>So</small></td><td>Wochenausblick mit Max</td><td>Sonntag Wochenausblick Weckruf · 20:02</td></tr>
@@ -3875,11 +3882,11 @@ function fbInit(){
 
 (function () {
   var q = '?v=' + Date.now(), quellen = [
-    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte', 'https://wetter-badkoenig.de/fb/mittag.json'],
+    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte', 'https://wetter-badkoenig.de/fb/mittag.json'], ['📸 Mittags-Story', 'https://wetter-badkoenig.de/fb/mittagstory.json'],
     ['🌙 Abendvideo (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'], ['🌙 Abend-Story', 'https://wetter-badkoenig.de/fb/abendstory.json'],
     ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
-  var postKey = ['video', 'story', 'mittag', 'abend', 'abendstory', 'woche', 'jahr', 'sonder'];   // Schlüssel in gepostet.json
-  var planKey = ['video', 'story', 'mittag', 'abend', 'abend', 'woche', 'jahr', 'sonder'];        // fester Termin
+  var postKey = ['video', 'story', 'mittag', 'mittagstory', 'abend', 'abendstory', 'woche', 'jahr', 'sonder'];   // Schlüssel in gepostet.json
+  var planKey = ['video', 'story', 'mittag', 'mittagstory', 'abend', 'abend', 'woche', 'jahr', 'sonder'];        // fester Termin
   Promise.all(quellen.map(function (x) {
     return fetch(x[1] + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   }).concat([fetch('https://wetter-badkoenig.de/fb/gepostet.json' + q, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })])).then(function (res) {
@@ -3899,13 +3906,13 @@ function fbInit(){
         var d = new Date(Math.ceil(jetzt.getTime() / 9e5) * 9e5 + t * 6e4), o = bt(d), h = +o.hour, m = +o.minute, wd = o.weekday.replace('.', '');
         var we = wd === 'Sa' || wd === 'So', ok = false;
         if (k === 'video' || k === 'story') ok = m === 0 && h === (we ? 8 : 7);
-        else if (k === 'mittag') ok = m === 0 && h === 12;
+        else if (k === 'mittag' || k === 'mittagstory') ok = m === 0 && h === 12;
         else if (k === 'abend') ok = m === 0 && h === 19 && wd !== 'So';
         else if (k === 'woche') ok = m === 0 && h === 20 && wd === 'So';
         else if (k === 'jahr') ok = m === 0 && h === 18 && o.day === '30' && o.month === '12';
         if (!ok) continue;
         var tag = o.year + '-' + o.month + '-' + o.day;
-        if (G[k] === tag) continue;
+        if (G[k] === tag || (k === 'mittagstory' && G.mittagstory === tag)) continue;
         return (tag === heute ? 'heute' : o.weekday + ', ' + o.day + '.' + o.month + '.') + ', ' + o.hour + ':' + o.minute + ' Uhr';
       }
       return '–';
@@ -3916,11 +3923,11 @@ function fbInit(){
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
       return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
-    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🗺️ Mittagskarte (Rest des Tages)', '🎙️ Abendvideo mit Max (Studio)', '🌙 Abend-Story (Wetter morgen)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen'];
-    var art = ['🤖', '🤖', '🤖', '🤖 Mo–Sa', '🤖 Mo–Sa', '🤖', '🤖 30.12.', '🤖 bei DWD'];
-    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🎥 Video', '🖼️ Story', '🎥 Video', '🎥 Video', '🖼️ Bild'];
+    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🗺️ Mittagskarte (Rest des Tages)', '📸 Mittags-Story (Karte)', '🎙️ Abendvideo mit Max (Studio)', '🌙 Abend-Story (Wetter morgen)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen'];
+    var art = ['🤖', '🤖', '🤖', '🤖', '🤖 Mo–Sa', '🤖 Mo–Sa', '🤖', '🤖 30.12.', '🤖 bei DWD'];
+    var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Story', '🎥 Video', '🖼️ Story', '🎥 Video', '🎥 Video', '🖼️ Bild'];
     var FB = '<span class="pf fb" title="Facebook">f</span>', IG = '<span class="pf ig" title="Instagram">ig</span>';
-    var wo = [FB + IG, IG + ' <small>nur Instagram</small>', FB + IG, FB + IG, IG + ' <small>nur Instagram</small>', FB + IG, FB + IG, FB + IG];
+    var wo = [FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG, FB + IG];
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
       return '<tr><td>' + namen[i] + '</td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
@@ -4314,6 +4321,7 @@ neuKnopf('avNeu', 'avNeuSt', 'abend');
     el.className = 'datum' + (heute ? '' : ' alt');
     document.getElementById('fb_mkKopie').onclick = function () { navigator.clipboard.writeText(j.text || '').then(function () { alert('Text kopiert'); }); };
   }).catch(function () { document.getElementById('fb_mkDatum').textContent = 'Noch keine Mittagskarte vorhanden – kommt um 12 Uhr.'; });
+  fetch(B + 'mittagstory.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (r.ok) document.getElementById('fb_msBild').src = B + 'mittagstory.jpg?v=' + v; }).catch(function () {});
   fetch(B + 'abendstory.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (r.ok) document.getElementById('fb_asBild').src = B + 'abendstory.jpg?v=' + v; }).catch(function () {});
 })();
 neuKnopf('mNeu', 'mNeuSt', 'mittag');
