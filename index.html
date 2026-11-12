@@ -2507,6 +2507,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Auch beim Jahresrückblick stand unter „Nächster Post“ nichts (Suche nur 8 Tage voraus). Der Termin 30.12., 18 Uhr wird jetzt direkt berechnet.</td></tr>
 <tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Beim Monatsrückblick stand unter „Nächster Post“ nichts, weil die Suche nur 8 Tage vorausschaute. Der Termin (1. des Monats, 15 Uhr) wird jetzt direkt berechnet.</td></tr>
 <tr><td>12.11.2026<br><small>23:02 Uhr</small></td><td><b>Neu: Monatsrückblick-Video mit Max aus dem Studio.</b> Am 1. jedes Monats (zuerst 01.12.2026 für den November) baut der neue Ablauf monatsrueckblick.yml um ca. 13:30 bzw. 14:15 Uhr aus dem eigenen Wetterarchiv ein Video (ca. 1,5–2 Min.): Begrüßung, „Der Monat in Zahlen“ (Ø Temperatur, wärmster/kältester Tag, Regen und Regentage, Frost- und Sommertage, stärkste Böe), Temperaturkurve des Monats, Regen je Tag, Vergleich mit dem Klimamittel des DWD und dem Vorjahresmonat (bis eigene Daten da sind von der Nachbarstation IBADKN32), besondere Momente (Jahresrekorde bisher, erster Herbstfrost, Frostserie, Trockenphase), Ausblick auf den neuen Monat (Klimamittel; im Dezember ehrliche Antwort zu weißer Weihnacht) und Zuschauerfrage. Autopost auf Facebook + Instagram ab 15 Uhr über den 15-Minuten-Lauf (kein eigener cron-job.org-Weckruf nötig), höchstens einmal je Monat. Kommt in die Videothek der Website als „📆/📅 Monatsrückblick“. Zentrale: eigener Abschnitt im Facebook-Bereich mit Vorschau, Video speichern und Knopf „Monatsrückblick jetzt neu erstellen“ (postet nicht), Zeile in Übersicht und Ablauf-Tabelle. Testvideo mit dem Oktober geprüft. Website-Stand 23:05, Service-Worker-Cache v59. Technik: monatsrueckblick.py, fb_senden.py (monat), wetter_video.py (archiv), video-neu.yml (monat)</td></tr>
 <tr><td>12.11.2026<br><small>22:50 Uhr</small></td><td>(Zentrale) <b>Verworfene Ideen aufgeräumt.</b> Beim nächsten Öffnen werden einmalig aus „📝 Notizen“ und „💡 Ideen“ entfernt: „Heute auf einen Blick“ und wischbare 24-h-Leiste (verworfen 08.11.), Tageskarten zum Antippen, Hinweis-Chips, gefühlte Temperatur und Wind (verworfen 12.11.) sowie TikTok (aufgegeben 06.11.). Bleiben: Regenbalken pro Stunde und Vergleich Station gemessen vs. vorhergesagt. Auch aus den Startlisten entfernt.</td></tr>
@@ -4136,6 +4137,13 @@ function fbInit(){
       var k = planKey[i], jetzt = new Date();
       if (k === null) return 'nur per Knopf';
       if (k === 'sonder') return 'laufend (alle 15 Min.)';
+      if (k === 'jahr') {   // am 30.12. um 18 Uhr – liegt meist weit voraus, daher direkt berechnen
+        var jb = jetzt.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' }), jy = +jb.slice(0, 4);
+        var jh = +jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Berlin' }).slice(0, 2);
+        if (jb === jy + '-12-30' && G.jahr !== jb) return jh < 18 ? 'heute, 18:00 Uhr' : 'heute, sobald fertig';
+        var zj = (jb > jy + '-12-30' || G.jahr === jy + '-12-30') ? jy + 1 : jy, jd = new Date(Date.UTC(zj, 11, 30));
+        return ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'][jd.getUTCDay()] + ', 30.12.' + zj + ', 18:00 Uhr';
+      }
       if (k === 'monat') {   // am 1. um 15 Uhr – liegt meist weiter als 8 Tage voraus, daher direkt berechnen
         var hb = jetzt.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' }).split('-'), y = +hb[0], mo = +hb[1], tg = +hb[2];
         var std = +jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Berlin' }).slice(0, 2);
