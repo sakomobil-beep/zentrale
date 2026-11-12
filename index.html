@@ -2149,6 +2149,8 @@ nav #fsBox button:hover{background:#475569}
 #lnList table{width:100%;border-collapse:collapse}#lnList td,#lnList th{padding:6px 8px;border-bottom:1px solid rgba(148,163,184,.25);text-align:left;vertical-align:top}.lntag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;margin-right:4px;color:#fff}.lntag.starlink{background:#334155}.lntag.spacex{background:#111827}.lntag.nasa{background:#1d4ed8}.lntag.esa{background:#0e7490}.lnst{font-size:12px;color:var(--mut)}
 @media(max-width:700px){#lnList .lnpad{display:none}.lnnext{flex-direction:column;align-items:flex-start}}
 .wschart{display:flex;align-items:flex-end;gap:3px;height:120px;margin:6px 0 4px;padding-bottom:16px;position:relative}.wschart i{flex:1;background:#3E8FCB;border-radius:3px 3px 0 0;min-height:2px;position:relative}.wschart i.we{background:#7FB3DD}.wschart i span{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-size:9px;opacity:.6;font-style:normal;white-space:nowrap}.wsrow{font-size:13px;opacity:.7;margin-top:12px}.wsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:14px}.wsgrid h4{margin:0 0 6px;font-size:14px}.wsl{display:flex;align-items:center;gap:8px;font-size:13px;margin:3px 0}.wsl .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wsl .b{height:6px;background:#3E8FCB;border-radius:3px;opacity:.7}.wsl .c{min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
+.ue-link{color:inherit;font-weight:600;text-decoration:underline;text-decoration-style:dotted;cursor:pointer}
+.ue-link:hover{color:#1E6FB0}
 </style>
 <style id="mobil">
 @media(max-width:760px){
@@ -2478,6 +2480,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>14:22 Uhr</small></td><td>(Zentrale) Tab „📈 Website“, Facebook-Bereich: <b>einheitliche Namen</b> – Übersichtstabelle, Abschnittsüberschriften, Karten und Videotitel heißen jetzt überall gleich (u. a. „🎬 Wettervideo mit Max“ statt „Video-Wettervorhersage morgens“, „🎙️ Abendvideo mit Max (Studio)“, „📸 Morgen-Story (Wetter heute)“, „🗺️ Mittagskarte (Rest des Tages)“, „📸 Mittags-Story (Karte)“, „🌙 Abend-Story (Wetter morgen)“). <b>Sprung aus der Übersicht:</b> Klick auf einen Beitrag in „📋 Übersicht Facebook &amp; Instagram“ scrollt direkt zu seinem Abschnitt</td></tr>
 <tr><td>12.11.2026<br><small>13:36 Uhr</small></td><td><b>Website breiter.</b> Höchstbreite der Seite von 1040 auf 1280 Pixel erhöht (wie odenwaldwetter.de) – am PC weniger leerer Rand links/rechts. Handy und schmale Bildschirme unverändert; Fließtexte bleiben lesbar begrenzt. Website-Stand 13:36 Uhr, Service-Worker-Cache v52</td></tr>
 <tr><td>12.11.2026<br><small>08:20 Uhr</small></td><td><b>Website-Stand in der Fußzeile.</b> Ganz unten auf der Startseite (unter dem Besuchszähler) steht jetzt „Website-Stand: TT.MM.JJJJ, HH:MM Uhr“. Der Stand wird bei jeder Änderung an der Website von Hand mitgesetzt (nicht automatisch, weil die Website durch die Wetterdaten alle paar Minuten neu veröffentlicht wird – dann stünde dort immer „gerade eben“). Service-Worker-Cache v51</td></tr>
 <tr><td>12.11.2026<br><small>08:12 Uhr</small></td><td><b>Website nutzt dieselbe Regen-Einstufung wie Max.</b> Vorhersage-Tab (Bad König und Odenwaldkreis), Startseite „Was kommt“ und Tageskarten übernehmen für heute bis übermorgen Stufe, Regenrisiko, Regenmenge, Wettersymbol und die Stunden-Regenbalken aus fb/daten.json (dieselben Odenwald-Stundenwerte wie Max und Facebook/Instagram). Neue Texte: „Niederschlagsfrei.“ / „Meist trocken, vereinzelt ist ein kurzer Schauer möglich (bis X %).“ / „Örtlich Schauer vor allem am …, zusammen um X mm – nicht überall nass.“ / „Regen …“ / „Schauer und Gewitter …“, bei Schnee nur oben „Auf den Höhen als Schnee.“ Temperaturen, Wind und alles andere unverändert; ab Tag 4 bleibt die Tendenz-Karte. Die Daten werden mit jedem Beitragslauf (6:30, 7, 12, 19 Uhr) erneuert. Fehlen sie, rechnet die Seite wie bisher. Technik: index.html (NIED, niedApply, rainPhrase), Service-Worker-Cache v50</td></tr>
@@ -2750,7 +2753,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 
   <div class="raster">
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_0" style="scroll-margin-top:12px">
       <h2 class="sp">🎬 Wettervideo mit Max <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_0">wird geladen …</div>
       <div class="card" id="fb_vidCard" hidden>
@@ -2767,11 +2770,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_1" style="scroll-margin-top:12px">
       <h2 class="sp">📸 Morgen-Story (Wetter heute) <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_1">wird geladen …</div>
       <div class="card" id="fb_storyCard" hidden>
-        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Morgen-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Morgenvideo</small></div>
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Morgen-Story (Wetter heute) <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Morgenvideo</small></div>
         <div class="datum" id="fb_sDatum"></div>
         <img id="fb_story" alt="Instagram-Story von heute" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <div class="btns"><a class="btn sec" id="fb_sLaden" download="odenwald-wetter-story.jpg" style="grid-column:1 / -1">💾 Story-Bild speichern</a></div>
@@ -2779,11 +2782,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_2" style="scroll-margin-top:12px">
       <h2 class="sp">🗺️ Mittagskarte (Rest des Tages) <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_2">wird geladen …</div>
       <div class="card" id="fb_mkCard">
-        <div class="vhead">🗺️ Mittagskarte · Rest des Tages <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 12 Uhr</small></div>
+        <div class="vhead">🗺️ Mittagskarte (Rest des Tages) <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 12 Uhr</small></div>
         <div class="datum" id="fb_mkDatum">wird geladen …</div>
         <img id="fb_mkBild" alt="Karte des Odenwaldkreises mit dem Rest des Tages" style="margin-bottom:12px">
         <textarea id="fb_mkText" aria-label="Text der Mittagskarte"></textarea>
@@ -2797,21 +2800,21 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_3" style="scroll-margin-top:12px">
       <h2 class="sp">📸 Mittags-Story (Karte) <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_3">wird geladen …</div>
       <div class="card">
-        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Mittags-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit der Mittagskarte</small></div>
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Mittags-Story (Karte) <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit der Mittagskarte</small></div>
         <img id="fb_msBild" alt="Mittags-Story für Facebook und Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <p class="hint">Die Mittagskarte im Story-Format. Verschwindet nach 24 Stunden.</p>
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_4" style="scroll-margin-top:12px">
       <h2 class="sp">🎙️ Abendvideo mit Max (Studio) <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_4">wird geladen …</div>
       <div class="card">
-        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max aus dem Studio <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr</small></div>
+        <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max (Studio) <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr</small></div>
         <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – kommt um 19 Uhr.</div>
         <video id="fb_avVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns" id="fb_avBtns" hidden>
@@ -2827,17 +2830,17 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Beitragstext zum Abendvideo erscheint um 19 Uhr.</div></div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_5" style="scroll-margin-top:12px">
       <h2 class="sp">🌙 Abend-Story (Wetter morgen) <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_5">wird geladen …</div>
       <div class="card">
-        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🌙 Abend-Story <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Abendvideo</small></div>
+        <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🌙 Abend-Story (Wetter morgen) <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Abendvideo</small></div>
         <img id="fb_asBild" alt="Abend-Story für Facebook und Instagram" style="display:block;width:100%;max-width:230px;margin:8px auto;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.2)">
         <p class="hint">Das Wetter für morgen auf einen Blick. Verschwindet nach 24 Stunden.</p>
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_6" style="scroll-margin-top:12px">
       <h2 class="sp">📅 Wochenausblick mit Max <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_6">wird geladen …</div>
       <div class="card">
@@ -2853,7 +2856,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_7" style="scroll-margin-top:12px">
       <h2 class="sp">🎆 Jahresrückblick mit Max <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_7">wird geladen …</div>
       <div class="card" id="fb_jahrCard">
@@ -2866,7 +2869,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       </div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_8" style="scroll-margin-top:12px">
       <h2 class="sp">⚡ Sondermeldungen <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_8">wird geladen …</div>
       <div id="fb_sonderBox"></div>
@@ -3975,9 +3978,9 @@ function fbInit(){
 
 (function () {
   var q = '?v=' + Date.now(), quellen = [
-    ['🎬 Wettervideo', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Story', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte', 'https://wetter-badkoenig.de/fb/mittag.json'], ['📸 Mittags-Story', 'https://wetter-badkoenig.de/fb/mittagstory.json'],
-    ['🌙 Abendvideo (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'], ['🌙 Abend-Story', 'https://wetter-badkoenig.de/fb/abendstory.json'],
-    ['📅 Wochenausblick', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen (Prüfung)', 'https://wetter-badkoenig.de/fb/sonder.json']];
+    ['🎬 Wettervideo mit Max', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Morgen-Story (Wetter heute)', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte (Rest des Tages)', 'https://wetter-badkoenig.de/fb/mittag.json'], ['📸 Mittags-Story (Karte)', 'https://wetter-badkoenig.de/fb/mittagstory.json'],
+    ['🎙️ Abendvideo mit Max (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'], ['🌙 Abend-Story (Wetter morgen)', 'https://wetter-badkoenig.de/fb/abendstory.json'],
+    ['📅 Wochenausblick mit Max', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick mit Max', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen', 'https://wetter-badkoenig.de/fb/sonder.json']];
   var postKey = ['video', 'story', 'mittag', 'mittagstory', 'abend', 'abendstory', 'woche', 'jahr', 'sonder'];   // Schlüssel in gepostet.json
   var planKey = ['video', 'story', 'mittag', 'mittagstory', 'abend', 'abend', 'woche', 'jahr', 'sonder'];        // fester Termin
   Promise.all(quellen.map(function (x) {
@@ -4038,7 +4041,7 @@ function fbInit(){
     });
     document.getElementById('fb_letzteListe').innerHTML = quellen.map(function (x, i) {
       var j = res[i], e = j && j.erstellt ? zeitTxt(j.erstellt) : { t: '–', cls: '' }, g = gepostet(i);
-      return '<tr><td>' + namen[i] + '</td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
+      return '<tr><td><a href="#fbs_' + i + '" class="ue-link" onclick="var z=document.getElementById(\'fbs_' + i + '\');if(z){z.scrollIntoView({behavior:\'smooth\',block:\'start\'});}return false;">' + namen[i] + '</a></td><td>' + wo[i] + '</td><td>' + format[i] + '</td><td>' + art[i] + '</td><td class="' + e.cls + '">' + e.t + '</td><td class="' + g.cls + '">' + g.t + '</td><td>' + plan(i) + '</td></tr>';
     }).join('');
   });
 })();
@@ -4066,7 +4069,7 @@ function fbInit(){
     vname = n; var src = 'https://wetter-badkoenig.de/fb/' + n + '.mp4?v=' + v;
     document.getElementById('fb_vid').src = src; document.getElementById('fb_vLaden').href = src;
     var t = document.getElementById('fb_vTitel');
-    t.textContent = '🎬 Video-Wettervorhersage morgens · ' + Math.round(j.dauer) + ' Sek.';
+    t.textContent = '🎬 Wettervideo mit Max · ' + Math.round(j.dauer) + ' Sek.';
     t.className = 'vhead';
     if (j.erstellt) setzeDatum(document.getElementById('fb_vDatum'), j.erstellt); else document.getElementById('fb_vDatum').hidden = true;
     document.getElementById('fb_vidCard').hidden = false;
@@ -4401,7 +4404,7 @@ neuKnopf('woNeu', 'woNeuSt', 'woche');
     var src = 'https://wetter-badkoenig.de/fb/abendvideo.mp4?v=' + v, V = document.getElementById('fb_avVid');
     V.src = src; V.hidden = false; document.getElementById('fb_avBtns').hidden = false; document.getElementById('fb_avLaden').href = src;
     document.getElementById('fb_avFeed').href = 'https://wetter-badkoenig.de/fb/abendvideo-feed.mp4?v=' + v;
-    document.getElementById('fb_avTitel').firstChild.textContent = '🎙️ Abendvideo mit Max aus dem Studio · ' + Math.round(j.dauer) + ' Sek. ';
+    document.getElementById('fb_avTitel').firstChild.textContent = '🎙️ Abendvideo mit Max (Studio) · ' + Math.round(j.dauer) + ' Sek. ';
     var d = new Date(j.erstellt);
     document.getElementById('fb_avDatum').textContent = '📅 Erstellt ' + d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) + ', ' +
       d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
