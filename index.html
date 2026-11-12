@@ -2211,6 +2211,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #fbSec textarea { width:100%; min-height:180px; border:1px solid #cfdbe8; border-radius:12px; padding:12px;
              font:inherit; font-size:.95rem; color:var(--text); resize:vertical; }
 #fbSec .btns { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+#fbSec button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – Text kopieren und Bild/Video speichern reichen */
 #fbSec button, #fbSec a.btn { border:0; border-radius:12px; padding:14px 10px; font:inherit; font-weight:700; font-size:1rem;
                   cursor:pointer; text-align:center; text-decoration:none; }
 #fbSec .prim { background:#1877f2; color:#fff; grid-column:1 / -1; font-size:1.1rem; }
@@ -2268,7 +2269,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:11 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:14 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2345,7 +2346,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:11 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:14 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2507,6 +2508,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>23:14 Uhr</small></td><td>(Zentrale) Facebook-Bereich: alle „📤 … teilen“-Knöpfe ausgeblendet (Wettervideo, Abendvideo, Wochenausblick, Mittagsbild, Themenvideo, Special, Abendbeitrag, Frost-Hinweis, Sondermeldungen). Es bleiben „📋 Text kopieren“ und „💾 Bild/Video speichern“.</td></tr>
 <tr><td>12.11.2026<br><small>23:11 Uhr</small></td><td>(Zentrale) Alle Neu-erstellen-Knöpfe im Facebook-Bereich tragen jetzt den Zusatz „(ohne Posten)“: Video, Mittagskarte, Abendvideo, Wochenausblick, Jahresrückblick, Monatsrückblick, Themenvideo.</td></tr>
 <tr><td>12.11.2026<br><small>23:10 Uhr</small></td><td>(Zentrale) Fehler behoben: Der Knopf „Monatsrückblick jetzt neu erstellen“ hatte dieselbe interne Kennung wie der Knopf beim Mittagswetter und startete deshalb nichts. Eigene Kennungen vergeben – beide Knöpfe funktionieren getrennt.</td></tr>
 <tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Auch beim Jahresrückblick stand unter „Nächster Post“ nichts (Suche nur 8 Tage voraus). Der Termin 30.12., 18 Uhr wird jetzt direkt berechnet.</td></tr>
@@ -2868,10 +2870,10 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <div class="datum" id="fb_vDatum"></div>
         <video id="fb_vid" controls playsinline preload="metadata"></video>
         <div class="btns">
-          <button class="prim" id="fb_vTeilen">📤 Video teilen</button>
+          <button class="prim teilen" id="fb_vTeilen">📤 Video teilen</button>
           <a class="btn sec" id="fb_vLaden" download="odenwald-wetter.mp4" style="grid-column:1 / -1">💾 Video speichern</a>
         </div>
-        <p class="hint">Geht automatisch auf Facebook und als Reel auf Instagram. Teilen und Speichern nur, falls du es zusätzlich woanders brauchst.</p>
+        <p class="hint">Geht automatisch auf Facebook und als Reel auf Instagram. Speichern nur, falls du es zusätzlich woanders brauchst.</p>
         <button class="sec" id="fb_vNeu" style="width:100%;margin-top:8px">🔄 Video jetzt neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_vNeuSt">Baut Vorhersage und Video neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
@@ -2925,7 +2927,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <div class="datum" id="fb_avDatum">Noch kein Abendvideo vorhanden – kommt um 19 Uhr.</div>
         <video id="fb_avVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns" id="fb_avBtns" hidden>
-          <button class="prim" id="fb_avTeilen">📤 Video teilen</button>
+          <button class="prim teilen" id="fb_avTeilen">📤 Video teilen</button>
           <a class="btn sec" id="fb_avLaden" download="odenwald-abendwetter.mp4">💾 Video speichern</a>
           <a class="btn sec" id="fb_avFeed" download="odenwald-abendwetter-feed.mp4" style="grid-column:1 / -1">💾 Fassung 4:5 für den Instagram-Feed</a>
         </div>
@@ -2955,7 +2957,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <div class="datum" id="fb_woDatum">Noch kein Wochenausblick vorhanden – kommt sonntags um 20 Uhr.</div>
         <video id="fb_woVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns" id="fb_woBtns" hidden>
-          <button class="prim" id="fb_woTeilen">📤 Video teilen</button>
+          <button class="prim teilen" id="fb_woTeilen">📤 Video teilen</button>
           <a class="btn sec" id="fb_woLaden" download="odenwald-wochenausblick.mp4">💾 Video speichern</a>
         </div>
         <button class="sec" id="fb_woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen (ohne Posten)</button>
@@ -3006,7 +3008,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <img id="fb_bild" alt="Vorhersagebild für Facebook" style="margin-bottom:12px">
         <textarea id="fb_text" aria-label="Beitragstext"></textarea>
         <div class="btns">
-          <button class="prim" id="fb_teilen">📤 Teilen (Bild + Text)</button>
+          <button class="prim teilen" id="fb_teilen">📤 Teilen (Bild + Text)</button>
           <button class="sec" id="fb_kopieren">📋 Text kopieren</button>
           <a class="btn sec" id="fb_laden" download="wetter-bad-koenig.jpg">💾 Bild speichern</a>
         </div>
@@ -3019,7 +3021,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <video id="fb_thVid" controls playsinline preload="metadata" hidden></video>
         <textarea id="fb_thText" aria-label="Beitragstext zum Themenvideo" hidden></textarea>
         <div class="btns" id="fb_thBtns" hidden>
-          <button class="prim" id="fb_thTeilen">📤 Video teilen</button>
+          <button class="prim teilen" id="fb_thTeilen">📤 Video teilen</button>
           <button class="sec" id="fb_thKopie">📋 Text kopieren</button>
           <a class="btn sec" id="fb_thLaden" download="max-erklaert.mp4">💾 Video speichern</a>
         </div>
@@ -4267,7 +4269,7 @@ function fbInit(){
     if (j.datum !== heute) return;
     var src = 'https://wetter-badkoenig.de/fb/special.mp4?v=' + v, sb = null, c = document.createElement('div'); c.className = 'card';
     c.innerHTML = '<div class="vhead sp">⚠️ Wetter-Special-Video · ' + Math.round(j.dauer) + ' Sek.</div><div class="datum"></div>' +
-      '<video controls playsinline preload="metadata"></video><div class="btns"><button class="prim">📤 Special teilen</button>' +
+      '<video controls playsinline preload="metadata"></video><div class="btns"><button class="prim teilen">📤 Special teilen</button>' +
       '<a class="btn sec" download="odenwald-wetter-special.mp4" style="grid-column:1 / -1">💾 Video speichern</a></div>';
     c.querySelector('video').src = src; c.querySelector('a').href = src;
     if (j.erstellt) setzeDatum(c.querySelector('.datum'), j.erstellt);
@@ -4305,7 +4307,7 @@ function fbInit(){
     var stand = new Date(j.erstellt).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
     c.className = 'card abend';
     c.innerHTML = '<div class="vhead">🌙 Abendbeitrag – Ausblick</div><div class="datum">' + datumTxt(j.erstellt).t + '</div><img alt="Abendbeitrag"><textarea aria-label="Text des Abendbeitrags" rows="14"></textarea>' +
-      '<div class="btns"><button class="prim">📤 Abendbeitrag teilen</button><button class="sec">📋 Text kopieren</button>' +
+      '<div class="btns"><button class="prim teilen">📤 Abendbeitrag teilen</button><button class="sec">📋 Text kopieren</button>' +
       '<a class="btn sec" download="wetter-abend.jpg">💾 Bild speichern</a></div>' +
       '<p class="hint">Erstellt um ' + stand + ' Uhr · wird automatisch auf Facebook gepostet.</p>';
     c.querySelector('img').src = src; c.querySelector('a').href = src;
@@ -4419,7 +4421,7 @@ function fbInit(){
         '<div class="werte"><span>🌡️ Tiefstwert ' + tt + '</span>' + (frost ? '<span>🧊 Frost</span>' : reif ? '<span>🧊 Reif möglich</span>' : '') +
         (nebel ? '<span>🌫️ Sicht ab ' + (sicht >= 1000 ? Math.round(sicht / 1000) + ' km' : Math.round(sicht / 10) * 10 + ' m') + '</span>' : '') + (glatt ? '<span>⚠️ Glätte</span>' : '') + '</div>' +
         '<img alt="Frost-Hinweis"><textarea aria-label="Text des Frost-Hinweises" rows="12"></textarea>' +
-        '<div class="btns"><button class="prim">📤 Hinweis teilen</button><button class="sec">📋 Text kopieren</button>' +
+        '<div class="btns"><button class="prim teilen">📤 Hinweis teilen</button><button class="sec">📋 Text kopieren</button>' +
         '<a class="btn sec" download="frost-hinweis.jpg">💾 Bild speichern</a></div>' +
         '<p class="hint">Wird nicht automatisch gepostet – du entscheidest selbst. Text vorher gern anpassen.</p>';
       c.querySelector('img').src = src; c.querySelector('a').href = src;
@@ -4454,7 +4456,7 @@ function fbInit(){
       c.innerHTML = '<div class="vhead">' + m.emoji + ' Sondermeldung: ' + m.titel +
         '<span class="badge ' + (m.amtlich ? 'amt">amtliche DWD-Warnung' : 'mod">laut Vorhersage') + '</span></div>' +
         '<div class="datum">' + datumTxt(j.erstellt).t + '</div><img alt="Sondermeldung ' + m.titel + '"><textarea aria-label="Text der Sondermeldung"></textarea>' +
-        '<div class="btns"><button class="prim">📤 Sondermeldung teilen</button><button class="sec">📋 Text kopieren</button>' +
+        '<div class="btns"><button class="prim teilen">📤 Sondermeldung teilen</button><button class="sec">📋 Text kopieren</button>' +
         '<a class="btn sec" download="sondermeldung-' + m.typ + '.jpg">💾 Bild speichern</a></div>' +
         '<p class="hint">Stand ' + stand + ' Uhr · wird stündlich neu geprüft.</p>';
       c.querySelector('img').src = src; c.querySelector('a').href = src;
