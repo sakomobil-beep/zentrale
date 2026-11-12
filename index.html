@@ -2348,7 +2348,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </ul></details>
 <details open><summary>Aktuell (Startseite)</summary><ul>
 <li>Live-Messwerte der Station: aktuelle Werte über den Cloudflare-Zwischenspeicher (Worker „wetter-badkoenig“, wetter-badkoenig.sakomobil.workers.dev, kostenloser Tarif, höchstens 1 WU-Abruf pro Minute, Schlüssel als Geheimnis WU_KEY bei Cloudflare); Tagesverlauf und Reserve: eigene Datei data/live.json (Server holt sie alle 10 Min. bei Weather Underground, cron-job.org „Live-Daten“); nur wenn sie älter als 15 Min. ist, ruft der Besucher selbst bei WU ab <span class="tg">neu 08.11.</span></li>
-<li>Aufbau: amtliche DWD-Warnungen oben, dann Bereiche <b>Jetzt / Heute / Was kommt / Rückblick</b></li>
+<li>Aufbau: amtliche DWD-Warnungen für den ganzen Odenwaldkreis (12 Gemeinden, mit Gebietsangabe) oben, dann Bereiche <b>Jetzt / Heute / Was kommt / Rückblick</b></li>
 <li>Kasten „Jetzt“: Sonnenauf-/-untergang mit Tageslänge, Mondauf-/-untergang, Mondphase</li>
 <li>Frostwarner (Hinweis bei Frost/Glätte)</li>
 <li>Vergleichstag „heute vor 1 Jahr“ (bis eigene Daten da sind mit Station IBADKN32)</li>
@@ -2435,7 +2435,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <tr><td>19 Uhr (Mo–Sa)</td><td>Abendvideo mit Max aus dem Studio + Abend-Story (Facebook + Instagram), freitags Wochenende; sonntags nicht</td><td>automatisch</td></tr>
 <tr><td>So 20 Uhr</td><td>Wochenausblick-Video</td><td>automatisch</td></tr>
 <tr><td>30.12. 18 Uhr</td><td>Jahresrückblick-Video mit Max (Facebook + Instagram) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
-<tr><td>sofort</td><td>amtliche DWD-Warnungen</td><td>automatisch</td></tr>
+<tr><td>sofort</td><td>amtliche DWD-Warnungen (ganzer Odenwaldkreis)</td><td>automatisch</td></tr>
 <tr><td>bei Bedarf</td><td>Vorhersage-Sondermeldungen, Frost-/Kratzen-Hinweis (nur bei sicherem Frost)</td><td>selbst teilen</td></tr>
 </table>
 <ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; alle Autoposts gehen auch auf <b>Instagram</b> (dort mit festem Hashtag-Block #odenwald #odenwaldwetter #badkönig #wetter #odenwaldkreis #michelstadt #erbach #höchst #breuberg #wetterbericht #hessen #wettervorhersage); das Skript holt sich den Seiten-Token selbst aus dem hinterlegten Token; Make.com ist gestoppt und bleibt als Reserve; Schutz gegen Doppelposts: vor jedem Post wird der aktuelle Merkzettel (fb/gepostet.json) frisch bei GitHub geprüft</li>
@@ -2473,6 +2473,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>01:25 Uhr</small></td><td><b>Amtliche DWD-Warnungen jetzt für den ganzen Odenwaldkreis.</b> Abgefragt werden alle 12 Gemeinden (Bad König, Breuberg, Brensbach, Brombachtal, Erbach, Fränkisch-Crumbach, Höchst, Lützelbach, Michelstadt, Mossautal, Oberzent, Reichelsheim); gleiche Warnungen werden zusammengefasst. <b>Website:</b> Überschrift „Amtliche Warnungen für Odenwaldkreis“ (Startseite und Aktuell), jede Warnung mit Gebiet „📍 ganzer Odenwaldkreis“ bzw. den betroffenen Gemeinden. <b>Facebook-Beiträge, Max-Videos und Sondermeldungen</b> nutzen dieselbe Abfrage (vorher nur Bad König, Oberzent, Michelstadt). <b>Warn-Push aufs Handy bleibt wie gewünscht nur für Bad König.</b> Wetter-Widget für fremde Seiten bleibt bei Bad König. Technik: neue Datei .github/scripts/kreis.py, index.html (loadAlerts), Service-Worker-Cache v48</td></tr>
 <tr><td>12.11.2026<br><small>01:15 Uhr</small></td><td>Dark Mode repariert: Beim Anklicken eines anderen Tages im Vorhersage-Tab wurde die vorher ausgewählte Tageskarte (z. B. „Heute“) weiß. Ursache: Die Auswahl wechselt über das Merkmal „aria-pressed“, das der Dark Mode nicht beobachtet hat. Jetzt wird bei jedem Auswahlwechsel (aria-pressed, aria-selected, aria-expanded, open) die betroffene Karte frisch bewertet und dunkel eingefärbt. Datei theme.js, Service-Worker-Cache auf v47</td></tr>
 <tr><td>12.11.2026<br><small>01:12 Uhr</small></td><td>Max: Das Wochenendwetter (Samstag/Sonntag mit Tafel „Wochenende“) kommt im Morgenvideo nur noch donnerstags und freitags – Montag bis Mittwoch wäre es noch zu ungenau. Abendvideo unverändert (Wochenende nur freitags), Wochenausblick sonntags unverändert</td></tr>
 <tr><td>12.11.2026<br><small>01:10 Uhr</small></td><td>Max: Der Rückblick auf gestern („Ein Blick auf die Messwerte von gestern aus Bad König …“) ist jetzt ein eigener Abschnitt mit Tafel <b>„GESTERN GEMESSEN“</b> (Station Bad König): vier Kacheln Höchstwert, Tiefstwert, Regen (bzw. „trocken“) und stärkste Böe, bei neuen Jahresrekorden mit Hinweis „JAHRESREKORD!“. Max zeigt beim Erscheinen auf die Tafel. Vorher stand der Satz ohne Tafel in der Begrüßung</td></tr>
@@ -2663,6 +2664,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>01:25 Uhr</small></td><td>Max nennt amtliche DWD-Warnungen jetzt für alle 12 Gemeinden des Odenwaldkreises (vorher nur Bad König, Oberzent, Michelstadt)</td></tr>
 <tr><td>12.11.2026<br><small>01:12 Uhr</small></td><td>Max: Das Wochenendwetter (Samstag/Sonntag mit Tafel „Wochenende“) kommt im Morgenvideo nur noch donnerstags und freitags – Montag bis Mittwoch wäre es noch zu ungenau. Abendvideo unverändert (Wochenende nur freitags), Wochenausblick sonntags unverändert</td></tr>
 <tr><td>12.11.2026<br><small>01:10 Uhr</small></td><td>Max: Der Rückblick auf gestern („Ein Blick auf die Messwerte von gestern aus Bad König …“) ist jetzt ein eigener Abschnitt mit Tafel <b>„GESTERN GEMESSEN“</b> (Station Bad König): vier Kacheln Höchstwert, Tiefstwert, Regen (bzw. „trocken“) und stärkste Böe, bei neuen Jahresrekorden mit Hinweis „JAHRESREKORD!“. Max zeigt beim Erscheinen auf die Tafel. Vorher stand der Satz ohne Tafel in der Begrüßung</td></tr>
 <tr><td>12.11.2026<br><small>01:05 Uhr</small></td><td>Max: Zeitfenster-Tipp im Morgenvideo entfernt („Mein Tipp für eure Runde: zwischen … Uhr“, ebenso „Das beste Fenster für draußen“ / „Am besten raus geht es“). Die Sonnenstunden nennt Max weiterhin, der Freizeittipp bleibt</td></tr>
