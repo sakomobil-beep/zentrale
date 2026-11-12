@@ -2268,7 +2268,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:10 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:11 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2345,7 +2345,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:10 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:11 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2507,6 +2507,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>23:11 Uhr</small></td><td>(Zentrale) Alle Neu-erstellen-Knöpfe im Facebook-Bereich tragen jetzt den Zusatz „(ohne Posten)“: Video, Mittagskarte, Abendvideo, Wochenausblick, Jahresrückblick, Monatsrückblick, Themenvideo.</td></tr>
 <tr><td>12.11.2026<br><small>23:10 Uhr</small></td><td>(Zentrale) Fehler behoben: Der Knopf „Monatsrückblick jetzt neu erstellen“ hatte dieselbe interne Kennung wie der Knopf beim Mittagswetter und startete deshalb nichts. Eigene Kennungen vergeben – beide Knöpfe funktionieren getrennt.</td></tr>
 <tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Auch beim Jahresrückblick stand unter „Nächster Post“ nichts (Suche nur 8 Tage voraus). Der Termin 30.12., 18 Uhr wird jetzt direkt berechnet.</td></tr>
 <tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Beim Monatsrückblick stand unter „Nächster Post“ nichts, weil die Suche nur 8 Tage vorausschaute. Der Termin (1. des Monats, 15 Uhr) wird jetzt direkt berechnet.</td></tr>
@@ -2871,7 +2872,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <a class="btn sec" id="fb_vLaden" download="odenwald-wetter.mp4" style="grid-column:1 / -1">💾 Video speichern</a>
         </div>
         <p class="hint">Geht automatisch auf Facebook und als Reel auf Instagram. Teilen und Speichern nur, falls du es zusätzlich woanders brauchst.</p>
-        <button class="sec" id="fb_vNeu" style="width:100%;margin-top:8px">🔄 Video jetzt neu erstellen</button>
+        <button class="sec" id="fb_vNeu" style="width:100%;margin-top:8px">🔄 Video jetzt neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_vNeuSt">Baut Vorhersage und Video neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
@@ -2901,7 +2902,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <a class="btn sec" id="fb_mkLaden" download="odenwald-mittag.jpg">💾 Bild speichern</a>
         </div>
         <p class="hint">Reliefkarte des Kreises mit den Höchstwerten bis zum Abend, dazu der Messwert unserer Station.</p>
-        <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagskarte jetzt neu erstellen</button>
+        <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Mittagskarte jetzt neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_mNeuSt">Baut Karte, Mittags-Story und Tagesbild mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
@@ -2930,7 +2931,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         </div>
         <p class="hint">Sonntags entfällt es – da kommt um 20 Uhr der Wochenausblick.
           Beim Selbst-Teilen: Hochkant nimmt Instagram nur als <b>Reel</b>, für den normalen Feed die Fassung 4:5.</p>
-        <button class="sec" id="fb_avNeu" style="width:100%;margin-top:8px">🔄 Abendvideo jetzt neu erstellen</button>
+        <button class="sec" id="fb_avNeu" style="width:100%;margin-top:8px">🔄 Abendvideo jetzt neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_avNeuSt">Baut das Abendvideo neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
       <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Beitragstext zum Abendvideo erscheint um 19 Uhr.</div></div>
@@ -2957,7 +2958,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <button class="prim" id="fb_woTeilen">📤 Video teilen</button>
           <a class="btn sec" id="fb_woLaden" download="odenwald-wochenausblick.mp4">💾 Video speichern</a>
         </div>
-        <button class="sec" id="fb_woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen</button>
+        <button class="sec" id="fb_woNeu" style="width:100%;margin-top:8px">🔄 Wochenausblick jetzt neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_woNeuSt">Baut den Wochenausblick neu (ca. 3–5 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
@@ -2969,7 +2970,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🎆 Jahresrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 30.12. um 18 Uhr</small></div>
         <div class="datum" id="fb_jDatum">noch nicht erstellt</div>
         <video id="fb_jVid" controls playsinline preload="metadata" hidden></video>
-        <div class="btns"><button class="sec" id="fb_jNeu" style="grid-column:1 / -1">🔄 Vorschau neu erstellen (ohne Posten)</button>
+        <div class="btns"><button class="sec" id="fb_jNeu" style="grid-column:1 / -1">🔄 Jahresrückblick jetzt neu erstellen (ohne Posten)</button>
           <a class="btn sec" id="fb_jLaden" download="wetterjahr-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
         <p class="hint" id="fb_jSt">Wird am 30.12. automatisch mit allen Werten bis 29.12. gebaut. Die Vorschau nutzt die Werte bis gestern.</p>
       </div>
@@ -2983,7 +2984,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
         <div class="datum" id="fb_moDatum">noch nicht erstellt – kommt am 1. Dezember</div>
         <video id="fb_moVid" controls playsinline preload="metadata" hidden></video>
         <div class="btns"><a class="btn sec" id="fb_moLaden" download="monatsrueckblick-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
-        <button class="sec" id="fb_moNeu" style="width:100%;margin-top:8px">🔄 Monatsrückblick jetzt neu erstellen</button>
+        <button class="sec" id="fb_moNeu" style="width:100%;margin-top:8px">🔄 Monatsrückblick jetzt neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_moNeuSt">Baut den Rückblick auf den Vormonat neu (ca. 4–6 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
@@ -3022,7 +3023,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
           <button class="sec" id="fb_thKopie">📋 Text kopieren</button>
           <a class="btn sec" id="fb_thLaden" download="max-erklaert.mp4">💾 Video speichern</a>
         </div>
-        <button class="sec" id="fb_thNeu" style="width:100%;margin-top:8px">🔄 Themenvideo neu erstellen</button>
+        <button class="sec" id="fb_thNeu" style="width:100%;margin-top:8px">🔄 Themenvideo neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_thNeuSt">Baut das Themenvideo neu (ca. 8–12 Min.). Wird <b>nicht</b> automatisch gepostet.</p>
       </div>
     </section>
