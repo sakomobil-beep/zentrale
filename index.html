@@ -2268,7 +2268,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:07 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:10 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2345,7 +2345,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:07 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:10 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2507,6 +2507,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>23:10 Uhr</small></td><td>(Zentrale) Fehler behoben: Der Knopf „Monatsrückblick jetzt neu erstellen“ hatte dieselbe interne Kennung wie der Knopf beim Mittagswetter und startete deshalb nichts. Eigene Kennungen vergeben – beide Knöpfe funktionieren getrennt.</td></tr>
 <tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Auch beim Jahresrückblick stand unter „Nächster Post“ nichts (Suche nur 8 Tage voraus). Der Termin 30.12., 18 Uhr wird jetzt direkt berechnet.</td></tr>
 <tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Beim Monatsrückblick stand unter „Nächster Post“ nichts, weil die Suche nur 8 Tage vorausschaute. Der Termin (1. des Monats, 15 Uhr) wird jetzt direkt berechnet.</td></tr>
 <tr><td>12.11.2026<br><small>23:02 Uhr</small></td><td><b>Neu: Monatsrückblick-Video mit Max aus dem Studio.</b> Am 1. jedes Monats (zuerst 01.12.2026 für den November) baut der neue Ablauf monatsrueckblick.yml um ca. 13:30 bzw. 14:15 Uhr aus dem eigenen Wetterarchiv ein Video (ca. 1,5–2 Min.): Begrüßung, „Der Monat in Zahlen“ (Ø Temperatur, wärmster/kältester Tag, Regen und Regentage, Frost- und Sommertage, stärkste Böe), Temperaturkurve des Monats, Regen je Tag, Vergleich mit dem Klimamittel des DWD und dem Vorjahresmonat (bis eigene Daten da sind von der Nachbarstation IBADKN32), besondere Momente (Jahresrekorde bisher, erster Herbstfrost, Frostserie, Trockenphase), Ausblick auf den neuen Monat (Klimamittel; im Dezember ehrliche Antwort zu weißer Weihnacht) und Zuschauerfrage. Autopost auf Facebook + Instagram ab 15 Uhr über den 15-Minuten-Lauf (kein eigener cron-job.org-Weckruf nötig), höchstens einmal je Monat. Kommt in die Videothek der Website als „📆/📅 Monatsrückblick“. Zentrale: eigener Abschnitt im Facebook-Bereich mit Vorschau, Video speichern und Knopf „Monatsrückblick jetzt neu erstellen“ (postet nicht), Zeile in Übersicht und Ablauf-Tabelle. Testvideo mit dem Oktober geprüft. Website-Stand 23:05, Service-Worker-Cache v59. Technik: monatsrueckblick.py, fb_senden.py (monat), wetter_video.py (archiv), video-neu.yml (monat)</td></tr>
@@ -2979,11 +2980,11 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <div class="card fbinfo" id="fbi_9">wird geladen …</div>
       <div class="card" id="fb_monatCard">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📆 Monatsrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost am 1. ab 15 Uhr</small></div>
-        <div class="datum" id="fb_mDatum">noch nicht erstellt – kommt am 1. Dezember</div>
-        <video id="fb_mVid" controls playsinline preload="metadata" hidden></video>
-        <div class="btns"><a class="btn sec" id="fb_mLaden" download="monatsrueckblick-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
-        <button class="sec" id="fb_mNeu" style="width:100%;margin-top:8px">🔄 Monatsrückblick jetzt neu erstellen</button>
-        <p class="hint" id="fb_mNeuSt">Baut den Rückblick auf den Vormonat neu (ca. 4–6 Min.). Der Knopf postet <b>nicht</b>.</p>
+        <div class="datum" id="fb_moDatum">noch nicht erstellt – kommt am 1. Dezember</div>
+        <video id="fb_moVid" controls playsinline preload="metadata" hidden></video>
+        <div class="btns"><a class="btn sec" id="fb_moLaden" download="monatsrueckblick-odenwald.mp4" style="grid-column:1 / -1" hidden>💾 Video speichern</a></div>
+        <button class="sec" id="fb_moNeu" style="width:100%;margin-top:8px">🔄 Monatsrückblick jetzt neu erstellen</button>
+        <p class="hint" id="fb_moNeuSt">Baut den Rückblick auf den Vormonat neu (ca. 4–6 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
 
@@ -4575,12 +4576,12 @@ neuKnopf('woNeu', 'woNeuSt', 'woche');
   }).catch(function () {});
 })();
 neuKnopf('avNeu', 'avNeuSt', 'abend');
-neuKnopf('mNeu', 'mNeuSt', 'monat');
+neuKnopf('moNeu', 'moNeuSt', 'monat');
 fetch('https://wetter-badkoenig.de/fb/monat.json?v=' + Date.now(), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
-  var src = 'https://wetter-badkoenig.de/fb/monat.mp4?v=' + Date.now(), vi = document.getElementById('fb_mVid'), a = document.getElementById('fb_mLaden');
+  var src = 'https://wetter-badkoenig.de/fb/monat.mp4?v=' + Date.now(), vi = document.getElementById('fb_moVid'), a = document.getElementById('fb_moLaden');
   vi.src = src; vi.hidden = false; a.href = src; a.hidden = false;
   var d = new Date(j.erstellt), m = j.monat.split('-');
-  document.getElementById('fb_mDatum').textContent = '📅 Rückblick ' + ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][+m[1] - 1] + ' ' + m[0] + ' · erstellt ' +
+  document.getElementById('fb_moDatum').textContent = '📅 Rückblick ' + ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][+m[1] - 1] + ' ' + m[0] + ' · erstellt ' +
     d.toLocaleDateString('de-DE', { day: 'numeric', month: 'long' }) + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr · ' + Math.round(j.dauer) + ' Sek.';
 }).catch(function () {});
 (function () {
