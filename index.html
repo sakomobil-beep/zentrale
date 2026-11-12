@@ -2263,13 +2263,15 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button data-p="garden" hidden>🌶️ Garten</button>
   <button data-p="car">🚗 Dacia</button>
   <button data-p="web">📈 Website</button>
+  <button data-p="tp">🗓️ Tagesplan</button>
   <button data-p="tk">📰 Newsticker</button>
   <button data-p="wf">🌦️ Wetterfunktionen</button>
   <button data-p="mx">🎬 Was kann Max</button>
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:14 Uhr</b></div>
+  <button data-p="sich">💾 Sicherung</button>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:20 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2346,7 +2348,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:14 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:20 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2508,6 +2510,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>23:20 Uhr</small></td><td>(Zentrale) <b>Seitenleiste neu aufgeteilt.</b> „📈 Website“ zeigt nur noch die Besucher-Statistik. Neuer Menüpunkt „🗓️ Tagesplan“ (zwischen Website und Newsticker) mit dem ganzen Facebook-&amp;-Instagram-Bereich (Übersicht, alle Beiträge, Neu-erstellen-Knöpfe), „⏰ Abläufe &amp; Weckrufe“, „🎪 Termine für Max“ und dem 🔑 Schlüssel für die Knöpfe. Neuer Menüpunkt „💾 Sicherung“ (unter Ideen) mit der Sicherung der Wetterdaten (Tageswerte/Stundenwerte als CSV, komplettes Archiv als JSON).</td></tr>
 <tr><td>12.11.2026<br><small>23:14 Uhr</small></td><td>(Zentrale) Facebook-Bereich: alle „📤 … teilen“-Knöpfe ausgeblendet (Wettervideo, Abendvideo, Wochenausblick, Mittagsbild, Themenvideo, Special, Abendbeitrag, Frost-Hinweis, Sondermeldungen). Es bleiben „📋 Text kopieren“ und „💾 Bild/Video speichern“.</td></tr>
 <tr><td>12.11.2026<br><small>23:11 Uhr</small></td><td>(Zentrale) Alle Neu-erstellen-Knöpfe im Facebook-Bereich tragen jetzt den Zusatz „(ohne Posten)“: Video, Mittagskarte, Abendvideo, Wochenausblick, Jahresrückblick, Monatsrückblick, Themenvideo.</td></tr>
 <tr><td>12.11.2026<br><small>23:10 Uhr</small></td><td>(Zentrale) Fehler behoben: Der Knopf „Monatsrückblick jetzt neu erstellen“ hatte dieselbe interne Kennung wie der Knopf beim Mittagswetter und startete deshalb nichts. Eigene Kennungen vergeben – beide Knöpfe funktionieren getrennt.</td></tr>
@@ -2849,6 +2852,26 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <p class="note">Neue Lernschritte werden hier ergänzt (zusätzlich im Änderungsprotokoll unter „🌦️ Wetterfunktionen“).</p></div>
 </main>
 <main id="web" hidden>
+  <h1>📈 Website-Statistik</h1>
+  <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
+    <div id="wsMsg"><small>Lade Statistik …</small></div>
+    <div id="wsBody" hidden>
+      <div class="tiles" id="wsTiles"></div>
+      <div class="wsrow"><span>Besucher pro Tag (30 Tage)</span></div>
+      <div class="wschart" id="wsChart"></div>
+      <div class="wsgrid">
+        <div><h4>📄 Beliebteste Seiten</h4><div id="wsPages"></div></div>
+        <div><h4>🔗 Woher die Besucher kommen</h4><div id="wsRefs"></div></div>
+        <div><h4>🌍 Länder</h4><div id="wsLoc"></div></div>
+        <div><h4>📱 Geräte</h4><div id="wsSize"></div></div>
+        <div><h4>🌐 Browser</h4><div id="wsBr"></div></div>
+        <div><h4>💻 Systeme</h4><div id="wsSys"></div></div>
+      </div>
+      <p style="margin-top:14px"><a href="https://wetter-badkoenig.goatcounter.com/" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter öffnen ›</a></p>
+    </div>
+  </div>
+</main>
+<main id="tp" hidden>
   <template id="fbTpl">
   <h1>Facebook &amp; Instagram · Tagesplan</h1>
   <p class="sub" id="fb_stand">wird geladen …</p>
@@ -3074,23 +3097,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     </details>
     <small id="tmSt" style="display:block;margin-top:8px;opacity:.75"></small>
   </div>
-  <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
-    <div id="wsMsg"><small>Lade Statistik …</small></div>
-    <div id="wsBody" hidden>
-      <div class="tiles" id="wsTiles"></div>
-      <div class="wsrow"><span>Besucher pro Tag (30 Tage)</span></div>
-      <div class="wschart" id="wsChart"></div>
-      <div class="wsgrid">
-        <div><h4>📄 Beliebteste Seiten</h4><div id="wsPages"></div></div>
-        <div><h4>🔗 Woher die Besucher kommen</h4><div id="wsRefs"></div></div>
-        <div><h4>🌍 Länder</h4><div id="wsLoc"></div></div>
-        <div><h4>📱 Geräte</h4><div id="wsSize"></div></div>
-        <div><h4>🌐 Browser</h4><div id="wsBr"></div></div>
-        <div><h4>💻 Systeme</h4><div id="wsSys"></div></div>
-      </div>
-      <p style="margin-top:14px"><a href="https://wetter-badkoenig.goatcounter.com/" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter öffnen ›</a></p>
-    </div>
-  </div>
+  <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
+      <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
+    <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
+  </details>
+</main>
+<main id="sich" hidden>
+  <h1>💾 Sicherung der Wetterdaten</h1>
   <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
     <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
     <div id="archInfo"><small>Lade Übersicht …</small></div>
@@ -3101,11 +3115,6 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     </div>
     <small id="archSt" style="display:block;margin-top:8px;opacity:.7"></small>
   </div>
-  <details class="card" id="fbKeyBox" style="padding:10px 14px"><summary style="cursor:pointer;font-weight:600">🔑 Schlüssel für „Video neu erstellen“ <small id="fbKeySt" style="font-weight:400;opacity:.7"></small></summary>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="fbKey" type="password" placeholder="github_pat_…" autocomplete="off" style="flex:1;min-width:220px">
-      <button class="b" id="fbKeySave">💾 Speichern</button><button class="g" id="fbKeyDel">🗑️ Entfernen</button></div>
-    <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
-  </details>
 </main>
 <main id="car" hidden>
 <div id="tdModal" hidden onclick="if(event.target===this)this.hidden=true" style="position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center"><div style="background:#fff;color:#222;max-width:720px;width:92%;max-height:88vh;overflow:auto;border-radius:16px;padding:22px 28px;position:relative"><button onclick="document.getElementById('tdModal').hidden=true" style="position:absolute;top:12px;right:14px;border:0;background:none;font-size:22px;cursor:pointer">✕</button><h3 style="margin-top:0">🚗 Technische Daten – Sandero Stepway TCe 110 Extreme</h3><div class="tdtabs"><button class="on" onclick="tdTab(this,'tdAus')">Ausstattung</button><button onclick="tdTab(this,'tdMotor')">Motor &amp; Maße</button></div><div id="tdAus"><table class="tdt"><tr><td>Marke</td><td>Dacia</td></tr><tr><td>Modell</td><td>Sandero III</td></tr><tr><td>Version</td><td>TCe 110</td></tr><tr><td>Kraftstoff</td><td>Benzin</td></tr><tr><td>Innenraum</td><td>Extreme-spezifisches Interieur</td></tr><tr><td>Sitzbezüge</td><td>Extreme-spezifische Stoffpolsterung</td></tr></table><h4>Zusatzausstattung</h4><ul><li>UP&amp;GO-Paket</li></ul><h4>Sicherheit</h4><ul><li>Front-Airbags (Fahrer und Beifahrer)</li><li>Seiten-Thorax-Airbags vorne und Vorhang-Airbags</li><li>ABS</li><li>Automatischer Notbremsassistent</li><li>Bremsassistent</li><li>Feste Sicherheitsgurte vorne, mit Gurtstraffer</li><li>3 Dreipunkt-Sicherheitsgurte hinten</li><li>Totwinkel-Warner</li><li>Müdigkeitswarner</li><li>Spurhalteassistent</li><li>ISOFIX an den äußeren Rücksitzen</li><li>Parksensoren vorne &amp; hinten</li><li>Rückfahrkamera</li><li>Vorrüstung für Alkohol-Wegfahrsperre</li><li>Nebelscheinwerfer</li><li>Notruf 112 (eCall)</li><li>Tempomat</li><li>Geschwindigkeitswarner (Tempolimit)</li><li>Reifendruck-Kontrollsystem</li><li>Reserverad</li></ul><h4>Fahrerplatz</h4><ul><li>Bordcomputer</li><li>Automatisches Fahrlicht</li><li>Schaltpunktanzeige (Schaltgetriebe)</li><li>Zentralverriegelung</li><li>Beheizbare Heckscheibe</li><li>Elektrisch verstell- und beheizbare Außenspiegel</li></ul><h4>Komfort</h4><ul><li>Klimaautomatik</li><li>3 Kopfstützen hinten</li><li>Hohe Mittelkonsole mit Armlehne und Ablagefach</li><li>Elektrische Parkbremse</li><li>Kofferraumbeleuchtung</li><li>Elektrische Fensterheber vorne (Fahrerseite mit Impulsfunktion)</li><li>Elektrische Fensterheber hinten</li><li>Kofferraumboden</li><li>Schlüsselloser Tankdeckel</li><li>Sitzheizung vorne</li><li>Rückbank 1/3 – 2/3 umklappbar</li><li>Höhenverstellbarer Fahrersitz</li><li>Keycard Handsfree (schlüsselloses Starten)</li><li>Lederlenkrad</li><li>Lenkrad höhen- und tiefenverstellbar</li></ul><h4>Design</h4><ul><li>Blinker mit Komfort-Impulsfunktion</li><li>Modulare Dachreling</li><li>Stoßfänger vorne und hinten in Wagenfarbe</li><li>LED-Tagfahrlicht in Y-Lichtsignatur</li><li>Eco-LED-Scheinwerfer (Abblendlicht LED, Fernlicht Halogen)</li><li>16″-Leichtmetallfelgen „Mahalia“</li><li>Extreme-spezifische Stoffpolsterung</li></ul><h4>Multimedia</h4><ul><li>Kartenpaket</li><li>TFT-Display im Kombiinstrument</li><li>Media Nav: 8″-Bildschirm, Navigation, 6 Lautsprecher, Bluetooth</li></ul></div><div id="tdMotor" hidden><h4>Motorisierung</h4><table class="tdt"><tr><td>Motor</td><td>TCe 110</td></tr><tr><td>Max. Leistung</td><td>81 kW (110 PS)</td></tr><tr><td>Max. Drehmoment</td><td>200 Nm</td></tr><tr><td>Getriebe</td><td>6-Gang-Schaltgetriebe</td></tr><tr><td>Antrieb</td><td>Frontantrieb</td></tr><tr><td>Hubraum</td><td>999 cm³</td></tr><tr><td>Kraftstoff</td><td>Benzin</td></tr></table><h4>Verbrauch (WLTP)</h4><table class="tdt"><tr><td>Verbrauch kombiniert</td><td>5,6 l/100 km</td></tr><tr><td>CO₂-Emission kombiniert</td><td>128 g/km</td></tr><tr><td>Energiekosten (Herstellerangabe)</td><td>84 €/Monat</td></tr></table><h4>Fahrleistung</h4><table class="tdt"><tr><td>Höchstgeschwindigkeit</td><td>180 km/h</td></tr><tr><td>0–100 km/h</td><td>10,0 s</td></tr></table><h4>Reifen &amp; Bremsen</h4><table class="tdt"><tr><td>Reifen vorne/hinten</td><td>205/60 R16</td></tr><tr><td>Bremsen vorne</td><td>Scheibenbremsen</td></tr><tr><td>Bremsen hinten</td><td>Trommelbremsen</td></tr></table><h4>Abmessungen</h4><table class="tdt"><tr><td>Länge</td><td>4.102 mm</td></tr><tr><td>Breite</td><td>1.853 mm</td></tr><tr><td>Breite inkl. Außenspiegel</td><td>2.012 mm</td></tr><tr><td>Höhe mit geöffneter Heckklappe</td><td>1.976 mm</td></tr><tr><td>Radstand</td><td>2.604 mm</td></tr><tr><td>Wendekreis</td><td>10,64 m</td></tr><tr><td>Kofferraum minimal</td><td>312–396 l</td></tr><tr><td>Kofferraum maximal</td><td>1.108–1.153 l</td></tr><tr><td>Tank</td><td>50 l</td></tr></table><h4>Gewichte</h4><table class="tdt"><tr><td>Leergewicht fahrbereit (inkl. 75 kg Fahrer)</td><td>1.170 kg</td></tr><tr><td>Zulässiges Gesamtgewicht</td><td>1.585 kg</td></tr><tr><td>Zulässiges Gesamtzuggewicht</td><td>2.685 kg</td></tr><tr><td>Anhängelast gebremst</td><td>1.100 kg</td></tr><tr><td>Anhängelast ungebremst</td><td>585 kg</td></tr></table><h4>Sonstiges</h4><table class="tdt"><tr><td>Sitzplätze</td><td>5</td></tr><tr><td>Türen</td><td>5</td></tr></table></div></div></div>
@@ -4092,7 +4101,7 @@ function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0);setTimeout(()=>{if(!window._archI){window._archI=1;archInit();tmInit()}else{archLoad();tmLoad()}},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+function show(p){if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){
