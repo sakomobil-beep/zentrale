@@ -2262,12 +2262,13 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="garden" hidden>🌶️ Garten</button>
   <button data-p="car">🚗 Dacia</button>
   <button data-p="web">📈 Website</button>
+  <button data-p="tk">📰 Newsticker</button>
   <button data-p="wf">🌦️ Wetterfunktionen</button>
   <button data-p="mx">🎬 Was kann Max</button>
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 20:50 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 20:55 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2321,6 +2322,15 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
     <small style="opacity:.6;display:block;margin-top:10px">„➜ To-do“ übernimmt die Idee in die To-do-Liste. Auf einen Text tippen, um ihn zu ändern.</small>
   </div>
 </main>
+<main id="tk" hidden>
+  <div class="card" id="tkCard"><h3 style="margin-top:0">📰 Newsticker auf der Startseite</h3><p style="margin:0 0 6px"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
+    <p style="margin:4px 0 10px;opacity:.8">Laufband auf wetter-badkoenig.de unter dem Schlossbild (neben „Live · Stand · Aktualisieren“). Bleibt so stehen, bis du hier etwas anderes einträgst. Ein Link ist optional, z. B. <code>elnino.html</code> oder <code>polarwirbel.html</code> – dann ist die Meldung anklickbar.</p>
+    <label style="display:flex;gap:6px;align-items:center;font-weight:600;margin-bottom:8px"><input type="checkbox" id="tkAktiv"> Ticker anzeigen</label>
+    <div id="tkRows" style="display:grid;gap:6px"></div>
+    <datalist id="tkLinks"><option value="elnino.html">El Niño</option><option value="polarwirbel.html">Polarwirbel</option><option value="vulkane.html">Vulkane</option><option value="sommer2026.html">Sommer 2026</option><option value="index.html">Startseite</option></datalist>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="g" id="tkPlus">➕ Weitere Meldung</button><button class="b" id="tkSave">💾 Ticker speichern</button><small id="tkSt" style="opacity:.8"></small></div>
+  </div>
+</main>
 <main id="wf" hidden>
 <style>
 #wf .wfh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
@@ -2335,7 +2345,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 20:50 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 20:55 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2353,7 +2363,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <details><summary>📰 Newsticker (Startseite) <span class="tg">neu 12.11.</span></summary><ul>
 <li>Schmales Laufband unter dem Schlossbild, links neben „Live · Stand · Aktualisieren“; am Handy eigene Zeile darüber</li>
 <li>Meldungen mit Link sind anklickbar (Pfeil ›); Laufband hält an, wenn man mit der Maus darüberfährt; bei „Bewegung reduzieren“ im System steht der Text still</li>
-<li>Text kommt aus data/ticker.json; ändern in der Zentrale, Tab „📈 Website“, Karte „📰 Newsticker“ (bleibt stehen, bis du ihn änderst oder ausblendest)</li>
+<li>Text kommt aus data/ticker.json; ändern in der Zentrale über den eigenen Menüpunkt „📰 Newsticker“ (direkt unter „📈 Website“) (bleibt stehen, bis du ihn änderst oder ausblendest)</li>
 <li>Speichern läuft über den Workflow „Newsticker“ (ticker.yml) mit dem GitHub-Schlüssel der Zentrale; nach 1–2 Minuten sichtbar</li>
 <li>Aktuell: „📰 NEU: NOAA-Bericht vom 12.11.: El Niño weiter sehr stark ›“ · „❄️ Polarwirbel: Rekord-Störung, Windumkehr erwartet ›“</li>
 </ul></details>
@@ -2493,6 +2503,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>20:55 Uhr</small></td><td>(Zentrale) <b>Newsticker als eigener Menüpunkt</b> „📰 Newsticker“ in der Seitenleiste direkt unter „📈 Website“ (vorher Karte im Tab Website)</td></tr>
 <tr><td>12.11.2026<br><small>20:50 Uhr</small></td><td><b>Newsticker auf der Startseite.</b> Laufband unter dem Schlossbild (neben Live/Stand/Aktualisieren) mit anklickbaren Meldungen, Text aus data/ticker.json. In der Zentrale (Tab „📈 Website“) neue Karte „📰 Newsticker“ zum Ändern/Ausblenden, gespeichert über den neuen Workflow „Newsticker“ (ticker.yml). Erster Inhalt: NOAA-Bericht/El Niño und Polarwirbel. Website-Stand 20:50</td></tr>
 <tr><td>12.11.2026<br><small>20:45 Uhr</small></td><td><b>Polarwirbel-Seite aktualisiert (Stand 12.11.).</b> Kennzahl „11. November“ (Windumkehr laut ersten Messdaten, früheste seit 1959), neuer Einleitungstext, Chronik 4.–12. November (Met Office, Rekordtief des Windes 0,3 m/s, AWI: Schwelle zum Major Warming, Umkehr am 11.11., Einordnung: schnelle Erholung erwartet, MeteoSchweiz/Cohen zurückhaltend), 5 neue Quellen</td></tr>
 <tr><td>12.11.2026<br><small>20:45 Uhr</small></td><td><b>El-Niño-Seite aktualisiert (NOAA-Bericht vom 12.11.).</b> Kennzahl jetzt „≈ 60 %“ Chance auf ein historisches Ereignis (Oktober: 83 %), Chronik ergänzt um 9.11. (RONI +2,0 °C, ONI +2,46 °C) und 12.11. (El-Niño-Warnstufe bleibt, über 79 % stark bis sehr stark bis Jan.–März 2027, Abklingen ab Anfang 2027, „Super-El-Niño“ keine offizielle Bezeichnung), Quellenblock „Neu am 12. November“. JMA-Novemberbericht noch nicht ausgewertet</td></tr>
@@ -3009,13 +3020,6 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
       <tr><td>30.12. 17:15</td><td>Jahresrückblick-Video bauen (Post um 18 Uhr)</td><td>–</td></tr>
     </tbody></table></div>
     <div class="hint" style="margin:8px 0 0">Die Weckrufe gibt es, weil GitHub seine eigenen Zeitpläne oft mit Verspätung startet. Sie rufen denselben Ablauf von Hand auf; der Ablauf prüft dann selbst die Uhrzeit und macht nur das, was dran ist. Ein Weckruf zur falschen Zeit schadet also nicht.</div>
-  </div>
-  <div class="card" id="tkCard"><h3 style="margin-top:0">📰 Newsticker auf der Startseite</h3>
-    <p style="margin:4px 0 10px;opacity:.8">Laufband auf wetter-badkoenig.de unter dem Schlossbild (neben „Live · Stand · Aktualisieren“). Bleibt so stehen, bis du hier etwas anderes einträgst. Ein Link ist optional, z. B. <code>elnino.html</code> oder <code>polarwirbel.html</code> – dann ist die Meldung anklickbar.</p>
-    <label style="display:flex;gap:6px;align-items:center;font-weight:600;margin-bottom:8px"><input type="checkbox" id="tkAktiv"> Ticker anzeigen</label>
-    <div id="tkRows" style="display:grid;gap:6px"></div>
-    <datalist id="tkLinks"><option value="elnino.html">El Niño</option><option value="polarwirbel.html">Polarwirbel</option><option value="vulkane.html">Vulkane</option><option value="sommer2026.html">Sommer 2026</option><option value="index.html">Startseite</option></datalist>
-    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="g" id="tkPlus">➕ Weitere Meldung</button><button class="b" id="tkSave">💾 Ticker speichern</button><small id="tkSt" style="opacity:.8"></small></div>
   </div>
   <div class="card" id="tmCard"><h3 style="margin-top:0">🎪 Termine für Max</h3>
     <p style="margin:4px 0 10px;opacity:.8">Max erwähnt Termine 1–3 Tage vorher und am Tag selbst (höchstens einen pro Video), im Wochenausblick alle Termine der Woche. Feiertage und Schulferien in Hessen kennt er automatisch.</p>
@@ -4047,7 +4051,7 @@ function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0);setTimeout(()=>{if(!window._archI){window._archI=1;archInit();tmInit();tkInit()}else{archLoad();tmLoad();tkLoad()}},0)}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+function show(p){if(p=='web'){setTimeout(loadWeb,0);setTimeout(fbOpen,0);setTimeout(()=>{if(!window._archI){window._archI=1;archInit();tmInit()}else{archLoad();tmLoad()}},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){
