@@ -2266,7 +2266,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="mx">🎬 Was kann Max</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 17:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 17:35 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2334,7 +2334,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 17:25 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 17:35 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2367,6 +2367,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </ul></details>
 <details><summary>Vorhersage</summary><ul>
 <li><b>Präzisions-Vorhersage 2.0:</b> Mischung aus ICON-D2, ICON-EU, AROME und ECMWF, automatisch gewichtet nach eigener Trefferquote</li>
+<li>Lern-Archiv (data/lernen, alle 3 Std.): Stationswerte mit Nachkommastelle (Temperatur, Wind, Regen; vorher ganze Grad, ältere Einträge bis 04.11.2026 bleiben ganzzahlig) <span class="tg">neu 12.11.</span></li>
 <li>Lernende Korrektur mit den eigenen Stationsdaten (nachts/tagsüber, Wind)</li>
 <li>Nur heute + 3 Tage mit Zahlen, danach eine Tendenz-Karte ohne Zahlen</li>
 <li>„Stundenverlauf · Station Bad König“; bei „Heute“ ab Mittag der Tiefstwert der kommenden Nacht</li>
@@ -2483,6 +2484,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>17:35 Uhr</small></td><td><b>Lern-Archiv mit Nachkommastelle.</b> Die stündlichen Messwerte der Station kamen von Weather Underground nur als ganze Grad (in der Abfrage fehlte numericPrecision=decimal). Jetzt werden Temperatur, Wind und Regen mit Komma gespeichert (z. B. −2,7 °C statt −3 °C), dadurch werden Lernkorrektur und Modell-Trefferquoten genauer, vor allem bei Tiefstwerten in Frostnächten. Die letzten 7 Tage (ab 05.11.) wurden sofort per Hand-Start nachgeladen, ältere Einträge bleiben ganzzahlig (WU liefert Stundenwerte nur 7 Tage rückwirkend). Technik: .github/scripts/lernen.py</td></tr>
 <tr><td>12.11.2026<br><small>17:25 Uhr</small></td><td><b>Ausblick in der Temperatur-Karte nutzt die gemeinsame Regen-Einstufung.</b> Der Regenhinweis (Heute Abend, Nacht, Morgen) kommt jetzt aus derselben Grundlage wie bei Max, Facebook/Instagram und im Vorhersage-Tab (fb/daten.json, Odenwald-Stundenwerte): „Heute Abend“ übernimmt direkt die Abend-Stufe von Max; Nacht und Morgen werden aus den Stundenwerten mit denselben Schwellen eingestuft (trocken &lt;10 %, meist trocken 10–29 %, örtlich Schauer 30–59 %, Regen ab 60 % und 1 mm, Gewitter). Fehlt die Datei, rechnet die Karte wie bisher. Website-Stand 17:25 Uhr, Service-Worker-Cache v57. Technik: index.html (heroOutlook → rainTxt)</td></tr>
 <tr><td>12.11.2026<br><small>17:15 Uhr</small></td><td><b>Temperatur-Karte: Ausblick statt Mini-Verlauf.</b> Die kleine Kurve (doppelt zu „Verlauf heute“) ist raus. Stattdessen drei Zeilen aus der Vorhersage mit Temperatur, Wettersymbol und Hinweis: <b>Heute Abend</b> (17–22 Uhr, mit Regenhinweis trocken / Schauer möglich / Regen ca. X mm), <b>Heute Nacht</b> (Tiefstwert mit Uhrzeit) und <b>Morgen</b> (Höchstwert mit Uhrzeit). Nach 22 Uhr: Nacht, Morgen, Morgen Abend; nach Mitternacht: Nacht, Heute, Heute Abend. Website-Stand 17:15 Uhr, Service-Worker-Cache v56. Technik: index.html (heroOutlook)</td></tr>
 <tr><td>12.11.2026<br><small>17:00 Uhr</small></td><td><b>Kachel „Heute Höchst / Tiefst“ verständlicher:</b> statt „10,9° / 7,3°“ jetzt drei beschriftete Zeilen – ↑ Höchst (rot), ↓ Tiefst (blau), 💨 Böe – jeweils mit Uhrzeit der Messung (aus den 5-Minuten-Werten). Website-Stand 17:00 Uhr, Service-Worker-Cache v55</td></tr>
