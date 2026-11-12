@@ -2268,7 +2268,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 20:55 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 21:25 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2345,7 +2345,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 20:55 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 21:25 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2378,7 +2378,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li>Vergleichstag „heute vor 1 Jahr“ (bis eigene Daten da sind mit Station IBADKN32)</li>
 <li>Regen-Nowcast aus dem DWD-Radar (nächste 2 Stunden)</li>
 <li>Radar mit Reitern Regen, Blitze, Wind, Wolken, Temperatur, Schnee (Nov.–März); Reiter wird automatisch nach Wetterlage gewählt</li>
-<li>Blauer Video-Knopf unter dem Schlossbild → Max-Wettervideo mit Videothek der letzten 7 Tage</li>
+<li>Blauer Video-Knopf unter dem Schlossbild → immer das neueste Max-Video (morgens, abends aus dem Studio, Wochenausblick oder Special), Überschrift mit Datum und Tageszeit, darunter Videothek der letzten 7 Tage mit Kennzeichnung ☀️ Morgens / 🌙 Abends / 🗓️ Wochenausblick / ⚠️ Special <span class="tg">neu 12.11.</span></li>
 <li>Rückblick: Jahresrekorde als Kacheln – heißester, kältester, nassester Tag, stärkste Böe, Monatsregen; neuer Rekord (heute/gestern) bekommt „🏆 Neuer Rekord!“ und einen Hinweis oben auf „Aktuell“ <span class="tg">neu 08.11.</span></li>
 <li>Knöpfe „Folge uns auf Facebook“ und „Folge uns auf Instagram“ (@wetterstation_badkoenig), Links auch in der Fußzeile; unauffälliger Besuchszähler im Fußbereich</li>
 <li>Saison-Deko: Halloween bis 31.10., Herbstblätter ab 01.11., Weihnachtslook 23.11.–28.12.</li>
@@ -2503,6 +2503,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>21:25 Uhr</small></td><td><b>Videothek: auch das Abendvideo, immer das neueste oben.</b> Das Studio-Abendvideo wird jetzt ebenfalls in fb/archiv abgelegt (Datei JJJJ-MM-TT-abend.mp4), Einträge haben Art (morgen/abend/woche/special) und Erstellzeit und werden danach sortiert. Auf der Website zeigt der Video-Bereich immer das neueste Video mit Überschrift „Odenwald-Wetter – heute, Donnerstag, 12.11., abends“ bzw. „morgens“ / „Wochenausblick“, die Videothek kennzeichnet ☀️ Morgens / 🌙 Abends / 🗓️ Wochenausblick / ⚠️ Special. Heutiges Abendvideo nachträglich eingestellt. Website-Stand 21:25, Service-Worker-Cache v58. Technik: wetter_video.py (archiv), index.html</td></tr>
 <tr><td>12.11.2026<br><small>20:55 Uhr</small></td><td>(Zentrale) <b>Newsticker als eigener Menüpunkt</b> „📰 Newsticker“ in der Seitenleiste direkt unter „📈 Website“ (vorher Karte im Tab Website)</td></tr>
 <tr><td>12.11.2026<br><small>20:50 Uhr</small></td><td><b>Newsticker auf der Startseite.</b> Laufband unter dem Schlossbild (neben Live/Stand/Aktualisieren) mit anklickbaren Meldungen, Text aus data/ticker.json. In der Zentrale (Tab „📈 Website“) neue Karte „📰 Newsticker“ zum Ändern/Ausblenden, gespeichert über den neuen Workflow „Newsticker“ (ticker.yml). Erster Inhalt: NOAA-Bericht/El Niño und Polarwirbel. Website-Stand 20:50</td></tr>
 <tr><td>12.11.2026<br><small>20:45 Uhr</small></td><td><b>Polarwirbel-Seite aktualisiert (Stand 12.11.).</b> Kennzahl „11. November“ (Windumkehr laut ersten Messdaten, früheste seit 1959), neuer Einleitungstext, Chronik 4.–12. November (Met Office, Rekordtief des Windes 0,3 m/s, AWI: Schwelle zum Major Warming, Umkehr am 11.11., Einordnung: schnelle Erholung erwartet, MeteoSchweiz/Cohen zurückhaltend), 5 neue Quellen</td></tr>
@@ -2616,7 +2617,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #mx td,#mx th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 12.11.2026</small></div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 12.11.2026, 21:25 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Alle Funktionen unseres Comic-Moderators Max in den Wettervideos – zum Prüfen, was gut läuft und was verbessert werden soll. Auf eine Überschrift tippen zum Aufklappen.</p>
 </div>
 
@@ -2708,7 +2709,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </table>
 <ul style="margin-top:8px">
 <li>Jedes Video lässt sich in der Zentrale per Knopf <b>neu erstellen</b> (ohne Posten)</li>
-<li>Videothek der letzten 7 Tage auf wetter-badkoenig.de (blauer Video-Knopf), ältere Videos werden montags endgültig gelöscht</li>
+<li>Videothek der letzten 7 Tage auf wetter-badkoenig.de (blauer Video-Knopf): Morgenvideo, Abendvideo aus dem Studio, Wochenausblick und Specials; oben läuft immer das neueste; ältere Videos werden montags endgültig gelöscht <span class="tg">Abendvideo neu 12.11.</span></li>
 </ul>
 </div>
 
@@ -2726,6 +2727,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>21:25 Uhr</small></td><td><b>Videothek: auch das Abendvideo, immer das neueste oben.</b> Das Studio-Abendvideo wird jetzt ebenfalls in fb/archiv abgelegt (Datei JJJJ-MM-TT-abend.mp4), Einträge haben Art (morgen/abend/woche/special) und Erstellzeit und werden danach sortiert. Auf der Website zeigt der Video-Bereich immer das neueste Video mit Überschrift „Odenwald-Wetter – heute, Donnerstag, 12.11., abends“ bzw. „morgens“ / „Wochenausblick“, die Videothek kennzeichnet ☀️ Morgens / 🌙 Abends / 🗓️ Wochenausblick / ⚠️ Special. Heutiges Abendvideo nachträglich eingestellt. Technik: wetter_video.py (archiv), index.html</td></tr>
 <tr><td>12.11.2026<br><small>08:08 Uhr</small></td><td><b>Regen-Aussagen aus EINER Grundlage + Selbstkontrolle.</b> Vorher nutzten Max und die Beiträge vier verschiedene, sich widersprechende Regenwerte (Wettersymbol, Tages-Regenrisiko, Vormittag/Nachmittag/Abend mit „ein Tropfen irgendwo = Regen“, Grafik nur Bad König) – z. B. am 12.11.: Symbol Schauer, Tag 7 %, Vormittag 64 %, Grafik 15 %. <b>Neu:</b> Stundenwerte aller sechs Kreis-Orte × Modelle (gewichtet wie die Vorhersage) ergeben je Stunde Regen-Anteil, Menge, Schnee-Anteil (Tal/Höhen getrennt) und Gewitter-Anteil. Daraus EINE Stufe für den Tag und für Vormittag/Nachmittag/Abend: <b>trocken</b> (&lt;10 %), <b>vereinzelt</b> (10–29 %: „meist trocken, vereinzelt ein Schauer möglich“), <b>Schauer</b> (30–59 %: „örtlich Schauer, vor allem …“), <b>Regen</b> (ab 60 % und mind. 1 l/m²), <b>Gewitter</b>. Danach richten sich jetzt Wettersymbol, alle Sätze von Max, Regengrafik (gleiche Werte), Kleidung (Regenjacke nur ab „Schauer“), Hintergrund, Zuschauerfrage, Freizeittipp, persönliche Bemerkung, Facebook-/Instagram-Texte, Abendvideo und Wochenausblick. Im Tal Regen, oben Schnee wird getrennt erkannt. Gemessenes (Rückblick) weiter von der Station Bad König. <b>Selbstkontrolle</b> vor jedem Video: Sätze, die der Stufe widersprechen (z. B. „Schirm“ an einem trockenen Tag, „heute trocken“ bei Schauern), werden automatisch entfernt, das Video kommt trotzdem pünktlich, dazu Push „Max: Selbstkontrolle“. Daten sind frisch (Video wird um 6:30 Uhr mit dem neuesten Modelllauf erstellt). Technik: fb_post.py (niederschlag, stufe_aus), wetter_video.py (stufe, nass_tag, pruefen)</td></tr>
 <tr><td>12.11.2026<br><small>07:50 Uhr</small></td><td><b>Max: „Heute trocken“ korrigiert, weniger Grafiken.</b> (1) Der Satz „Gestern nass, heute trocken“ kam schon bei bis zu 24 % Regenrisiko – obwohl die Regengrafik ein Schauerrisiko zeigte. Jetzt sagt Max „trocken“ nur noch unter 10 % Regenrisiko und ohne Schauer-/Regen-Wettersymbol; bei 10–39 % sagt er „Nach dem Regen gestern wird es heute meist trocken, ein einzelner Schauer ist aber nicht ganz ausgeschlossen.“ (2) <b>Weniger Grafiken</b>: Temperaturverläufe entfallen ganz (Morgenvideo Heute/Morgen, Abendvideo Morgen). Die Regengrafik kommt nur noch ab 30 % Regenrisiko, die Windgrafik weiter nur bei Böen ab 45 km/h. Tafeln „Gestern gemessen“, „Heute“ und „Morgen“ bleiben. Technik: wetter_video.py (vergleich_gestern, grafiken)</td></tr>
 <tr><td>12.11.2026<br><small>01:54 Uhr</small></td><td><b>Max: Grafiken synchron zum Text.</b> Jede Wettergrafik (Temperatur, Regen, Wind) erscheint jetzt genau in dem Moment, in dem Max den passenden Satz beginnt („Schaut mal auf die Temperaturkurve …“, „Bei den Regenbalken …“, „Und beim Wind …“), und bleibt stehen, bis er zur nächsten Grafik kommt bzw. der Abschnitt endet. Vorher wechselten die Tafeln nach fester Zeit und passten nicht zum Gesprochenen. Zeitpunkte kommen aus den Wortzeiten der Stimme; falls ein Satz fehlt, gilt die alte gleichmäßige Verteilung. Gilt für Morgen- und Abendvideo. Technik: wetter_video.py (grafik_zeiten)</td></tr>
