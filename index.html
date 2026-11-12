@@ -2268,7 +2268,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:02 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 23:07 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2345,7 +2345,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:02 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 23:07 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2507,6 +2507,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>23:07 Uhr</small></td><td>(Zentrale) Fehler behoben: Beim Monatsrückblick stand unter „Nächster Post“ nichts, weil die Suche nur 8 Tage vorausschaute. Der Termin (1. des Monats, 15 Uhr) wird jetzt direkt berechnet.</td></tr>
 <tr><td>12.11.2026<br><small>23:02 Uhr</small></td><td><b>Neu: Monatsrückblick-Video mit Max aus dem Studio.</b> Am 1. jedes Monats (zuerst 01.12.2026 für den November) baut der neue Ablauf monatsrueckblick.yml um ca. 13:30 bzw. 14:15 Uhr aus dem eigenen Wetterarchiv ein Video (ca. 1,5–2 Min.): Begrüßung, „Der Monat in Zahlen“ (Ø Temperatur, wärmster/kältester Tag, Regen und Regentage, Frost- und Sommertage, stärkste Böe), Temperaturkurve des Monats, Regen je Tag, Vergleich mit dem Klimamittel des DWD und dem Vorjahresmonat (bis eigene Daten da sind von der Nachbarstation IBADKN32), besondere Momente (Jahresrekorde bisher, erster Herbstfrost, Frostserie, Trockenphase), Ausblick auf den neuen Monat (Klimamittel; im Dezember ehrliche Antwort zu weißer Weihnacht) und Zuschauerfrage. Autopost auf Facebook + Instagram ab 15 Uhr über den 15-Minuten-Lauf (kein eigener cron-job.org-Weckruf nötig), höchstens einmal je Monat. Kommt in die Videothek der Website als „📆/📅 Monatsrückblick“. Zentrale: eigener Abschnitt im Facebook-Bereich mit Vorschau, Video speichern und Knopf „Monatsrückblick jetzt neu erstellen“ (postet nicht), Zeile in Übersicht und Ablauf-Tabelle. Testvideo mit dem Oktober geprüft. Website-Stand 23:05, Service-Worker-Cache v59. Technik: monatsrueckblick.py, fb_senden.py (monat), wetter_video.py (archiv), video-neu.yml (monat)</td></tr>
 <tr><td>12.11.2026<br><small>22:50 Uhr</small></td><td>(Zentrale) <b>Verworfene Ideen aufgeräumt.</b> Beim nächsten Öffnen werden einmalig aus „📝 Notizen“ und „💡 Ideen“ entfernt: „Heute auf einen Blick“ und wischbare 24-h-Leiste (verworfen 08.11.), Tageskarten zum Antippen, Hinweis-Chips, gefühlte Temperatur und Wind (verworfen 12.11.) sowie TikTok (aufgegeben 06.11.). Bleiben: Regenbalken pro Stunde und Vergleich Station gemessen vs. vorhergesagt. Auch aus den Startlisten entfernt.</td></tr>
 <tr><td>12.11.2026<br><small>22:38 Uhr</small></td><td><b>Max: Nebel, Kaltluft in den Tälern und Glätte aus EINER Grundlage.</b> Neue Einstufung lage_winter in fb_post.py (Stundenwerte der Talorte und Höhen × ICON-D2/AROME/ECMWF/ICON-EU, Nacht davor bis 10 Uhr, zusätzlich Luftfeuchte, Taupunkt, Wind): Nebel (Code 45/48 oder ≥ 97 % Feuchte bei Windstille, ab 50 % „wahrscheinlich“, ab 25 % „möglich“, mit Uhrzeit), Glätte (Glatteis &gt; Schnee &gt; überfrierende Nässe &gt; Reif, ab 30 % bzw. Glatteis ab 20 %), Kaltluft (klare, windstille Nacht und kältester Talort so kalt wie die Höhen). Max sagt höchstens zwei solche Hinweise pro Tag (Glätte vor Nebel vor Kaltluft), bei Nebel bis in den Vormittag Nebel-Hintergrund, Zuschauerfrage zum Nebel. Selbstkontrolle erweitert: Sätze zu Nebel/Glätte/Glatteis/Kaltluft, die nicht zur Einstufung passen, fliegen raus (Push). „Nachts friert es auf den Höhen – da kann es glatt werden“ sagt Max nur noch, wenn auch Glätte erwartet wird. Facebook/Instagram: „auf Glätte achten“ und Hinweise „Glätte/Glatteis möglich“, „morgens Nebel in den Tälern“ aus derselben Grundlage. Mit Testdaten geprüft, erster echter Lauf beim nächsten Video. Technik: fb_post.py (lage_winter), wetter_video.py (winter_saetze, pruefen)</td></tr>
@@ -4135,6 +4136,14 @@ function fbInit(){
       var k = planKey[i], jetzt = new Date();
       if (k === null) return 'nur per Knopf';
       if (k === 'sonder') return 'laufend (alle 15 Min.)';
+      if (k === 'monat') {   // am 1. um 15 Uhr – liegt meist weiter als 8 Tage voraus, daher direkt berechnen
+        var hb = jetzt.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' }).split('-'), y = +hb[0], mo = +hb[1], tg = +hb[2];
+        var std = +jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Berlin' }).slice(0, 2);
+        var vm = new Date(Date.UTC(y, mo - 2, 1)).toISOString().slice(0, 7);
+        if (tg === 1 && G.monat !== vm) return std < 15 ? 'heute, 15:00 Uhr' : 'heute, sobald fertig';
+        var n = new Date(Date.UTC(y, mo, 1)), W = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+        return W[n.getUTCDay()] + ', 01.' + ('0' + (n.getUTCMonth() + 1)).slice(-2) + '.' + n.getUTCFullYear() + ', 15:00 Uhr';
+      }
       function bt(d) { var o = {}; new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short', hourCycle: 'h23' }).formatToParts(d).forEach(function (x) { o[x.type] = x.value; }); return o; }
       for (var t = 0; t < 8 * 24 * 60; t += 15) {
         var d = new Date(Math.ceil(jetzt.getTime() / 9e5) * 9e5 + t * 6e4), o = bt(d), h = +o.hour, m = +o.minute, wd = o.weekday.replace('.', '');
