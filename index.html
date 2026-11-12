@@ -2267,7 +2267,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
   <button data-p="lk">🧠 Lernkurve Webseite</button>
   <button data-p="notes">📝 Notizen</button>
   <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 18:50 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>12.11.2026, 19:05 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2335,7 +2335,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 18:50 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 12.11.2026, 19:05 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe. Auf eine Überschrift tippen zum Aufklappen.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2368,7 +2368,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 </ul></details>
 <details><summary>Vorhersage</summary><ul>
 <li><b>Präzisions-Vorhersage 2.0:</b> Mischung aus ICON-D2, ICON-EU, AROME und ECMWF, automatisch gewichtet nach eigener Trefferquote</li>
-<li>Lernfortschritt und Statistik der Vorhersage im eigenen Tab „🧠 Lernkurve Webseite“ der Zentrale <span class="tg">neu 12.11.</span></li>
+<li>Lernfortschritt und Statistik der Vorhersage im eigenen Tab „🧠 Lernkurve Webseite“ der Zentrale, mit dauerhaftem Lernverlauf Monat für Monat (data/lernen-verlauf.json) <span class="tg">neu 12.11.</span></li>
 <li>Lern-Archiv (data/lernen, alle 3 Std.): Stationswerte mit Nachkommastelle (Temperatur, Wind, Regen; vorher ganze Grad, ältere Einträge bis 04.11.2026 bleiben ganzzahlig) <span class="tg">neu 12.11.</span></li>
 <li>Lernende Korrektur mit den eigenen Stationsdaten (nachts/tagsüber, Wind)</li>
 <li>Nur heute + 3 Tage mit Zahlen, danach eine Tendenz-Karte ohne Zahlen</li>
@@ -2486,6 +2486,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>12.11.2026<br><small>19:05 Uhr</small></td><td><b>Dauerhafter Lernverlauf.</b> Das Lern-Skript (alle 3 Std.) speichert jetzt zusätzlich data/lernen-verlauf.json, die nie gelöscht wird: je Tag der Temperaturfehler (Modell kurzfristig, 12 h im Voraus mit und ohne Korrektur) und je Tag der Stand der gelernten Korrektur (klare Nacht/Tag, bewölkt Nacht/Tag, Anzahl Stunden, bestes Modell). Der Tab „🧠 Lernkurve Webseite“ hat dafür die neue Karte „📅 Langzeit: Monat für Monat“; die Lernkurve nutzt alle gespeicherten Tage. Technik: .github/scripts/lernen.py, Zentrale index.html (lkLong)</td></tr>
 <tr><td>12.11.2026<br><small>18:50 Uhr</small></td><td><b>Neuer Tab „🧠 Lernkurve Webseite“</b> in der Zentrale (unter „🎬 Was kann Max“): zeigt live aus dem Lern-Archiv der Website, was die Präzisions-Vorhersage gelernt hat – Kennzahlen (gelernt seit, verglichene Stunden, Fehler reines Modell vs. mit Korrektur, bestes Modell, Treffer der Tageswerte), Lernkurve als Diagramm (Fehler pro Tag: Modell vs. korrigiert, 12 h im Voraus), Tabelle „Tagesvorhersage getroffen?“, Korrektur-Tabelle je Wetterlage und Tageszeit (Farbskala, Anzahl Stunden), Modell-Rangliste mit Regen-Treffern, Lernkurve je Odenwald-Ort und Liste der Lern-Meilensteine. Daten: wetter-badkoenig.de/data/lernen-bias.json, data/lernen/*.json, data/lernen-kreis.json, fb/treffer.json</td></tr>
 <tr><td>12.11.2026<br><small>17:35 Uhr</small></td><td><b>Lern-Archiv mit Nachkommastelle.</b> Die stündlichen Messwerte der Station kamen von Weather Underground nur als ganze Grad (in der Abfrage fehlte numericPrecision=decimal). Jetzt werden Temperatur, Wind und Regen mit Komma gespeichert (z. B. −2,7 °C statt −3 °C), dadurch werden Lernkorrektur und Modell-Trefferquoten genauer, vor allem bei Tiefstwerten in Frostnächten. Die letzten 7 Tage (ab 05.11.) wurden sofort per Hand-Start nachgeladen, ältere Einträge bleiben ganzzahlig (WU liefert Stundenwerte nur 7 Tage rückwirkend). Technik: .github/scripts/lernen.py</td></tr>
 <tr><td>12.11.2026<br><small>17:25 Uhr</small></td><td><b>Ausblick in der Temperatur-Karte nutzt die gemeinsame Regen-Einstufung.</b> Der Regenhinweis (Heute Abend, Nacht, Morgen) kommt jetzt aus derselben Grundlage wie bei Max, Facebook/Instagram und im Vorhersage-Tab (fb/daten.json, Odenwald-Stundenwerte): „Heute Abend“ übernimmt direkt die Abend-Stufe von Max; Nacht und Morgen werden aus den Stundenwerten mit denselben Schwellen eingestuft (trocken &lt;10 %, meist trocken 10–29 %, örtlich Schauer 30–59 %, Regen ab 60 % und 1 mm, Gewitter). Fehlt die Datei, rechnet die Karte wie bisher. Website-Stand 17:25 Uhr, Service-Worker-Cache v57. Technik: index.html (heroOutlook → rainTxt)</td></tr>
@@ -2783,6 +2784,8 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <div class="card"><h3 style="margin-top:0">🎯 Tagesvorhersage: wie gut getroffen?</h3><div id="lkTreff"></div>
 <p class="note">Vorhersage vom Vorabend gegen die gemessenen Werte der Station. ✓ = höchstens 1 °C daneben.</p></div>
 </div>
+<div class="card"><h3 style="margin-top:0">📅 Langzeit: Monat für Monat</h3><div id="lkLong"></div>
+<p class="note">Dauerhafte Lernstatistik (wird nie gelöscht, seit 12.11.2026). Je Monat: mittlerer Temperaturfehler und Stand der gelernten Korrektur am Monatsende. So sieht man über Monate und Jahre, ob die Vorhersage besser wird.</p></div>
 <div class="card"><h3 style="margin-top:0">🧭 Was die Station gelernt hat: Korrektur je Wetterlage und Tageszeit</h3><div id="lkBias" style="overflow-x:auto"></div>
 <p class="note">So viel Grad zieht die Website vom Wettermodell ab (blau) oder schlägt drauf (rot), weil es in Bad König zu dieser Tageszeit und Wetterlage erfahrungsgemäß kälter bzw. wärmer ist. Klein darunter: wie viele Stunden schon in die Berechnung eingeflossen sind. Neuere Tage zählen mehr (Halbwertszeit 21 Tage).</p></div>
 <div class="lkg">
@@ -2799,6 +2802,7 @@ nav{align-items:center}#fsBox{display:flex;align-items:center;gap:4px;margin:0!i
 <li><b>08.11.2026</b> – Trefferquote (gestern vorhergesagt vs. gemessen) als Fenster im Vorhersage-Tab.</li>
 <li><b>12.11.2026</b> – Gemeinsame Regen-Einstufung für Website, Max und Facebook/Instagram.</li>
 <li><b>12.11.2026</b> – Lern-Archiv speichert die Station <b>mit Nachkommastelle</b> (vorher ganze Grad) – genauere Korrektur, besonders in Frostnächten. Werte ab 05.11. nachgeladen.</li>
+<li><b>12.11.2026</b> – <b>Dauerhafter Lernverlauf</b>: Fehler je Tag und Stand der gelernten Korrektur werden für immer gespeichert (Monatsübersicht oben).</li>
 </ol>
 <p class="note">Neue Lernschritte werden hier ergänzt (zusätzlich im Änderungsprotokoll unter „🌦️ Wetterfunktionen“).</p></div>
 </main>
@@ -4661,13 +4665,15 @@ function lkN(v,d){return v==null||isNaN(v)?'–':Number(v).toLocaleString('de-DE
 function lkCol(v){var a=Math.min(1,Math.abs(v)/2.5);return v<0?'rgba(59,130,196,'+(0.12+a*0.6)+')':'rgba(216,90,48,'+(0.12+a*0.6)+')'}
 function lkLoad(){
   var now=new Date(),m1=now.toISOString().slice(0,7),pv=new Date(now.getFullYear(),now.getMonth()-1,15),m0=pv.getFullYear()+'-'+String(pv.getMonth()+1).padStart(2,'0');
-  Promise.all([lkJ('data/lernen-bias.json'),lkJ('data/lernen/'+m0+'.json').catch(function(){return {}}),lkJ('data/lernen/'+m1+'.json').catch(function(){return {}}),lkJ('data/lernen-kreis.json').catch(function(){return null}),lkJ('fb/treffer.json').catch(function(){return null})]).then(function(r){
-    var B=r[0],rows=Object.assign({},r[1],r[2]),K=r[3],T=r[4];
+  Promise.all([lkJ('data/lernen-bias.json'),lkJ('data/lernen/'+m0+'.json').catch(function(){return {}}),lkJ('data/lernen/'+m1+'.json').catch(function(){return {}}),lkJ('data/lernen-kreis.json').catch(function(){return null}),lkJ('fb/treffer.json').catch(function(){return null}),lkJ('data/lernen-verlauf.json').catch(function(){return null})]).then(function(r){
+    var B=r[0],rows=Object.assign({},r[1],r[2]),K=r[3],T=r[4],LV=r[5];
     document.getElementById('lkStand').textContent='Lernstand: '+new Date(B.erstellt).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})+' Uhr';
     /* Tage */
     var days={},nh=0,first=null;
     Object.keys(rows).sort().forEach(function(k){var x=rows[k];if(x.st==null||x.md==null)return;var d=k.slice(0,10);if(new Date(k+':00')>now)return;nh++;if(!first)first=d;var o=days[d]||(days[d]={r:0,n:0,p:0,np:0});o.r+=Math.abs(x.st-x.md);o.n++;if(x.p12!=null){o.p+=Math.abs(x.st-x.p12);o.np++;o.r12=(o.r12||0)+Math.abs(x.st-x.r12)}});
+    if(LV&&LV.tage){Object.keys(LV.tage).forEach(function(d){var x=LV.tage[d];if(!days[d]||days[d].n<12){days[d]={n:x.n,r:x.md*x.n,np:x.np||0,p:(x.p12||0)*(x.np||0),r12:(x.r12||0)*(x.np||0)}}});var f0=Object.keys(LV.tage).sort()[0];if(f0&&(!first||f0<first))first=f0}
     var dk=Object.keys(days).filter(function(d){return days[d].n>=12}).sort();
+    lkLong(LV);
     /* KPIs */
     var tr=B.treff||{},gain=tr.mae_roh&&tr.mae!=null?Math.round((1-tr.mae/tr.mae_roh)*100):null;
     var mods=Object.keys(B.modelle||{}).filter(function(m){return B.modelle[m].mae!=null}).sort(function(a,b){return B.modelle[a].mae-B.modelle[b].mae});
@@ -4716,6 +4722,21 @@ function lkLoad(){
         return '<tr><td>'+d.slice(8,10)+'.'+d.slice(5,7)+'.</td><td>'+c(v.tmax,i.tmax)+'</td><td>'+c(v.tmin,i.tmin)+'</td><td>'+lkN(v.regen,1)+' / '+lkN(i.regen,1)+' mm</td></tr>'}).join('')+'</table>'}
     else document.getElementById('lkTreff').innerHTML='<p class="note">Keine Daten.</p>';
   }).catch(function(e){document.getElementById('lkStand').textContent='Lerndaten konnten nicht geladen werden ('+e+')'});
+}
+
+function lkLong(LV){
+  var el=document.getElementById('lkLong');if(!el)return;
+  if(!LV||!LV.tage){el.innerHTML='<p class="note">Noch keine Langzeitdaten.</p>';return}
+  var M={};
+  Object.keys(LV.tage).forEach(function(d){var x=LV.tage[d],m=d.slice(0,7),o=M[m]||(M[m]={md:0,n:0,p:0,r:0,np:0,t:0});o.md+=x.md;o.n++;if(x.p12!=null){o.p+=x.p12;o.r+=x.r12;o.np++}});
+  var K=LV.korrektur||{};
+  Object.keys(K).forEach(function(d){var m=d.slice(0,7);(M[m]||(M[m]={md:0,n:0,p:0,r:0,np:0}));M[m].k=K[d]});
+  var MN=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  var t='<table><tr><th>Monat</th><th>Tage</th><th>Fehler Modell (kurzfristig)</th><th>12 h im Voraus: Modell / mit Korrektur</th><th>Gelernt: klare Nacht / bewölkt</th><th>Bestes Modell</th></tr>';
+  Object.keys(M).sort().reverse().forEach(function(m){var o=M[m],k=o.k;
+    var a=o.np?o.r/o.np:null,b=o.np?o.p/o.np:null;
+    t+='<tr><td>'+MN[+m.slice(5,7)-1]+' '+m.slice(0,4)+'</td><td>'+o.n+'</td><td>'+(o.n?'± '+lkN(o.md/o.n,2)+' °C':'–')+'</td><td>'+(a==null?'–':'± '+lkN(a,2)+' / ± '+lkN(b,2)+' °C '+(b<a?'<span class="ok">besser</span>':'<span class="mid">noch nicht besser</span>'))+'</td><td>'+(k?lkN(k.klar_nacht,1)+' / '+lkN(k.wolkig_nacht,1)+' °C':'–')+'</td><td>'+(k&&k.bestes?(LK_MOD[k.bestes]||k.bestes):'–')+'</td></tr>'});
+  el.innerHTML=t+'</table>';
 }
 document.querySelectorAll('[data-p=lk]').forEach(function(b){b.addEventListener('click',function(){setTimeout(lkLoad,0)})});
 </script>
