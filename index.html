@@ -2315,7 +2315,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 22:10 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 22:15 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2563,6 +2563,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>14.11.2026<br><small>22:15 Uhr</small></td><td>(Zentrale) „Wettervideo mit Max“ heißt jetzt überall <b>„Morgenvideo mit Max“</b> (passend zu „Abendvideo mit Max (Studio)“) – in Videos, Übersicht und Infokasten.</td></tr>
 <tr><td>14.11.2026<br><small>22:10 Uhr</small></td><td>(Zentrale) „🌙 Abendbeitrag – Ausblick“ (Bild + Text) steht jetzt unter 🖼️ Bildposts statt unter 🎬 Videos.</td></tr>
 <tr><td>14.11.2026<br><small>22:05 Uhr</small></td><td>(Zentrale) Im Wetterstation-Bildschirm wird der Speicher-Bereich (Online gespeichert, Abmelden, Fotos hochladen/löschen, Sicherung herunterladen/einspielen) nicht mehr angezeigt – nur noch in Kingmans Zentrale.</td></tr>
 <tr><td>14.11.2026<br><small>22:00 Uhr</small></td><td>(Zentrale) Eigener Menüpunkt <b>⚡ Sondermeldungen</b> im Wetterstation-Bildschirm (amtliche DWD-Warnungen und Vorhersage-Sondermeldungen). Unter „🖼️ Bildposts“ stehen jetzt nur noch Mittagskarte, Frost-/Nebel-Hinweis und Tagesbild.</td></tr>
@@ -2987,10 +2988,10 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <div class="raster">
 
     <section class="spalte" id="fbs_0" style="scroll-margin-top:12px">
-      <h2 class="sp">🎬 Wettervideo mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <h2 class="sp">🎬 Morgenvideo mit Max <span class="apb">🤖 AUTOPOST</span></h2>
       <div class="card fbinfo" id="fbi_0">wird geladen …</div>
       <div class="card" id="fb_vidCard" hidden>
-        <div class="vhead" id="fb_vTitel">🎬 Wettervideo mit Max</div>
+        <div class="vhead" id="fb_vTitel">🎬 Morgenvideo mit Max</div>
         <div class="datum" id="fb_vDatum"></div>
         <video id="fb_vid" controls playsinline preload="metadata"></video>
         <div class="btns">
@@ -4263,7 +4264,7 @@ function fbInit(){
 
 (function () {
   var q = '?v=' + Date.now(), quellen = [
-    ['🎬 Wettervideo mit Max', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Morgen-Story (Wetter heute)', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte (Rest des Tages)', 'https://wetter-badkoenig.de/fb/mittag.json'], ['📸 Mittags-Story (Karte)', 'https://wetter-badkoenig.de/fb/mittagstory.json'],
+    ['🎬 Morgenvideo mit Max', 'https://wetter-badkoenig.de/fb/wetter.json'], ['📸 Morgen-Story (Wetter heute)', 'https://wetter-badkoenig.de/fb/story.json'], ['🗺️ Mittagskarte (Rest des Tages)', 'https://wetter-badkoenig.de/fb/mittag.json'], ['📸 Mittags-Story (Karte)', 'https://wetter-badkoenig.de/fb/mittagstory.json'],
     ['🎙️ Abendvideo mit Max (Studio)', 'https://wetter-badkoenig.de/fb/abendvideo.json'], ['🌙 Abend-Story (Wetter morgen)', 'https://wetter-badkoenig.de/fb/abendstory.json'],
     ['📅 Wochenausblick mit Max', 'https://wetter-badkoenig.de/fb/woche.json'], ['🎆 Jahresrückblick mit Max', 'https://wetter-badkoenig.de/fb/jahr.json'], ['⚡ Sondermeldungen', 'https://wetter-badkoenig.de/fb/sonder.json'], ['📆 Monatsrückblick mit Max (Studio)', 'https://wetter-badkoenig.de/fb/monat.json']];
   var postKey = ['video', 'story', 'mittag', 'mittagstory', 'abend', 'abendstory', 'woche', 'jahr', 'sonder', 'monat'];   // Schlüssel in gepostet.json
@@ -4321,7 +4322,7 @@ function fbInit(){
       var z = G[k + '_zeit'], tag = k === 'sonder' ? Object.keys(G).filter(function (x) { return x.indexOf('sonder-') === 0; }).map(function (x) { return G[x]; }).sort().pop() : G[k];
       return z ? zeitTxt(z) : tag ? zeitTxt(tag + 'T12:00:00', true) : { t: 'noch nie', cls: '' };
     }
-    var namen = ['🎬 Wettervideo mit Max', '📸 Morgen-Story (Wetter heute)', '🗺️ Mittagskarte (Rest des Tages)', '📸 Mittags-Story (Karte)', '🎙️ Abendvideo mit Max (Studio)', '🌙 Abend-Story (Wetter morgen)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen', '📆 Monatsrückblick mit Max (Studio)'];
+    var namen = ['🎬 Morgenvideo mit Max', '📸 Morgen-Story (Wetter heute)', '🗺️ Mittagskarte (Rest des Tages)', '📸 Mittags-Story (Karte)', '🎙️ Abendvideo mit Max (Studio)', '🌙 Abend-Story (Wetter morgen)', '📅 Wochenausblick mit Max', '🎆 Jahresrückblick mit Max', '⚡ Sondermeldungen', '📆 Monatsrückblick mit Max (Studio)'];
     var art = ['🤖', '🤖', '🤖', '🤖', '🤖 Mo–Sa', '🤖 Mo–Sa', '🤖', '🤖 30.12.', '🤖 bei DWD', '🤖 am 1.'];
     var format = ['🎥 Video', '🖼️ Story', '🖼️ Bild', '🖼️ Story', '🎥 Video', '🖼️ Story', '🎥 Video', '🎥 Video', '🖼️ Bild', '🎥 Video'];
     var FB = '<span class="pf fb" title="Facebook">f</span>', IG = '<span class="pf ig" title="Instagram">ig</span>';
@@ -4371,7 +4372,7 @@ function fbInit(){
     vname = n; var src = 'https://wetter-badkoenig.de/fb/' + n + '.mp4?v=' + v;
     document.getElementById('fb_vid').src = src; document.getElementById('fb_vLaden').href = src;
     var t = document.getElementById('fb_vTitel');
-    t.textContent = '🎬 Wettervideo mit Max · ' + Math.round(j.dauer) + ' Sek.';
+    t.textContent = '🎬 Morgenvideo mit Max · ' + Math.round(j.dauer) + ' Sek.';
     t.className = 'vhead';
     if (j.erstellt) setzeDatum(document.getElementById('fb_vDatum'), j.erstellt); else document.getElementById('fb_vDatum').hidden = true;
     document.getElementById('fb_vidCard').hidden = false;
