@@ -2319,7 +2319,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 00:40 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 00:45 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2361,7 +2361,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </main>
 <main id="cc" hidden>
 <h2 style="margin:0 0 4px">🌦️ Wetterstation Control Center</h2><p style="margin:0 0 16px;color:var(--mut)">Alles rund um wetter-badkoenig.de, Max und Facebook/Instagram an einem Ort. <a href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Website öffnen ›</a></p>
-<div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div></div>
+<div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div><button class="ccSt" id="ccWW" onclick="show('ww')" style="text-align:left;border:0;cursor:pointer;font:inherit;color:inherit"><small>💡 Wetterwissen-Themen</small><b id="ccWWv">…</b><small id="ccWWh" style="margin:3px 0 0"></small></button></div>
 <div class="tpNx" id="tpNext">Als Nächstes: wird geladen …</div>
 <div class="card"><h3 style="margin-top:0">🗓️ Tagesplan heute und morgen</h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table></div>
 </main>
@@ -2595,6 +2595,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <tr><td>14.11.2026<br><small>20:25 Uhr</small></td><td>(Zentrale) <b>Neu: Wetterstation Control Center.</b> Die Seitenleiste ist aufgeräumt: bis „Dacia“ unverändert, darunter nur noch „🌦️ Wetterstation verwalten“. Das Control Center zeigt oben Station live (Temperatur + online), letztes Video und Website-Stand, darunter Kacheln in drei Gruppen: Website und Social Media (Website, Tagesplan, Newsticker), Max und Funktionen (Was kann Max, Wetterfunktionen, Lernkurve), Planung und Daten (Notizen, Ideen, Sicherung). Jeder Bereich hat oben „‹ Zurück zum Control Center“.</td></tr>
 <tr><td>14.11.2026<br><small>20:10 Uhr</small></td><td>(Zentrale) <b>Angemeldet bleiben.</b> Beim Aktualisieren der Zentrale ist kein Passwort mehr nötig, solange die App/der Tab offen bleibt. Neu im Anmeldefenster: Kästchen „Auf diesem Gerät angemeldet bleiben“ – dann fragt die Zentrale auf diesem Gerät auch nach dem Schließen nicht mehr. Das Passwort wird nur verschlüsselt mit einem nicht auslesbaren Geräte-Schlüssel gemerkt. „🔒 Abmelden“ löscht das Merken wieder.</td></tr>
 <tr><td>14.11.2026<br><small>21:15 Uhr</small></td><td><b>Neu: Abend-Story auch sonntags.</b> Zusammen mit dem Wochenausblick (So 20 Uhr) wird jetzt auch die 🌙 Abend-Story mit dem Wetter für Montag erstellt und auf Facebook + Instagram gepostet. Technik: facebook-post.yml (Sonntagsschritt ruft fb_post.py --abend --nur-abends auf). Tagesplan in der Übersicht zeigt sonntags „Video + Story“.</td></tr>
+<tr><td>15.11.2026<br><small>00:45 Uhr</small></td><td>(Zentrale) Neue Kachel <b>💡 Wetterwissen-Themen</b> in der Statusleiste des Control Centers: zeigt, bis wann der Themenvorrat ohne Wiederholung reicht, ab wann wir neue Themen brainstormen sollten (6 Wochen vorher) und welche Jahreszeit fehlt; ab dem Brainstorm-Datum rot mit „⚠️ Jetzt brainstormen“. Wird bei jeder neuen Folge automatisch neu berechnet (fb/wissen_vorrat.json). Klick öffnet 💡 Wetterwissen.</td></tr>
 <tr><td>15.11.2026<br><small>00:40 Uhr</small></td><td><b>Wetterwissen: 40 neue Winterthemen</b> (Schnee, Frost & Glätte, Nebel & graue Tage, Kälte & Wetterlagen, Himmel & Licht im Winter, Odenwald & Geschichte, Winter im Alltag) – Vorrat jetzt 134 Themen. Reicht ohne Wiederholung voraussichtlich bis Ende März 2027; danach braucht es Frühlingsthemen.</td></tr>
 <tr><td>14.11.2026<br><small>23:10 Uhr</small></td><td><b>Wetterwissen mit fortlaufender Folgennummer:</b> Premiere am 15.11.2026 ist Folge 1, danach zählt jede Folge weiter (2, 3, 4 …). Die Nummer steht im Banner („WETTERWISSEN MIT MAX · FOLGE 2“), Max sagt sie zu Beginn an, sie steht im Beitragstext („Wetterwissen mit Max – Folge 2: …“) und in der Zentrale.</td></tr>
 <tr><td>14.11.2026<br><small>23:05 Uhr</small></td><td><b>Wetterwissen pünktlich um 15 Uhr:</b> zwei neue Weckrufe bei cron-job.org – „Wetterwissen Bau Weckruf“ täglich 14:02 Uhr (startet wissen.yml; gebaut wird nur Mo–Fr) und „Wetterwissen Post Weckruf“ täglich 15:02 Uhr (startet facebook-post.yml, postet Wetterwissen ab 15 Uhr). GitHub-Zeitplan bleibt als Rückfall; doppelte Läufe bauen kein zweites Thema und posten nichts doppelt.</td></tr>
@@ -4300,7 +4301,12 @@ function wwLoad(){const W='https://wetter-badkoenig.de/fb/',v='?v='+Date.now();
       if(l.status!=='completed'){S.textContent='⏳ Wird erstellt … ('+Math.round((Date.now()-st)/60000)+' Min.)';return setTimeout(()=>poll(n),15000)}
       if(l.conclusion==='success'){S.textContent='✅ Fertig! Neues Video wird geladen …';setTimeout(()=>{wwLoad();S.textContent='✅ Neues Wetterwissen ist da.';B.disabled=false},70000)}else{S.innerHTML='❌ Hat nicht geklappt. <a target="_blank" href="'+l.html_url+'">Details</a>';B.disabled=false}}
       catch(e){S.textContent='❌ '+e.message;B.disabled=false}};poll(0)}}
-function ccLoad(){tpLoad();const W='https://wetter-badkoenig.de/',v='?v='+Date.now(),o={cache:'no-store'};
+function ccLoad(){tpLoad();
+  fetch('https://wetter-badkoenig.de/fb/wissen_vorrat.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(j=>{const f=d=>new Date(d+'T12:00').toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}),SZ={fruehling:'Frühlings',sommer:'Sommer',herbst:'Herbst',winter:'Winter'};
+    if(!j.reicht_bis){$('ccWWv').textContent=j.offen+' Themen · reicht über 1 Jahr';return}
+    const tage=Math.round((new Date(j.brainstorm_ab)-Date.now())/864e5);
+    $('ccWWv').innerHTML='reicht bis '+f(j.reicht_bis);
+    $('ccWWh').innerHTML=(tage<=0?'<span style="color:var(--bad);font-weight:700">⚠️ Jetzt brainstormen: </span>':'🧠 Brainstorming ab <b>'+f(j.brainstorm_ab)+'</b> · ')+(SZ[j.fehlt]||'')+'themen fehlen · '+j.offen+' offen'}).catch(()=>$('ccWWv').textContent='–');const W='https://wetter-badkoenig.de/',v='?v='+Date.now(),o={cache:'no-store'};
   fetch(W+'data/live.json'+v,o).then(r=>r.json()).then(j=>{const x=j.cur.observations[0],m=x.metric||{},alt=(Date.now()-Date.parse(x.obsTimeUtc))/60000;
     $('ccLive').innerHTML=(m.temp!=null?String(m.temp).replace('.',',')+' °C · ':'')+(alt<30?'<span style="color:var(--ok)">online</span>':'<span style="color:var(--bad)">seit '+Math.round(alt)+' Min. still</span>')}).catch(()=>$('ccLive').textContent='nicht erreichbar');
   Promise.all(['fb/wetter.json','fb/abendvideo.json'].map(f=>fetch(W+f+v,o).then(r=>r.json()).catch(()=>null))).then(a=>{const t=a.filter(x=>x&&x.erstellt).map(x=>Date.parse(x.erstellt.replace(/\+00:00$/,'Z'))).filter(n=>n).sort((a,b)=>b-a)[0];
