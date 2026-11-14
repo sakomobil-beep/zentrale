@@ -1980,6 +1980,21 @@ nav h1{font-size:18px;margin:0 8px 20px}
 nav button{display:block;width:100%;text-align:left;background:none;border:0;color:#cbd5e1;padding:10px 12px;border-radius:8px;font-size:15px;cursor:pointer;margin-bottom:4px}
 nav button.active,nav button:hover{background:#334155;color:#fff}
 nav .soon{opacity:.45;cursor:default}
+body.dark{--bg:#0f1420;--card:#1a2130;--ink:#e5e7eb;--mut:#9aa4b2;--line:#2c3546;color-scheme:dark}
+body.dark input,body.dark select,body.dark textarea{background:#111827;color:#e5e7eb;border-color:#374151}
+body.dark [style*="background:#fff"],body.dark [style*="background: #fff"],body.dark [style*="background:white"],body.dark [style*="background:#f9fafb"],body.dark [style*="background:#f4f5f7"],body.dark [style*="background:#f3f4f6"]{background:#1a2130!important;color:#e5e7eb}
+body.dark [style*="color:#111"],body.dark [style*="color:#1d2330"],body.dark [style*="color:#333"],body.dark [style*="color:#374151"]{color:#e5e7eb!important}
+body.dark [style*="background:#fee2e2"],body.dark [style*="background:#fde2e2"]{background:#3b1d1d!important;color:#fecaca}
+body.dark [style*="background:#fef3c7"],body.dark [style*="background:#fef9c3"],body.dark [style*="background:#fff3e0"],body.dark [style*="background:#fff7ed"]{background:#3a2e12!important;color:#fde68a}
+body.dark table td,body.dark table th{border-color:#2c3546}
+body.dark .day.o{background:#141a26;color:#4b5563}
+body.dark a{color:#93c5fd}
+body.dark .ui{background:#222b3b}body.dark .ui .ud{background:#374151;color:#e5e7eb}body.dark .ui.t0{background:#3a2e12}body.dark .ui.t1{background:#3a2412}
+body.dark .tile.sav{background:#123227}body.dark .tile.sav .v{color:#6ee7b7}body.dark .tile.kas{background:#14284a}body.dark .tile.kas .v{color:#93c5fd}
+body.dark .g,body.dark .day,body.dark .qm,body.dark .pc,body.dark .stBtn{background:#1a2130;color:#e5e7eb;border-color:#2c3546}body.dark .qm.on{background:#1e3a8a;color:#bfdbfe}body.dark .t1{background:#3a2412}
+body.dark #fbSec{filter:brightness(.82)}body.dark #fbSec .card{background:#1a2130;color:#e5e7eb}body.dark #fbSec{--text:#e5e7eb}body.dark #fbSec .sec{background:#1e3a5f;color:#bfdbfe}body.dark #fbSec #fb_letzte{background:#16233a}
+#dmBtn{margin-top:8px;background:#334155!important;color:#fff!important;text-align:center!important;font-size:13px!important;padding:8px 10px!important}
+
 body:not(.wMode) nav .nW,body.wMode nav .nZ{display:none!important}
 body.wMode nav{background:#0f2f4f}body.wMode nav button.active,body.wMode nav button:hover{background:#1e4e7a}
 main{flex:1;padding:28px;max-width:1100px}
@@ -2284,7 +2299,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 20:35 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 20:40 Uhr</b></div>
+  <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2532,6 +2548,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>14.11.2026<br><small>20:40 Uhr</small></td><td>(Zentrale) <b>Dark Mode.</b> Die Zentrale wird automatisch bei Sonnenuntergang in Bad König dunkel und bei Sonnenaufgang wieder hell. Mit dem Knopf „🌙 Dunkel“ / „☀️ Hell“ in der Seitenleiste (auch im Wetterstation-Bildschirm) jederzeit von Hand umschaltbar – das gilt bis zum nächsten Sonnenauf- bzw. -untergang. Fotos und Videos bleiben unverändert, der Tagesplan wird nur leicht abgedunkelt.</td></tr>
 <tr><td>14.11.2026<br><small>20:35 Uhr</small></td><td>(Zentrale) <b>Wetterstation als eigener Bildschirm.</b> „🌦️ Wetterstation verwalten“ öffnet jetzt eine eigene Seite mit eigener, blauer Seitenleiste: oben „‹ Zurück zu Kingmans Zentrale“, darunter Übersicht (Control Center), Website, Tagesplan, Newsticker, Wetterfunktionen, Was kann Max, Lernkurve, Notizen, Ideen, Sicherung. Die Zurück-Knöpfe in den einzelnen Bereichen sind dafür entfallen.</td></tr>
 <tr><td>14.11.2026<br><small>20:25 Uhr</small></td><td>(Zentrale) <b>Neu: Wetterstation Control Center.</b> Die Seitenleiste ist aufgeräumt: bis „Dacia“ unverändert, darunter nur noch „🌦️ Wetterstation verwalten“. Das Control Center zeigt oben Station live (Temperatur + online), letztes Video und Website-Stand, darunter Kacheln in drei Gruppen: Website und Social Media (Website, Tagesplan, Newsticker), Max und Funktionen (Was kann Max, Wetterfunktionen, Lernkurve), Planung und Daten (Notizen, Ideen, Sicherung). Jeder Bereich hat oben „‹ Zurück zum Control Center“.</td></tr>
 <tr><td>14.11.2026<br><small>20:10 Uhr</small></td><td>(Zentrale) <b>Angemeldet bleiben.</b> Beim Aktualisieren der Zentrale ist kein Passwort mehr nötig, solange die App/der Tab offen bleibt. Neu im Anmeldefenster: Kästchen „Auf diesem Gerät angemeldet bleiben“ – dann fragt die Zentrale auf diesem Gerät auch nach dem Schließen nicht mehr. Das Passwort wird nur verschlüsselt mit einem nicht auslesbaren Geräte-Schlüssel gemerkt. „🔒 Abmelden“ löscht das Merken wieder.</td></tr>
@@ -4931,6 +4948,16 @@ function lkLong(LV){
   el.innerHTML=t+'</table>';
 }
 document.querySelectorAll('[data-p=lk]').forEach(function(b){b.addEventListener('click',function(){setTimeout(lkLoad,0)})});
+</script>
+<script>
+function dmNacht(d){d=d||new Date();var rad=Math.PI/180,lat=49.742,lon=9.009,jd=d/864e5+2440587.5,n=jd-2451545,L=(280.46+.9856474*n)%360,g=(357.528+.9856003*n)*rad,lam=(L+1.915*Math.sin(g)+.02*Math.sin(2*g))*rad,eps=23.439*rad,
+ ra=Math.atan2(Math.cos(eps)*Math.sin(lam),Math.cos(lam)),dec=Math.asin(Math.sin(eps)*Math.sin(lam)),gmst=(18.697374558+24.06570982441908*n)%24,ha=(gmst*15+lon)*rad-ra,
+ alt=Math.asin(Math.sin(lat*rad)*Math.sin(dec)+Math.cos(lat*rad)*Math.cos(dec)*Math.cos(ha))/rad;return alt<-0.833}
+function dmSet(on){document.body.classList.toggle('dark',on);var b=document.getElementById('dmBtn');if(b)b.textContent=on?'☀️ Hell':'🌙 Dunkel'}
+function dmApply(){var n=dmNacht(),o=null;try{o=JSON.parse(localStorage.getItem('kz-dark-ovr'))}catch(e){}
+ if(o&&o.ph!==n){o=null;try{localStorage.removeItem('kz-dark-ovr')}catch(e){}}dmSet(o?o.v:n)}
+function dmToggle(){var on=!document.body.classList.contains('dark');try{localStorage.setItem('kz-dark-ovr',JSON.stringify({v:on,ph:dmNacht()}))}catch(e){}dmSet(on)}
+dmApply();setInterval(dmApply,60000);
 </script>
 </body>
 </html>
