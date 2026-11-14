@@ -1981,6 +1981,13 @@ nav button{display:block;width:100%;text-align:left;background:none;border:0;col
 nav button.active,nav button:hover{background:#334155;color:#fff}
 nav .soon{opacity:.45;cursor:default}
 main{flex:1;padding:28px;max-width:1100px}
+.ccBack{background:none;border:0;color:var(--acc);font-size:14px;cursor:pointer;padding:0 0 12px}
+.ccS{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:8px}
+.ccSt{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}.ccSt small{display:block;color:var(--mut);font-size:12px;margin-bottom:3px}.ccSt b{font-size:17px}
+.ccG{color:var(--mut);font-size:13px;font-weight:600;margin:20px 0 8px}
+.ccR{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.ccT{display:flex;gap:12px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;font:inherit;color:var(--ink);transition:transform .12s,border-color .12s}
+.ccT:hover{border-color:var(--acc);transform:translateY(-1px)}.ccI{font-size:26px}.ccT b{display:block;font-size:15px}.ccT small{color:var(--mut);font-size:12px}
 main#home{max-width:none}
 .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:18px}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
@@ -2262,16 +2269,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button data-p="sky">🌙 Himmel</button>
   <button data-p="garden" hidden>🌶️ Garten</button>
   <button data-p="car">🚗 Dacia</button>
-  <button data-p="web">📈 Website</button>
-  <button data-p="tp">🗓️ Tagesplan</button>
-  <button data-p="tk">📰 Newsticker</button>
-  <button data-p="wf">🌦️ Wetterfunktionen</button>
-  <button data-p="mx">🎬 Was kann Max</button>
-  <button data-p="lk">🧠 Lernkurve Webseite</button>
-  <button data-p="notes">📝 Notizen</button>
-  <button data-p="ideen">💡 Ideen <span id="idCnt"></span></button>
-  <button data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 20:10 Uhr</b></div>
+  <button data-p="cc" style="margin-top:10px;border-top:1px solid rgba(255,255,255,.15);padding-top:12px">🌦️ Wetterstation verwalten</button>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 20:25 Uhr</b></div>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
 <main id="home">
@@ -2310,7 +2309,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <div class="ktile soon"><div class="ic">➕</div><div class="kt">Neuer Bereich</div><div class="ks">Sag Claude, was hier rein soll</div></div>
   </div>
 </main>
-<main id="notes" hidden>
+<main id="cc" hidden>
+<h2 style="margin:0 0 4px">🌦️ Wetterstation Control Center</h2><p style="margin:0 0 16px;color:var(--mut)">Alles rund um wetter-badkoenig.de, Max und Facebook/Instagram an einem Ort. <a href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Website öffnen ›</a></p>
+<div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div></div>
+<div class="ccG">Website und Social Media</div><div class="ccR"><button class="ccT" data-p="web"><span class="ccI">📈</span><span><b>Website</b><small>Besucherstatistik</small></span></button><button class="ccT" data-p="tp"><span class="ccI">🗓️</span><span><b>Tagesplan</b><small>Facebook und Instagram</small></span></button><button class="ccT" data-p="tk"><span class="ccI">📰</span><span><b>Newsticker</b><small>Text pflegen</small></span></button></div>
+<div class="ccG">Max und Funktionen</div><div class="ccR"><button class="ccT" data-p="mx"><span class="ccI">🎬</span><span><b>Was kann Max</b><small>Funktionen und Protokoll</small></span></button><button class="ccT" data-p="wf"><span class="ccI">🌦️</span><span><b>Wetterfunktionen</b><small>Übersicht und Protokoll</small></span></button><button class="ccT" data-p="lk"><span class="ccI">🧠</span><span><b>Lernkurve</b><small>Trefferquote der Vorhersage</small></span></button></div>
+<div class="ccG">Planung und Daten</div><div class="ccR"><button class="ccT" data-p="notes"><span class="ccI">📝</span><span><b>Notizen</b><small>To-dos</small></span></button><button class="ccT" data-p="ideen"><span class="ccI">💡</span><span><b>Ideen <span id="idCnt"></span></b><small>Gesammelte Ideen</small></span></button><button class="ccT" data-p="sich"><span class="ccI">💾</span><span><b>Sicherung</b><small>Wetterdaten herunterladen</small></span></button></div>
+</main>
+<main id="notes" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
   <div class="card" id="todoCard"><h3 style="margin-top:0">📝 Notizen &amp; To-dos <small id="ntCnt" style="font-weight:400;opacity:.6"></small></h3>
     <div class="nt-add"><input id="ntText" placeholder="Neue Notiz oder Aufgabe …"><input id="ntCat" list="ntCats" placeholder="Bereich (z. B. Wetter-Website)"><datalist id="ntCats"></datalist><button class="b" id="ntAdd">➕ Hinzufügen</button></div>
     <div class="nt-f" id="ntF"></div>
@@ -2318,14 +2324,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="g" id="ntClr">🧹 Erledigte entfernen</button><small style="opacity:.6;align-self:center">Tipp: Auf einen Text tippen, um ihn zu ändern.</small></div>
   </div>
 </main>
-<main id="ideen" hidden>
+<main id="ideen" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
   <div class="card" id="ideenCard"><h3 style="margin-top:0">💡 Ideen für Verbesserungen</h3>
     <div class="nt-add"><input id="idText" placeholder="Neue Idee …"><input id="idCat" list="ntCats" placeholder="Bereich (z. B. Max)"><button class="b" id="idAdd">➕ Hinzufügen</button></div>
     <div id="idList"></div>
     <small style="opacity:.6;display:block;margin-top:10px">„➜ To-do“ übernimmt die Idee in die To-do-Liste. Auf einen Text tippen, um ihn zu ändern.</small>
   </div>
 </main>
-<main id="tk" hidden>
+<main id="tk" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
   <div class="card" id="tkCard"><h3 style="margin-top:0">📰 Newsticker auf der Startseite</h3><p style="margin:0 0 6px"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
     <p style="margin:4px 0 10px;opacity:.8">Laufband auf wetter-badkoenig.de unter dem Schlossbild (neben „Live · Stand · Aktualisieren“). Bleibt so stehen, bis du hier etwas anderes einträgst. Ein Link ist optional, z. B. <code>elnino.html</code> oder <code>polarwirbel.html</code> – dann ist die Meldung anklickbar.</p>
     <label style="display:flex;gap:6px;align-items:center;font-weight:600;margin-bottom:8px"><input type="checkbox" id="tkAktiv"> Ticker anzeigen</label>
@@ -2334,7 +2340,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="g" id="tkPlus">➕ Weitere Meldung</button><button class="b" id="tkSave">💾 Ticker speichern</button><small id="tkSt" style="opacity:.8"></small></div>
   </div>
 </main>
-<main id="wf" hidden>
+<main id="wf" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
 <style>
 #wf .wfh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
 #wf details{border-top:1px solid rgba(128,128,128,.25);padding:8px 0}
@@ -2512,6 +2518,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>14.11.2026<br><small>20:25 Uhr</small></td><td>(Zentrale) <b>Neu: Wetterstation Control Center.</b> Die Seitenleiste ist aufgeräumt: bis „Dacia“ unverändert, darunter nur noch „🌦️ Wetterstation verwalten“. Das Control Center zeigt oben Station live (Temperatur + online), letztes Video und Website-Stand, darunter Kacheln in drei Gruppen: Website und Social Media (Website, Tagesplan, Newsticker), Max und Funktionen (Was kann Max, Wetterfunktionen, Lernkurve), Planung und Daten (Notizen, Ideen, Sicherung). Jeder Bereich hat oben „‹ Zurück zum Control Center“.</td></tr>
 <tr><td>14.11.2026<br><small>20:10 Uhr</small></td><td>(Zentrale) <b>Angemeldet bleiben.</b> Beim Aktualisieren der Zentrale ist kein Passwort mehr nötig, solange die App/der Tab offen bleibt. Neu im Anmeldefenster: Kästchen „Auf diesem Gerät angemeldet bleiben“ – dann fragt die Zentrale auf diesem Gerät auch nach dem Schließen nicht mehr. Das Passwort wird nur verschlüsselt mit einem nicht auslesbaren Geräte-Schlüssel gemerkt. „🔒 Abmelden“ löscht das Merken wieder.</td></tr>
 <tr><td>14.11.2026<br><small>19:55 Uhr</small></td><td><b>Max: Stimme wieder Conrad, etwas höher.</b> Florian gefiel nicht. Nach Hörproben (8 Varianten) gewählt: Microsoft-Neuralstimme <b>Conrad</b> mit Tonhöhe <b>+6 Hz</b> – kommt der alten Stimme am nächsten. Gilt für alle Videos (Morgen, Abend, Woche, Specials, Themen, Rückblicke). Technik: wetter_video.py (VOICE + PITCH). Probeseite /stimmproben wieder gelöscht. Morgenvideo zum Anhören neu erstellt (ohne Posten).</td></tr>
 <tr><td>14.11.2026<br><small>14:30 Uhr</small></td><td><b>Max: neue Stimme Florian.</b> Microsoft hat die bisherige Stimme Conrad verändert – Max spricht ab sofort in allen Videos mit der Microsoft-Neuralstimme <b>Florian Multilingual</b> (de-DE-FlorianMultilingualNeural). Technik: wetter_video.py (VOICE)</td></tr>
@@ -2643,7 +2650,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <small style="opacity:.65">Neue Änderungen kommen künftig oben dazu – immer mit Datum und Uhrzeit.</small>
 </div>
 </main>
-<main id="mx" hidden>
+<main id="mx" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
 <style>
 #mx details{border-top:1px solid rgba(128,128,128,.25);padding:8px 0}
 #mx details:first-of-type{border-top:0}
@@ -2840,7 +2847,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </div>
 </div>
 </main>
-<main id="lk" hidden>
+<main id="lk" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
 <style>
 #lk .lkk{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
 #lk .kp{background:rgba(128,128,128,.09);border-radius:12px;padding:10px 12px}
@@ -2891,7 +2898,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </ol>
 <p class="note">Neue Lernschritte werden hier ergänzt (zusätzlich im Änderungsprotokoll unter „🌦️ Wetterfunktionen“).</p></div>
 </main>
-<main id="web" hidden>
+<main id="web" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
   <h1>📈 Website-Statistik</h1>
   <div class="card"><h3 style="margin-top:0">📈 Besucher von wetter-badkoenig.de <small id="wsAt" style="font-weight:400;opacity:.6"></small></h3>
     <div id="wsMsg"><small>Lade Statistik …</small></div>
@@ -2911,7 +2918,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     </div>
   </div>
 </main>
-<main id="tp" hidden>
+<main id="tp" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
   <template id="fbTpl">
   <h1>Facebook &amp; Instagram · Tagesplan</h1>
   <p class="sub" id="fb_stand">wird geladen …</p>
@@ -3143,7 +3150,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <small style="display:block;margin-top:6px;opacity:.7">Wird verschlüsselt mit deinen Zentrale-Daten gespeichert. Braucht nur: Repo „wetterstation“ → Actions: Lesen und Schreiben.</small>
   </details>
 </main>
-<main id="sich" hidden>
+<main id="sich" hidden><button class="ccBack" onclick="show('cc')">‹ Zurück zum Control Center</button>
   <h1>💾 Sicherung der Wetterdaten</h1>
   <div class="card" id="archCard"><h3 style="margin-top:0">💾 Sicherung deiner Wetterdaten</h3>
     <p style="margin:4px 0 10px;opacity:.8">Dein eigenes Wetterarchiv der Station IBADKN33 – wird jede Nacht um 0:15 Uhr automatisch um den Vortag ergänzt. Hier kannst du es als Datei auf dem PC speichern.</p>
@@ -4141,7 +4148,14 @@ function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p))}
+function show(p){if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','sich'];document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p||(b.dataset.p=='cc'&&CCS.includes(p))));scrollTo(0,0)}
+function ccLoad(){const W='https://wetter-badkoenig.de/',v='?v='+Date.now(),o={cache:'no-store'};
+  fetch(W+'data/live.json'+v,o).then(r=>r.json()).then(j=>{const x=j.cur.observations[0],m=x.metric||{},alt=(Date.now()-Date.parse(x.obsTimeUtc))/60000;
+    $('ccLive').innerHTML=(m.temp!=null?String(m.temp).replace('.',',')+' °C · ':'')+(alt<30?'<span style="color:var(--ok)">online</span>':'<span style="color:var(--bad)">seit '+Math.round(alt)+' Min. still</span>')}).catch(()=>$('ccLive').textContent='nicht erreichbar');
+  Promise.all(['fb/wetter.json','fb/abendvideo.json'].map(f=>fetch(W+f+v,o).then(r=>r.json()).catch(()=>null))).then(a=>{const t=a.filter(x=>x&&x.erstellt).map(x=>Date.parse(x.erstellt.replace(/\+00:00$/,'Z'))).filter(n=>n).sort((a,b)=>b-a)[0];
+    $('ccVid').textContent=t?new Date(t).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Uhr':'–'});
+  fetch(W+v,o).then(r=>r.text()).then(h=>{const m=h.match(/Website-Stand:\s*([^<]+)/);$('ccWeb').textContent=m?m[1].trim():'–'}).catch(()=>$('ccWeb').textContent='–')}
+document.querySelectorAll('.ccT[data-p]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.p)));
 function renderHome(){const now=new Date(),d=db.hb[now.getFullYear()+'-'+now.getMonth()];$('homeHb').textContent=(d?M[now.getMonth()]+': '+eur(d.income-sum(d))+' übrig':'Einnahmen & Ausgaben')+' · 🐷 '+eur(savTotal())+' · 💶 Kasse '+eur(kasTotal());try{$('qBank').textContent=d?eur(d.income-sum(d)):'–';$('qKas').textContent=eur(kasTotal());$('qSav').textContent=eur(savTotal());$('qSum').textContent=eur((d?d.income-sum(d):0)+kasTotal()+savTotal())}catch(e){}}
 function confirmDel(it){return window.confirm?confirm('„'+it.desc+'“ löschen?'):true}
 function init(){
