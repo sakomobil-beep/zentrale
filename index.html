@@ -1998,6 +1998,14 @@ body.dark [style*="color:#5a6b80"],body.dark [style*="color:#6b7280"]{color:#9aa
 body.dark .bar{background:#2c3546}body.dark #fbSec table.ue,body.dark #fbSec .abend .vhead{color:#e5e7eb}body.dark #fbSec .hint,body.dark #fbSec .fbinfo td:first-child{color:#9aa4b2}
 body.dark #kzLogin .b{background:#1a2130;color:#e5e7eb}body.dark #kzLogin label,body.dark #kzLogin p{color:#9aa4b2}
 body.dark th{color:#cbd5e1}
+body.fbVid #fbs_1,body.fbVid #fbs_2,body.fbVid #fbs_3,body.fbVid #fbs_5,body.fbVid #fbs_8,body.fbVid #fb_letzte,
+body.fbSto #fbs_0,body.fbSto #fbs_4,body.fbSto #fbs_6,body.fbSto #fbs_7,body.fbSto #fbs_9,body.fbSto #fb_letzte,body.fbSto #ablCard,body.fbSto #tmCard{display:none!important}
+.tpT{width:100%;border-collapse:collapse;font-size:14px}.tpT td{padding:8px 6px;border-top:1px solid var(--line)}.tpT tr.tag td{border-top:0;padding-top:14px;font-weight:700;color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.tpT .zt{width:62px;font-weight:700}.tpP{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.tpP.ok{background:#dcfce7;color:#166534}.tpP.wa{background:#fef3c7;color:#92400e}.tpP.tpl{background:#e0e7ff;color:#3730a3}.tpP.au{background:#f1f5f9;color:#475569}
+body.dark .tpP.ok{background:#14361f;color:#86efac}body.dark .tpP.wa{background:#3a2e12;color:#fde68a}body.dark .tpP.tpl{background:#1e2a5a;color:#c7d2fe}body.dark .tpP.au{background:#273244;color:#cbd5e1}
+.tpNx{border:2px solid var(--acc);background:#eff6ff;color:#1d4ed8;border-radius:12px;padding:12px 16px;margin:14px 0}body.dark .tpNx{background:#14284a;color:#bfdbfe}
+.tpT a{color:inherit;text-decoration:none;cursor:pointer}.tpT a:hover{text-decoration:underline}
 #dmBtn{margin-top:8px;background:#334155!important;color:#fff!important;text-align:center!important;font-size:13px!important;padding:8px 10px!important}
 
 body:not(.wMode) nav .nW,body.wMode nav .nZ{display:none!important}
@@ -2296,7 +2304,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <h1 class="nW" style="margin-top:8px">🌦️ Wetterstation</h1>
   <button class="nW" data-p="cc">🏠 Übersicht</button>
   <button class="nW" data-p="web">📈 Website</button>
-  <button class="nW" data-p="tp">🗓️ Tagesplan</button>
+  <button class="nW" data-p="vid">🎬 Videos</button>
+  <button class="nW" data-p="sto">📸 Stories und Bildposts</button>
   <button class="nW" data-p="tk">📰 Newsticker</button>
   <button class="nW" data-p="wf">🌦️ Wetterfunktionen</button>
   <button class="nW" data-p="mx">🎬 Was kann Max</button>
@@ -2304,7 +2313,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 20:45 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>14.11.2026, 21:00 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2347,9 +2356,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <main id="cc" hidden>
 <h2 style="margin:0 0 4px">🌦️ Wetterstation Control Center</h2><p style="margin:0 0 16px;color:var(--mut)">Alles rund um wetter-badkoenig.de, Max und Facebook/Instagram an einem Ort. <a href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Website öffnen ›</a></p>
 <div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div></div>
-<div class="ccG">Website und Social Media</div><div class="ccR"><button class="ccT" data-p="web"><span class="ccI">📈</span><span><b>Website</b><small>Besucherstatistik</small></span></button><button class="ccT" data-p="tp"><span class="ccI">🗓️</span><span><b>Tagesplan</b><small>Facebook und Instagram</small></span></button><button class="ccT" data-p="tk"><span class="ccI">📰</span><span><b>Newsticker</b><small>Text pflegen</small></span></button></div>
-<div class="ccG">Max und Funktionen</div><div class="ccR"><button class="ccT" data-p="mx"><span class="ccI">🎬</span><span><b>Was kann Max</b><small>Funktionen und Protokoll</small></span></button><button class="ccT" data-p="wf"><span class="ccI">🌦️</span><span><b>Wetterfunktionen</b><small>Übersicht und Protokoll</small></span></button><button class="ccT" data-p="lk"><span class="ccI">🧠</span><span><b>Lernkurve</b><small>Trefferquote der Vorhersage</small></span></button></div>
-<div class="ccG">Planung und Daten</div><div class="ccR"><button class="ccT" data-p="notes"><span class="ccI">📝</span><span><b>Notizen</b><small>To-dos</small></span></button><button class="ccT" data-p="ideen"><span class="ccI">💡</span><span><b>Ideen <span id="idCnt"></span></b><small>Gesammelte Ideen</small></span></button><button class="ccT" data-p="sich"><span class="ccI">💾</span><span><b>Sicherung</b><small>Wetterdaten herunterladen</small></span></button></div>
+<div class="tpNx" id="tpNext">Als Nächstes: wird geladen …</div>
+<div class="card"><h3 style="margin-top:0">🗓️ Tagesplan heute und morgen</h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table></div>
 </main>
 <main id="notes" hidden>
   <div class="card" id="todoCard"><h3 style="margin-top:0">📝 Notizen &amp; To-dos <small id="ntCnt" style="font-weight:400;opacity:.6"></small></h3>
@@ -2553,6 +2561,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>14.11.2026<br><small>21:00 Uhr</small></td><td>(Zentrale) <b>Wetterstation-Bildschirm neu aufgeteilt.</b> Die Übersicht (Control Center) zeigt jetzt „Als Nächstes“ (nächster Beitrag mit Countdown) und den <b>Tagesplan für heute und morgen</b> (Uhrzeit, Beitrag, Autopost/von Hand, Status gepostet/geplant/noch nicht gepostet; Klick springt zur passenden Seite). Der Menüpunkt „Tagesplan“ ist ersetzt durch zwei Unterseiten: <b>🎬 Videos</b> (Morgenvideo, Abendvideo, Wochenausblick, Jahres- und Monatsrückblick, Zum Selbst-Teilen, Termine für Max, Abläufe) und <b>📸 Stories und Bildposts</b> (Morgen-Story, Mittagskarte, Mittags-Story, Abend-Story, Sondermeldungen, Zum Selbst-Teilen). Die Kacheln im Control Center sind entfallen, die Seitenleiste übernimmt die Navigation.</td></tr>
 <tr><td>14.11.2026<br><small>20:45 Uhr</small></td><td>(Zentrale) Dark Mode verbessert: dunkle Schrift in Fenstern (z. B. Tank-Monatsübersicht, Technische Daten), Balken, Tabellenköpfe, Tagesplan-Tabelle und Anmeldefenster werden im Dunkelmodus jetzt hell bzw. passend dargestellt.</td></tr>
 <tr><td>14.11.2026<br><small>20:40 Uhr</small></td><td>(Zentrale) <b>Dark Mode.</b> Die Zentrale wird automatisch bei Sonnenuntergang in Bad König dunkel und bei Sonnenaufgang wieder hell. Mit dem Knopf „🌙 Dunkel“ / „☀️ Hell“ in der Seitenleiste (auch im Wetterstation-Bildschirm) jederzeit von Hand umschaltbar – das gilt bis zum nächsten Sonnenauf- bzw. -untergang. Fotos und Videos bleiben unverändert, der Tagesplan wird nur leicht abgedunkelt.</td></tr>
 <tr><td>14.11.2026<br><small>20:35 Uhr</small></td><td>(Zentrale) <b>Wetterstation als eigener Bildschirm.</b> „🌦️ Wetterstation verwalten“ öffnet jetzt eine eigene Seite mit eigener, blauer Seitenleiste: oben „‹ Zurück zu Kingmans Zentrale“, darunter Übersicht (Control Center), Website, Tagesplan, Newsticker, Wetterfunktionen, Was kann Max, Lernkurve, Notizen, Ideen, Sicherung. Die Zurück-Knöpfe in den einzelnen Bereichen sind dafür entfallen.</td></tr>
@@ -2958,7 +2967,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </main>
 <main id="tp" hidden>
   <template id="fbTpl">
-  <h1>Facebook &amp; Instagram · Tagesplan</h1>
+  <h1 id="fbH1">Facebook &amp; Instagram</h1>
   <p class="sub" id="fb_stand">wird geladen …</p>
 
   <div class="card" id="fb_letzte">
@@ -3105,7 +3114,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <div id="fb_sonderBox"></div>
     </section>
 
-    <section class="spalte">
+    <section class="spalte" id="fbs_hand">
       <h2 class="sp">✋ Zum Selbst-Teilen <span class="apb man">✋ MANUELL POSTEN</span></h2>
       <div class="card fbinfo"><b>Wird nicht automatisch gepostet.</b> Hier liegt alles, was du bei Bedarf selbst teilst: Frost-/Nebel-Hinweis, Special-Videos, Tagesbild und „Max erklärt“.</div>
       <div id="fb_frostBox"></div>
@@ -4183,11 +4192,31 @@ function archInit(){
 /* Facebook-Bereich: fb.html im Rahmen, Zugriff nur nach Entsperren; Schlüssel verschlüsselt in db.fbTok */
 window.kzOk=()=>!!ghKey;window.kzFbTok=()=>(db&&db.fbTok)||'';
 function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild(t.content.cloneNode(true));try{fbInit()}catch(e){console.warn(e)}}
-function fbOpen(){if(!$('fbSec').childElementCount)fbReload();$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
+function fbOpen(){if(!$('fbSec').childElementCount)fbReload();var h=$('fbH1');if(h&&show._fb)h.textContent=show._fb=='vid'?'🎬 Videos':'📸 Stories und Bildposts';$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','sich'];document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));scrollTo(0,0)}
-function ccLoad(){const W='https://wetter-badkoenig.de/',v='?v='+Date.now(),o={cache:'no-store'};
+function show(p){var fbv=(p=='vid'||p=='sto')?p:null;document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');if(fbv){var h=$('fbH1');if(h)h.textContent=fbv=='vid'?'🎬 Videos':'📸 Stories und Bildposts';var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','sich'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));scrollTo(0,0)}
+function tpLoad(){fetch('https://wetter-badkoenig.de/fb/gepostet.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({})).then(G=>{
+  const now=new Date(),fmt=d=>d.toLocaleDateString('sv-SE',{timeZone:'Europe/Berlin'}),WT=['So','Mo','Di','Mi','Do','Fr','Sa'],rows=[];let next=null;
+  for(let o=0;o<2;o++){const d=new Date(now.getTime()+o*864e5),tag=fmt(d),wd=new Date(tag+'T12:00:00').getDay(),we=wd==0||wd==6,dd=tag.slice(8,10),mm=tag.slice(5,7);
+    const L=[];const add=(h,n,k,f,ziel)=>L.push({h,n,k,f,ziel});
+    add(we?8:7,'🎬 Morgenvideo mit Max + 📸 Morgen-Story',['video','story'],'Video + Story','vid');
+    if(dd=='01')add(15,'📆 Monatsrückblick mit Max',['monat'],'Video','vid');
+    add(12,'🗺️ Mittagskarte + 📸 Mittags-Story',['mittag','mittagstory'],'Bild + Story','sto');
+    if(mm=='12'&&dd=='30')add(18,'🎆 Jahresrückblick mit Max',['jahr'],'Video','vid');
+    if(wd!=0)add(19,'🎙️ Abendvideo mit Max + 🌙 Abend-Story',['abend','abendstory'],'Video + Story','vid');
+    if(wd==0)add(20,'📅 Wochenausblick mit Max',['woche'],'Video','vid');
+    L.sort((a,b)=>a.h-b.h);
+    rows.push('<tr class="tag"><td colspan="4">'+(o?'Morgen':'Heute')+' · '+WT[wd]+', '+dd+'.'+mm+'.</td></tr>');
+    L.forEach(x=>{const t=new Date(tag+'T'+String(x.h).padStart(2,'0')+':00:00'),done=x.k.every(k=>k=='monat'?G.monat===new Date(Date.UTC(+tag.slice(0,4),+mm-2,1)).toISOString().slice(0,7):G[k]===tag),
+      vorbei=now>t,st=done?'<span class="tpP ok">✓ gepostet</span>':vorbei?'<span class="tpP wa">noch nicht gepostet</span>':'<span class="tpP tpl">geplant</span>';
+      if(!done&&!vorbei&&!next)next={x,t,o,wd};
+      rows.push('<tr><td class="zt">'+x.h+':00</td><td><a onclick="show(\''+x.ziel+'\')">'+x.n+'</a></td><td><span class="tpP au">🤖 Autopost · '+x.f+'</span></td><td style="text-align:right">'+st+'</td></tr>')})}
+  rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'sto\')">✋ Frost-/Nebel-Hinweis, Specials, Themenvideos</a></td><td><span class="tpP au">von Hand</span></td><td style="text-align:right"><span class="tpP au">bei Bedarf</span></td></tr>');
+  $('tpTab').innerHTML=rows.join('');
+  if(next){const m=Math.round((next.t-now)/6e4),h=Math.floor(m/60);$('tpNext').innerHTML='<b>Als Nächstes:</b> '+next.x.n+' – '+(next.o?'morgen':'heute')+' um '+next.x.h+':00 Uhr · in '+(h?h+' Std. ':'')+(m%60)+' Min.'}
+  else $('tpNext').innerHTML='<b>Als Nächstes:</b> heute und morgen ist nichts mehr geplant.'})}
+function ccLoad(){tpLoad();const W='https://wetter-badkoenig.de/',v='?v='+Date.now(),o={cache:'no-store'};
   fetch(W+'data/live.json'+v,o).then(r=>r.json()).then(j=>{const x=j.cur.observations[0],m=x.metric||{},alt=(Date.now()-Date.parse(x.obsTimeUtc))/60000;
     $('ccLive').innerHTML=(m.temp!=null?String(m.temp).replace('.',',')+' °C · ':'')+(alt<30?'<span style="color:var(--ok)">online</span>':'<span style="color:var(--bad)">seit '+Math.round(alt)+' Min. still</span>')}).catch(()=>$('ccLive').textContent='nicht erreichbar');
   Promise.all(['fb/wetter.json','fb/abendvideo.json'].map(f=>fetch(W+f+v,o).then(r=>r.json()).catch(()=>null))).then(a=>{const t=a.filter(x=>x&&x.erstellt).map(x=>Date.parse(x.erstellt.replace(/\+00:00$/,'Z'))).filter(n=>n).sort((a,b)=>b-a)[0];
