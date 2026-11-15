@@ -2319,7 +2319,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 10:15 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 10:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2582,6 +2582,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>10:25 Uhr</small></td><td>(Zentrale) Neue Knöpfe unter 🖼️ Bildposts → ✋ Zum Selbst-Teilen: <b>„🔄 Abendbeitrag – Ausblick jetzt neu erstellen“</b> (Bild + Text + Abend-Story) und <b>„🔄 Tagesbild jetzt neu erstellen“</b> (Bild + Text) – jeweils mit der aktuellen Vorhersage, ca. 1–2 Min., ohne Posten (GitHub-Ablauf video-neu.yml, Arten „abendbild“ und „tagesbild“).</td></tr>
 <tr><td>15.11.2026<br><small>10:15 Uhr</small></td><td>(Zentrale) <b>🌙 Abendbeitrag – Ausblick</b> steht jetzt unter 🖼️ Bildposts im Bereich <b>„✋ Zum Selbst-Teilen“</b>. Das Bild wird seit dem Studio-Abendvideo (10.11.) nicht mehr automatisch gepostet – nur der Text läuft weiter automatisch als Beschreibung unter dem Abendvideo. Hinweis „wird automatisch gepostet“ korrigiert.</td></tr>
 <tr><td>15.11.2026<br><small>10:10 Uhr</small></td><td>(Zentrale) <b>Tagesplan zeigt jetzt amtliche DWD-Warnungen:</b> unter „Heute“ erscheint jede automatisch gepostete Warnung mit Uhrzeit („✓ gepostet um …“), eine anstehende Warnung als „noch nicht gepostet“, sonst „heute keine Warnung“. Dafür merkt sich der Autopost die Postzeit jetzt je Warnart.</td></tr>
 <tr><td>15.11.2026<br><small>09:15 Uhr</small></td><td><b>Reserve für Wetterdaten + Rückfall fürs Morgenvideo:</b> Die Vorhersagedaten von Open-Meteo werden jetzt zusätzlich als Reserve gespeichert und vom Viertelstunden-Lauf höchstens einmal pro Stunde aufgefrischt. Fällt Open-Meteo beim Bau aus, nimmt der Bau die Reserve – beim Morgenvideo höchstens 6 Stunden alt, bei Mittagskarte, Abendvideo und Wochenausblick höchstens 2 Stunden alt (ältere Daten werden nie gepostet). Push „Wetterdaten aus der Reserve“, wenn das passiert. Außerdem: Scheitert um 7/8 Uhr der frische Bau des Morgenvideos (z. B. ffmpeg- oder Datenausfall), wird das um 6:30 Uhr gebaute Video gepostet (mit Push „Morgenvideo“). Abendvideo und Wochenausblick werden weiterhin erst zur Postzeit gebaut.</td></tr>
@@ -3189,6 +3190,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <div class="card fbinfo" id="fb_uwsInfo">⚠️ <b>Unwetter-Specials</b> entstehen nur bei Unwetter, Schnee oder besonderen Wetterlagen. Sie werden <b>nicht</b> automatisch gepostet – du teilst sie bei Bedarf selbst.</div>
       <div id="fb_specialBox"></div>
       <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">🌙 Abendbeitrag – Ausblick: erscheint hier, sobald er heute erstellt ist.</div></div>
+      <button class="sec" id="fb_abNeu" style="width:100%;margin:-4px 0 4px">🔄 Abendbeitrag – Ausblick jetzt neu erstellen (ohne Posten)</button>
+      <p class="hint" id="fb_abNeuSt" style="margin-bottom:14px">Baut Bild und Text des Abendbeitrags (und die Abend-Story) mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
       <div class="card ruhig">
         <div class="vhead">🖼️ Tagesbild <small style="font-weight:normal;opacity:.75">· ✋ Reserve zum Selbst-Teilen</small></div>
         <div class="datum" id="fb_tDatum">–</div>
@@ -3201,6 +3204,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
         </div>
         <p class="hint">Wird nicht automatisch gepostet – nur falls du mal zusätzlich etwas teilen willst.
           Am Handy: „Teilen“ → Facebook → als Seite posten. Übernimmt Facebook den Text nicht: vorher „Text kopieren“.</p>
+        <button class="sec" id="fb_tbNeu" style="width:100%;margin-top:8px">🔄 Tagesbild jetzt neu erstellen (ohne Posten)</button>
+        <p class="hint" id="fb_tbNeuSt">Baut Tagesbild und Text mit der aktuellen Vorhersage neu (ca. 1–2 Min.). Der Knopf postet <b>nicht</b>.</p>
       </div>
     </section>
 
@@ -4789,8 +4794,8 @@ function neuKnopf(bid, sid, art) {
   function warte(start, n) {
     lauf().then(function (r) {
       if (!r || new Date(r.created_at).getTime() < start - 60000) { if (n < 8) return setTimeout(function () { warte(start, n + 1); }, 8000); throw new Error('Lauf nicht gefunden'); }
-      if (r.status !== 'completed') { S.innerHTML = '⏳ ' + (art === 'mittag' ? 'Beitrag' : 'Video') + ' wird erstellt … (' + Math.round((Date.now() - start) / 60000) + ' Min.)'; return setTimeout(function () { warte(start, n + 1); }, 15000); }
-      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! ' + (art === 'mittag' ? 'Neuer Beitrag' : 'Neues Video') + ' wird geladen … <small>(die Website braucht noch ca. 1 Minute)</small>'; setTimeout(function () { fbReload(); }, 60000); }
+      if (r.status !== 'completed') { S.innerHTML = '⏳ ' + (/^(mittag|tagesbild|abendbild)$/.test(art) ? 'Beitrag' : 'Video') + ' wird erstellt … (' + Math.round((Date.now() - start) / 60000) + ' Min.)'; return setTimeout(function () { warte(start, n + 1); }, 15000); }
+      if (r.conclusion === 'success') { S.innerHTML = '✅ Fertig! ' + (/^(mittag|tagesbild|abendbild)$/.test(art) ? 'Neuer Beitrag' : 'Neues Video') + ' wird geladen … <small>(die Website braucht noch ca. 1 Minute)</small>'; setTimeout(function () { fbReload(); }, 60000); }
       else { S.innerHTML = '❌ Das hat nicht geklappt (' + r.conclusion + '). <a href="' + r.html_url + '" target="_blank" rel="noopener">Details bei GitHub</a>'; B.disabled = false; }
     }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
   }
@@ -4798,7 +4803,7 @@ function neuKnopf(bid, sid, art) {
     if (!tok()) { S.innerHTML = '🔑 Noch kein Schlüssel hinterlegt – oben im Tab „Website“ eintragen.'; return; }
     B.disabled = true; S.textContent = '🚀 Starte …'; var start = Date.now();
     fetch(API + '/dispatches', { method: 'POST', headers: hdr(), body: JSON.stringify({ ref: 'main', inputs: { art: art } }) }).then(function (r) {
-      if (r.status === 204) { S.textContent = '⏳ Gestartet – das dauert ca. ' + (art === 'mittag' ? '1–2' : '3–5') + ' Minuten …'; setTimeout(function () { warte(start, 0); }, 6000); }
+      if (r.status === 204) { S.textContent = '⏳ Gestartet – das dauert ca. ' + (/^(mittag|tagesbild|abendbild)$/.test(art) ? '1–2' : '3–5') + ' Minuten …'; setTimeout(function () { warte(start, 0); }, 6000); }
       else if (r.status === 401 || r.status === 403 || r.status === 404) throw new Error('Der Schlüssel wird nicht akzeptiert (Fehler ' + r.status + '). Rechte prüfen: Repo „wetterstation“, Actions: Lesen und Schreiben.');
       else throw new Error('GitHub antwortet mit Fehler ' + r.status);
     }).catch(function (e) { S.textContent = '❌ ' + e.message; B.disabled = false; });
@@ -4877,6 +4882,8 @@ fetch('https://wetter-badkoenig.de/fb/monat.json?v=' + Date.now(), { cache: 'no-
   fetch(B + 'abendstory.json?v=' + v, { cache: 'no-store' }).then(function (r) { if (r.ok) document.getElementById('fb_asBild').src = B + 'abendstory.jpg?v=' + v; }).catch(function () {});
 })();
 neuKnopf('mNeu', 'mNeuSt', 'mittag');
+neuKnopf('tbNeu', 'tbNeuSt', 'tagesbild');
+neuKnopf('abNeu', 'abNeuSt', 'abendbild');
 
 }
 /* ===== Online-Speicher: verschlüsselt in GitHub (privates Repo) ===== */
