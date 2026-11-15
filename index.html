@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 19:20 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 19:30 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2391,7 +2391,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <tr><td>sofort <small>rund um die Uhr</small></td><td>Neue DWD-Warnung Stufe 2: orange Warn-Story + Beitrag (FB + IG). Stufe 3/4: Unwetter-Special mit Max (reines Warnvideo) + Unwetter-Story bauen und posten (FB + IG) – Prüfung alle 15 Min</td><td>–</td></tr>
       <tr><td>1. des Monats 17:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ab 15:30, gepostet ab 17 Uhr)</td><td>Monatsrückblick Weckruf · 17:02 am 1.</td></tr>
       <tr><td>30.12. 18:00</td><td>Jahresrückblick-Video (gebaut 17:15)</td><td>läuft mit dem Abend Weckruf</td></tr>
-      <tr><td>nach jedem Video-Post</td><td>Video + Beitragstext in Google Drive ablegen („Wetterstation – Videos“ / Art / Datum Uhrzeit)</td><td>–</td></tr>
+      <tr><td>nach jedem Video-Post</td><td>Video bzw. Bild/Story + Beitragstext in Google Drive ablegen („Wetterstation – Videos“ bzw. „Wetterstation – Bilder“ / Art / Datum Uhrzeit)</td><td>–</td></tr>
       <tr><td>alle 15 Min</td><td>Sondermeldungen prüfen, Regen-Push, DWD-Warn-Push; höchstens 1× pro Stunde Open-Meteo-Reserve auffrischen</td><td>–</td></tr>
       <tr><td>alle 10 Min</td><td>Live-Werte der Station für Website und Widget</td><td>Live-Daten</td></tr>
       <tr><td>0:15</td><td>Wetterarchiv um den Vortag ergänzen (Reserve-Lauf 0:25)</td><td>Wetterarchiv · 0:15</td></tr>
@@ -2631,6 +2631,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>19:30 Uhr</small></td><td><b>Google Drive: jetzt auch Bilder und Storys.</b> Jedes automatisch gepostete Bild landet direkt nach dem Post in Google Drive unter „Wetterstation – Bilder“ / Art / Datum Uhrzeit (Bild + Beitragstext): Morgen-Story, Mittags-Story, Abend-Story, Mittagskarte, Unwetter-Storys, Warn-Storys (Stufe 2), Warn-Beiträge (Stufe 2). Getestet mit der Warn-Story von 18:33 Uhr. Technik: drive_ablage.py (BILDER), fb_senden.py (senden, story_beide).</td></tr>
 <tr><td>15.11.2026<br><small>19:20 Uhr</small></td><td>(Zentrale) Tagesplan: Warn-Story und Unwetter-Special stehen jetzt unter „Heute“ (rutschten unter „Morgen“).</td></tr>
 <tr><td>15.11.2026<br><small>19:15 Uhr</small></td><td>(Zentrale) <b>Fehler behoben: Tagesplan lud nicht.</b> Die Zeilen „Warn-Story“ und „Unwetter-Special“ griffen auf eine Variable außerhalb ihres Bereichs zu – das fiel erst auf, als um 18:33 Uhr die erste Warn-Story gepostet war. Jetzt korrigiert.</td></tr>
 <tr><td>15.11.2026<br><small>19:10 Uhr</small></td><td><b>Warnungen: keine Doppel-Posts mehr.</b> Gepostet (Story/Beitrag bei Stufe 2, Special bei 3/4) wird nur noch bei einer <b>neuen Warnart</b> (Wind, Gewitter, Schnee, Glätte/Frost, Regen, Hitze, Nebel) oder einer <b>echten Hochstufung</b> (z. B. Sturmböen Stufe 2 → Orkanböen Stufe 3). Geänderte Uhrzeiten, andere Orte oder Herabstufungen lösen nichts aus; die Warnart gilt bis zum Ende der Warnung als gemeldet. Technik: unwetter_check.py (art, Gedächtnis je Art in fb/uw_gemeldet.json).</td></tr>
