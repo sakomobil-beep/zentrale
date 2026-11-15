@@ -2329,7 +2329,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 11:55 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 12:40 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2388,6 +2388,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <tr><td>sofort</td><td>Amtliche DWD-Warnung für den Odenwaldkreis automatisch posten (Prüfung alle 15 Min) – im Tagesplan oben sichtbar</td><td>–</td></tr>
       <tr><td>1. des Monats 15:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ab 13:30, gepostet ab 15 Uhr)</td><td>läuft mit dem 15:02-Weckruf</td></tr>
       <tr><td>30.12. 18:00</td><td>Jahresrückblick-Video (gebaut 17:15)</td><td>läuft mit dem Abend Weckruf</td></tr>
+      <tr><td>nach jedem Video-Post</td><td>Video + Beitragstext in Google Drive ablegen („Wetterstation – Videos“ / Art / Datum Uhrzeit)</td><td>–</td></tr>
       <tr><td>alle 15 Min</td><td>Sondermeldungen prüfen, Regen-Push, DWD-Warn-Push; höchstens 1× pro Stunde Open-Meteo-Reserve auffrischen</td><td>–</td></tr>
       <tr><td>alle 10 Min</td><td>Live-Werte der Station für Website und Widget</td><td>Live-Daten</td></tr>
       <tr><td>0:15</td><td>Wetterarchiv um den Vortag ergänzen (Reserve-Lauf 0:25)</td><td>Wetterarchiv · 0:15</td></tr>
@@ -2491,6 +2492,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Saison-Deko: Halloween bis 31.10., Herbstblätter ab 01.11., Weihnachtslook 23.11.–28.12.</li>
 </ul></details>
 <details><summary>Vorhersage</summary><ul>
+<li><b>Google-Drive-Ablage:</b> jedes live gegangene Max-Video automatisch in „Wetterstation – Videos“ (Ordner je Art, Unterordner Datum + Uhrzeit, mit Beitragstext) <span class="tg">neu 15.11.</span></li>
 <li><b>Animierte Wettersymbole</b> (Regen, Schnee, Sonne, Wolken, Nebel, Gewitter, Wind) überall auf der Website <span class="tg">neu 15.11.</span></li>
 <li><b>Präzisions-Vorhersage 2.0:</b> Mischung aus ICON-D2, ICON-EU, AROME und ECMWF, automatisch gewichtet nach eigener Trefferquote</li>
 <li><b>Umschalter „📍 Bad König / 🗺️ Odenwaldkreis“</b> oben im Vorhersage-Tab (gemerkt; direkt: #vorhersage-kreis); Kreis-Ansicht mit Karte rechts oben, Ebenen-Knöpfen über der Karte und verknüpfter Orts-Tabelle. „Heute“ zeigt ganztags den Tiefstwert der kommenden Nacht, den Frühwert klein („heute früh …“) <span class="tg">neu 15.11.</span></li>
@@ -2618,6 +2620,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>12:40 Uhr</small></td><td><b>Google-Drive-Ablage der Max-Videos:</b> Jedes live gegangene Video (Morgenvideo, Abendvideo, Wochenausblick, Wetterwissen, Monats- und Jahresrückblick) wird direkt nach dem Post automatisch in Google Drive abgelegt: <b>Wetterstation – Videos / &lt;Art&gt; / &lt;Datum Uhrzeit&gt;</b> mit Video und Beitragstext. Eigenes Google-Cloud-Projekt „Wetterstation Drive“ (Zugriff nur auf die eigenen Ordner, Bereich drive.file), Secrets GDRIVE_CLIENT_ID / GDRIVE_CLIENT_SECRET / GDRIVE_REFRESH_TOKEN. Schlägt die Ablage fehl, wird trotzdem gepostet (Push „Drive-Ablage fehlgeschlagen“). Nachtragen von Hand: GitHub-Ablauf „Google-Drive-Ablage testen / nachtragen“. Erstes Video (Morgenvideo 15.11., 08:49) erfolgreich abgelegt.</td></tr>
 <tr><td>15.11.2026<br><small>11:55 Uhr</small></td><td>Umschalter im Vorhersage-Tab auf <b>Variante A</b> umgestellt: zwei große Kacheln „📍 Bad König – Station · Radar · Stundenverlauf“ und „🗺️ Odenwaldkreis – Karte · alle Orte · 3 Tage“, die gewählte blau (statt der breiten Leiste von Variante B).</td></tr>
 <tr><td>15.11.2026<br><small>11:55 Uhr</small></td><td>(Zentrale) <b>Tagesplan heute und morgen</b> und „Als Nächstes“ aktualisieren sich jetzt von selbst – jede Minute und sofort, wenn du zur Zentrale zurückkehrst (Gepostet-Status, Postzeiten, DWD-Warnungen, Countdown). Neues Neuladen ist nicht mehr nötig.</td></tr>
 <tr><td>15.11.2026<br><small>11:50 Uhr</small></td><td>(Zentrale) <b>„⏰ Abläufe &amp; Weckrufe“</b> steht jetzt im Wetterstation Control Center direkt unter „Tagesplan heute und morgen“ (vorher unter 🎬 Videos) und ist aktualisiert: Wetterwissen mit Max (Bau 14:30/Weckruf 14:02, Post 15:00/Weckruf 15:02), DWD-Warnungen sofort, Open-Meteo-Reserve, 6:30-Reserve-Video, Abend-Story sonntags, richtige Zeiten für Archiv (0:15), Historie (Mo ca. 2:47) und IndexNow (Mo ca. 4:17).</td></tr>
@@ -2902,6 +2905,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <ul style="margin-top:8px">
 <li>Jedes Video lässt sich in der Zentrale per Knopf <b>neu erstellen</b> (ohne Posten)</li>
 <li>Videothek der letzten 7 Tage auf wetter-badkoenig.de (blauer Video-Knopf): Morgenvideo, Abendvideo aus dem Studio, Wochenausblick und Specials; oben läuft immer das neueste; ältere Videos werden montags endgültig gelöscht <span class="tg">Abendvideo neu 12.11.</span></li>
+<li><b>Alle live gegangenen Videos dauerhaft in Google Drive</b> („Wetterstation – Videos“ / Art / Datum Uhrzeit, mit Beitragstext) <span class="tg">neu 15.11.</span></li>
 </ul>
 </div>
 
@@ -2919,6 +2923,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll Max</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>12:40 Uhr</small></td><td><b>Google-Drive-Ablage der Max-Videos:</b> Jedes live gegangene Video (Morgenvideo, Abendvideo, Wochenausblick, Wetterwissen, Monats- und Jahresrückblick) wird direkt nach dem Post automatisch in Google Drive abgelegt: <b>Wetterstation – Videos / &lt;Art&gt; / &lt;Datum Uhrzeit&gt;</b> mit Video und Beitragstext. Eigenes Google-Cloud-Projekt „Wetterstation Drive“ (Zugriff nur auf die eigenen Ordner, Bereich drive.file), Secrets GDRIVE_CLIENT_ID / GDRIVE_CLIENT_SECRET / GDRIVE_REFRESH_TOKEN. Schlägt die Ablage fehl, wird trotzdem gepostet (Push „Drive-Ablage fehlgeschlagen“). Nachtragen von Hand: GitHub-Ablauf „Google-Drive-Ablage testen / nachtragen“. Erstes Video (Morgenvideo 15.11., 08:49) erfolgreich abgelegt.</td></tr>
 <tr><td>15.11.2026<br><small>09:15 Uhr</small></td><td><b>Reserve für Wetterdaten + Rückfall fürs Morgenvideo:</b> Die Vorhersagedaten von Open-Meteo werden jetzt zusätzlich als Reserve gespeichert und vom Viertelstunden-Lauf höchstens einmal pro Stunde aufgefrischt. Fällt Open-Meteo beim Bau aus, nimmt der Bau die Reserve – beim Morgenvideo höchstens 6 Stunden alt, bei Mittagskarte, Abendvideo und Wochenausblick höchstens 2 Stunden alt (ältere Daten werden nie gepostet). Push „Wetterdaten aus der Reserve“, wenn das passiert. Außerdem: Scheitert um 7/8 Uhr der frische Bau des Morgenvideos (z. B. ffmpeg- oder Datenausfall), wird das um 6:30 Uhr gebaute Video gepostet (mit Push „Morgenvideo“). Abendvideo und Wochenausblick werden weiterhin erst zur Postzeit gebaut.</td></tr>
 <tr><td>15.11.2026<br><small>08:56 Uhr</small></td><td><b>Morgenvideo-Panne behoben:</b> Heute um 8:02 Uhr brach der Morgenlauf ab, weil der Wetterdienst Open-Meteo GitHub nicht rechtzeitig antwortete (Verbindungs-Timeout) – dadurch kein Video und kein Autopost. Der Abruf der Vorhersagedaten (fb_post.py) versucht es jetzt bis zu 5-mal mit wachsender Pause (20–100 s), statt beim ersten Aussetzer aufzugeben. Morgenvideo + Morgen-Story wurden um 8:49 Uhr nachträglich auf Facebook und Instagram gepostet.</td></tr>
 <tr><td>15.11.2026<br><small>01:40 Uhr</small></td><td><b>Neues Themenvideo „Max erklärt: Wenn ein Vulkan der Welt den Sommer nimmt“</b> (ca. 12 Min., 12 Kapitel, eigene Grafiken): Wie ein Vulkan das Wetter verändert (Schwefelschleier, Verlauf der Abkühlung), wann ein Ausbruch zählt (4 Bedingungen, VEI), mildere Winter in Europa, Ausbrüche Laki 1783 (Mannheim, Main-Hochwasser), Tambora, Krakatau, Pinatubo, Eyjafjallajökull, 1816 „Jahr ohne Sommer“ mit Karl Drais’ Laufrad, Sonderfall Tonga 2022, Odenwald und was unsere Station messen würde, Häufigkeit, Lexikon, Fazit. Kein Autopost – in der Zentrale unter 🎓 Themenvideos; auch auf der Website-Seite Vulkane eingebaut (mit Kapitel-Sprungmarken).</td></tr>
