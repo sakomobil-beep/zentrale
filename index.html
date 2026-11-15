@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 16:10 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 16:45 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2631,6 +2631,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>16:45 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: „Vorhersage lernen“ mit Wiederholungsversuchen und stillem Überspringen bei Open-Meteo-Ausfall (Lauf ist am 15.11. zweimal am Timeout gescheitert).</td></tr>
 <tr><td>15.11.2026<br><small>16:10 Uhr</small></td><td>(Zentrale) <b>„⚠️ Unwetter-Specials“ und „⚡ Sondermeldungen“ zusammengelegt</b> zu einem Menüpunkt <b>„⚠️ Warnungen &amp; Sondermeldungen“</b>: oben Infokasten und Unwetter-Specials (automatisch), darunter die Sondermeldungs-Bilder zum Selbst-Teilen mit 🧪 Muster. Alte Links auf Sondermeldungen führen dorthin.</td></tr>
 <tr><td>15.11.2026<br><small>15:40 Uhr</small></td><td><b>Bildpost bei DWD-Warnungen abgeschaltet.</b> Amtliche Warnungen werden nicht mehr als Bildpost (Sondermeldung) automatisch gepostet – vorher bei jeder Stufe, auch Stufe 1. Jetzt: Stufe 1 nichts (Max nennt Warnungen in den Videos), Stufe 2 nur Warn-Story, Stufe 3/4 Special-Video + Story. Die Sondermeldungs-Bilder werden weiter gebaut und stehen unter ⚡ Sondermeldungen zum Selbst-Teilen. Technik: fb_senden.py (FB_SONDER_AUTO Standard „aus“)</td></tr>
 <tr><td>15.11.2026<br><small>15:30 Uhr</small></td><td><b>Warnungen rund um die Uhr + Story bei Stufe 2:</b> Der Unwetter-Check läuft jetzt 24 Stunden. DWD-Stufe 3/4: Special mit Max + Story wie bisher. Neu bei <b>Stufe 2</b> (markantes Wetter): nur eine orange <b>Warn-Story</b> (Zeitraum, Gebiet, DWD-Beschreibung und -Hinweise) auf Facebook und Instagram, kein Video. Stufe 1: nichts. Jede Warnung (Text + Beginn) wird nur einmal gemeldet, auch über Mitternacht (fb/uw_gemeldet.json). Technik: unwetter_check.py, uw_story.py, fb_senden.py (warnstory), facebook-post.yml</td></tr>
@@ -4268,7 +4269,7 @@ function renderNotes(){const N=nDb(),open=N.filter(n=>!n.done);
   r.querySelector('button').onclick=()=>{if(!confirm('Notiz löschen?'))return;db.notes=N.filter(x=>x!==n);save();renderNotes()};
   r.querySelector('.nt-t').onclick=()=>{const t=prompt('Notiz ändern:',n.text);if(t&&t.trim()){n.text=t.trim();save();renderNotes()}}})}
 /* Von Claude vorgemerkte To-dos: werden einmalig in die Liste übernommen (danach normal bearbeit-/löschbar) */
-const TODO_NEU=[["t-wu-live","🌐 Wetter-Website","Live-Werte vom Widget (alle 10 Min.) auch für die Website nutzen, damit Besucher gar nicht mehr selbst bei Weather Underground abrufen (Teil 1 – Wetterarchiv – ist erledigt)."],["t-wu-cache","🌐 Wetter-Website","Wetterdaten zwischenspeichern: Tageswerte des Jahres täglich in eine Datei (data/jahr-2026.json) schreiben, Website lädt nur noch heute live von Weather Underground – weniger Abrufe, schneller, ausfallsicher. Vorher prüfen, wie viele Abrufe die Seite heute macht."]];
+const TODO_NEU=[["t-lernen-retry","🌐 Wetter-Website","„Vorhersage lernen“ robuster machen: bis zu 5 Versuche mit wachsender Pause bei Open-Meteo; klappt es nicht, Lauf ohne Fehlermeldung überspringen (nächster Lauf holt nach). Anlass: Fehlschlag 15.11.2026 14 und 16:35 Uhr (Open-Meteo-Timeout)."],["t-wu-live","🌐 Wetter-Website","Live-Werte vom Widget (alle 10 Min.) auch für die Website nutzen, damit Besucher gar nicht mehr selbst bei Weather Underground abrufen (Teil 1 – Wetterarchiv – ist erledigt)."],["t-wu-cache","🌐 Wetter-Website","Wetterdaten zwischenspeichern: Tageswerte des Jahres täglich in eine Datei (data/jahr-2026.json) schreiben, Website lädt nur noch heute live von Weather Underground – weniger Abrufe, schneller, ausfallsicher. Vorher prüfen, wie viele Abrufe die Seite heute macht."]];
 /* einmalige Änderungen an Ideen (z. B. zurückgestellt) */
 const IDEE_PATCH=[["p-heute-blick","Heute auf einen Blick","⏸️ zurückgestellt (08.11.2026): "]];
 function ideePatch(){const I=iDb();db.todoSeen=db.todoSeen||[];let ch=false;IDEE_PATCH.forEach(p=>{if(db.todoSeen.includes(p[0]))return;I.forEach(n=>{if(n.text.includes(p[1])&&!n.text.startsWith(p[2])){n.text=p[2]+n.text;ch=true}});db.todoSeen.push(p[0]);ch=true});if(ch)save()}
