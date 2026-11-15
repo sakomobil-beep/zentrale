@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 18:35 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 18:40 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2631,6 +2631,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>18:40 Uhr</small></td><td><b>Warn-Story Stufe 2: Fehler behoben.</b> Erste echte Stufe-2-Warnung (Sturmböen, 18:22 Uhr) wurde erkannt und die Story gebaut, aber Facebook und Instagram lehnten sie ab, weil das Bild im selben Lauf noch nicht auf wetter-badkoenig.de veröffentlicht war. Jetzt wartet fb_senden.py (warnstory) bis zu 4 Min., bis das Bild online ist. Die Story ging um 18:33 Uhr auf Facebook und Instagram raus.</td></tr>
 <tr><td>15.11.2026<br><small>18:35 Uhr</small></td><td><b>Kreis-Vorhersage „Heute“ wie Bad König:</b> die blauen „jetzt“-Schilder und die Spalte „Gemessen“ (18:15/18:25) sind wieder raus – zu verwirrend. Stattdessen fließt der heute schon gemessene Höchstwert jedes Ortes (Messwert-Datenbank, data/odenwald-live.json) direkt in den angezeigten Höchstwert ein (gemessen oder Vorhersage – der höhere Wert). Tiefstwert = kommende Nacht wie bisher. Website-Stand 18:35 Uhr, Cache v66.</td></tr>
 <tr><td>15.11.2026<br><small>18:25 Uhr</small></td><td>Kreiskarte (Vorhersage, Heute): blaues „jetzt“-Schild wird bei Platzmangel am rechten Rand (Breuberg) unter das Ortsschild gesetzt statt daneben – vorher halb verschluckt. Website-Stand 18:25 Uhr, Cache v65.</td></tr>
 <tr><td>15.11.2026<br><small>18:15 Uhr</small></td><td><b>Kreis-Vorhersage mit „jetzt“-Messwerten:</b> Im Vorhersage-Tab „🗺️ Odenwaldkreis“ zeigt der Tag „Heute“ eine neue Spalte „Gemessen“ (blau, „jetzt 7,1 °“) und auf der Karte neben jedem Ortsschild ein kleines blaues Messwert-Schild. Daten aus data/odenwald-live.json (10-Minuten-Lauf); Messungen älter als 75 Min. werden weggelassen. Antippen führt zu „Aktuell Odenwald“. Website-Stand 18:15 Uhr, Cache v64.</td></tr>
