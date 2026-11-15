@@ -5199,8 +5199,12 @@ async function feLoad(nurZahl){
     }
   }catch(e){if(L)L.innerHTML='<small>❌ GitHub nicht erreichbar ('+e+').</small>';return}
   alle.sort((a,b)=>b.created_at.localeCompare(a.created_at));
-  if(B){B.textContent=alle.length;B.style.display=alle.length?'inline':'none'}
+  /* Zähler: nur Abläufe, deren LETZTER Lauf fehlgeschlagen ist (also aktuell kaputt) */
+  const wf={};alle.forEach(r=>{wf[r._repo+'|'+r.workflow_id]=r});
+  const offen=(await Promise.all(Object.keys(wf).map(k=>{const [rp,id]=k.split('|');return j(rp+'/actions/workflows/'+id+'/runs?per_page=1').then(N=>((N.workflow_runs||[])[0]||{}).conclusion==='failure'?1:0).catch(()=>0)}))).reduce((x,y)=>x+y,0);
+  if(B){B.textContent=offen;B.style.display=offen?'inline':'none'}
   if(nurZahl||!L)return;
+  if(!offen&&alle.length)L.dataset.hinweis='1';
   if(!alle.length){L.innerHTML='<div style="padding:12px;border-radius:10px;background:rgba(46,154,82,.12)">✅ Keine Fehler in den letzten 7 Tagen.</div>';return}
   L.innerHTML='<small>Lade Details …</small>';
   const ok={};   // ist derselbe Ablauf danach wieder erfolgreich gelaufen?
@@ -5227,7 +5231,7 @@ async function feLoad(nurZahl){
       '<div style="margin-top:6px;font-size:13px">'+(wieder?'<span style="color:#2e9a52;font-weight:600">✅ danach wieder erfolgreich</span> · ':'<span style="color:#d2261b;font-weight:600">⚠️ seitdem nicht wieder erfolgreich</span> · ')+
       '<a href="'+r.html_url+'" target="_blank" rel="noopener">Details bei GitHub ↗</a></div></div>';
   }));
-  L.innerHTML=zeilen.join('')+(alle.length>20?'<small>… und '+(alle.length-20)+' ältere</small>':'');
+  L.innerHTML=(offen?'<div style="padding:10px 12px;border-radius:10px;background:rgba(210,38,27,.1);margin-bottom:10px">⚠️ <b>'+offen+' Ablauf'+(offen>1?'e sind':' ist')+' aktuell kaputt</b> (letzter Lauf fehlgeschlagen) – bitte Claude Bescheid geben.</div>':'<div style="padding:10px 12px;border-radius:10px;background:rgba(46,154,82,.12);margin-bottom:10px">✅ <b>Alles läuft wieder.</b> Die Fehler unten sind schon von selbst behoben (z. B. kurze Aussetzer bei GitHub oder Wetterdiensten).</div>')+zeilen.join('')+(alle.length>20?'<small>… und '+(alle.length-20)+' ältere</small>':'');
 }
 document.addEventListener('click',e=>{if(e.target&&e.target.id==='feNeu')feLoad()});
 setTimeout(()=>feLoad(true),4000);
