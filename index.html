@@ -2328,8 +2328,9 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="lk">🧠 Lernkurve Webseite</button>
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
+  <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 12:40 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 12:50 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2421,6 +2422,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <div class="nt-f" id="ntF"></div>
     <div id="ntList"></div>
     <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="g" id="ntClr">🧹 Erledigte entfernen</button><small style="opacity:.6;align-self:center">Tipp: Auf einen Text tippen, um ihn zu ändern.</small></div>
+  </div>
+</main>
+<main id="fehler" hidden>
+  <div class="card"><h3 style="margin-top:0">🚨 Fehlermeldungen von GitHub</h3>
+    <p style="margin:4px 0 10px;opacity:.8">Alle fehlgeschlagenen Abläufe der letzten 7 Tage (Website, Max, Posts, Zentrale) – mit dem Schritt, der abgebrochen ist, und der Fehlermeldung. So sehen wir sofort, was schiefgelaufen ist, und können reagieren. Das Gleiche schickt GitHub auch per E-Mail.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"><button class="b" id="feNeu">🔄 Aktualisieren</button><a class="b" href="https://github.com/sakomobil-beep/wetterstation/actions" target="_blank" rel="noopener" style="text-decoration:none">↗ Alle Abläufe bei GitHub</a></div>
+    <div id="feListe"><small>wird geladen …</small></div>
+    <small style="opacity:.6;display:block;margin-top:10px">Ist ein Fehler danach wieder von selbst erfolgreich gelaufen, steht „✅ danach wieder erfolgreich“ dabei – dann ist meist nichts zu tun.</small>
   </div>
 </main>
 <main id="ideen" hidden>
@@ -2620,6 +2629,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>12:50 Uhr</small></td><td>(Zentrale) Neuer Menüpunkt <b>🚨 Fehlermeldungen</b> im Wetterstation-Bildschirm (unter 💡 Ideen): zeigt alle fehlgeschlagenen GitHub-Abläufe der letzten 7 Tage (Repos wetterstation und zentrale) mit Uhrzeit, abgebrochenem Schritt, Fehlermeldung und Link zu GitHub; dazu „✅ danach wieder erfolgreich“ bzw. „⚠️ seitdem nicht wieder erfolgreich“. Roter Zähler am Menüpunkt, wenn Fehler vorliegen.</td></tr>
 <tr><td>15.11.2026<br><small>12:40 Uhr</small></td><td><b>Google-Drive-Ablage der Max-Videos:</b> Jedes live gegangene Video (Morgenvideo, Abendvideo, Wochenausblick, Wetterwissen, Monats- und Jahresrückblick) wird direkt nach dem Post automatisch in Google Drive abgelegt: <b>Wetterstation – Videos / &lt;Art&gt; / &lt;Datum Uhrzeit&gt;</b> mit Video und Beitragstext. Eigenes Google-Cloud-Projekt „Wetterstation Drive“ (Zugriff nur auf die eigenen Ordner, Bereich drive.file), Secrets GDRIVE_CLIENT_ID / GDRIVE_CLIENT_SECRET / GDRIVE_REFRESH_TOKEN. Schlägt die Ablage fehl, wird trotzdem gepostet (Push „Drive-Ablage fehlgeschlagen“). Nachtragen von Hand: GitHub-Ablauf „Google-Drive-Ablage testen / nachtragen“. Erstes Video (Morgenvideo 15.11., 08:49) erfolgreich abgelegt.</td></tr>
 <tr><td>15.11.2026<br><small>11:55 Uhr</small></td><td>Umschalter im Vorhersage-Tab auf <b>Variante A</b> umgestellt: zwei große Kacheln „📍 Bad König – Station · Radar · Stundenverlauf“ und „🗺️ Odenwaldkreis – Karte · alle Orte · 3 Tage“, die gewählte blau (statt der breiten Leiste von Variante B).</td></tr>
 <tr><td>15.11.2026<br><small>11:55 Uhr</small></td><td>(Zentrale) <b>Tagesplan heute und morgen</b> und „Als Nächstes“ aktualisieren sich jetzt von selbst – jede Minute und sofort, wenn du zur Zentrale zurückkehrst (Gepostet-Status, Postzeiten, DWD-Warnungen, Countdown). Neues Neuladen ist nicht mehr nötig.</td></tr>
@@ -4327,7 +4337,7 @@ function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();var h=$('fbH1');if(h&&show._fb)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Unwetter-Specials'}[show._fb];$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){var fbv=(p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws')?p:null;document.body.classList.toggle('fbUws',fbv=='uws');document.body.classList.toggle('fbSpv',fbv=='spv');document.body.classList.toggle('fbThv',fbv=='thv');document.body.classList.toggle('fbSon',fbv=='son');document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');document.body.classList.toggle('fbBild',fbv=='bild');if(fbv=='son')setTimeout(musterLoad,300);if(fbv){var h=$('fbH1');if(h)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Unwetter-Specials'}[fbv];var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();if(p=='ww')wwLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','sich','ww'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));scrollTo(0,0)}
+function show(p){var fbv=(p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws')?p:null;document.body.classList.toggle('fbUws',fbv=='uws');document.body.classList.toggle('fbSpv',fbv=='spv');document.body.classList.toggle('fbThv',fbv=='thv');document.body.classList.toggle('fbSon',fbv=='son');document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');document.body.classList.toggle('fbBild',fbv=='bild');if(fbv=='son')setTimeout(musterLoad,300);if(fbv){var h=$('fbH1');if(h)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Unwetter-Specials'}[fbv];var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();if(p=='fehler')feLoad();if(p=='ww')wwLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','fehler','sich','ww'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));scrollTo(0,0)}
 function tpLoad(){const _j=u=>fetch(u+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}));Promise.all([_j('https://wetter-badkoenig.de/fb/gepostet.json'),_j('https://wetter-badkoenig.de/fb/sonder.json')]).then(([G,SJ])=>{
   const now=new Date(),fmt=d=>d.toLocaleDateString('sv-SE',{timeZone:'Europe/Berlin'}),WT=['So','Mo','Di','Mi','Do','Fr','Sa'],rows=[],TAGE=[];let next=null;
   const plan=tag=>{const wd=new Date(tag+'T12:00:00').getDay(),we=wd==0||wd==6,dd=tag.slice(8,10),mm=tag.slice(5,7),L=[];const add=(h,n,k,f,ziel)=>L.push({h,n,k,f,ziel});
@@ -5172,6 +5182,55 @@ function dmApply(){var n=dmNacht(),o=null;try{o=JSON.parse(localStorage.getItem(
  if(o&&o.ph!==n){o=null;try{localStorage.removeItem('kz-dark-ovr')}catch(e){}}dmSet(o?o.v:n)}
 function dmToggle(){var on=!document.body.classList.contains('dark');try{localStorage.setItem('kz-dark-ovr',JSON.stringify({v:on,ph:dmNacht()}))}catch(e){}dmSet(on)}
 dmApply();setInterval(dmApply,60000);
+
+/* 🚨 Fehlermeldungen: fehlgeschlagene GitHub-Abläufe der letzten 7 Tage (15.11.2026) */
+async function feLoad(nurZahl){
+  const L=document.getElementById('feListe'),B=document.getElementById('feBadge');
+  const tok=(()=>{try{return window.kzFbTok&&window.kzFbTok()}catch(e){return ''}})();
+  const H=tok?{Authorization:'Bearer '+tok,Accept:'application/vnd.github+json'}:{Accept:'application/vnd.github+json'};
+  const j=u=>fetch('https://api.github.com/repos/sakomobil-beep/'+u,{headers:H,cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject(r.status));
+  const seit=new Date(Date.now()-7*864e5).toISOString().slice(0,10);
+  const unwichtig=m=>/Node\.js 20|ubuntu-latest label|deprecated/i.test(m||'');
+  let alle=[];
+  try{
+    for(const repo of ['wetterstation','zentrale']){
+      const R=await j(repo+'/actions/runs?status=failure&per_page=25&created=%3E%3D'+seit).catch(()=>({workflow_runs:[]}));
+      (R.workflow_runs||[]).forEach(r=>alle.push(Object.assign(r,{_repo:repo})));
+    }
+  }catch(e){if(L)L.innerHTML='<small>❌ GitHub nicht erreichbar ('+e+').</small>';return}
+  alle.sort((a,b)=>b.created_at.localeCompare(a.created_at));
+  if(B){B.textContent=alle.length;B.style.display=alle.length?'inline':'none'}
+  if(nurZahl||!L)return;
+  if(!alle.length){L.innerHTML='<div style="padding:12px;border-radius:10px;background:rgba(46,154,82,.12)">✅ Keine Fehler in den letzten 7 Tagen.</div>';return}
+  L.innerHTML='<small>Lade Details …</small>';
+  const ok={};   // ist derselbe Ablauf danach wieder erfolgreich gelaufen?
+  const zeilen=await Promise.all(alle.slice(0,20).map(async r=>{
+    let schritt='',meld='';
+    try{
+      const J=await j(r._repo+'/actions/runs/'+r.id+'/jobs');
+      const job=(J.jobs||[]).find(x=>x.conclusion==='failure')||(J.jobs||[])[0];
+      if(job){
+        schritt=((job.steps||[]).find(s=>s.conclusion==='failure')||{}).name||'';
+        const A=await j(r._repo+'/check-runs/'+job.id+'/annotations').catch(()=>[]);
+        meld=(A||[]).map(a=>a.message).filter(m=>!unwichtig(m)).join(' · ');
+      }
+      const k=r._repo+r.workflow_id;
+      if(ok[k]===undefined){const N=await j(r._repo+'/actions/workflows/'+r.workflow_id+'/runs?per_page=1&status=success').catch(()=>({}));ok[k]=((N.workflow_runs||[])[0]||{}).created_at||''}
+    }catch(e){}
+    const wieder=ok[r._repo+r.workflow_id]&&ok[r._repo+r.workflow_id]>r.created_at;
+    const t=new Date(r.created_at).toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    const esc=x=>String(x||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    return '<div style="border:1px solid rgba(210,38,27,.25);border-left:4px solid '+(wieder?'#2e9a52':'#d2261b')+';border-radius:10px;padding:10px 12px;margin-bottom:8px">'+
+      '<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>'+esc(r.name)+'</b><small style="opacity:.75">'+t+' Uhr · '+(r._repo==='zentrale'?'Zentrale':'Wetterstation')+'</small></div>'+
+      (schritt?'<div style="margin-top:4px;font-size:13px">❌ Abgebrochen bei: <b>'+esc(schritt)+'</b></div>':'')+
+      (meld?'<div style="margin-top:4px;font-size:13px;font-family:ui-monospace,monospace;white-space:pre-wrap;opacity:.9">'+esc(meld).slice(0,400)+'</div>':'')+
+      '<div style="margin-top:6px;font-size:13px">'+(wieder?'<span style="color:#2e9a52;font-weight:600">✅ danach wieder erfolgreich</span> · ':'<span style="color:#d2261b;font-weight:600">⚠️ seitdem nicht wieder erfolgreich</span> · ')+
+      '<a href="'+r.html_url+'" target="_blank" rel="noopener">Details bei GitHub ↗</a></div></div>';
+  }));
+  L.innerHTML=zeilen.join('')+(alle.length>20?'<small>… und '+(alle.length-20)+' ältere</small>':'');
+}
+document.addEventListener('click',e=>{if(e.target&&e.target.id==='feNeu')feLoad()});
+setTimeout(()=>feLoad(true),4000);
 </script>
 </body>
 </html>
