@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 19:00 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 19:10 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2631,6 +2631,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>19:10 Uhr</small></td><td><b>Warnungen: keine Doppel-Posts mehr.</b> Gepostet (Story/Beitrag bei Stufe 2, Special bei 3/4) wird nur noch bei einer <b>neuen Warnart</b> (Wind, Gewitter, Schnee, Glätte/Frost, Regen, Hitze, Nebel) oder einer <b>echten Hochstufung</b> (z. B. Sturmböen Stufe 2 → Orkanböen Stufe 3). Geänderte Uhrzeiten, andere Orte oder Herabstufungen lösen nichts aus; die Warnart gilt bis zum Ende der Warnung als gemeldet. Technik: unwetter_check.py (art, Gedächtnis je Art in fb/uw_gemeldet.json).</td></tr>
 <tr><td>15.11.2026<br><small>19:00 Uhr</small></td><td><b>DWD-Stufe 2: zusätzlich ein Beitrag.</b> Neben der Warn-Story geht jetzt auch ein Beitrag (Bild 4:5 + kurzer Text: Warnung, Zeitraum, Orte, DWD-Beschreibung, Link) automatisch auf Facebook und Instagram, einmal je Warnung (gemerkt: warn2_post). Neu in „Video neu erstellen“: Art <b>warnbild</b> – baut Bild und Text zur aktuellen Stufe-2-Warnung zum Selbst-Posten (fb/warn2-hand-*), postet nichts. Technik: uw_story.py (feed, text), unwetter_check.py (--bild), fb_senden.py (warnstory), video-neu.yml.</td></tr>
 <tr><td>15.11.2026<br><small>18:50 Uhr</small></td><td><b>Story-Bilder der Warnungen überarbeitet</b> (Stufe 2 und Unwetter 3/4): betroffene Orte werden auf mehrere Zeilen umbrochen statt abgeschnitten; Zeitraum am selben Tag kürzer („morgen 3 – 18 Uhr“) und passt sich immer dem Kasten an; DWD-Hinweise sauber aufgeteilt („Gefahr durch: …“ als ein Punkt, danach je Handlungsempfehlung ein Punkt; „z.B.“ zerschneidet nichts mehr); es werden nur ganze Hinweise gezeigt. Auch Max liest die DWD-Hinweise im Special jetzt ohne Abbruch bei „z.B.“ vor. Technik: uw_story.py, wetter_video.py (_kurz).</td></tr>
 <tr><td>15.11.2026<br><small>18:40 Uhr</small></td><td><b>Warn-Story Stufe 2: Fehler behoben.</b> Erste echte Stufe-2-Warnung (Sturmböen, 18:22 Uhr) wurde erkannt und die Story gebaut, aber Facebook und Instagram lehnten sie ab, weil das Bild im selben Lauf noch nicht auf wetter-badkoenig.de veröffentlicht war. Jetzt wartet fb_senden.py (warnstory) bis zu 4 Min., bis das Bild online ist. Die Story ging um 18:33 Uhr auf Facebook und Instagram raus.</td></tr>
