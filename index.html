@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 19:30 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 19:55 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2631,6 +2631,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>19:55 Uhr</small></td><td><b>Bad-König-Vorhersage: Sturm wird nicht mehr weggerechnet.</b> Ursache: Der „Windfaktor“ (gemessener Stationswind ÷ Modellwind der letzten 7 Tage) lag an der Untergrenze 0,4, weil der Sensor auf 2 m im Tal sitzt, die Modelle aber 10 m rechnen – so wurden aus ~55 km/h Böen nur 20 km/h (Montag, DWD-Warnung Sturmböen). Jetzt gilt der Faktor nicht mehr für Böen (Website-Präzisionsvorhersage und Max/fb_post.py); mittlerer Wind bleibt angepasst. Neu: DWD-Warnungen ab Stufe 2 stehen oben im Vorhersage-Tab (Art, Stufe, Zeitraum, Gebiet, DWD-Beschreibung). Website-Stand 19:55 Uhr.</td></tr>
 <tr><td>15.11.2026<br><small>19:30 Uhr</small></td><td><b>Google Drive: jetzt auch Bilder und Storys.</b> Jedes automatisch gepostete Bild landet direkt nach dem Post in Google Drive unter „Wetterstation – Bilder“ / Art / Datum Uhrzeit (Bild + Beitragstext): Morgen-Story, Mittags-Story, Abend-Story, Mittagskarte, Unwetter-Storys, Warn-Storys (Stufe 2), Warn-Beiträge (Stufe 2). Getestet mit der Warn-Story von 18:33 Uhr. Technik: drive_ablage.py (BILDER), fb_senden.py (senden, story_beide).</td></tr>
 <tr><td>15.11.2026<br><small>19:20 Uhr</small></td><td>(Zentrale) Tagesplan: Warn-Story und Unwetter-Special stehen jetzt unter „Heute“ (rutschten unter „Morgen“).</td></tr>
 <tr><td>15.11.2026<br><small>19:15 Uhr</small></td><td>(Zentrale) <b>Fehler behoben: Tagesplan lud nicht.</b> Die Zeilen „Warn-Story“ und „Unwetter-Special“ griffen auf eine Variable außerhalb ihres Bereichs zu – das fiel erst auf, als um 18:33 Uhr die erste Warn-Story gepostet war. Jetzt korrigiert.</td></tr>
