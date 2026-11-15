@@ -2198,6 +2198,9 @@ body.dark #ablCard table.ue{color:#e5e7eb}
 #ablCard table.ue td.alt{ color:#b45309; font-weight:700; }
 #ablCard table.ue td.neu{ font-weight:700; }
 #ablCard table.ue td:nth-child(2){ white-space:normal; }
+
+/* FB/IG-Symbole auch im Control Center (15.11.2026) */
+.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}
 </style>
 <style id="mobil">
 @media(max-width:760px){
@@ -2330,7 +2333,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 12:50 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 13:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2629,6 +2632,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>13:25 Uhr</small></td><td>(Zentrale) Tagesplan heute und morgen: bei jedem Autopost wieder die kleinen Symbole <b>f</b> (Facebook) und <b>ig</b> (Instagram), damit man sieht, wo der Beitrag online geht – auch bei den DWD-Warnungen.</td></tr>
 <tr><td>15.11.2026<br><small>12:50 Uhr</small></td><td>(Zentrale) Neuer Menüpunkt <b>🚨 Fehlermeldungen</b> im Wetterstation-Bildschirm (unter 💡 Ideen): zeigt alle fehlgeschlagenen GitHub-Abläufe der letzten 7 Tage (Repos wetterstation und zentrale) mit Uhrzeit, abgebrochenem Schritt, Fehlermeldung und Link zu GitHub; dazu „✅ danach wieder erfolgreich“ bzw. „⚠️ seitdem nicht wieder erfolgreich“. Roter Zähler am Menüpunkt, wenn Fehler vorliegen.</td></tr>
 <tr><td>15.11.2026<br><small>12:40 Uhr</small></td><td><b>Google-Drive-Ablage der Max-Videos:</b> Jedes live gegangene Video (Morgenvideo, Abendvideo, Wochenausblick, Wetterwissen, Monats- und Jahresrückblick) wird direkt nach dem Post automatisch in Google Drive abgelegt: <b>Wetterstation – Videos / &lt;Art&gt; / &lt;Datum Uhrzeit&gt;</b> mit Video und Beitragstext. Eigenes Google-Cloud-Projekt „Wetterstation Drive“ (Zugriff nur auf die eigenen Ordner, Bereich drive.file), Secrets GDRIVE_CLIENT_ID / GDRIVE_CLIENT_SECRET / GDRIVE_REFRESH_TOKEN. Schlägt die Ablage fehl, wird trotzdem gepostet (Push „Drive-Ablage fehlgeschlagen“). Nachtragen von Hand: GitHub-Ablauf „Google-Drive-Ablage testen / nachtragen“. Erstes Video (Morgenvideo 15.11., 08:49) erfolgreich abgelegt.</td></tr>
 <tr><td>15.11.2026<br><small>11:55 Uhr</small></td><td>Umschalter im Vorhersage-Tab auf <b>Variante A</b> umgestellt: zwei große Kacheln „📍 Bad König – Station · Radar · Stundenverlauf“ und „🗺️ Odenwaldkreis – Karte · alle Orte · 3 Tage“, die gewählte blau (statt der breiten Leiste von Variante B).</td></tr>
@@ -4359,13 +4363,13 @@ function tpLoad(){const _j=u=>fetch(u+'?v='+Date.now(),{cache:'no-store'}).then(
       vorbei=now>t,z=zeit(x.k[0]);
       const st=done?'<span class="tpP ok">✓ gepostet'+(z&&z.tag===tag?' um '+z.txt+' Uhr':'')+'</span>':vorbei?'<span class="tpP wa">noch nicht gepostet</span>':'<span class="tpP tpl">geplant</span>';
       if(!done&&!vorbei&&!next)next={x,t,o};
-      rows.push('<tr><td class="zt">'+x.h+':00</td><td><a onclick="show(\''+x.ziel+'\')">'+x.n+'</a></td><td><span class="tpP au">🤖 Autopost · '+x.f+'</span></td><td>'+st+'</td><td style="white-space:nowrap;color:var(--mut)">'+(done||vorbei?naechst(x.k[0],tag,x.h):'—')+'</td></tr>')});
+      rows.push('<tr><td class="zt">'+x.h+':00</td><td><a onclick="show(\''+x.ziel+'\')">'+x.n+'</a></td><td style="white-space:nowrap"><span class="pf fb" title="Facebook">f</span><span class="pf ig" title="Instagram">ig</span> <span class="tpP au">🤖 Autopost · '+x.f+'</span></td><td>'+st+'</td><td style="white-space:nowrap;color:var(--mut)">'+(done||vorbei?naechst(x.k[0],tag,x.h):'—')+'</td></tr>')});
     if(!o){/* amtliche DWD-Warnungen (Autopost sofort) – gepostet / offen / keine (15.11.2026) */
       const dw=[],hz=k=>{const v=G[k+'_zeit']||'';return v.slice(0,10)===tag?v.slice(11,16):''};
       Object.keys(G).filter(k=>/^sonder-[a-z]+$/.test(k)&&G[k]===tag).forEach(k=>dw.push({z:hz(k),n:G[k+'_titel']||('⚠️ '+k.slice(7)),ok:1}));
       ((SJ&&SJ.meldungen)||[]).filter(m=>m.amtlich&&G['sonder-'+m.typ]!==tag).forEach(m=>dw.push({z:'',n:((m.emoji||'⚠️')+' '+(m.titel||m.typ)).trim(),ok:0}));
-      if(!dw.length)rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'son\')">⚠️ Amtliche DWD-Warnung</a></td><td><span class="tpP au">🤖 Autopost · sofort</span></td><td><span class="tpP tpl">heute keine Warnung</span></td><td style="color:var(--mut)">bei neuer Warnung</td></tr>');
-      dw.sort((a,b)=>(a.z||'99').localeCompare(b.z||'99')).forEach(d=>rows.push('<tr><td class="zt">'+(d.z||'–')+'</td><td><a onclick="show(\'son\')">DWD-Warnung: '+d.n+'</a></td><td><span class="tpP au">🤖 Autopost · sofort</span></td><td>'+(d.ok?'<span class="tpP ok">✓ gepostet'+(d.z?' um '+d.z+' Uhr':'')+'</span>':'<span class="tpP wa">noch nicht gepostet</span>')+'</td><td style="color:var(--mut)">bei neuer Warnung</td></tr>'))}}
+      if(!dw.length)rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'son\')">⚠️ Amtliche DWD-Warnung</a></td><td style="white-space:nowrap"><span class="pf fb" title="Facebook">f</span><span class="pf ig" title="Instagram">ig</span> <span class="tpP au">🤖 Autopost · sofort</span></td><td><span class="tpP tpl">heute keine Warnung</span></td><td style="color:var(--mut)">bei neuer Warnung</td></tr>');
+      dw.sort((a,b)=>(a.z||'99').localeCompare(b.z||'99')).forEach(d=>rows.push('<tr><td class="zt">'+(d.z||'–')+'</td><td><a onclick="show(\'son\')">DWD-Warnung: '+d.n+'</a></td><td style="white-space:nowrap"><span class="pf fb" title="Facebook">f</span><span class="pf ig" title="Instagram">ig</span> <span class="tpP au">🤖 Autopost · sofort</span></td><td>'+(d.ok?'<span class="tpP ok">✓ gepostet'+(d.z?' um '+d.z+' Uhr':'')+'</span>':'<span class="tpP wa">noch nicht gepostet</span>')+'</td><td style="color:var(--mut)">bei neuer Warnung</td></tr>'))}}
   rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'bild\')">✋ Frost-/Nebel-Hinweis, Unwetter-Specials, Themenvideos</a></td><td><span class="tpP au">von Hand</span></td><td><span class="tpP au">bei Bedarf</span></td><td></td></tr>');
   $('tpTab').innerHTML=rows.join('');
   if(next){const m=Math.round((next.t-now)/6e4),h=Math.floor(m/60);$('tpNext').innerHTML='<b>Als Nächstes:</b> '+next.x.n+' – '+(next.o?'morgen':'heute')+' um '+next.x.h+':00 Uhr · in '+(h?h+' Std. ':'')+(m%60)+' Min.'}
