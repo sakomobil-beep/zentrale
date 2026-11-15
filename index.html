@@ -2329,7 +2329,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 11:50 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 11:55 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2373,7 +2373,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <h2 style="margin:0 0 4px">🌦️ Wetterstation Control Center</h2><p style="margin:0 0 16px;color:var(--mut)">Alles rund um wetter-badkoenig.de, Max und Facebook/Instagram an einem Ort. <a href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Website öffnen ›</a></p>
 <div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div><button class="ccSt" id="ccWW" onclick="show('ww')" style="text-align:left;border:0;cursor:pointer;font:inherit;color:inherit"><small>💡 Wetterwissen-Themen</small><b id="ccWWv">…</b><small id="ccWWh" style="margin:3px 0 0"></small></button></div>
 <div class="tpNx" id="tpNext">Als Nächstes: wird geladen …</div>
-<div class="card"><h3 style="margin-top:0">🗓️ Tagesplan heute und morgen</h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table></div>
+<div class="card"><h3 style="margin-top:0">🗓️ Tagesplan heute und morgen <small style="font-weight:normal;font-size:12px;opacity:.65">· aktualisiert sich jede Minute</small></h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table></div>
 <div class="card" id="ablCard"><h3 style="margin-top:0">⏰ Abläufe &amp; Weckrufe</h3>
     <p style="margin:4px 0 10px;opacity:.8">Was wann von allein läuft – damit du nicht im Code nachsehen musst. Alle Zeiten in Ortszeit (Stand 15.11.2026).</p>
     <div class="ue-wrap"><table class="ue"><thead><tr><th>Zeit</th><th>Was passiert</th><th>Weckruf bei cron-job.org</th></tr></thead><tbody>
@@ -2618,6 +2618,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>11:55 Uhr</small></td><td>(Zentrale) <b>Tagesplan heute und morgen</b> und „Als Nächstes“ aktualisieren sich jetzt von selbst – jede Minute und sofort, wenn du zur Zentrale zurückkehrst (Gepostet-Status, Postzeiten, DWD-Warnungen, Countdown). Neues Neuladen ist nicht mehr nötig.</td></tr>
 <tr><td>15.11.2026<br><small>11:50 Uhr</small></td><td>(Zentrale) <b>„⏰ Abläufe &amp; Weckrufe“</b> steht jetzt im Wetterstation Control Center direkt unter „Tagesplan heute und morgen“ (vorher unter 🎬 Videos) und ist aktualisiert: Wetterwissen mit Max (Bau 14:30/Weckruf 14:02, Post 15:00/Weckruf 15:02), DWD-Warnungen sofort, Open-Meteo-Reserve, 6:30-Reserve-Video, Abend-Story sonntags, richtige Zeiten für Archiv (0:15), Historie (Mo ca. 2:47) und IndexNow (Mo ca. 4:17).</td></tr>
 <tr><td>15.11.2026<br><small>11:45 Uhr</small></td><td><b>Animierte Wettersymbole</b> überall auf der Website (Kreiskarte, Tageskarten, Stundenleiste …): Regentropfen fallen, Schneeflocken rieseln, Sonnenstrahlen drehen sich langsam, Wolken schweben leicht, Nebelstreifen ziehen, bei Gewitter blitzt es, Wind-Linien wehen. Dezent gehalten; bei „Bewegung reduzieren“ am Gerät bleiben die Symbole still.</td></tr>
 <tr><td>15.11.2026<br><small>11:35 Uhr</small></td><td>Umschalter „📍 Bad König / 🗺️ Odenwaldkreis“ im Vorhersage-Tab auffälliger (nach Vorschau, Variante B): breite Leiste mit blauem Rahmen, gewählte Seite blau, die andere mit „›“ als Hinweis zum Antippen.</td></tr>
@@ -4373,6 +4374,9 @@ function wwLoad(){const W='https://wetter-badkoenig.de/fb/',v='?v='+Date.now();
       if(l.status!=='completed'){S.textContent='⏳ Wird erstellt … ('+Math.round((Date.now()-st)/60000)+' Min.)';return setTimeout(()=>poll(n),15000)}
       if(l.conclusion==='success'){S.textContent='✅ Fertig! Neues Video wird geladen …';setTimeout(()=>{wwLoad();S.textContent='✅ Neues Wetterwissen ist da.';B.disabled=false},70000)}else{S.innerHTML='❌ Hat nicht geklappt. <a target="_blank" href="'+l.html_url+'">Details</a>';B.disabled=false}}
       catch(e){S.textContent='❌ '+e.message;B.disabled=false}};poll(0)}}
+/* Tagesplan + „Als Nächstes“ aktualisieren sich von selbst (jede Minute und beim Zurückkehren zur Seite), solange das Control Center offen ist (15.11.2026) */
+function tpAuto(){const m=document.getElementById('cc');if(m&&!m.hidden&&!document.hidden)tpLoad()}
+if(!window._tpAuto){window._tpAuto=setInterval(tpAuto,60000);document.addEventListener('visibilitychange',tpAuto)}
 function ccLoad(){tpLoad();
   fetch('https://wetter-badkoenig.de/fb/wissen_vorrat.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(j=>{const f=d=>new Date(d+'T12:00').toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}),SZ={fruehling:'Frühlings',sommer:'Sommer',herbst:'Herbst',winter:'Winter'};
     if(!j.reicht_bis){$('ccWWv').textContent=j.offen+' Themen · reicht über 1 Jahr';return}
