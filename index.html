@@ -2319,7 +2319,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 10:10 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 10:15 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2582,6 +2582,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>10:15 Uhr</small></td><td>(Zentrale) <b>🌙 Abendbeitrag – Ausblick</b> steht jetzt unter 🖼️ Bildposts im Bereich <b>„✋ Zum Selbst-Teilen“</b>. Das Bild wird seit dem Studio-Abendvideo (10.11.) nicht mehr automatisch gepostet – nur der Text läuft weiter automatisch als Beschreibung unter dem Abendvideo. Hinweis „wird automatisch gepostet“ korrigiert.</td></tr>
 <tr><td>15.11.2026<br><small>10:10 Uhr</small></td><td>(Zentrale) <b>Tagesplan zeigt jetzt amtliche DWD-Warnungen:</b> unter „Heute“ erscheint jede automatisch gepostete Warnung mit Uhrzeit („✓ gepostet um …“), eine anstehende Warnung als „noch nicht gepostet“, sonst „heute keine Warnung“. Dafür merkt sich der Autopost die Postzeit jetzt je Warnart.</td></tr>
 <tr><td>15.11.2026<br><small>09:15 Uhr</small></td><td><b>Reserve für Wetterdaten + Rückfall fürs Morgenvideo:</b> Die Vorhersagedaten von Open-Meteo werden jetzt zusätzlich als Reserve gespeichert und vom Viertelstunden-Lauf höchstens einmal pro Stunde aufgefrischt. Fällt Open-Meteo beim Bau aus, nimmt der Bau die Reserve – beim Morgenvideo höchstens 6 Stunden alt, bei Mittagskarte, Abendvideo und Wochenausblick höchstens 2 Stunden alt (ältere Daten werden nie gepostet). Push „Wetterdaten aus der Reserve“, wenn das passiert. Außerdem: Scheitert um 7/8 Uhr der frische Bau des Morgenvideos (z. B. ffmpeg- oder Datenausfall), wird das um 6:30 Uhr gebaute Video gepostet (mit Push „Morgenvideo“). Abendvideo und Wochenausblick werden weiterhin erst zur Postzeit gebaut.</td></tr>
 <tr><td>15.11.2026<br><small>08:56 Uhr</small></td><td><b>Morgenvideo-Panne behoben:</b> Heute um 8:02 Uhr brach der Morgenlauf ab, weil der Wetterdienst Open-Meteo GitHub nicht rechtzeitig antwortete (Verbindungs-Timeout) – dadurch kein Video und kein Autopost. Der Abruf der Vorhersagedaten (fb_post.py) versucht es jetzt bis zu 5-mal mit wachsender Pause (20–100 s), statt beim ersten Aussetzer aufzugeben. Morgenvideo + Morgen-Story wurden um 8:49 Uhr nachträglich auf Facebook und Instagram gepostet.</td></tr>
@@ -3181,17 +3182,13 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
         <div id="fb_musterListe">wird geladen …</div></details>
     </section>
 
-    <section class="spalte" id="fbs_ab">
-      <h2 class="sp">🌙 Abendbeitrag – Ausblick</h2>
-      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">Der Abendbeitrag erscheint hier, sobald er heute erstellt ist.</div></div>
-    </section>
-
     <section class="spalte" id="fbs_hand">
       <h2 class="sp">✋ Zum Selbst-Teilen <span class="apb man">✋ MANUELL POSTEN</span></h2>
-      <div class="card fbinfo"><b>Wird nicht automatisch gepostet.</b> Hier liegt alles, was du bei Bedarf selbst teilst: Frost-/Nebel-Hinweis, Special-Videos, Tagesbild und „Max erklärt“.</div>
+      <div class="card fbinfo"><b>Wird nicht automatisch gepostet.</b> Hier liegt alles, was du bei Bedarf selbst teilst: Frost-/Nebel-Hinweis, Special-Videos, Abendbeitrag-Bild, Tagesbild und „Max erklärt“.</div>
       <div id="fb_frostBox"></div>
       <div class="card fbinfo" id="fb_uwsInfo">⚠️ <b>Unwetter-Specials</b> entstehen nur bei Unwetter, Schnee oder besonderen Wetterlagen. Sie werden <b>nicht</b> automatisch gepostet – du teilst sie bei Bedarf selbst.</div>
       <div id="fb_specialBox"></div>
+      <div id="fb_abendBox"><div class="card ruhig" style="color:#5a6b80">🌙 Abendbeitrag – Ausblick: erscheint hier, sobald er heute erstellt ist.</div></div>
       <div class="card ruhig">
         <div class="vhead">🖼️ Tagesbild <small style="font-weight:normal;opacity:.75">· ✋ Reserve zum Selbst-Teilen</small></div>
         <div class="datum" id="fb_tDatum">–</div>
@@ -4576,10 +4573,10 @@ function fbInit(){
     var c = document.createElement('div'), src = 'https://wetter-badkoenig.de/fb/abend.jpg?v=' + v, b = null;
     var stand = new Date(j.erstellt).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
     c.className = 'card abend';
-    c.innerHTML = '<div class="vhead">🌙 Abendbeitrag – Ausblick</div><div class="datum">' + datumTxt(j.erstellt).t + '</div><img alt="Abendbeitrag"><textarea aria-label="Text des Abendbeitrags" rows="14"></textarea>' +
+    c.innerHTML = '<div class="vhead">🌙 Abendbeitrag – Ausblick <small style="font-weight:normal;opacity:.75">· ✋ zum Selbst-Teilen</small></div><div class="datum">' + datumTxt(j.erstellt).t + '</div><img alt="Abendbeitrag"><textarea aria-label="Text des Abendbeitrags" rows="14"></textarea>' +
       '<div class="btns"><button class="prim teilen">📤 Abendbeitrag teilen</button><button class="sec">📋 Text kopieren</button>' +
       '<a class="btn sec" download="wetter-abend.jpg">💾 Bild speichern</a></div>' +
-      '<p class="hint">Erstellt um ' + stand + ' Uhr · wird automatisch auf Facebook gepostet.</p>';
+      '<p class="hint">Erstellt um ' + stand + ' Uhr · das Bild wird <b>nicht</b> automatisch gepostet (✋ bei Bedarf selbst teilen). Der Text läuft automatisch als Beschreibung unter dem Abendvideo (Mo–Sa 19 Uhr).</p>';
     c.querySelector('img').src = src; c.querySelector('a').href = src;
     var ta = c.querySelector('textarea'); ta.value = j.text;
     fetch(src, { cache: 'no-store' }).then(function (r) { return r.blob(); }).then(function (x) { b = x; }).catch(function () {});
