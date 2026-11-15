@@ -2319,7 +2319,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 09:15 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 10:10 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2543,7 +2543,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <tr><td>So 20 Uhr</td><td>Wochenausblick-Video</td><td>automatisch</td></tr>
 <tr><td>30.12. 18 Uhr</td><td>Jahresrückblick-Video mit Max (Facebook + Instagram) <span class="tg">neu 08.11.</span></td><td>automatisch</td></tr>
 <tr><td>1. des Monats 15 Uhr</td><td>Monatsrückblick-Video mit Max aus dem Studio (Facebook + Instagram) <span class="tg">neu 12.11.</span></td><td>automatisch</td></tr>
-<tr><td>sofort</td><td>amtliche DWD-Warnungen (ganzer Odenwaldkreis)</td><td>automatisch</td></tr>
+<tr><td>sofort</td><td>amtliche DWD-Warnungen (ganzer Odenwaldkreis) – im Tagesplan des Control Centers mit Postzeit sichtbar <span class="tg">neu 15.11.</span></td><td>automatisch</td></tr>
 <tr><td>bei Bedarf</td><td>Vorhersage-Sondermeldungen, Frost-/Kratzen-Hinweis (nur bei sicherem Frost)</td><td>selbst teilen</td></tr>
 </table>
 <ul><li>Gepostet wird direkt über die Facebook-App „Wetter Bad König Autopost“; alle Autoposts gehen auch auf <b>Instagram</b> (dort mit festem Hashtag-Block #odenwald #odenwaldwetter #badkönig #wetter #odenwaldkreis #michelstadt #erbach #höchst #breuberg #wetterbericht #hessen #wettervorhersage); das Skript holt sich den Seiten-Token selbst aus dem hinterlegten Token; Make.com ist gestoppt und bleibt als Reserve; Schutz gegen Doppelposts: vor jedem Post wird der aktuelle Merkzettel (fb/gepostet.json) frisch bei GitHub geprüft</li>
@@ -2582,6 +2582,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>10:10 Uhr</small></td><td>(Zentrale) <b>Tagesplan zeigt jetzt amtliche DWD-Warnungen:</b> unter „Heute“ erscheint jede automatisch gepostete Warnung mit Uhrzeit („✓ gepostet um …“), eine anstehende Warnung als „noch nicht gepostet“, sonst „heute keine Warnung“. Dafür merkt sich der Autopost die Postzeit jetzt je Warnart.</td></tr>
 <tr><td>15.11.2026<br><small>09:15 Uhr</small></td><td><b>Reserve für Wetterdaten + Rückfall fürs Morgenvideo:</b> Die Vorhersagedaten von Open-Meteo werden jetzt zusätzlich als Reserve gespeichert und vom Viertelstunden-Lauf höchstens einmal pro Stunde aufgefrischt. Fällt Open-Meteo beim Bau aus, nimmt der Bau die Reserve – beim Morgenvideo höchstens 6 Stunden alt, bei Mittagskarte, Abendvideo und Wochenausblick höchstens 2 Stunden alt (ältere Daten werden nie gepostet). Push „Wetterdaten aus der Reserve“, wenn das passiert. Außerdem: Scheitert um 7/8 Uhr der frische Bau des Morgenvideos (z. B. ffmpeg- oder Datenausfall), wird das um 6:30 Uhr gebaute Video gepostet (mit Push „Morgenvideo“). Abendvideo und Wochenausblick werden weiterhin erst zur Postzeit gebaut.</td></tr>
 <tr><td>15.11.2026<br><small>08:56 Uhr</small></td><td><b>Morgenvideo-Panne behoben:</b> Heute um 8:02 Uhr brach der Morgenlauf ab, weil der Wetterdienst Open-Meteo GitHub nicht rechtzeitig antwortete (Verbindungs-Timeout) – dadurch kein Video und kein Autopost. Der Abruf der Vorhersagedaten (fb_post.py) versucht es jetzt bis zu 5-mal mit wachsender Pause (20–100 s), statt beim ersten Aussetzer aufzugeben. Morgenvideo + Morgen-Story wurden um 8:49 Uhr nachträglich auf Facebook und Instagram gepostet.</td></tr>
 <tr><td>14.11.2026<br><small>20:54 Uhr</small></td><td>(Zentrale) „Wettervideo mit Max“ heißt jetzt überall <b>„Morgenvideo mit Max“</b> (passend zu „Abendvideo mit Max (Studio)“) – in Videos, Übersicht und Infokasten.</td></tr>
@@ -4298,7 +4299,7 @@ function fbOpen(){if(!$('fbSec').childElementCount)fbReload();var h=$('fbH1');if
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
 function show(p){var fbv=(p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws')?p:null;document.body.classList.toggle('fbUws',fbv=='uws');document.body.classList.toggle('fbSpv',fbv=='spv');document.body.classList.toggle('fbThv',fbv=='thv');document.body.classList.toggle('fbSon',fbv=='son');document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');document.body.classList.toggle('fbBild',fbv=='bild');if(fbv=='son')setTimeout(musterLoad,300);if(fbv){var h=$('fbH1');if(h)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Unwetter-Specials'}[fbv];var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();if(p=='ww')wwLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','sich','ww'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));scrollTo(0,0)}
-function tpLoad(){fetch('https://wetter-badkoenig.de/fb/gepostet.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({})).then(G=>{
+function tpLoad(){const _j=u=>fetch(u+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}));Promise.all([_j('https://wetter-badkoenig.de/fb/gepostet.json'),_j('https://wetter-badkoenig.de/fb/sonder.json')]).then(([G,SJ])=>{
   const now=new Date(),fmt=d=>d.toLocaleDateString('sv-SE',{timeZone:'Europe/Berlin'}),WT=['So','Mo','Di','Mi','Do','Fr','Sa'],rows=[],TAGE=[];let next=null;
   const plan=tag=>{const wd=new Date(tag+'T12:00:00').getDay(),we=wd==0||wd==6,dd=tag.slice(8,10),mm=tag.slice(5,7),L=[];const add=(h,n,k,f,ziel)=>L.push({h,n,k,f,ziel});
     add(we?8:7,'🎬 Morgenvideo mit Max + 📸 Morgen-Story',['video','story'],'Video + Story','vid');
@@ -4319,7 +4320,13 @@ function tpLoad(){fetch('https://wetter-badkoenig.de/fb/gepostet.json?v='+Date.n
       vorbei=now>t,z=zeit(x.k[0]);
       const st=done?'<span class="tpP ok">✓ gepostet'+(z&&z.tag===tag?' um '+z.txt+' Uhr':'')+'</span>':vorbei?'<span class="tpP wa">noch nicht gepostet</span>':'<span class="tpP tpl">geplant</span>';
       if(!done&&!vorbei&&!next)next={x,t,o};
-      rows.push('<tr><td class="zt">'+x.h+':00</td><td><a onclick="show(\''+x.ziel+'\')">'+x.n+'</a></td><td><span class="tpP au">🤖 Autopost · '+x.f+'</span></td><td>'+st+'</td><td style="white-space:nowrap;color:var(--mut)">'+(done||vorbei?naechst(x.k[0],tag,x.h):'—')+'</td></tr>')})}
+      rows.push('<tr><td class="zt">'+x.h+':00</td><td><a onclick="show(\''+x.ziel+'\')">'+x.n+'</a></td><td><span class="tpP au">🤖 Autopost · '+x.f+'</span></td><td>'+st+'</td><td style="white-space:nowrap;color:var(--mut)">'+(done||vorbei?naechst(x.k[0],tag,x.h):'—')+'</td></tr>')});
+    if(!o){/* amtliche DWD-Warnungen (Autopost sofort) – gepostet / offen / keine (15.11.2026) */
+      const dw=[],hz=k=>{const v=G[k+'_zeit']||'';return v.slice(0,10)===tag?v.slice(11,16):''};
+      Object.keys(G).filter(k=>/^sonder-[a-z]+$/.test(k)&&G[k]===tag).forEach(k=>dw.push({z:hz(k),n:G[k+'_titel']||('⚠️ '+k.slice(7)),ok:1}));
+      ((SJ&&SJ.meldungen)||[]).filter(m=>m.amtlich&&G['sonder-'+m.typ]!==tag).forEach(m=>dw.push({z:'',n:((m.emoji||'⚠️')+' '+(m.titel||m.typ)).trim(),ok:0}));
+      if(!dw.length)rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'son\')">⚠️ Amtliche DWD-Warnung</a></td><td><span class="tpP au">🤖 Autopost · sofort</span></td><td><span class="tpP tpl">heute keine Warnung</span></td><td style="color:var(--mut)">bei neuer Warnung</td></tr>');
+      dw.sort((a,b)=>(a.z||'99').localeCompare(b.z||'99')).forEach(d=>rows.push('<tr><td class="zt">'+(d.z||'–')+'</td><td><a onclick="show(\'son\')">DWD-Warnung: '+d.n+'</a></td><td><span class="tpP au">🤖 Autopost · sofort</span></td><td>'+(d.ok?'<span class="tpP ok">✓ gepostet'+(d.z?' um '+d.z+' Uhr':'')+'</span>':'<span class="tpP wa">noch nicht gepostet</span>')+'</td><td style="color:var(--mut)">bei neuer Warnung</td></tr>'))}}
   rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'bild\')">✋ Frost-/Nebel-Hinweis, Unwetter-Specials, Themenvideos</a></td><td><span class="tpP au">von Hand</span></td><td><span class="tpP au">bei Bedarf</span></td><td></td></tr>');
   $('tpTab').innerHTML=rows.join('');
   if(next){const m=Math.round((next.t-now)/6e4),h=Math.floor(m/60);$('tpNext').innerHTML='<b>Als Nächstes:</b> '+next.x.n+' – '+(next.o?'morgen':'heute')+' um '+next.x.h+':00 Uhr · in '+(h?h+' Std. ':'')+(m%60)+' Min.'}
