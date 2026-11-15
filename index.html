@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 20:05 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 20:10 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2631,6 +2631,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>20:10 Uhr</small></td><td><b>Kreiskarte: Auswahl deutlich sichtbar.</b> Angetippter Ort bekommt auf der Karte einen dicken gelben, leuchtenden Rahmen (blinkt kurz 2×) und einen großen gelben Punkt; in der Tabelle eine kräftig gelbe Zeile mit Balken links und fetter Schrift – auch im Dunkelmodus gut sichtbar. Website-Stand 20:10 Uhr.</td></tr>
 <tr><td>15.11.2026<br><small>20:05 Uhr</small></td><td><b>Kreis-Vorhersage aufgeräumt:</b> „Odenwaldkreis · 3-Tage-Vorhersage“ (Heute, Morgen, übermorgen) steht jetzt links unter der Ortstabelle in der freien Fläche neben der Karte (untereinander) statt ganz unten. Website-Stand 20:05 Uhr.</td></tr>
 <tr><td>15.11.2026<br><small>20:00 Uhr</small></td><td><b>Vorhersage-Text „Heute“ (Bad König) korrigiert:</b> „… bei −2 bis 9 °C“ nutzte noch den schon vergangenen Frühwert; jetzt steht dort wie in der Kachel der Tiefstwert der kommenden Nacht. (Offener Feinschliff-Punkt vom 15.11. erledigt.) Website-Stand 20:00 Uhr.</td></tr>
 <tr><td>15.11.2026<br><small>19:55 Uhr</small></td><td><b>Bad-König-Vorhersage: Sturm wird nicht mehr weggerechnet.</b> Ursache: Der „Windfaktor“ (gemessener Stationswind ÷ Modellwind der letzten 7 Tage) lag an der Untergrenze 0,4, weil der Sensor auf 2 m im Tal sitzt, die Modelle aber 10 m rechnen – so wurden aus ~55 km/h Böen nur 20 km/h (Montag, DWD-Warnung Sturmböen). Jetzt gilt der Faktor nicht mehr für Böen (Website-Präzisionsvorhersage und Max/fb_post.py); mittlerer Wind bleibt angepasst. Neu: DWD-Warnungen ab Stufe 2 stehen oben im Vorhersage-Tab (Art, Stufe, Zeitraum, Gebiet, DWD-Beschreibung). Website-Stand 19:55 Uhr.</td></tr>
