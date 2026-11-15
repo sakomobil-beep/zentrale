@@ -2319,7 +2319,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes">📝 Notizen</button>
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 10:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 11:50 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2364,6 +2364,30 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div><button class="ccSt" id="ccWW" onclick="show('ww')" style="text-align:left;border:0;cursor:pointer;font:inherit;color:inherit"><small>💡 Wetterwissen-Themen</small><b id="ccWWv">…</b><small id="ccWWh" style="margin:3px 0 0"></small></button></div>
 <div class="tpNx" id="tpNext">Als Nächstes: wird geladen …</div>
 <div class="card"><h3 style="margin-top:0">🗓️ Tagesplan heute und morgen</h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table></div>
+<div class="card" id="ablCard"><h3 style="margin-top:0">⏰ Abläufe &amp; Weckrufe</h3>
+    <p style="margin:4px 0 10px;opacity:.8">Was wann von allein läuft – damit du nicht im Code nachsehen musst. Alle Zeiten in Ortszeit (Stand 15.11.2026).</p>
+    <div class="ue-wrap"><table class="ue"><thead><tr><th>Zeit</th><th>Was passiert</th><th>Weckruf bei cron-job.org</th></tr></thead><tbody>
+      <tr><td>6:30</td><td>Vorhersage holen, Tagesbild, Morgen-Story und Morgenvideo bauen (Reserve-Video, falls der Neubau um 7/8 Uhr scheitert)</td><td>–</td></tr>
+      <tr><td>7:00 <small>Mo–Fr</small></td><td>Morgenvideo frisch bauen und posten + Morgen-Story (FB + IG)</td><td>Wettervideo Facebook Weckruf · 7:02</td></tr>
+      <tr><td>8:00 <small>Sa/So</small></td><td>Morgenvideo frisch bauen und posten + Morgen-Story (FB + IG)</td><td>Wochenende Morgen Weckruf · 8:02</td></tr>
+      <tr><td>12:00</td><td>Mittagskarte + Mittags-Story bauen und posten; Special-Video bei neuer DWD-Warnung</td><td>Mittag Weckruf · 12:02</td></tr>
+      <tr><td>14:30 <small>Mo–Fr</small></td><td>Folge „Wetterwissen mit Max“ bauen</td><td>Wetterwissen Bau Weckruf · 14:02</td></tr>
+      <tr><td>15:00 <small>Mo–Fr</small></td><td>„Wetterwissen mit Max“ posten (FB + IG); außerdem Special-Video, falls eine neue Warnung dazukommt</td><td>Wetterwissen Post Weckruf · 15:02</td></tr>
+      <tr><td>19:00 <small>Mo–Sa</small></td><td>Abendvideo aus dem Studio + Abend-Story bauen und posten</td><td>Abend Weckruf · 19:02</td></tr>
+      <tr><td>20:00 <small>So</small></td><td>Wochenausblick mit Max aus dem Studio + Abend-Story (Wetter für Montag)</td><td>Sonntag Wochenausblick Weckruf · 20:02</td></tr>
+      <tr><td>sofort</td><td>Amtliche DWD-Warnung für den Odenwaldkreis automatisch posten (Prüfung alle 15 Min) – im Tagesplan oben sichtbar</td><td>–</td></tr>
+      <tr><td>1. des Monats 15:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ab 13:30, gepostet ab 15 Uhr)</td><td>läuft mit dem 15:02-Weckruf</td></tr>
+      <tr><td>30.12. 18:00</td><td>Jahresrückblick-Video (gebaut 17:15)</td><td>läuft mit dem Abend Weckruf</td></tr>
+      <tr><td>alle 15 Min</td><td>Sondermeldungen prüfen, Regen-Push, DWD-Warn-Push; höchstens 1× pro Stunde Open-Meteo-Reserve auffrischen</td><td>–</td></tr>
+      <tr><td>alle 10 Min</td><td>Live-Werte der Station für Website und Widget</td><td>Live-Daten</td></tr>
+      <tr><td>0:15</td><td>Wetterarchiv um den Vortag ergänzen (Reserve-Lauf 0:25)</td><td>Wetterarchiv · 0:15</td></tr>
+      <tr><td>alle 3 Std</td><td>Vorhersage-Lernkurve nachführen (Trefferquote)</td><td>–</td></tr>
+      <tr><td>alle 6 Std</td><td>Solarwetter-Quellen prüfen (Push bei Ausfall)</td><td>–</td></tr>
+      <tr><td>Mo ca. 2:47</td><td>Videos älter als 7 Tage aus der Historie räumen</td><td>–</td></tr>
+      <tr><td>Mo ca. 4:17</td><td>Suchmaschinen über Änderungen informieren (IndexNow)</td><td>–</td></tr>
+    </tbody></table></div>
+    <div class="hint" style="margin:8px 0 0">Die Weckrufe gibt es, weil GitHub seine eigenen Zeitpläne oft mit Verspätung startet. Sie rufen denselben Ablauf von Hand auf; der Ablauf prüft dann selbst die Uhrzeit und macht nur das, was dran ist – ein Weckruf zur falschen Zeit schadet also nicht. Fällt Open-Meteo aus, springt die stündlich aufgefrischte Reserve ein (Morgen bis 6 Std., sonst bis 2 Std. alt).</div>
+  </div>
 </main>
 <main id="ww" hidden>
 <h1 style="margin-top:0">💡 Wetterwissen mit Max</h1>
@@ -2584,6 +2608,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>11:50 Uhr</small></td><td>(Zentrale) <b>„⏰ Abläufe &amp; Weckrufe“</b> steht jetzt im Wetterstation Control Center direkt unter „Tagesplan heute und morgen“ (vorher unter 🎬 Videos) und ist aktualisiert: Wetterwissen mit Max (Bau 14:30/Weckruf 14:02, Post 15:00/Weckruf 15:02), DWD-Warnungen sofort, Open-Meteo-Reserve, 6:30-Reserve-Video, Abend-Story sonntags, richtige Zeiten für Archiv (0:15), Historie (Mo ca. 2:47) und IndexNow (Mo ca. 4:17).</td></tr>
 <tr><td>15.11.2026<br><small>11:45 Uhr</small></td><td><b>Animierte Wettersymbole</b> überall auf der Website (Kreiskarte, Tageskarten, Stundenleiste …): Regentropfen fallen, Schneeflocken rieseln, Sonnenstrahlen drehen sich langsam, Wolken schweben leicht, Nebelstreifen ziehen, bei Gewitter blitzt es, Wind-Linien wehen. Dezent gehalten; bei „Bewegung reduzieren“ am Gerät bleiben die Symbole still.</td></tr>
 <tr><td>15.11.2026<br><small>11:35 Uhr</small></td><td>Umschalter „📍 Bad König / 🗺️ Odenwaldkreis“ im Vorhersage-Tab auffälliger (nach Vorschau, Variante B): breite Leiste mit blauem Rahmen, gewählte Seite blau, die andere mit „›“ als Hinweis zum Antippen.</td></tr>
 <tr><td>15.11.2026<br><small>11:30 Uhr</small></td><td><b>Odenwaldkreis-Karte nachgebessert:</b> Karte 30 % kleiner (am PC ca. 42 % statt 60 % der Breite, links mehr Platz für Text und Tabelle; am Handy 70 % breit, mittig). Die Ebenen (Messstationen, B45/B47, Bahn, Limes, Ausflugsziele, Höchster Punkt, Werte) sind wieder <b>einzelne Knöpfe direkt über der Karte</b> statt des Menüs „Ebenen“.</td></tr>
@@ -3263,28 +3288,6 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
 <div id="fb_ok"></div><style>.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}</style></template>
   <div id="fbSec"></div>
-  <div class="card" id="ablCard"><h3 style="margin-top:0">⏰ Abläufe &amp; Weckrufe</h3>
-    <p style="margin:4px 0 10px;opacity:.8">Was wann von allein läuft – damit du nicht im Code nachsehen musst. Alle Zeiten in Ortszeit, Sommer- und Winterzeit sind getrennt hinterlegt.</p>
-    <div class="ue-wrap"><table class="ue"><thead><tr><th>Zeit</th><th>Was passiert</th><th>Weckruf bei cron-job.org</th></tr></thead><tbody>
-      <tr><td>6:30</td><td>Vorhersage holen, Bilder und Morgenvideo bauen</td><td>–</td></tr>
-      <tr><td>7:00 <small>Mo–Fr</small></td><td>Morgenvideo + Morgen-Story posten</td><td>Wettervideo Facebook Weckruf · 7:02</td></tr>
-      <tr><td>8:00 <small>Sa/So</small></td><td>Morgenvideo + Morgen-Story posten</td><td>Wochenende Morgen Weckruf · 8:02</td></tr>
-      <tr><td>12:00</td><td>Mittagskarte + Mittags-Story bauen und posten; Special-Video bei neuer DWD-Warnung</td><td>Mittag Weckruf · 12:02</td></tr>
-      <tr><td>15:00</td><td>Special-Video, falls eine neue Warnung dazukommt</td><td>–</td></tr>
-      <tr><td>19:00 <small>Mo–Sa</small></td><td>Abendvideo aus dem Studio + Abend-Story bauen und posten</td><td>Abend Weckruf · 19:02</td></tr>
-      <tr><td>20:00 <small>So</small></td><td>Wochenausblick mit Max</td><td>Sonntag Wochenausblick Weckruf · 20:02</td></tr>
-      <tr><td>1. des Monats 15:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ca. 13:30–14:30, gepostet vom 15-Minuten-Lauf ab 15 Uhr)</td><td>– (kein Weckruf nötig)</td></tr>
-      <tr><td>alle 15 Min</td><td>Sondermeldungen prüfen, Regen-Push, DWD-Warn-Push</td><td>–</td></tr>
-      <tr><td>alle 10 Min</td><td>Live-Werte der Station für Website und Widget</td><td>Live-Daten</td></tr>
-      <tr><td>0:25</td><td>Wetterarchiv um den Vortag ergänzen</td><td>Wetterarchiv · 0:15</td></tr>
-      <tr><td>alle 3 Std</td><td>Vorhersage-Lernkurve nachführen (Trefferquote)</td><td>–</td></tr>
-      <tr><td>alle 6 Std</td><td>Solarwetter-Quellen prüfen (Push bei Ausfall)</td><td>–</td></tr>
-      <tr><td>Mo 1:47</td><td>Videos älter als 7 Tage aus der Historie räumen</td><td>–</td></tr>
-      <tr><td>Mo 3:17</td><td>Suchmaschinen über Änderungen informieren (IndexNow)</td><td>–</td></tr>
-      <tr><td>30.12. 17:15</td><td>Jahresrückblick-Video bauen (Post um 18 Uhr)</td><td>–</td></tr>
-    </tbody></table></div>
-    <div class="hint" style="margin:8px 0 0">Die Weckrufe gibt es, weil GitHub seine eigenen Zeitpläne oft mit Verspätung startet. Sie rufen denselben Ablauf von Hand auf; der Ablauf prüft dann selbst die Uhrzeit und macht nur das, was dran ist. Ein Weckruf zur falschen Zeit schadet also nicht.</div>
-  </div>
   <div class="card" id="tmCard"><h3 style="margin-top:0">🎪 Termine für Max</h3>
     <p style="margin:4px 0 10px;opacity:.8">Max erwähnt Termine 1–3 Tage vorher und am Tag selbst (höchstens einen pro Video), im Wochenausblick alle Termine der Woche. Feiertage und Schulferien in Hessen kennt er automatisch.</p>
     <div id="tmList"><small>Lade Termine …</small></div>
