@@ -2333,7 +2333,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 13:40 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 13:45 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2390,7 +2390,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <tr><td>19:00 <small>Mo–Sa</small></td><td>Abendvideo aus dem Studio + Abend-Story bauen und posten</td><td>Abend Weckruf · 19:02</td></tr>
       <tr><td>20:00 <small>So</small></td><td>Wochenausblick mit Max aus dem Studio + Abend-Story (Wetter für Montag)</td><td>Sonntag Wochenausblick Weckruf · 20:02</td></tr>
       <tr><td>sofort</td><td>Amtliche DWD-Warnung für den Odenwaldkreis automatisch posten (Prüfung alle 15 Min) – im Tagesplan oben sichtbar</td><td>–</td></tr>
-      <tr><td>1. des Monats 17:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ab 15:30, gepostet ab 17 Uhr)</td><td>Monatsrückblick Weckruf · 17:02 am 1. <small>(noch anzulegen – bis dahin postet der 15-Minuten-Lauf)</small></td></tr>
+      <tr><td>1. des Monats 17:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ab 15:30, gepostet ab 17 Uhr)</td><td>Monatsrückblick Weckruf · 17:02 am 1.</td></tr>
       <tr><td>30.12. 18:00</td><td>Jahresrückblick-Video (gebaut 17:15)</td><td>läuft mit dem Abend Weckruf</td></tr>
       <tr><td>nach jedem Video-Post</td><td>Video + Beitragstext in Google Drive ablegen („Wetterstation – Videos“ / Art / Datum Uhrzeit)</td><td>–</td></tr>
       <tr><td>alle 15 Min</td><td>Sondermeldungen prüfen, Regen-Push, DWD-Warn-Push; höchstens 1× pro Stunde Open-Meteo-Reserve auffrischen</td><td>–</td></tr>
@@ -2617,7 +2617,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <tr><td>Vorhersage lernen</td><td>Trefferquote der Modelle, Korrektur Bad König + Odenwald-Orte</td></tr>
 <tr><td>Widget-Daten</td><td>Daten für das Wetter-Widget + Live-Datei data/live.json für die Website</td></tr>
 <tr><td>Jahresrückblick-Video</td><td>30.12. 17:15 Uhr Video bauen (oder von Hand über die Zentrale)</td></tr>
-<tr><td>Monatsrückblick-Video</td><td>1. des Monats 15:30/16:15 Uhr bauen (Workflow monatsrueckblick.yml, oder von Hand über die Zentrale), Post ab 17 Uhr über den 15-Minuten-Lauf bzw. Weckruf 17:02</td></tr>
+<tr><td>Monatsrückblick-Video</td><td>1. des Monats 15:30/16:15 Uhr bauen (Workflow monatsrueckblick.yml, oder von Hand über die Zentrale), Post ab 17 Uhr über den cron-job.org-Weckruf „Monatsrückblick Weckruf“ (17:02 am 1.) bzw. den 15-Minuten-Lauf</td></tr>
 <tr><td>Termine für Max</td><td>Termin aus der Zentrale in data/termine.json eintragen oder löschen</td></tr>
 <tr><td>Wetterarchiv</td><td>jede Nacht Tages- und Stundenwerte des Vortags in data/archiv sichern</td></tr>
 <tr><td>Suchmaschinen melden (IndexNow)</td><td>geänderte Seiten an Bing &amp; Co. melden, Sitemap-Datum aktualisieren</td></tr>
@@ -2632,6 +2632,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>15.11.2026<br><small>13:45 Uhr</small></td><td>cron-job.org: neuer Weckruf <b>„Monatsrückblick Weckruf“</b> am 1. jedes Monats um 17:02 Uhr (Kopie des Wetterwissen-Post-Weckrufs, ruft facebook-post.yml auf), aktiv – erste Ausführung 01.12.2026 17:02.</td></tr>
 <tr><td>15.11.2026<br><small>13:40 Uhr</small></td><td><b>Monatsrückblick mit Max auf 17 Uhr verlegt</b> (vorher 15 Uhr – kollidierte am 1. des Monats mit „Wetterwissen mit Max“). Bau jetzt 15:30 Uhr (zweiter Versuch 16:15), Autopost Facebook + Instagram ab 17 Uhr, Studio-Licht passend zur Uhrzeit. Tagesplan, „Als Nächstes“ und „Abläufe &amp; Weckrufe“ angepasst. Offen: cron-job.org-Weckruf „Monatsrückblick Weckruf“ 17:02 am 1. (legen wir gemeinsam an).</td></tr>
 <tr><td>15.11.2026<br><small>13:25 Uhr</small></td><td>(Zentrale) Tagesplan heute und morgen: bei jedem Autopost wieder die kleinen Symbole <b>f</b> (Facebook) und <b>ig</b> (Instagram), damit man sieht, wo der Beitrag online geht – auch bei den DWD-Warnungen.</td></tr>
 <tr><td>15.11.2026<br><small>12:50 Uhr</small></td><td>(Zentrale) Neuer Menüpunkt <b>🚨 Fehlermeldungen</b> im Wetterstation-Bildschirm (unter 💡 Ideen): zeigt alle fehlgeschlagenen GitHub-Abläufe der letzten 7 Tage (Repos wetterstation und zentrale) mit Uhrzeit, abgebrochenem Schritt, Fehlermeldung und Link zu GitHub; dazu „✅ danach wieder erfolgreich“ bzw. „⚠️ seitdem nicht wieder erfolgreich“. Roter Zähler am Menüpunkt, wenn Fehler vorliegen.</td></tr>
