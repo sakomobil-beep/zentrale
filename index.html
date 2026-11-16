@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>15.11.2026, 22:35 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>16.11.2026, 08:15 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2502,6 +2502,10 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Knöpfe „Folge uns auf Facebook“ und „Folge uns auf Instagram“ (@wetterstation_badkoenig), Links auch in der Fußzeile; unauffälliger Besuchszähler im Fußbereich</li>
 <li>Saison-Deko: Halloween bis 31.10., Herbstblätter ab 01.11., Weihnachtslook 23.11.–28.12.</li>
 </ul></details>
+<details><summary>Aktuell Odenwald</summary><ul>
+<li>Live-Werte der 6 Kartenorte (Breuberg, Höchst, Bad König, Michelstadt, Mossautal, Oberzent): Kurzinfos, Tabelle, „Verlauf heute“, Reliefkarte mit Wert-Schildern (Temperatur/Wind/Regen heute/Feuchte); Daten alle 10 Minuten aus data/odenwald-live.json</li>
+<li>Wettersymbol je Ort in Karte und Tabelle, mit Legende unter der Karte: 🌧️ Regen (ab 2,5 mm/h) · 🌦️ Schauer/leichter Regen · 💧 nass, gerade aufgehört (Regen in den letzten 30 Min.) · 🌨️ Schnee/Schneeregen (Niederschlag bei ≤ 1 °C) · 🌫️ Nebel/Dunst (Feuchte ≥ 97 %) · ☀️/⛅/☁️ trocken nach Sonnenstrahlung · 🌙 Nacht · 🌤️ trocken (Dämmerung/keine Strahlungswerte); bei Messungen älter als 75 Min. kein Symbol <span class="tg">neu 16.11.</span></li>
+</ul></details>
 <details><summary>Vorhersage</summary><ul>
 <li><b>Google-Drive-Ablage:</b> jedes live gegangene Max-Video automatisch in „Wetterstation – Videos“ (Ordner je Art, Unterordner Datum + Uhrzeit, mit Beitragstext) <span class="tg">neu 15.11.</span></li>
 <li><b>Animierte Wettersymbole</b> (Regen, Schnee, Sonne, Wolken, Nebel, Gewitter, Wind) überall auf der Website <span class="tg">neu 15.11.</span></li>
@@ -2631,6 +2635,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>16.11.2026<br><small>08:15 Uhr</small></td><td><b>Wettersymbole auf „Aktuell Odenwald“:</b> Jeder Ort zeigt in der Karte (links im Wert-Schild) und in der Tabelle ein Symbol für die aktuelle Wetterlage, darunter eine Legende. Abgeleitet aus den Messwerten der Station: Regenrate (ab 2,5 mm/h 🌧️ Regen, darunter 🌦️ Schauer), Regenzuwachs der letzten 30 Min. (💧 nass), Temperatur ≤ 1 °C bei Niederschlag (🌨️), Feuchte ≥ 97 % (🌫️), Sonnenstrahlung im Vergleich zum klaren Himmel (☀️/⛅/☁️), nachts 🌙. Technik: odenwald_live.py holt zusätzlich precipRate und solarRadiation, berechnet Sonnenhöhe und schreibt Feld „wx“ in data/odenwald-live.json. Website-Stand 08:15 Uhr, Cache v72.</td></tr>
 <tr><td>15.11.2026<br><small>22:35 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Threads-Anbindung am Donnerstag, 19.11.2026.</td></tr>
 <tr><td>15.11.2026<br><small>22:10 Uhr</small></td><td>Menüpunkt „Aktuell“ heißt jetzt <b>„Aktuell Bad König“</b> (neben „Aktuell Odenwald“). Website-Stand 22:10 Uhr.</td></tr>
 <tr><td>15.11.2026<br><small>20:45 Uhr</small></td><td><b>Wochenausblick 15.11. verspätet (20:39 Uhr) – Ursache behoben.</b> Der 20-Uhr-Lauf hat das Video gebaut, konnte es aber nicht speichern (Push-Konflikt mit gleichzeitigen Änderungen) – dadurch fiel das Posten aus. Von Hand nachgeholt um 20:39 Uhr. Der Schritt „Speichern“ versucht es jetzt bis zu 8× mit wachsender Pause (vorher 3× à 5 s). Die Abend-Story (Wetter für Montag) war schon um 19:09 Uhr raus. Technik: facebook-post.yml.</td></tr>
