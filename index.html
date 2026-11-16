@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>16.11.2026, 08:15 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>16.11.2026, 13:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2388,7 +2388,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <tr><td>15:00 <small>Mo–Fr</small></td><td>„Wetterwissen mit Max“ posten (FB + IG); außerdem Special-Video, falls eine neue Warnung dazukommt</td><td>Wetterwissen Post Weckruf · 15:02</td></tr>
       <tr><td>19:00 <small>Mo–Sa</small></td><td>Abendvideo aus dem Studio + Abend-Story bauen und posten</td><td>Abend Weckruf · 19:02</td></tr>
       <tr><td>20:00 <small>So</small></td><td>Wochenausblick mit Max aus dem Studio + Abend-Story (Wetter für Montag)</td><td>Sonntag Wochenausblick Weckruf · 20:02</td></tr>
-      <tr><td>sofort <small>rund um die Uhr</small></td><td>Neue DWD-Warnung Stufe 2: orange Warn-Story + Beitrag (FB + IG). Stufe 3/4: Unwetter-Special mit Max (reines Warnvideo) + Unwetter-Story bauen und posten (FB + IG) – Prüfung alle 15 Min</td><td>–</td></tr>
+      <tr><td>sofort <small>rund um die Uhr</small></td><td>Neue DWD-Warnung Stufe 2: orange Warn-Story + Beitrag (FB + IG). Stufe 3/4: Unwetter-Special mit Max (reines Warnvideo) + Unwetter-Story bauen und posten (FB + IG) – Prüfung alle 15 Min. Gepostet wird erst, wenn das neue Bild/Video auf wetter-badkoenig.de wirklich veröffentlicht ist (Prüfsumme), sonst im nächsten Lauf</td><td>–</td></tr>
       <tr><td>1. des Monats 17:00</td><td>Monatsrückblick mit Max aus dem Studio (gebaut ab 15:30, gepostet ab 17 Uhr)</td><td>Monatsrückblick Weckruf · 17:02 am 1.</td></tr>
       <tr><td>30.12. 18:00</td><td>Jahresrückblick-Video (gebaut 17:15)</td><td>läuft mit dem Abend Weckruf</td></tr>
       <tr><td>nach jedem Video-Post</td><td>Video bzw. Bild/Story + Beitragstext in Google Drive ablegen („Wetterstation – Videos“ bzw. „Wetterstation – Bilder“ / Art / Datum Uhrzeit)</td><td>–</td></tr>
@@ -2635,6 +2635,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📝 Änderungsprotokoll</h3>
 <table><tr><th style="width:105px">Datum / Uhrzeit</th><th>Änderung</th></tr>
+<tr><td>16.11.2026<br><small>13:25 Uhr</small></td><td><b>Fehler behoben: Warn-Story mit falschem Bild.</b> Die neue Dauerregen-Warnung (Stufe 2) wurde um 13:01 Uhr richtig erkannt und das richtige Bild gebaut, gepostet wurde aber noch das Sturm-Bild von gestern: Facebook/Instagram holen Bilder selbst von wetter-badkoenig.de, und die Website war noch nicht aktualisiert (geprüft wurde nur, ob überhaupt ein Bild dort liegt). Jetzt (fb_senden.py ist_live): Vor jedem Post – Bilder, Storys, Videos, alle Arten – wird die Datei auf der Website mit der neuen verglichen (Bilder per Prüfsumme, Videos per Größe), bis zu 4 Min. gewartet; sonst wird nicht gepostet, der nächste Lauf versucht es erneut, Push „Posten verschoben“. Korrektur: falscher Facebook-Beitrag gelöscht, Merker zurückgesetzt, Story + Beitrag mit Dauerregen-Bild werden neu gepostet. Facebook-Story und Instagram (Story + Beitrag) lassen sich über die Schnittstelle nicht löschen – von Hand.</td></tr>
 <tr><td>16.11.2026<br><small>08:15 Uhr</small></td><td><b>Wettersymbole auf „Aktuell Odenwald“:</b> Jeder Ort zeigt in der Karte (links im Wert-Schild) und in der Tabelle ein Symbol für die aktuelle Wetterlage, darunter eine Legende. Abgeleitet aus den Messwerten der Station: Regenrate (ab 2,5 mm/h 🌧️ Regen, darunter 🌦️ Schauer), Regenzuwachs der letzten 30 Min. (💧 nass), Temperatur ≤ 1 °C bei Niederschlag (🌨️), Feuchte ≥ 97 % (🌫️), Sonnenstrahlung im Vergleich zum klaren Himmel (☀️/⛅/☁️), nachts 🌙. Technik: odenwald_live.py holt zusätzlich precipRate und solarRadiation, berechnet Sonnenhöhe und schreibt Feld „wx“ in data/odenwald-live.json. Website-Stand 08:15 Uhr, Cache v72.</td></tr>
 <tr><td>15.11.2026<br><small>22:35 Uhr</small></td><td>(Zentrale) To-do vorgemerkt: Threads-Anbindung am Donnerstag, 19.11.2026.</td></tr>
 <tr><td>15.11.2026<br><small>22:10 Uhr</small></td><td>Menüpunkt „Aktuell“ heißt jetzt <b>„Aktuell Bad König“</b> (neben „Aktuell Odenwald“). Website-Stand 22:10 Uhr.</td></tr>
