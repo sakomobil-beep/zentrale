@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>18.11.2026, 23:12 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>18.11.2026, 23:22 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2394,7 +2394,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <tr><td>nach jedem Video-Post</td><td>Video bzw. Bild/Story + Beitragstext in Google Drive ablegen („Wetterstation – Videos“ bzw. „Wetterstation – Bilder“ / Art / Datum Uhrzeit)</td><td>–</td></tr>
       <tr><td>nach „Video neu erstellen (ohne Posten)“</td><td>Probe-Video in Google Drive ablegen („Wetterstation – Videos / Probevideos“ / Art / Datum Uhrzeit) – nicht in die Videothek der Website</td><td>–</td></tr>
       <tr><td>alle 15 Min</td><td>Viertelstunden-Prüfung (:05/:20/:35/:50, eigene Warteschlange): Sondermeldungen, Regen-Push (DWD-Warnungen seit 18.11.2026 im eigenen Ablauf, siehe „sofort“); höchstens 1× pro Stunde Open-Meteo-Reserve auffrischen. Feste Beiträge holt sie nur nach, wenn gerade kein Post-Lauf läuft</td><td>–</td></tr>
-      <tr><td>alle 10 Min</td><td>Live-Werte der Station für Website und Widget</td><td>Live-Daten</td></tr>
+      <tr><td>alle 10 Min</td><td>Live-Werte der Station für die Website</td><td>Live-Daten</td></tr>
       <tr><td>0:15</td><td>Wetterarchiv um den Vortag ergänzen (Reserve-Lauf 0:25)</td><td>Wetterarchiv · 0:15</td></tr>
       <tr><td>alle 3 Std <small>:40</small></td><td>Vorhersage-Lernkurve nachführen (Trefferquote)</td><td>–</td></tr>
       <tr><td>alle 6 Std</td><td>Solarwetter-Quellen prüfen (Push bei Ausfall)</td><td>–</td></tr>
@@ -2545,7 +2545,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Historie mit Tageszusammenfassung und Tagesdiagramm; Statistik mit Regen-Jahressumme, Frost-Statistik, „Temperatur je Monat“; Klima-Tab</li>
 <li>Eigenes Wetterarchiv (data/archiv): Tageswerte seit 01.01.2026 (01.–19.01. von IBADKN32), Stundenwerte seit 20.01.2026, jede Nacht um 0:15 Uhr ergänzt; Sicherung in der Zentrale unter „💾 Sicherung“</li>
 <li>Luftdruck seit 05.11.2026 mit +5,4 hPa kalibriert, ältere Werte rückwirkend korrigiert</li>
-<li>Station (Bresser 8-in-1, Widget-Link), Solarwetter (Sonnenwind, Polarlicht-Karte in %, auch im Dark Mode lesbar), Winterprognose 2026/27, Webcams (laden erst auf Klick)</li>
+<li>Station (Bresser 8-in-1), Solarwetter (Sonnenwind, Polarlicht-Karte in %, auch im Dark Mode lesbar), Winterprognose 2026/27, Webcams (laden erst auf Klick)</li>
 </ul>
 </div>
 
@@ -2554,7 +2554,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <ul>
 <li>El Niño 2026/27, Polarwirbel und Vulkane – jeweils mit Themenvideo „Max erklärt“ oben auf der Seite (Kapitel-Sprungmarken); Sommer 2026 ohne Video</li>
 <li>UAP-Observatorium (uap.html, observatory.html) mit vielen Fall-Seiten – soll später eine eigene Homepage werden</li>
-<li>Wetter-Widget für fremde Websites (widget.html)</li>
+<li>Wetter-Widget für fremde Websites entfernt (Abschnitt auf der Startseite, widget.html, w.html, Fußzeilen-Link); bei Bedarf neu bauen <span class="tg">neu 18.11.</span></li>
 <li>Suchmaschinen: Google Search Console, Bing, Sitemap, robots.txt, IndexNow (geänderte Seiten sofort, montags alle)</li>
 <li>Besucherstatistik ohne Cookies über GoatCounter → Zentrale „📈 Website“</li>
 </ul>
@@ -2605,7 +2605,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten), Ablage als Probe in Google Drive, nicht in der Videothek</td></tr>
 <tr><td>Monats- / Jahresrückblick</td><td>am 1. um 15:30 (zweiter Versuch 16:15) bzw. am 30.12. um 17:15 Uhr bauen</td></tr>
 <tr><td>Vorhersage lernen</td><td>alle 3 Std. Trefferquote und Korrektur (Bad König + Odenwald-Orte)</td></tr>
-<tr><td>Widget-Daten / Live-Daten</td><td>alle 10 Min. Live-Werte für Website und Widget</td></tr>
+<tr><td>Widget-Daten / Live-Daten</td><td>alle 10 Min. Live-Werte für die Website</td></tr>
 <tr><td>Wetterarchiv</td><td>jede Nacht 0:15 Uhr den Vortag sichern</td></tr>
 <tr><td>Solarwetter-Check</td><td>alle 6 Std. die NOAA/SDO-Quellen prüfen</td></tr>
 <tr><td>IndexNow, Termine, Newsticker</td><td>Suchmaschinen melden, Termine für Max und Newsticker aus der Zentrale speichern</td></tr>
