@@ -2012,6 +2012,13 @@ body:not(.wMode) nav .nW,body.wMode nav .nZ,body.wMode nav #fsBox{display:none!i
 body.wMode nav{background:#0f2f4f}body.wMode nav button.active,body.wMode nav button:hover{background:#1e4e7a}
 main{flex:1;padding:28px;max-width:1100px}
 .ccBack{background:none;border:0;color:var(--acc);font-size:14px;cursor:pointer;padding:0 0 12px}
+.nWg{color:#7aa6d1;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin:12px 12px 2px;font-weight:700}
+.ccS2 button.ccSt{display:block;vertical-align:top}.ccS2{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:12px}
+.ccQ{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}.ccQ button,.ccQ a{flex:1;min-width:150px;text-align:center;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:inherit;font:inherit;cursor:pointer;text-decoration:none}
+.ccQ button:hover,.ccQ a:hover{border-color:var(--acc)}
+.ccMehr{margin:0 0 14px}.ccMehr summary,#ablCard summary{cursor:pointer;color:var(--mut);font-size:13px;margin-bottom:8px}#ablCard summary{color:inherit;font-size:inherit;margin:0}
+.ccMorgen{margin-top:8px;background:none;border:0;color:var(--acc);font:inherit;cursor:pointer;padding:4px 0}
+.subTabs{display:flex;gap:8px;margin:0 0 14px}.subTabs button{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:inherit;font:inherit;cursor:pointer}.subTabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
 .ccS{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:8px}
 .ccSt{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}.ccSt small{display:block;color:var(--mut);font-size:12px;margin-bottom:3px}.ccSt b{font-size:17px}
 .ccG{color:var(--mut);font-size:13px;font-weight:600;margin:20px 0 8px}
@@ -2316,23 +2323,23 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" id="wBack" onclick="show('home')" style="color:#93c5fd;font-size:14px">‹ Zurück zu Kingmans Zentrale</button>
   <h1 class="nW" style="margin-top:8px">🌦️ Wetterstation</h1>
   <button class="nW" data-p="cc">🏠 Übersicht</button>
-  <button class="nW" data-p="web">📈 Website</button>
-  <button class="nW" data-p="vid">🎬 Videos</button>
-  <button class="nW" data-p="spv">🎆 Special-Videos</button>
-  <button class="nW" data-p="uws">⚠️ Warnungen &amp; Sondermeldungen</button>
-  <button class="nW" data-p="thv">🎓 Themenvideos</button>
-  <button class="nW" data-p="sto">📸 Stories</button>
-  <button class="nW" data-p="bild">🖼️ Bildposts</button>
+  <div class="nW nWg">Posten &amp; Inhalte</div>
+  <button class="nW" data-p="vid">🎬 Videos (Morgen, Abend, Woche)</button>
+  <button class="nW" data-p="uws" data-p2="spv">⚠️ Warnungen &amp; Specials</button>
+  <button class="nW" data-p="sto" data-p2="bild">📸 Stories &amp; Bildposts</button>
   <button class="nW" data-p="ww">💡 Wetterwissen</button>
+  <button class="nW" data-p="thv">🎓 Themenvideos</button>
+  <div class="nW nWg">Website</div>
+  <button class="nW" data-p="web" data-p2="lk">📈 Besucher &amp; Lernkurve</button>
   <button class="nW" data-p="tk">📰 Newsticker</button>
+  <div class="nW nWg">Nachschlagen</div>
   <button class="nW" data-p="wf">🌦️ Wetterfunktionen</button>
   <button class="nW" data-p="mx">🎬 Was kann Max</button>
-  <button class="nW" data-p="lk">🧠 Lernkurve Webseite</button>
-  <button class="nW" data-p="notes">📝 Notizen</button>
-  <button class="nW" data-p="ideen">💡 Ideen</button>
+  <div class="nW nWg">Werkstatt</div>
+  <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 00:46 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 01:05 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2374,10 +2381,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </main>
 <main id="cc" hidden>
 <h2 style="margin:0 0 4px">🌦️ Wetterstation Control Center</h2><p style="margin:0 0 16px;color:var(--mut)">Alles rund um wetter-badkoenig.de, Max und Facebook/Instagram an einem Ort. <a href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Website öffnen ›</a></p>
+<div class="ccS2"><div class="ccSt"><small>📡 Station</small><b id="cc2Stat">…</b></div><button class="ccSt" onclick="show('vid')" style="text-align:left;border:0;cursor:pointer;font:inherit;color:inherit"><small>⏭️ Als Nächstes</small><b id="cc2Next">…</b></button><div class="ccSt"><small>⚠️ DWD</small><b id="cc2Dwd">…</b></div><button class="ccSt" onclick="show('fehler')" style="text-align:left;border:0;cursor:pointer;font:inherit;color:inherit"><small>⚙️ Abläufe</small><b id="cc2Abl">…</b></button></div>
+<div class="ccQ"><button onclick="show('vid')">▶️ Letztes Video</button><button onclick="show('vid')">🔄 Video neu erstellen</button><a href="https://wetter-badkoenig.de" target="_blank" rel="noopener">↗️ Zur Website</a></div>
+<details class="ccMehr"><summary>Weitere Infos (Temperatur, letztes Video, Website-Stand, Wetterwissen-Vorrat)</summary>
 <div class="ccS"><div class="ccSt"><small>Station live</small><b id="ccLive">…</b></div><div class="ccSt"><small>Letztes Video</small><b id="ccVid">…</b></div><div class="ccSt"><small>Website-Stand</small><b id="ccWeb">…</b></div><button class="ccSt" id="ccWW" onclick="show('ww')" style="text-align:left;border:0;cursor:pointer;font:inherit;color:inherit"><small>💡 Wetterwissen-Themen</small><b id="ccWWv">…</b><small id="ccWWh" style="margin:3px 0 0"></small></button></div>
-<div class="tpNx" id="tpNext">Als Nächstes: wird geladen …</div>
-<div class="card"><h3 style="margin-top:0">🗓️ Tagesplan heute und morgen <small style="font-weight:normal;font-size:12px;opacity:.65">· aktualisiert sich jede Minute</small></h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table></div>
-<div class="card" id="ablCard"><h3 style="margin-top:0">⏰ Abläufe &amp; Weckrufe</h3>
+</details>
+<div class="tpNx" id="tpNext" style="display:none">Als Nächstes: wird geladen …</div>
+<div class="card"><h3 style="margin-top:0">🗓️ Tagesplan <small style="font-weight:normal;font-size:12px;opacity:.65">· aktualisiert sich jede Minute</small></h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table><button id="tpMorgen" class="ccMorgen" onclick="tpMorgen(true)">Morgen anzeigen ▾</button></div>
+<details class="card" id="ablCard"><summary><h3 style="display:inline;margin:0">⏰ Abläufe &amp; Weckrufe</h3> <small style="opacity:.65">– zum Aufklappen tippen</small></summary>
     <p style="margin:4px 0 10px;opacity:.8">Was wann von allein läuft – damit du nicht im Code nachsehen musst. Alle Zeiten in Ortszeit (Stand 18.11.2026, 20:21 Uhr).</p>
     <div class="ue-wrap"><table class="ue"><thead><tr><th>Zeit</th><th>Was passiert</th><th>Weckruf bei cron-job.org</th></tr></thead><tbody>
       <tr><td>6:30</td><td>Vorhersage holen, Beitragstext, Morgen-Story und Morgenvideo bauen (Reserve-Video, falls der Neubau um 7/8 Uhr scheitert)</td><td>–</td></tr>
@@ -2402,7 +2413,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <tr><td>Mo ca. 4:17</td><td>Suchmaschinen über Änderungen informieren (IndexNow)</td><td>–</td></tr>
     </tbody></table></div>
     <div class="hint" style="margin:8px 0 0"><b>Seit 16.11.2026 entkoppelt:</b> getrennte Warteschlangen – „fb-posten“ (Weckrufe, Knöpfe, Wetterwissen), „fb-check“ (Viertelstunden-Prüfung), „videobau“ (Video neu erstellen, Monats-/Jahresrückblick), „nebenarbeiten“ (Lernen, Archiv, Ticker, Termine, Relief, IndexNow). Ein Lauf verdrängt so keinen Post mehr. GitHubs eigene Rückfallzeiten liegen jetzt auf :20 (nicht mehr :00, zwei Minuten vor dem Weckruf).<br>Die Weckrufe gibt es, weil GitHub seine eigenen Zeitpläne oft mit Verspätung startet. Sie rufen denselben Ablauf von Hand auf; der Ablauf prüft dann selbst die Uhrzeit und macht nur das, was dran ist – ein Weckruf zur falschen Zeit schadet also nicht. Fällt Open-Meteo aus, springt die stündlich aufgefrischte Reserve ein (Morgen bis 6 Std., sonst bis 2 Std. alt).</div>
-  </div>
+  </details>
 </main>
 <main id="ww" hidden>
 <h1 style="margin-top:0">💡 Wetterwissen mit Max</h1>
@@ -2538,6 +2549,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>„Heute vor 1 Jahr“: Vergleichsdaten von IBADKN32 (bis 19.01.2026) kommen nachts ins eigene Archiv – danach ohne WU-Abruf; vorher verschwand der Kasten, wenn WU gesperrt war <span class="tg">neu 19.11.</span></li>
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
+<li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
 <li>10-Minuten-Lauf abgesichert: schnelle WU-Abrufe mit Zeitlimit, damit er bei Störungen nicht mehr abbricht <span class="tg">neu 18.11.</span></li>
 </ul>
 </div>
@@ -4974,6 +4986,41 @@ async function feLoad(nurZahl){
 }
 document.addEventListener('click',e=>{if(e.target&&e.target.id==='feNeu')feLoad()});
 setTimeout(()=>feLoad(true),4000);
+</script>
+<script>
+/* 19.11.2026: Control Center aufgeräumt – gruppiertes Menü, Statuskacheln, Schnellknöpfe, Unterseiten-Umschalter */
+(function(){
+  var PAAR={uws:['uws','spv'],spv:['uws','spv'],sto:['sto','bild'],bild:['sto','bild'],notes:['notes','ideen'],ideen:['notes','ideen'],web:['web','lk'],lk:['web','lk']};
+  var NAME={uws:'⚠️ Warnungen & Sondermeldungen',spv:'🎆 Special-Videos',sto:'📸 Stories',bild:'🖼️ Bildposts',notes:'📝 Notizen',ideen:'💡 Ideen',web:'📈 Besucher',lk:'🧠 Lernkurve'};
+  var _show=show;
+  window.show=show=function(p){_show(p);try{
+    var alt=document.getElementById('subTabs');if(alt)alt.remove();
+    var q=p=='son'?'uws':p;
+    document.querySelectorAll('nav button.nW').forEach(function(b){if(b.dataset.p2==q)b.classList.add('active')});
+    if(!PAAR[q])return;
+    var ziel=['uws','spv','sto','bild'].indexOf(q)>=0?document.getElementById('tp'):document.getElementById(q);if(!ziel)return;
+    var d=document.createElement('div');d.id='subTabs';d.className='subTabs';
+    PAAR[q].forEach(function(x){var b=document.createElement('button');b.textContent=NAME[x];if(x==q)b.className='on';b.onclick=function(){show(x)};d.appendChild(b)});
+    ziel.insertBefore(d,ziel.firstChild);
+  }catch(e){console.warn(e)}};
+  window.tpMorgen=function(an){var t=document.getElementById('tpTab'),b=document.getElementById('tpMorgen');if(!t)return;window._tpM=an;var tag=0;
+    Array.prototype.forEach.call(t.rows,function(r){if(r.classList.contains('tag'))tag++;r.style.display=(!an&&tag>=2)?'none':''});
+    if(b){b.style.display=tag>=2?'':'none';b.textContent=an?'Morgen ausblenden ▴':'Morgen anzeigen ▾';b.onclick=function(){tpMorgen(!an)}}};
+  var tt=document.getElementById('tpTab');if(tt)new MutationObserver(function(){tpMorgen(!!window._tpM)}).observe(tt,{childList:true,subtree:true});
+  var nx=document.getElementById('tpNext');if(nx)new MutationObserver(function(){var t=nx.textContent.replace(/^Als Nächstes:\s*/,'');document.getElementById('cc2Next').textContent=t.length>60?t.slice(0,58)+'…':t}).observe(nx,{childList:true,subtree:true,characterData:true});
+  function status(){
+    fetch('https://wetter-badkoenig.sakomobil.workers.dev/roh?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){var a=j.zeit?(Date.now()-Date.parse(j.zeit))/60000:999,e=document.getElementById('cc2Stat'),z=j.zeit?new Date(j.zeit).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'';
+      e.innerHTML=a<15?'<span style="color:var(--ok)">sendet · '+z+'</span>':'<span style="color:var(--bad)">still seit '+(a<999?Math.round(a)+' Min.':'?')+'</span>'}).catch(function(){document.getElementById('cc2Stat').textContent='nicht erreichbar'});
+    fetch('https://wetter-badkoenig.de/fb/daten.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){var I=j.warn_info||{},S=j.warn_stufe||{},n=Date.now(),L=[];
+      Object.keys(I).forEach(function(w){var x=I[w];if(x.bis&&Date.parse(x.bis)<n)return;L.push({t:w.split(' für ')[0].replace(/^Amtliche (UNWETTERWARNUNG|WARNUNG) vor /i,''),st:S[w]||1})});
+      L.sort(function(a,b){return b.st-a.st});var e=document.getElementById('cc2Dwd');
+      e.innerHTML=L.length?'<span style="color:'+(L[0].st>=3?'var(--bad)':'#d97706')+'">'+L[0].t.charAt(0)+L[0].t.slice(1).toLowerCase()+' · St. '+L[0].st+'</span>'+(L.length>1?' <small style="display:inline">+'+(L.length-1)+'</small>':''):'<span style="color:var(--ok)">keine Warnung</span>'}).catch(function(){document.getElementById('cc2Dwd').textContent='–'});
+    try{feLoad(true)}catch(e){}
+    setTimeout(function(){var b=document.getElementById('feBadge'),e=document.getElementById('cc2Abl'),n=b&&b.style.display!='none'?parseInt(b.textContent)||1:0;e.innerHTML=n?'<span style="color:var(--bad)">'+n+' Fehler</span>':'<span style="color:var(--ok)">alles ok</span>'},4000);
+  }
+  var _cc=ccLoad;window.ccLoad=ccLoad=function(){_cc();status()};
+  setInterval(function(){var m=document.getElementById('cc');if(m&&!m.hidden)status()},60000);
+})();
 </script>
 </body>
 </html>
