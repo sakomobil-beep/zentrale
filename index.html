@@ -2332,7 +2332,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="ideen">💡 Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 00:52 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 00:46 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2536,6 +2536,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Startbild (Schloss) wird jetzt ganz und im richtigen Seitenverhältnis gezeigt, nicht mehr unten abgeschnitten – auch das Weihnachtsbild <span class="tg">neu 19.11.</span></li>
 <li>Startseite, Spalte „Heute“: doppelter Kasten (Höchstwert/Tiefstwert/Böe/Niederschlag heute) ausgeblendet, „Heute vor 1 Jahr“ steht an seiner Stelle <span class="tg">neu 19.11.</span></li>
 <li>„Heute vor 1 Jahr“: Vergleichsdaten von IBADKN32 (bis 19.01.2026) kommen nachts ins eigene Archiv – danach ohne WU-Abruf; vorher verschwand der Kasten, wenn WU gesperrt war <span class="tg">neu 19.11.</span></li>
+<li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
+<li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>10-Minuten-Lauf abgesichert: schnelle WU-Abrufe mit Zeitlimit, damit er bei Störungen nicht mehr abbricht <span class="tg">neu 18.11.</span></li>
 </ul>
 </div>
@@ -2643,7 +2645,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 #mx td,#mx th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 18.11.2026, 21:56 Uhr</small></div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🎬 Was kann Max?</h3><small style="opacity:.65">Stand: 19.11.2026, 00:45 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Alle Funktionen unseres Comic-Moderators Max in den Wettervideos – immer der aktuelle Stand; Neues ist mit „neu TT.MM.“ markiert.</p>
 </div>
 
@@ -2655,6 +2657,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Look: Wettersprecher mit Ansteckmikrofon, Kleidung passend zum Wetter (Tabelle unten)</li>
 <li>Stimme: Microsoft Conrad (de-DE-ConradNeural), Tonhöhe +6 Hz; ganz leise Hintergrundmusik „Calm Acoustic Nature Music – Loop“ (Sonican, Pixabay)</li>
 <li>Animation: läuft ins Bild, lippensynchron (9 Mundbilder), Blinzeln, Blick zur Tafel, Brauen, Mimik (Freude, Staunen, nachdenklich, besorgt), Gesten mit beiden Händen, Atmung</li>
+<li>Morgenvideo: nennt den echten Minutenwert der Station direkt vor dem Bau („Gerade eben, um 6:58 Uhr, zeigt unsere Station in Bad König 2,3 Grad“) – kommt direkt von der Station über Cloudflare <span class="tg">neu 19.11.</span></li>
 <li>Viele Satzvarianten mit Gedächtnis, damit es nicht jeden Tag gleich klingt; ab und zu Odenwälder Mundart und persönliche Bemerkungen</li>
 <li>Zuschauerfrage mit Tafel „SCHREIBT UNS!“ und Aufruf zum Folgen („FOLGST DU UNS?“) – morgens und abends</li>
 <li>Grafiken nur bei Anlass (Regen ab 30 % Risiko, Böen ab 45 km/h), genau dann, wenn Max darüber spricht</li>
