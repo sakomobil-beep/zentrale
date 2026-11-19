@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 08:28 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 09:14 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2552,6 +2552,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li>Lernkurve lädt wieder: Umschalter „Besucher / Lernkurve“ startet jetzt das Laden der Lerndaten (Fehler seit dem Umbau 19.11.) <span class="tg">neu 19.11.</span></li>
 <li>10-Minuten-Lauf abgesichert: schnelle WU-Abrufe mit Zeitlimit, damit er bei Störungen nicht mehr abbricht <span class="tg">neu 18.11.</span></li>
 <li><b>Aufgeräumt nach Entwurf A</b> (19.11.2026, 07:35 Uhr): Karte groß links (ca. ⅔ der Breite), rechts eine Rangliste aller 11 Orte, die dem Karten-Umschalter folgt (Temperatur, Gefühlt, zu gestern, Wind, Regen, Feuchte, Luftdruck), Antippen hebt den Ort in der Karte hervor; Handy: Rangliste unter der Karte <span class="tg">neu 19.11.</span></li>
 <li>Kurzinfos von 6 auf 4 Kacheln (Wärmster/Kältester Ort entfallen – sagt Max schon); „Max sagt“ bleibt oben <span class="tg">neu 19.11.</span></li>
@@ -5000,7 +5001,7 @@ setTimeout(()=>feLoad(true),4000);
   var PAAR={uws:['uws','spv'],spv:['uws','spv'],sto:['sto','bild'],bild:['sto','bild'],notes:['notes','ideen'],ideen:['notes','ideen'],web:['web','lk'],lk:['web','lk']};
   var NAME={uws:'⚠️ Warnungen & Sondermeldungen',spv:'🎆 Special-Videos',sto:'📸 Stories',bild:'🖼️ Bildposts',notes:'📝 Notizen',ideen:'💡 Ideen',web:'📈 Besucher',lk:'🧠 Lernkurve'};
   var _show=show;
-  window.show=show=function(p){_show(p);try{
+  window.show=show=function(p){_show(p);if(p=='lk'&&window.lkLoad)setTimeout(lkLoad,0);try{
     var alt=document.getElementById('subTabs');if(alt)alt.remove();
     var q=p=='son'?'uws':p;
     document.querySelectorAll('nav button.nW').forEach(function(b){if(b.dataset.p2==q)b.classList.add('active')});
