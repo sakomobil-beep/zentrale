@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 13:20 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 14:55 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2615,6 +2615,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <ul>
 <li><b>DWD-Warnungen schnell</b> <span class="tg">neu 18.11.</span>: Cloudflare-Worker „dwd-wecker“ prüft den DWD jede Minute und weckt bei neuer Warnung sofort den Ablauf „DWD-Warnung (schnell)“ (Ziel: 2–4 Min. bis Facebook/Instagram); Reserve über GitHub alle 15 Min. Eine Warnung gilt erst nach dem Posten als erledigt – bis dahin neuer Versuch, solange sie gilt (bis 30 Min. vor Ende). Jede Warnart nur einmal, nur Neues oder eine Hochstufung wird gepostet</li>
 <li>Gepostet wird direkt über die Meta-App „Wetter Bad König Autopost“; Instagram mit festem Hashtag-Block; Make.com gestoppt als Reserve</li>
+<li><b>Threads</b> <span class="tg">neu 19.11.</span>: alle automatischen Feed-Beiträge (Morgenvideo, Mittagskarte, Wetterwissen, Abendvideo, Wochenausblick, Monats-/Jahresrückblick, Unwetter-Specials) gehen zusätzlich auf Threads, Warn-Stories (DWD-Stufe 2) dort als Bildbeitrag; Text ohne Hashtags, max. 500 Zeichen, mit Link. Läuft, sobald das Secret THREADS_TOKEN eingetragen ist; Schlüssel wird montags nachts verlängert (Push bei Problemen)</li>
 <li>Schutz gegen Doppelposts: Merkzettel fb/gepostet.json wird vor jedem Post frisch geprüft und notfalls über die GitHub-Schnittstelle gesichert</li>
 <li>Probe-Videos („Video neu erstellen (ohne Posten)“) werden nie gepostet; Abendvideo und Abend-Story müssen am Abend gebaut sein, der Wochenausblick ab 19 Uhr; Wetterwissen nie am Wochenende <span class="tg">neu 18.11.</span></li>
 <li>Jahresrückblick nur einmal pro Jahr; Unwetter-Special höchstens 3 Stunden alt <span class="tg">neu 18.11.</span></li>
