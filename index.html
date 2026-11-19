@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 11:43 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 11:58 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2552,6 +2552,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li>Lernkurve ausführlicher: „🧭 Was die Station gelernt hat“ mit Kurzfassung in Klartext, Sicherheit je Feld (●○○–●●●), Stunden je Wetterlage, Erklärung in Worten und „Was bringt das?“; „🗺️ Was der Odenwaldkreis gelernt hat“ (volle Breite) mit Kurzfassung, Übersicht aller 7 Orte je Tageszeit und je Ort aufgeklappt: Messstation, Klartext-Satz, alle 4 Modelle mit Fehler, Gewicht und Korrektur je Tageszeit <span class="tg">neu 19.11.</span></li>
 <li>Lernkurve lädt wieder: Umschalter „Besucher / Lernkurve“ startet jetzt das Laden der Lerndaten (Fehler seit dem Umbau 19.11.) <span class="tg">neu 19.11.</span></li>
 <li>10-Minuten-Lauf abgesichert: schnelle WU-Abrufe mit Zeitlimit, damit er bei Störungen nicht mehr abbricht <span class="tg">neu 18.11.</span></li>
 <li><b>Aufgeräumt nach Entwurf A</b> (19.11.2026, 07:35 Uhr): Karte groß links (ca. ⅔ der Breite), rechts eine Rangliste aller 11 Orte, die dem Karten-Umschalter folgt (Temperatur, Gefühlt, zu gestern, Wind, Regen, Feuchte, Luftdruck), Antippen hebt den Ort in der Karte hervor; Handy: Rangliste unter der Karte <span class="tg">neu 19.11.</span></li>
@@ -2568,6 +2569,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Umschalter oben: „📍 Bad König“ / „🗺️ Odenwaldkreis“ (gemerkt; direkt: #vorhersage-kreis)</li>
 <li>Bad König, von jetzt nach später: Regen-Radar 2 Std. (ohne Regen nur eine Zeile), Tageskacheln (heute + 3 Tage, danach Tendenz), gewählter Tag, Stunden als Tabelle in 3-Stunden-Schritten (Zeitraum, Wetter, Temperatur, Regenrisiko, Regenmenge; Diagramm per Knopf); „Heute“ zeigt ganztags den Tiefstwert der kommenden Nacht, den Frühwert klein</li>
 <li>Odenwaldkreis: Tagwahl, Kreis-Text, sortierbare Ortstabelle (Höhe, Höchst/Tief, Regen), Reliefkarte mit Ebenen-Knöpfen (angetippter Ort gelb markiert), „die anderen Tage“ und Tendenz</li>
+<li>LIVE-Anzeige an der Außentemperatur (Startseite): grün pulsierend „LIVE“, Quelle (direkt von der Station / über Weather Underground) und Messzeit mit sekundengenauem Alter; gelb „VERZÖGERT“ ab 3 Min., rot „NICHT AKTUELL“ ab 15 Min. <span class="tg">neu 19.11.</span></li>
 <li>Reichelsheim als 7. Ort der Kreis-Vorhersage (215 m, Talort; Tabelle + Reliefkarte), gelernt mit der privaten Station IREICH180 <span class="tg">neu 19.11.</span></li>
 <li>Regen, Nebel, Frost und Glätte aus derselben Einstufung wie Max; „Bodenfrost möglich“ nur bei klarer, windstiller Nacht</li>
 <li>„📊 Wie genau war die Vorhersage?“: gestern vorhergesagt vs. gemessen, Quote der letzten 14 Tage</li>
@@ -2786,6 +2788,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 #lk table{width:100%;border-collapse:collapse;font-size:.92em}
 #lk td,#lk th{padding:5px 6px;border-bottom:1px solid rgba(128,128,128,.2);text-align:left;vertical-align:top}
 #lk th{font-weight:600;opacity:.8}
+#lk .lkSatz{background:rgba(46,123,196,.08);border-left:4px solid #2e7bc4;padding:8px 12px;border-radius:6px;margin:4px 0 10px}#lk .lkOrt{border:1px solid rgba(127,127,127,.25);border-radius:12px;padding:8px 12px;margin:8px 0;overflow-x:auto}#lk .lkOrt summary{cursor:pointer;font-weight:600}
 #lk .hm td{text-align:center;font-variant-numeric:tabular-nums;border-radius:6px;border:2px solid transparent}
 #lk .bar{height:10px;border-radius:5px;background:#3b82c4}
 #lk .note{font-size:.85em;opacity:.75;margin:6px 0 0}
@@ -2806,14 +2809,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </div>
 <div class="card"><h3 style="margin-top:0">📅 Langzeit: Monat für Monat</h3><div id="lkLong"></div>
 <p class="note">Dauerhafte Lernstatistik (wird nie gelöscht, seit 12.11.2026). Je Monat: mittlerer Temperaturfehler und Stand der gelernten Korrektur am Monatsende. So sieht man über Monate und Jahre, ob die Vorhersage besser wird.</p></div>
-<div class="card"><h3 style="margin-top:0">🧭 Was die Station gelernt hat: Korrektur je Wetterlage und Tageszeit</h3><div id="lkBias" style="overflow-x:auto"></div>
+<div class="card"><h3 style="margin-top:0">🧭 Was die Station gelernt hat</h3><div id="lkBias" style="overflow-x:auto"></div>
 <p class="note">So viel Grad zieht die Website vom Wettermodell ab (blau) oder schlägt drauf (rot), weil es in Bad König zu dieser Tageszeit und Wetterlage erfahrungsgemäß kälter bzw. wärmer ist. Klein darunter: wie viele Stunden schon in die Berechnung eingeflossen sind. Neuere Tage zählen mehr (Halbwertszeit 21 Tage).</p></div>
 <div class="lkg">
 <div class="card"><h3 style="margin-top:0">🏆 Welches Modell trifft am besten? (14 Tage)</h3><div id="lkMod"></div>
 <p class="note">Temperaturfehler nach Abzug der typischen Bad-König-Abweichung und Regen-Treffer (nasse Stunden richtig vorhergesagt). Danach richtet sich die Gewichtung in der Vorhersage.</p></div>
-<div class="card"><h3 style="margin-top:0">🗺️ Lernkurve Odenwaldkreis</h3><div id="lkOrte"></div>
-<p class="note">Für die Odenwald-Vorhersage (Max, Facebook/Instagram) lernt die Website je Ort mit DWD- und Weather-Underground-Stationen mit. Fehler des jeweils besten Modells nach Korrektur.</p></div>
 </div>
+<div class="card"><h3 style="margin-top:0">🗺️ Was der Odenwaldkreis gelernt hat</h3><div id="lkOrte" style="overflow-x:auto"></div>
+<p class="note">Für die Odenwald-Vorhersage (Max, Facebook/Instagram) lernt die Website je Ort mit DWD- und Weather-Underground-Stationen mit. Fehler des jeweils besten Modells nach Korrektur.</p></div>
 <div class="card"><h3 style="margin-top:0">📒 Lernfortschritt (Meilensteine)</h3>
 <ol>
 <li><b>05.11.2026</b> – Luftdruck der Station kalibriert (+5,4 hPa), ältere Werte rückwirkend korrigiert.</li>
@@ -4895,19 +4898,54 @@ function lkLoad(){
       var v1=avg(a1);o+='<p class="note">Letzte 7 Tage, 12 h im Voraus: reines Modell ± '+lkN(v1,2)+' °C, mit Korrektur ± '+lkN(v2,2)+' °C'+(v1!=null&&v2!=null?(v2<v1?' → <span class="ok">Korrektur hilft</span>':' → <span class="mid">Korrektur hilft noch nicht</span>'):'')+'. Rot/Grün gibt es erst ab dem 06.11. (seitdem wird die Vorhersage 12 h vorher festgehalten).</p>';
       document.getElementById('lkCurve').innerHTML=o;
     } else document.getElementById('lkCurve').innerHTML='<p class="note">Noch zu wenige Tage.</p>';
-    /* Korrektur-Tabelle */
-    var t='<table class="hm"><tr><th style="text-align:left">Wetterlage</th>'+LK_BL.map(function(b){return '<th style="text-align:center">'+b+'</th>'}).join('')+'</tr>';
-    ['klar','wolkig','windig'].forEach(function(l){t+='<tr><td style="text-align:left;white-space:nowrap">'+LK_LAGE[l]+'</td>'+B.bias[l].map(function(v,i){var n=B.anzahl[l][i];return '<td style="background:'+(n?lkCol(v):'transparent')+'"><b>'+(v>0?'+':'')+lkN(v,1)+' °C</b><br><small style="opacity:.7">'+(n?n+' Std.':'noch keine Daten')+'</small></td>'}).join('')+'</tr>'});
-    t+='</table>';
-    var kl=B.bias.klar,mn=Math.min.apply(null,kl);
-    t+='<p class="note"><b>Größte Erkenntnis:</b> In klaren, ruhigen Nächten ist es in Bad König bis zu '+lkN(Math.abs(mn),1)+' °C kälter, als die Modelle berechnen – die Kaltluft sammelt sich im Mümlingtal. Bei Bewölkung liegen die Modelle dagegen fast richtig.</p>';
+    /* Korrektur-Tabelle – ausführlich (19.11.2026) */
+    function lkS(c){return c<10?'●○○':c<30?'●●○':'●●●'}
+    function lkV(v){return (v>0?'+':v<0?'−':'±')+lkN(Math.abs(v),1)}
+    var Bb=B.bias,Ba=B.anzahl,bst=null;['klar','wolkig','windig'].forEach(function(l){Bb[l].forEach(function(v,i){if(Ba[l][i]>=8&&(!bst||Math.abs(v)>Math.abs(Bb[bst[0]][bst[1]])))bst=[l,i]})});
+    var sumA=function(l){return Ba[l].reduce(function(a,b){return a+b},0)},nk=[0,1,4,5].map(function(i){return Bb.klar[i]});
+    var t='<div class="lkSatz"><b>Kurz gesagt:</b> '+(bst?'Am stärksten weicht Bad König bei <b>'+({klar:'klarem, ruhigem',wolkig:'bewölktem',windig:'windigem'})[bst[0]]+'</b> Wetter um '+LK_BL[bst[1]]+' ab ('+lkV(Bb[bst[0]][bst[1]])+' °C). ':'')+'Bei klarem, ruhigem Wetter ist es nachts deutlich '+(Math.min.apply(null,nk)<0?'kälter':'wärmer')+' als die Modelle rechnen; bei Wolken oder Wind liegen sie fast richtig. Tagsüber braucht es kaum Korrektur.</div>';
+    t+='<table class="hm"><tr><th style="text-align:left">Wetterlage</th>'+LK_BL.map(function(b){return '<th style="text-align:center">'+b+'</th>'}).join('')+'<th>Stunden gesamt</th></tr>';
+    ['klar','wolkig','windig'].forEach(function(l){t+='<tr><td style="text-align:left;white-space:nowrap">'+LK_LAGE[l]+'</td>'+Bb[l].map(function(v,i){var n=Ba[l][i];return '<td style="background:'+(n?lkCol(v):'transparent')+'"><b>'+lkV(v)+' °C</b><br><small style="opacity:.7">'+(n?n+' Std. · '+lkS(n):'noch keine Daten')+'</small></td>'}).join('')+'<td>'+sumA(l)+'</td></tr>'});
+    t+='</table><p class="note">Sicherheit: ●○○ unter 10 Std. (noch wackelig) · ●●○ 10–29 Std. · ●●● ab 30 Std. (verlässlich). Blau = Modell zu warm, die Website zieht ab · Rot = Modell zu kalt, die Website schlägt drauf. Neuere Tage zählen mehr.</p>';
+    var mnK=Math.min.apply(null,nk),mxK=Math.max.apply(null,nk);
+    t+='<h4 style="margin:12px 0 4px">In Worten je Wetterlage</h4><ul style="margin:0 0 4px;padding-left:20px">'+
+      '<li><b>☀️ Klar &amp; ruhig:</b> nachts (20–8 Uhr) '+lkV(mxK)+' bis '+lkV(mnK)+' °C – die Kaltluft sammelt sich im Mümlingtal; mittags '+lkV(Bb.klar[3])+' °C. '+sumA('klar')+' Stunden.</li>'+
+      '<li><b>☁️ Bewölkt:</b> zwischen '+lkV(Math.min.apply(null,Bb.wolkig))+' und '+lkV(Math.max.apply(null,Bb.wolkig))+' °C – Wolken verhindern die nächtliche Abkühlung. '+sumA('wolkig')+' Stunden.</li>'+
+      '<li><b>💨 Windig:</b> zwischen '+lkV(Math.min.apply(null,Bb.windig))+' und '+lkV(Math.max.apply(null,Bb.windig))+' °C – Wind mischt die Luft durch. '+sumA('windig')+' Stunden'+(sumA('windig')<100?' (noch wenige)':'')+'.</li></ul>';
+    var tr2=B.treff||{};if(tr2.mae_roh&&tr2.mae!=null){var gw=Math.round((1-tr2.mae/tr2.mae_roh)*100);
+      t+='<h4 style="margin:12px 0 4px">Was bringt das?</h4><p style="margin:0">Letzte 7 Tage, 12 h im Voraus: reines Modell ± '+lkN(tr2.mae_roh,2)+' °C → mit gelernter Korrektur ± '+lkN(tr2.mae,2)+' °C (<b>'+(gw>=0?gw+' % genauer':Math.abs(gw)+' % ungenauer')+'</b>). Grundlage: '+(tr2.n||0).toLocaleString('de-DE')+' verglichene Stunden aus '+B.tage+' Tagen.</p>'}
     document.getElementById('lkBias').innerHTML=t;
     /* Modelle */
     var mxm=Math.max.apply(null,mods.map(function(m){return B.modelle[m].mae}));
     document.getElementById('lkMod').innerHTML='<table><tr><th>Modell</th><th>Temperaturfehler</th><th>Regen-Treffer</th></tr>'+mods.map(function(m,i){var x=B.modelle[m];return '<tr><td>'+(i==0?'🥇 ':i==1?'🥈 ':i==2?'🥉 ':'')+(LK_MOD[m]||m)+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="bar" style="width:'+Math.round(x.mae/mxm*90)+'px"></div>± '+lkN(x.mae,2)+' °C</div></td><td>'+(x.rtreff==null?'–':Math.round(x.rtreff*100)+' %')+' <small style="opacity:.6">('+x.nr+' nasse Std.)</small></td></tr>'}).join('')+'</table>';
-    /* Orte */
-    if(K&&K.orte){var rowsO=Object.keys(K.orte).map(function(o){var x=K.orte[o],ms=Object.keys(x.mae||{}).sort(function(a,b){return x.mae[a]-x.mae[b]});var bb=ms.length?x.bias[ms[0]]:[];var night=bb.length?(bb[0]+bb[1]+bb[5])/3:null,day=bb.length?(bb[2]+bb[3]+bb[4])/3:null;return {o:o,n:x.n,t:x.tage,m:ms[0],e:ms.length?x.mae[ms[0]]:null,night:night,day:day}}).sort(function(a,b){return a.e-b.e});
-      document.getElementById('lkOrte').innerHTML='<table><tr><th>Ort</th><th>Bestes Modell</th><th>Fehler</th><th>Korrektur Nacht / Tag</th></tr>'+rowsO.map(function(r){return '<tr><td>'+(LK_ORT[r.o]||r.o)+'<br><small style="opacity:.6">'+r.t+' Tage</small></td><td>'+(LK_MOD[r.m]||r.m||'–')+'</td><td>± '+lkN(r.e,2)+' °C</td><td>'+(r.night==null?'–':(r.night>0?'+':'')+lkN(r.night,1)+' / '+(r.day>0?'+':'')+lkN(r.day,1)+' °C')+'</td></tr>'}).join('')+'</table>'}
+    /* Orte – ausführlich, aufgeklappt (19.11.2026) */
+    if(K&&K.orte){var LKQ={badkoenig:['IBADKN33 (eigene Station)',185],breuberg:['IBREUB7 (privat)',160],hoechst:['IHCHST74 (privat)',170],michelstadt:['DWD 03284',208],mossautal:['DWD 03287 Vielbrunn',380],oberzent:['DWD 00330 Beerfelden',430],reichelsheim:['IREICH180 (privat)',215]};
+      var lkV2=function(v){return (v>0?'+':v<0?'−':'±')+lkN(Math.abs(v),1)};
+      var oo=Object.keys(LKQ).filter(function(o){return K.orte[o]||o==='reichelsheim'}).concat(Object.keys(K.orte).filter(function(o){return !LKQ[o]}));
+      var ok=oo.filter(function(o){var x=K.orte[o];return x&&x.mae&&Object.keys(x.mae).length&&(x.tage||0)>=3});
+      var bestM=function(x){return Object.keys(x.mae).sort(function(a,b){return x.mae[a]-x.mae[b]})};
+      var o='';
+      if(ok.length){var srt=ok.slice().sort(function(a,b){return K.orte[a].mae[bestM(K.orte[a])[0]]-K.orte[b].mae[bestM(K.orte[b])[0]]});
+        var bm={};ok.forEach(function(x){var m=bestM(K.orte[x])[0];bm[m]=(bm[m]||0)+1});var top=Object.keys(bm).sort(function(a,b){return bm[b]-bm[a]})[0];
+        var warm=ok.filter(function(x){var b=K.orte[x].bias[bestM(K.orte[x])[0]];return (b[0]+b[1]+b[5])/3<0}).length;
+        var e=function(x){return lkN(K.orte[x].mae[bestM(K.orte[x])[0]],2)};
+        o+='<div class="lkSatz"><b>Kurz gesagt:</b> '+(bm[top]===ok.length?'In allen Orten':'In '+bm[top]+' von '+ok.length+' Orten')+' ist '+(LK_MOD[top]||top)+' am besten. Am genauesten wird '+(LK_ORT[srt[0]]||srt[0])+' getroffen (± '+e(srt[0])+' °C), am schwierigsten ist '+(LK_ORT[srt[srt.length-1]]||srt[srt.length-1])+' (± '+e(srt[srt.length-1])+' °C). '+(warm>ok.length/2?'Fast überall rechnen die Modelle <b>nachts zu warm</b>.':'Nachts liegen die Modelle unterschiedlich.')+'</div>'}
+      o+='<h4 style="margin:12px 0 4px">Korrektur des besten Modells je Ort und Tageszeit</h4><table class="hm"><tr><th style="text-align:left">Ort</th><th>Höhe</th>'+LK_BL.map(function(b){return '<th>'+b+'</th>'}).join('')+'<th>Fehler</th><th>Lerntage</th></tr>';
+      oo.forEach(function(k){var x=K.orte[k],q=LKQ[k]||['',''];
+        if(!x||!x.mae||!Object.keys(x.mae).length||(x.tage||0)<3){o+='<tr><td style="text-align:left"><b>'+(LK_ORT[k]||k)+'</b> <span class="tg">neu</span></td><td>'+q[1]+' m</td><td colspan="6" style="opacity:.6">lernt noch – Korrektur ab 3 Tagen Daten'+(x&&x.tage?' ('+x.tage+' bisher)':'')+'</td><td>–</td><td>'+((x&&x.tage)||0)+'</td></tr>';return}
+        var m=bestM(x)[0];o+='<tr><td style="text-align:left"><b>'+(LK_ORT[k]||k)+'</b></td><td>'+q[1]+' m</td>'+x.bias[m].map(function(v){return '<td style="background:'+lkCol(v)+'">'+lkV2(v)+'</td>'}).join('')+'<td>± '+lkN(x.mae[m],2)+' °C</td><td>'+x.tage+'</td></tr>'});
+      o+='</table><h4 style="margin:14px 0 4px">Je Ort im Detail</h4>';
+      oo.forEach(function(k){var x=K.orte[k],q=LKQ[k]||['?',''];
+        o+='<details class="lkOrt" open><summary>'+(LK_ORT[k]||k)+(q[1]?' · '+q[1]+' m':'')+' · Messung: '+q[0]+(x?' · '+(x.n||0).toLocaleString('de-DE')+' Std. / '+(x.tage||0)+' Tage':'')+'</summary>';
+        if(!x||!x.mae||!Object.keys(x.mae).length||(x.tage||0)<3){o+='<p class="note">Lernt noch – die Korrektur greift ab 3 Tagen Messdaten.</p></details>';return}
+        var ms=bestM(x),bb=x.bias[ms[0]],na=(bb[0]+bb[1]+bb[5])/3,ta=(bb[2]+bb[3]+bb[4])/3,vv=ms.map(function(m){return x.mae[m]}).sort(function(a,b){return a-b}),md=vv[Math.floor(vv.length/2)],w={},sw=0;
+        ms.forEach(function(m){w[m]=Math.max(.5,Math.min(2,Math.pow(md/x.mae[m],2)));sw+=w[m]});
+        o+='<div class="lkSatz" style="font-size:13px">'+(LK_ORT[k]||k)+': nachts im Schnitt '+lkV2(na)+' °C, tagsüber '+lkV2(ta)+' °C gegenüber '+(LK_MOD[ms[0]]||ms[0])+'. Bestes Modell trifft auf ± '+lkN(x.mae[ms[0]],2)+' °C.</div>';
+        o+='<table class="hm"><tr><th style="text-align:left">Modell</th><th>Fehler</th><th style="width:20%">Gewicht in der Vorhersage</th>'+LK_BL.map(function(b){return '<th>'+b+'</th>'}).join('')+'</tr>';
+        ms.forEach(function(m){var g=Math.round(w[m]/sw*100);o+='<tr><td style="text-align:left;white-space:nowrap">'+(LK_MOD[m]||m)+'</td><td>± '+lkN(x.mae[m],2)+' °C</td><td><div style="height:8px;background:#2e9a5e;border-radius:4px;width:'+Math.min(100,g*2)+'%"></div><small>'+g+' %</small></td>'+(x.bias[m]||[]).map(function(v){return '<td style="background:'+lkCol(v)+'">'+lkV2(v)+'</td>'}).join('')+'</tr>'});
+        o+='</table></details>'});
+      o+='<p class="note">Fehler = mittlere Abweichung der Temperatur nach Korrektur. Gewicht = wie stark das Modell in die Kreis-Vorhersage eingeht (nach Trefferquote, ab 3 Lerntagen). Blau = Modell zu warm, Rot = zu kalt.</p>';
+      document.getElementById('lkOrte').innerHTML=o}
     else document.getElementById('lkOrte').innerHTML='<p class="note">Keine Daten.</p>';
     /* Treffer */
     if(T){var dd=Object.keys(T).filter(function(d){return T[d].ist&&T[d].ist.tmax!=null}).sort().slice(-10).reverse();
