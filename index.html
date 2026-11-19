@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 01:05 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 03:40 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2539,14 +2539,14 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>10-Minuten-Lauf: Speicherkonflikte werden automatisch gelöst (vorher blieb live.json bei Konflikt stehen) <span class="tg">neu 18.11.</span></li>
 <li>Eigene Station ohne WU: Website (Grafiken, Rückblicke, Vergleiche), Observatorium, Max und Lernen holen aktuelle Werte vom Cloudflare-Empfänger, „heute“ aus live.json und alles Frühere aus der eigenen Datenbank (data/archiv, seit 20.01.2026); WU nur noch Reserve, wenn etwas fehlt <span class="tg">neu 19.11.</span></li>
 <li>Live-Daten werden laufend in die eigene Datenbank geschrieben: heutiger Tag (Stunden- und Tageswerte) alle 10 Minuten erneuert, um Mitternacht abgeschlossen – die Datenbank bleibt vollständig, auch wenn WU nicht liefert <span class="tg">neu 19.11.</span></li>
-<li>Datenbank-Lücken (Tage ohne eigene Messwerte, z. B. 04., 06. und 08.03.2026) werden nachts automatisch mit der Nachbarstation IBADKN32 aufgefüllt (Tages- und Stundenwerte, markiert als Ersatz) – sobald WU wieder liefert <span class="tg">neu 19.11.</span></li>
+<li>Datenbank-Lücken (Tage ohne eigene Messwerte, z. B. 04., 06. und 08.03.2026) werden nachts automatisch mit der Nachbarstation IBADKN32 aufgefüllt (Tages- und Stundenwerte, markiert als Ersatz) – 04., 06. und 08.03.2026 am 19.11. um 3:35 Uhr gefüllt <span class="tg">neu 19.11.</span></li>
 <li>Datenschutzerklärung (Impressum, Abschnitt 4) angepasst: Messwerte kommen über Cloudflare, WU nur noch als Reserve; Widget-Abschnitt entfernt <span class="tg">neu 19.11.</span></li>
 <li>Alle Abläufe: Speichern versucht es bei gleichzeitigen Läufen wirklich erneut (vorher brach der Lauf ab – vermutlich Ursache des verlorenen Wochenausblicks am 15.11.) <span class="tg">neu 19.11.</span></li>
 <li>Video-Abläufe (Facebook, Wetterwissen, DWD-Special, Video neu, Monats-/Jahresrückblick): fällt die ffmpeg-Einrichtung aus, wird ffmpeg über das System nachinstalliert – das Video klappt beim ersten Versuch <span class="tg">neu 19.11.</span></li>
 <li>„Vorhersage lernen“ nutzt die 7-Tage-Werte der Station aus der eigenen Datenbank <span class="tg">neu 19.11.</span></li>
 <li>Startbild (Schloss) wird jetzt ganz und im richtigen Seitenverhältnis gezeigt, nicht mehr unten abgeschnitten – auch das Weihnachtsbild <span class="tg">neu 19.11.</span></li>
 <li>Startseite, Spalte „Heute“: doppelter Kasten (Höchstwert/Tiefstwert/Böe/Niederschlag heute) ausgeblendet, „Heute vor 1 Jahr“ steht an seiner Stelle <span class="tg">neu 19.11.</span></li>
-<li>„Heute vor 1 Jahr“: Vergleichsdaten von IBADKN32 (bis 19.01.2026) kommen nachts ins eigene Archiv – danach ohne WU-Abruf; vorher verschwand der Kasten, wenn WU gesperrt war <span class="tg">neu 19.11.</span></li>
+<li>„Heute vor 1 Jahr“: Vergleichsdaten von IBADKN32 (bis 19.01.2026) liegen seit 19.11., 3:35 Uhr im eigenen Archiv (17.11.2025–19.01.2026) – ohne WU-Abruf; vorher verschwand der Kasten, wenn WU gesperrt war <span class="tg">neu 19.11.</span></li>
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
