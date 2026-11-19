@@ -2327,6 +2327,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="vid">🎬 Videos (Morgen, Abend, Woche)</button>
   <button class="nW" data-p="uws" data-p2="spv">⚠️ Warnungen &amp; Specials</button>
   <button class="nW" data-p="sto" data-p2="bild">📸 Stories &amp; Bildposts</button>
+  <button class="nW" data-p="th">🧵 Threads</button>
   <button class="nW" data-p="ww">💡 Wetterwissen</button>
   <button class="nW" data-p="thv">🎓 Themenvideos</button>
   <div class="nW nWg">Website</div>
@@ -2339,7 +2340,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 21:20 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 21:30 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2416,6 +2417,21 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <div class="hint" style="margin:8px 0 0"><b>Seit 16.11.2026 entkoppelt:</b> getrennte Warteschlangen – „fb-posten“ (Weckrufe, Knöpfe, Wetterwissen), „fb-check“ (Viertelstunden-Prüfung), „videobau“ (Video neu erstellen, Monats-/Jahresrückblick), „nebenarbeiten“ (Lernen, Archiv, Ticker, Termine, Relief, IndexNow). Ein Lauf verdrängt so keinen Post mehr. GitHubs eigene Rückfallzeiten liegen jetzt auf :20 (nicht mehr :00, zwei Minuten vor dem Weckruf).<br>Die Weckrufe gibt es, weil GitHub seine eigenen Zeitpläne oft mit Verspätung startet. Sie rufen denselben Ablauf von Hand auf; der Ablauf prüft dann selbst die Uhrzeit und macht nur das, was dran ist – ein Weckruf zur falschen Zeit schadet also nicht. Fällt Open-Meteo aus, springt die stündlich aufgefrischte Reserve ein (Morgen bis 6 Std., sonst bis 2 Std. alt).</div>
   </details>
 </main>
+<main id="th" hidden>
+<h1 style="margin-top:0">🧵 Threads</h1>
+<p style="color:var(--mut);margin-top:-6px">Was auf Threads geht und wie. Threads kennt keine Stories – Stories gehen dort als Bildpost. Text ohne Hashtag-Zeilen, höchstens 500 Zeichen, Link wetter-badkoenig.de am Ende. Abschalten: Repo-Variable <code>TH_AUTO = aus</code>.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;max-width:760px">
+  <div class="card" style="margin:0"><small style="color:var(--mut)">Heute auf Threads</small><div id="thAnz" style="font-size:22px;font-weight:700">–</div></div>
+  <div class="card" style="margin:0"><small style="color:var(--mut)">Letzter Post</small><div id="thLetzt" style="font-size:16px;font-weight:700">–</div></div>
+</div>
+<div class="card" style="max-width:760px;overflow-x:auto"><h3 style="margin-top:0">Was geht wie auf Threads?</h3>
+<table class="thT" style="width:100%;border-collapse:collapse;font-size:14px"><tr style="opacity:.7"><td>Beitrag</td><td>Auf Threads als</td><td>Wann</td><td>Heute</td></tr><tr><td>☀️ Morgenvideo mit Max</td><td>🎬 Video</td><td>mit Facebook/Instagram, Mo–Fr 7 Uhr, Sa/So 8 Uhr</td><td class="thH" data-k="wetter">–</td></tr><tr><td>📸 Morgen-Story</td><td>🖼️ Bildpost (Threads hat keine Stories)</td><td>mit dem Morgenvideo</td><td class="thH" data-k="story">–</td></tr><tr><td>🗺️ Mittagskarte</td><td>🖼️ Bildpost</td><td>12 Uhr</td><td class="thH" data-k="mittag">–</td></tr><tr><td>📸 Mittags-Story</td><td>– geht nicht auf Threads (die Mittagskarte kommt dort schon)</td><td>–</td><td class="thH" data-k="">–</td></tr><tr><td>💡 Wetterwissen mit Max</td><td>🎬 Video</td><td>Mo–Fr 15 Uhr, wenn gepostet</td><td class="thH" data-k="wissen">–</td></tr><tr><td>🎙️ Abendvideo mit Max</td><td>🎬 Video</td><td>Mo–Sa 19 Uhr</td><td class="thH" data-k="abendvideo">–</td></tr><tr><td>🌙 Abend-Story</td><td>🖼️ Bildpost</td><td>mit dem Abendvideo</td><td class="thH" data-k="abendstory">–</td></tr><tr><td>📅 Wochenausblick mit Max</td><td>🎬 Video</td><td>So 20 Uhr</td><td class="thH" data-k="woche">–</td></tr><tr><td>🟠 DWD-Warnung Stufe 2</td><td>🖼️ Bildpost (Warnbild)</td><td>sofort, rund um die Uhr</td><td class="thH" data-k="warn2-post">–</td></tr><tr><td>🔴 Unwetter-Story Stufe 3/4</td><td>🖼️ Bildpost</td><td>sofort, rund um die Uhr (neu 19.11.)</td><td class="thH" data-k="special-story">–</td></tr><tr><td>⚠️ Unwetter-Special mit Max</td><td>🎬 Video</td><td>bei Stufe 3/4, 6–22 Uhr</td><td class="thH" data-k="special">–</td></tr><tr><td>⚡ Sondermeldungen</td><td>🖼️ Bildpost</td><td>nur wenn gepostet (zurzeit von Hand)</td><td class="thH" data-k="">–</td></tr><tr><td>📆 Monats-/🎆 Jahresrückblick</td><td>🎬 Video</td><td>1. des Monats 17 Uhr / 30.12. 18 Uhr</td><td class="thH" data-k="monat">–</td></tr><tr><td>🎓 Themenvideos, ✋ Selbst-Teilen</td><td>– nur wenn du selbst postest</td><td>–</td><td class="thH" data-k="">–</td></tr></table></div>
+<div class="card" style="max-width:760px"><h3 style="margin-top:0">🧵 Beitrag auf Threads nachreichen</h3>
+<p style="color:var(--mut);font-size:13px;margin-top:-4px">Postet einen schon erschienenen Beitrag nachträglich auf Threads (Ablauf „Threads nachreichen (von Hand)“).</p>
+<select id="thWahl" style="width:100%;padding:8px;border-radius:8px"><option value="mittag.jpg|mittag.json">🗺️ Mittagskarte von heute</option><option value="warn2-post.jpg|warn2.json">🟠 Letzte DWD-Warnung (Warnbild)</option></select>
+<button class="b" id="thNach" style="width:100%;margin-top:8px">🧵 Jetzt auf Threads nachreichen</button><p id="thNachSt" style="color:var(--mut);font-size:13px;margin:6px 0 0"></p></div>
+<style>.thT td{padding:7px 6px;border-top:1px solid rgba(128,128,128,.25);vertical-align:top}.thInfo{font-size:13px;margin:-2px 0 10px;padding:7px 10px;border-radius:10px;background:rgba(120,140,170,.14)}</style>
+</main>
 <main id="ww" hidden>
 <h1 style="margin-top:0">💡 Wetterwissen mit Max</h1>
 <p style="color:var(--mut);margin-top:-6px">Max erklärt in seinem Wissenszimmer in rund 45 Sekunden ein Wetter-Phänomen – mit echten Werten unserer Station. <b>Montag bis Freitag um 15 Uhr</b> – wird <b>automatisch</b> auf Facebook und Instagram gepostet.</p>
@@ -2477,7 +2493,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 19.11.2026, 21:20 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 19.11.2026, 21:30 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe – immer der aktuelle Stand; Neues ist mit „neu TT.MM.“ markiert.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2553,6 +2569,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li><b>🧵 Threads-Tab</b> (19.11.2026, 21:30 Uhr): eigener Menüpunkt unter „📸 Stories &amp; Bildposts“ mit „Heute auf Threads“, letztem Post, Übersicht „Was geht wie auf Threads?“ (Art, Zeit, heutiger Stand aus gepostet.json) und Knopf „Beitrag auf Threads nachreichen“ (Mittagskarte oder letzte DWD-Warnung). Unter jeder Karte bei Videos, Stories, Bildposts und Warnungen eine Zeile „🧵 Threads: …“ mit heutigem Stand. Neu: Unwetter-Story (Stufe 3/4) geht als Bildpost auch auf Threads <span class="tg">neu 19.11.</span></li>
 <li><b>Ausblick-Zusatz je Tageszeit</b> (19.11.2026, 21:20 Uhr): Stories („ODENWALD-WETTER · MORGENAUSBLICK / MITTAGSAUSBLICK / ABENDAUSBLICK“), Mittagskarte („Mittagsausblick · Datum“), Kopfband in Max' Videos (gelber Zusatz MORGENAUSBLICK / ABENDAUSBLICK / WOCHENAUSBLICK) und erste Zeile der Beitragstexte (Morgenausblick, Mittagsausblick, Abendausblick). Kreisgrenze der Karte (Website, Mittagskarte, Stories) ohne spitze Zacken an den Ecken <span class="tg">neu 19.11.</span></li>
 <li><b>Knopf „Story-Bilder neu erstellen (ohne Posten)“</b> (19.11.2026, 21:20 Uhr): unter Morgen-, Mittags- und Abend-Story; startet „Video neu erstellen“ mit Art „stories“ (fb_post.py --nur-stories) und baut alle drei Story-Bilder neu, ohne zu posten. Gepostet wird weiterhin nur einmal am Tag zur festen Zeit <span class="tg">neu 19.11.</span></li>
 <li><b>Story-Karte entzerrt</b> (19.11.2026, 21:15 Uhr): in den Stories liegen Höchst/Brombachtal und Bad König/Michelstadt nicht mehr übereinander (eigene Feld-Positionen nur für die Stories, Website unverändert) <span class="tg">neu 19.11.</span></li>
@@ -2897,6 +2914,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_0" style="scroll-margin-top:12px">
       <h2 class="sp">🎬 Morgenvideo mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Video, mit Facebook/Instagram<span class="thH" data-k="wetter"></span></div>
       <div class="card fbinfo" id="fbi_0">wird geladen …</div>
       <div class="card" id="fb_vidCard" hidden>
         <div class="vhead" id="fb_vTitel">🎬 Morgenvideo mit Max</div>
@@ -2914,6 +2932,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_1" style="scroll-margin-top:12px">
       <h2 class="sp">📸 Morgen-Story (Wetter heute) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Bildpost mit dem Morgenvideo (Threads hat keine Stories)<span class="thH" data-k="story"></span></div>
       <div class="card fbinfo" id="fbi_1">wird geladen …</div>
       <div class="card" id="fb_storyCard" hidden>
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Morgen-Story (Wetter heute) <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Morgenvideo</small></div>
@@ -2928,6 +2947,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_2" style="scroll-margin-top:12px">
       <h2 class="sp">🗺️ Mittagskarte (Rest des Tages) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Bildpost um 12 Uhr<span class="thH" data-k="mittag"></span></div>
       <div class="card fbinfo" id="fbi_2">wird geladen …</div>
       <div class="card" id="fb_mkCard">
         <div class="vhead">🗺️ Mittagskarte (Rest des Tages) <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 12 Uhr</small></div>
@@ -2946,6 +2966,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_3" style="scroll-margin-top:12px">
       <h2 class="sp">📸 Mittags-Story (Jetzt im Odenwald) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> geht nicht auf Threads – die Mittagskarte kommt dort schon als Bildpost<span class="thH" data-k=""></span></div>
       <div class="card fbinfo" id="fbi_3">wird geladen …</div>
       <div class="card">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📸 Mittags-Story (Jetzt im Odenwald) <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 um 12 Uhr</small></div>
@@ -2959,6 +2980,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_4" style="scroll-margin-top:12px">
       <h2 class="sp">🎙️ Abendvideo mit Max (Studio) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Video<span class="thH" data-k="abendvideo"></span></div>
       <div class="card fbinfo" id="fbi_4">wird geladen …</div>
       <div class="card">
         <div class="vhead" id="fb_avTitel">🎙️ Abendvideo mit Max (Studio) <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 19 Uhr</small></div>
@@ -2978,6 +3000,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_5" style="scroll-margin-top:12px">
       <h2 class="sp">🌙 Abend-Story (Wetter morgen) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Bildpost mit dem Abendvideo<span class="thH" data-k="abendstory"></span></div>
       <div class="card fbinfo" id="fbi_5">wird geladen …</div>
       <div class="card">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🌙 Abend-Story (Wetter morgen) <small style="font-weight:normal;opacity:.75">· Facebook + Instagram · 🤖 mit dem Abendvideo</small></div>
@@ -2991,6 +3014,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_6" style="scroll-margin-top:12px">
       <h2 class="sp">📅 Wochenausblick mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Video<span class="thH" data-k="woche"></span></div>
       <div class="card fbinfo" id="fbi_6">wird geladen …</div>
       <div class="card">
         <div class="vhead" id="fb_woTitel">📅 Wochenausblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost So 20 Uhr</small></div>
@@ -3007,6 +3031,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_7" style="scroll-margin-top:12px">
       <h2 class="sp">🎆 Jahresrückblick mit Max <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Video<span class="thH" data-k="jahr"></span></div>
       <div class="card fbinfo" id="fbi_7">wird geladen …</div>
       <div class="card" id="fb_jahrCard">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 🎆 Jahresrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost 30.12. um 18 Uhr</small></div>
@@ -3020,6 +3045,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_9" style="scroll-margin-top:12px">
       <h2 class="sp">📆 Monatsrückblick mit Max (Studio) <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Video<span class="thH" data-k="monat"></span></div>
       <div class="card fbinfo" id="fbi_9">wird geladen …</div>
       <div class="card" id="fb_monatCard">
         <div class="vhead"><span class="pf fb">f</span><span class="pf ig">ig</span> 📆 Monatsrückblick mit Max <small style="font-weight:normal;opacity:.75">· 🤖 Autopost am 1. ab 17 Uhr</small></div>
@@ -3033,6 +3059,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_8" style="scroll-margin-top:12px">
       <h2 class="sp">⚡ Sondermeldungen <span class="apb">🤖 AUTOPOST</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> als Bildpost, sobald eine Sondermeldung gepostet wird<span class="thH" data-k=""></span></div>
       <div class="card fbinfo" id="fbi_8">wird geladen …</div>
       <div id="fb_sonderBox"></div>
       <details class="card" id="fb_musterBox" style="margin-top:14px"><summary style="cursor:pointer;font-weight:700">🧪 Muster: So sehen Sondermeldungen aus (wird nicht gepostet)</summary>
@@ -3044,6 +3071,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
       <h2 class="sp">✋ Zum Selbst-Teilen <span class="apb man">✋ MANUELL POSTEN</span></h2>
       <div class="card fbinfo"><b>Wird nicht automatisch gepostet.</b> Hier liegt, was du bei Bedarf selbst teilst: der Frost-/Nebel-Hinweis (erscheint nur, wenn er dran ist). Special-Videos, Unwetter-Specials und „Max erklärt“ haben eigene Menüpunkte.</div>
       <div id="fb_frostBox"></div>
+      <div class="thInfo">🧵 <b>Threads:</b> DWD-Warnung Stufe 2 als Bildpost (Warnbild), Unwetter-Story Stufe 3/4 als Bildpost, Unwetter-Special als Video<span class="thH" data-k="warn2-post"></span></div>
       <div class="card fbinfo" id="fb_uwsInfo"><b>🤖 Automatisch ab DWD-Stufe 3/4 (seit 15.11.2026).</b> Rund um die Uhr wird jede Minute geprüft (Cloudflare-Worker „dwd-wecker“, seit 18.11.2026; Reserve alle 15 Min.). Bei Stufe 3/4 geht zuerst die Unwetter-Story raus, das Video mit Max folgt; nicht Gepostetes wird nachgeholt, solange die Warnung gilt (bis 30 Min. vor Ende). Bei Stufe 2 (markantes Wetter) gehen eine orange Warn-Story und ein Beitrag raus, bei Stufe 1 nichts. Bei einer neuen Unwetterwarnung (Stufe 3) oder extremen Unwetterwarnung (Stufe 4) baut Max sofort ein reines Warnvideo mit Zeitraum, DWD-Beschreibung und den Verhaltenstipps des DWD; dazu kommt eine Unwetter-Story. Beides geht automatisch auf Facebook und Instagram. Probe ohne Posten: „Video neu erstellen“ → special-test.</div>
       <div id="fb_specialBox"></div>
       <div hidden><!-- Abendbeitrag-Bild und Tagesbild seit 15.11.2026 entfallen (Texte bleiben Beschreibung der Videos) -->
@@ -3070,6 +3098,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 
     <section class="spalte" id="fbs_thema">
       <h2 class="sp">🎓 Themenvideos – Max erklärt <span class="apb man">✋ MANUELL POSTEN</span></h2>
+      <div class="thInfo">🧵 <b>Threads:</b> nur, wenn du selbst postest<span class="thH" data-k=""></span></div>
       <div class="card">
         <div class="vhead" id="fb_thTitel">🎓 Max erklärt</div>
         <div class="datum" id="fb_thDatum">Noch kein Themenvideo vorhanden.</div>
@@ -4150,7 +4179,7 @@ function fbReload(){const t=$('fbTpl'),d=$('fbSec');d.innerHTML='';d.appendChild
 function fbOpen(){if(!$('fbSec').childElementCount)fbReload();var h=$('fbH1');if(h&&show._fb)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Warnungen & Sondermeldungen'}[show._fb];$('fbKeySt').textContent=db.fbTok?'✅ hinterlegt':'– noch keiner';
   $('fbKeySave').onclick=()=>{const v=$('fbKey').value.trim();if(!/^(github_pat_|ghp_)/.test(v))return alert('Das sieht nicht nach einem GitHub-Schlüssel aus.');db.fbTok=v;$('fbKey').value='';save();fbOpen();alert('Schlüssel gespeichert.')};
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
-function show(p){if(p=='son')p='uws';var fbv=(p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws')?p:null;document.body.classList.toggle('fbUws',fbv=='uws');document.body.classList.toggle('fbSpv',fbv=='spv');document.body.classList.toggle('fbThv',fbv=='thv');document.body.classList.toggle('fbSon',fbv=='son');document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');document.body.classList.toggle('fbBild',fbv=='bild');if(fbv=='son'||fbv=='uws')setTimeout(musterLoad,300);if(fbv){var h=$('fbH1');if(h)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Warnungen & Sondermeldungen'}[fbv];var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();if(p=='fehler')feLoad();if(p=='ww')wwLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','fehler','sich','ww'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));try{sessionStorage.setItem('kz-page',p)}catch(e){}scrollTo(0,0)}
+function show(p){if(p=='son')p='uws';var fbv=(p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws')?p:null;document.body.classList.toggle('fbUws',fbv=='uws');document.body.classList.toggle('fbSpv',fbv=='spv');document.body.classList.toggle('fbThv',fbv=='thv');document.body.classList.toggle('fbSon',fbv=='son');document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');document.body.classList.toggle('fbBild',fbv=='bild');if(fbv=='son'||fbv=='uws')setTimeout(musterLoad,300);if(fbv){var h=$('fbH1');if(h)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Warnungen & Sondermeldungen'}[fbv];var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();if(p=='fehler')feLoad();if(p=='ww')wwLoad();if(p=='th'&&window.thLaden)thLaden();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','fehler','sich','ww','th'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));try{sessionStorage.setItem('kz-page',p)}catch(e){}scrollTo(0,0)}
 /* Zuletzt geöffnete Seite nach dem Neuladen wieder öffnen (sessionStorage kz-page; gilt, solange App/Tab offen ist) */
 function kzSeiteZurueck(){try{const q=new URLSearchParams(location.search).get('seite');if(q==='cc'){history.replaceState(null,'',location.pathname);show('cc');return}   /* App-Verknüpfung „Wetterstation verwalten“ (19.11.2026) */
   const s=sessionStorage.getItem('kz-page');if(!s||s=='home')return;const FB=['vid','sto','bild','spv','thv','uws'],m=document.getElementById(s);if(FB.includes(s)||(m&&m.tagName=='MAIN'))show(s)}catch(e){console.warn(e)}}
@@ -5163,6 +5192,28 @@ setTimeout(()=>feLoad(true),4000);
   }
   var _cc=ccLoad;window.ccLoad=ccLoad=function(){_cc();status()};
   setInterval(function(){var m=document.getElementById('cc');if(m&&!m.hidden)status()},60000);
+})();
+</script>
+<script>/* 19.11.2026: Threads-Tab + Hinweise „🧵 Threads“ an den Karten (Merker th_<datei> in gepostet.json) */
+(function(){
+function heute(){return new Date().toLocaleDateString('sv-SE')}
+function laden(){fetch('https://wetter-badkoenig.de/fb/gepostet.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(G){
+  var h=heute(),n=0,last=null;
+  Object.keys(G).forEach(function(k){if(/^th_.*_zeit$/.test(k)&&String(G[k]).slice(0,10)==h){n++;if(!last||G[k]>last[1])last=[k.slice(3,-5),G[k]]}});
+  var a=document.getElementById('thAnz'),l=document.getElementById('thLetzt');
+  if(a)a.textContent=n+(n==1?' Post':' Posts');if(l)l.textContent=last?last[1].slice(11,16)+' Uhr · '+last[0]:'heute noch nichts';
+  document.querySelectorAll('.thH').forEach(function(e){var k=e.dataset.k;if(!k){if(e.tagName=='TD')e.textContent='–';return}
+    var z=G['th_'+k+'_zeit']||'',ok=z.slice(0,10)==h;var t=ok?'✅ '+z.slice(11,16)+' Uhr':'noch nicht';
+    e.textContent=e.tagName=='TD'?t:' · heute '+t;});
+}).catch(function(){})}
+window.thLaden=laden;laden();setInterval(laden,120000);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-p="th"],[data-p="sto"],[data-p="vid"],[data-p="uws"]');if(b)setTimeout(laden,600);});
+var B=document.getElementById('thNach');if(B)B.onclick=function(){var S=document.getElementById('thNachSt'),t='';try{t=window.kzFbTok()}catch(e){}
+  if(!t){S.textContent='🔑 Noch kein Schlüssel hinterlegt – im Tab „Website“ eintragen.';return}
+  var w=document.getElementById('thWahl').value.split('|');if(!confirm('Wirklich jetzt auf Threads posten?'))return;B.disabled=true;S.textContent='🚀 Starte …';
+  fetch('https://api.github.com/repos/sakomobil-beep/wetterstation/actions/workflows/threads-nachreichen.yml/dispatches',{method:'POST',headers:{Authorization:'Bearer '+t,Accept:'application/vnd.github+json'},body:JSON.stringify({ref:'main',inputs:{bild:w[0],text:w[1]}})})
+  .then(function(r){if(r.status==204){S.textContent='✅ Gestartet – in ca. 1 Minute auf Threads.';setTimeout(laden,90000)}else S.textContent='❌ GitHub antwortet mit Fehler '+r.status;B.disabled=false})
+  .catch(function(e){S.textContent='❌ '+e.message;B.disabled=false})};
 })();
 </script>
 </body>
