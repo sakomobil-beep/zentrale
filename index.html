@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 18:15 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 18:28 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2553,6 +2553,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li><b>Auf einen Blick für den Odenwaldkreis</b> (19.11.2026, 18:28 Uhr): eigenes Feld unter „Auf einen Blick · 📍 Station Bad König“ mit Orten (lernen/sammeln), verglichenen Stunden, Fehler reines Modell und mit Korrektur (Kreismittel, bestes Modell), bestem Modell, bestem/schwierigstem Ort; Kreis-Lernen speichert dafür zusätzlich den Fehler ohne Korrektur (mae_roh) <span class="tg">neu 19.11.</span></li>
 <li><b>Lernkurve-Anzeige mit Brombachtal</b> (19.11.2026, 18:15 Uhr): „Was der Odenwaldkreis gelernt hat“ zeigt Brombachtal (IBROMB4) und Reichelsheim (IREICH180) mit „sammelt Messwerte seit 19.11. – Korrektur ab 25.11.2026“ <span class="tg">neu 19.11.</span></li>
 <li><b>Tagesplan Threads</b> (19.11.2026, 18:15 Uhr): eigene Karte im Control Center unter dem Tagesplan, gleicher Aufbau, @-Logo; zeigt Morgenvideo, Morgenbild, Mittagskarte, Wetterwissen, Abendvideo, Abendbild, Wochenausblick, Rückblicke und gepostete DWD-Warnungen mit „✓ gepostet um …“ <span class="tg">neu 19.11.</span></li>
 <li>Lernkurve ausführlicher: „🧭 Was die Station gelernt hat“ mit Kurzfassung in Klartext, Sicherheit je Feld (●○○–●●●), Stunden je Wetterlage, Erklärung in Worten und „Was bringt das?“; „🗺️ Was der Odenwaldkreis gelernt hat“ (volle Breite) mit Kurzfassung, Übersicht aller 7 Orte je Tageszeit und je Ort aufgeklappt: Messstation, Klartext-Satz, alle 4 Modelle mit Fehler, Gewicht und Korrektur je Tageszeit <span class="tg">neu 19.11.</span></li>
@@ -2817,7 +2818,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h3 style="margin-top:0">🧠 Lernkurve Webseite</h3><small style="opacity:.65" id="lkStand">Daten werden geladen …</small></div>
   <p style="margin:4px 0 0;opacity:.8">Was die Präzisions-Vorhersage von wetter-badkoenig.de aus den Messwerten der Station IBADKN33 gelernt hat: Wie stark sie die Wettermodelle für Bad König korrigiert, welches Modell am besten trifft und wie genau die Vorhersage dadurch geworden ist. Die Zahlen kommen live aus dem Lern-Archiv der Website (wird alle 3 Stunden neu berechnet).</p>
 </div>
-<div class="card"><h3 style="margin-top:0">Auf einen Blick</h3><div class="lkk" id="lkKpi"></div></div>
+<div class="card"><h3 style="margin-top:0">Auf einen Blick · 📍 Station Bad König</h3><div class="lkk" id="lkKpi"></div></div>
+<div class="card"><h3 style="margin-top:0">Auf einen Blick · 🗺️ Odenwaldkreis</h3><div class="lkk" id="lkKpiKreis"><div class="kp"><span>Odenwaldkreis</span><b>–</b><small>wird geladen …</small></div></div></div>
 <div class="lkg">
 <div class="card"><h3 style="margin-top:0">📉 Lernkurve: Fehler pro Tag</h3><div id="lkCurve"></div>
 <p class="note">Mittlere Abweichung der Temperatur (°C) je Tag, Stunde für Stunde gegen die Station. <b style="color:#c4502a">Rot</b> = reines Wettermodell ICON-D2 und <b style="color:#2e9a5e">Grün</b> = mit gelernter Bad-König-Korrektur, beide 12 h vorher festgehalten (fairer Vergleich). Grau gestrichelt = Modell kurzfristig nachgerechnet (zum Vergleich, ab 30.10.). Je niedriger, desto besser.</p></div>
@@ -4975,6 +4977,22 @@ function lkLoad(){
     var mxm=Math.max.apply(null,mods.map(function(m){return B.modelle[m].mae}));
     document.getElementById('lkMod').innerHTML='<table><tr><th>Modell</th><th>Temperaturfehler</th><th>Regen-Treffer</th></tr>'+mods.map(function(m,i){var x=B.modelle[m];return '<tr><td>'+(i==0?'🥇 ':i==1?'🥈 ':i==2?'🥉 ':'')+(LK_MOD[m]||m)+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="bar" style="width:'+Math.round(x.mae/mxm*90)+'px"></div>± '+lkN(x.mae,2)+' °C</div></td><td>'+(x.rtreff==null?'–':Math.round(x.rtreff*100)+' %')+' <small style="opacity:.6">('+x.nr+' nasse Std.)</small></td></tr>'}).join('')+'</table>';
     /* Orte – ausführlich, aufgeklappt (19.11.2026) */
+    /* Auf einen Blick · Odenwaldkreis (19.11.2026) */
+    if(K&&K.orte){var KO=K.orte,ks=Object.keys(KO).filter(function(o){var x=KO[o];return x&&x.mae&&Object.keys(x.mae).length&&(x.tage||0)>=3});
+      var samm=['reichelsheim','brombachtal'].filter(function(o){return ks.indexOf(o)<0});
+      var bm=function(x){return Object.keys(x.mae).sort(function(a,b){return x.mae[a]-x.mae[b]})[0]};
+      var sm=0,sr=0,nr=0,nh=0,cnt={};ks.forEach(function(o){var x=KO[o],m=bm(x);sm+=x.mae[m];nh+=x.n||0;cnt[m]=(cnt[m]||0)+1;if(x.mae_roh&&x.mae_roh[m]!=null){sr+=x.mae_roh[m];nr++}});
+      var km=ks.length?sm/ks.length:null,kr=nr===ks.length&&nr?sr/nr:null,top=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]})[0];
+      var srt=ks.slice().sort(function(a,b){return KO[a].mae[bm(KO[a])]-KO[b].mae[bm(KO[b])]});
+      var nm=function(o){return LK_ORT[o]||o},kpK=function(l,v,s_){return '<div class="kp"><span>'+l+'</span><b>'+v+'</b>'+(s_?'<small>'+s_+'</small>':'')+'</div>'};
+      var g=km!=null&&kr?Math.round((1-km/kr)*100):null;
+      document.getElementById('lkKpiKreis').innerHTML=
+        kpK('Orte',ks.length+' lernen',samm.length?'+ '+samm.length+' sammeln ('+samm.map(nm).join(', ')+')':'')+
+        kpK('Verglichene Stunden',nh.toLocaleString('de-DE'),'alle Orte, Station gegen Modell')+
+        kpK('Fehler reines Modell',kr!=null?'± '+lkN(kr,2)+' °C':'–',kr!=null?'Kreismittel, bestes Modell':'kommt mit dem nächsten Lernlauf')+
+        kpK('Fehler mit Korrektur',km!=null?'± '+lkN(km,2)+' °C':'–',g!=null?(g>=0?g+' % genauer':Math.abs(g)+' % ungenauer'):'Kreismittel, bestes Modell')+
+        kpK('Bestes Modell',top?(LK_MOD[top]||top):'–',top?'in '+cnt[top]+' von '+ks.length+' Orten':'')+
+        (srt.length>1?kpK('Bester / schwierigster Ort',nm(srt[0])+' / '+nm(srt[srt.length-1]),'± '+lkN(KO[srt[0]].mae[bm(KO[srt[0]])],1)+' / ± '+lkN(KO[srt[srt.length-1]].mae[bm(KO[srt[srt.length-1]])],1)+' °C'):'')}
     if(K&&K.orte){var LKQ={badkoenig:['IBADKN33 (eigene Station)',185],breuberg:['IBREUB7 (privat)',160],hoechst:['IHCHST74 (privat)',170],michelstadt:['DWD 03284',208],mossautal:['DWD 03287 Vielbrunn',380],oberzent:['DWD 00330 Beerfelden',430],reichelsheim:['IREICH180 (privat)',215],brombachtal:['IBROMB4 (privat)',250]};
       var LK_AB={reichelsheim:'25.11.2026',brombachtal:'25.11.2026'};
       var lkV2=function(v){return (v>0?'+':v<0?'−':'±')+lkN(Math.abs(v),1)};
