@@ -2340,7 +2340,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 22:20 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 22:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2573,6 +2573,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li><b>Control Center neu (Refresh)</b>: 6 Bereiche mit Reitern – 🟢 Start (Status, roter Fehler-Hinweis, Als Nächstes, Schnellknöpfe), 📅 Tagesplan (Facebook &amp; Instagram · Threads · Threads nachreichen), 🎬 Max (Videos · Storys · Bilder · Unwetter · Sondervideos · Wetterwissen · Zum Selbst-Posten), 🌐 Website (Besucher · Lernkurve · Newsticker), 🛠️ Technik (Fehler · Zeitplan &amp; Zugänge · Notizen · Ideen · Sicherung), 📖 Handbuch (Website-Funktionen · Was kann Max); alte Ansicht per „↩︎ Alte Ansicht“ und als Sicherung backup-control-center-2026-11-19.html <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
 <li><b>Control Center Refresh</b> (19.11.2026, 22:00 Uhr): komplett neu sortiert – 6 statt 15 Menüpunkte, Reiter oben je Bereich, Tagesplan und Threads als eigener Bereich, Abläufe &amp; Weckrufe und Schlüssel unter Technik › Zeitplan &amp; Zugänge, Wetterfunktionen + Was kann Max als Handbuch; nichts entfernt. Alte Ansicht bleibt über „↩︎ Alte Ansicht“ (unten im Menü) und als Datei backup-control-center-2026-11-19.html erhalten <span class="tg">neu 19.11.</span></li>
+<li><b>Unwetter-Bilder kleiner</b> (19.11.2026, 22:25 Uhr): auf „🎬 Max › ⚠️ Unwetter“ Bilder und Videos (Sondermeldungen, Specials, Muster) so klein wie bei Storys &amp; Bilder – Vorschau links (170 px), Text rechts; nachgeladene Karten werden automatisch genauso angeordnet <span class="tg">neu 19.11.</span></li>
 <li><b>Max-Seiten neu</b> (19.11.2026, 22:20 Uhr): 5 statt 7 Reiter – Videos (mit Monats- und Jahresrückblick), Storys &amp; Bilder (mit Mittagskarte), Unwetter, Wetterwissen, Zum Selbst-Posten (Themenvideos, Frost-/Nebel-Hinweis, Termine für Max); je Beitrag eine Karte: Vorschau links, Knöpfe rechts, Infotabelle darunter; ruhiger dunkler Hintergrund statt Himmelsverlauf; Übersichtstabelle ans Ende der Videos <span class="tg">neu 19.11.</span></li>
 <li><b>Tagesplan neu</b> (19.11.2026, 22:10 Uhr): eine gemeinsame Liste für Facebook, Instagram und Threads mit Markierungen je Plattform (✓ gepostet, rot „fehlt“, blass = geht dort nicht hin) und Knopf „nachreichen“, wenn Threads fehlt; Umschalter Heute/Morgen/Woche, Kurzbilanz „heute x von y raus“, großer Kasten „Als Nächstes“; Reiter 🗓️ Plan · 🧵 Threads nachreichen · ℹ️ Was geht wohin? (Threads-Erklärtabelle); alte Tabellen bleiben in der alten Ansicht <span class="tg">neu 19.11.</span></li>
 <li><b>Facebook und Instagram in den Info-Tabellen</b> (19.11.2026, 21:50 Uhr): jede Info-Tabelle (Videos, Stories, Bildposts, Rückblicke, Sondermeldungen) hat jetzt Zeilen „f Facebook“, „ig Instagram“ und „@ Threads“ mit Art (Video/Reel/Story/Bildpost) und „zuletzt“ je Plattform; die Warnungs-Tabelle erscheint nur noch unter „Warnungen &amp; Specials“, nicht mehr bei den Bildposts <span class="tg">neu 19.11.</span></li>
@@ -5371,7 +5372,7 @@ body.rf #cc .ccMehr>summary{display:none}
    document.head.appendChild(st);
    function rfMax(){try{var sec=document.getElementById('fbSec');if(!sec)return;
     sec.querySelectorAll('section.spalte').forEach(function(S){
-     var K=[].filter.call(S.querySelectorAll('.card'),function(c){return !c.classList.contains('fbinfo')&&!c.classList.contains('rfK')&&c.querySelector('video,img')&&!c.closest('details')});
+     var K=[].filter.call(S.querySelectorAll('.card'),function(c){return !c.classList.contains('fbinfo')&&!c.classList.contains('rfK')&&!c.closest('.rfK')&&!c.querySelector('.card')&&c.querySelector('video,img')&&!c.closest('details')});
      var info=S.querySelector(':scope>.fbinfo[id^="fbi_"]');
      K.forEach(function(c){var m=c.querySelector('video,img');var L=document.createElement('div');L.className='rfM';var R=document.createElement('div');R.className='rfR';
       while(c.firstChild)R.appendChild(c.firstChild);L.appendChild(m);c.appendChild(L);c.appendChild(R);c.classList.add('rfK')});
@@ -5380,6 +5381,12 @@ body.rf #cc .ccMehr>summary{display:none}
    }catch(e){console.warn('rfMax',e)}}
    if(typeof fbReload=='function'){var _fr=fbReload;window.fbReload=fbReload=function(){_fr();rfMax()}}
    rfMax();
+   // 19.11.2026, 22:25: Unwetter-Bilder klein wie bei Storys – nachgeladene Karten ebenfalls umbauen
+   var rfT=0,fs=document.getElementById('fbSec');if(fs)new MutationObserver(function(){clearTimeout(rfT);rfT=setTimeout(rfMax,300)}).observe(fs,{childList:true,subtree:true});
+   var st2=document.createElement('style');st2.textContent='body.rf.fbUws #fbSec img,body.rf.fbUws #fbSec video{max-width:170px!important;width:100%;max-height:310px;object-fit:cover;border-radius:12px}'
+    +'body.rf #fb_musterListe>div{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start}body.rf #fb_musterListe>div img{margin:0!important}'
+    +'@media(max-width:700px){body.rf #fb_musterListe>div{grid-template-columns:100px 1fr;gap:12px}body.rf.fbUws #fbSec img,body.rf.fbUws #fbSec video{max-width:100px!important}}';
+   document.head.appendChild(st2);
   })();
   // show() erweitern: Reiter je Bereich
   var _s=window.show;
