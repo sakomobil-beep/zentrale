@@ -2207,7 +2207,7 @@ body.dark #ablCard table.ue{color:#e5e7eb}
 #ablCard table.ue td:nth-child(2){ white-space:normal; }
 
 /* FB/IG-Symbole auch im Control Center (15.11.2026) */
-.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}
+.pf{display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;color:#fff;font:700 11px/16px system-ui,sans-serif;text-align:center;margin-right:3px;vertical-align:1px}.pf.fb{background:#1877f2}.pf.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}.pf.th{background:#000;border:1px solid #444}
 </style>
 <style id="mobil">
 @media(max-width:760px){
@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 18:03 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 18:15 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2388,6 +2388,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 </details>
 <div class="tpNx" id="tpNext" style="display:none">Als Nächstes: wird geladen …</div>
 <div class="card"><h3 style="margin-top:0">🗓️ Tagesplan <small style="font-weight:normal;font-size:12px;opacity:.65">· aktualisiert sich jede Minute</small></h3><table class="tpT" id="tpTab"><tr><td>wird geladen …</td></tr></table><button id="tpMorgen" class="ccMorgen" onclick="tpMorgen(true)">Morgen anzeigen ▾</button></div>
+<div class="card"><h3 style="margin-top:0"><span class="pf th" title="Threads">@</span> Tagesplan Threads <small style="font-weight:normal;font-size:12px;opacity:.65">· seit 19.11.2026 · aktualisiert sich jede Minute</small></h3><table class="tpT" id="thTab"><tr><td>wird geladen …</td></tr></table></div>
 <details class="card" id="ablCard"><summary><h3 style="display:inline;margin:0">⏰ Abläufe &amp; Weckrufe</h3> <small style="opacity:.65">– zum Aufklappen tippen</small></summary>
     <p style="margin:4px 0 10px;opacity:.8">Was wann von allein läuft – damit du nicht im Code nachsehen musst. Alle Zeiten in Ortszeit (Stand 18.11.2026, 20:21 Uhr).</p>
     <div class="ue-wrap"><table class="ue"><thead><tr><th>Zeit</th><th>Was passiert</th><th>Weckruf bei cron-job.org</th></tr></thead><tbody>
@@ -2552,6 +2553,8 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li><b>Lernkurve-Anzeige mit Brombachtal</b> (19.11.2026, 18:15 Uhr): „Was der Odenwaldkreis gelernt hat“ zeigt Brombachtal (IBROMB4) und Reichelsheim (IREICH180) mit „sammelt Messwerte seit 19.11. – Korrektur ab 25.11.2026“ <span class="tg">neu 19.11.</span></li>
+<li><b>Tagesplan Threads</b> (19.11.2026, 18:15 Uhr): eigene Karte im Control Center unter dem Tagesplan, gleicher Aufbau, @-Logo; zeigt Morgenvideo, Morgenbild, Mittagskarte, Wetterwissen, Abendvideo, Abendbild, Wochenausblick, Rückblicke und gepostete DWD-Warnungen mit „✓ gepostet um …“ <span class="tg">neu 19.11.</span></li>
 <li>Lernkurve ausführlicher: „🧭 Was die Station gelernt hat“ mit Kurzfassung in Klartext, Sicherheit je Feld (●○○–●●●), Stunden je Wetterlage, Erklärung in Worten und „Was bringt das?“; „🗺️ Was der Odenwaldkreis gelernt hat“ (volle Breite) mit Kurzfassung, Übersicht aller 7 Orte je Tageszeit und je Ort aufgeklappt: Messstation, Klartext-Satz, alle 4 Modelle mit Fehler, Gewicht und Korrektur je Tageszeit <span class="tg">neu 19.11.</span></li>
 <li>Lernkurve lädt wieder: Umschalter „Besucher / Lernkurve“ startet jetzt das Laden der Lerndaten (Fehler seit dem Umbau 19.11.) <span class="tg">neu 19.11.</span></li>
 <li>10-Minuten-Lauf abgesichert: schnelle WU-Abrufe mit Zeitlimit, damit er bei Störungen nicht mehr abbricht <span class="tg">neu 18.11.</span></li>
@@ -4161,6 +4164,30 @@ function tpLoad(){const _j=u=>fetch(u+'?v='+Date.now(),{cache:'no-store'}).then(
       dw.sort((a,b)=>(a.z||'99').localeCompare(b.z||'99')).forEach(d=>rows.push('<tr><td class="zt">'+(d.z||'–')+'</td><td><a onclick="show(\'son\')">DWD-Warnung: '+d.n+'</a></td><td style="white-space:nowrap"><span class="pf fb" title="Facebook">f</span><span class="pf ig" title="Instagram">ig</span> <span class="tpP au">🤖 Autopost · sofort</span></td><td>'+(d.ok?'<span class="tpP ok">✓ gepostet'+(d.z?' um '+d.z+' Uhr':'')+'</span>':'<span class="tpP wa">noch nicht gepostet</span>')+'</td><td style="color:var(--mut)">bei neuer Warnung</td></tr>'))}}
   rows.push('<tr><td class="zt">–</td><td><a onclick="show(\'bild\')">✋ Frost-/Nebel-Hinweis, Themenvideos</a></td><td><span class="tpP au">von Hand</span></td><td><span class="tpP au">bei Bedarf</span></td><td></td></tr>');
   $('tpTab').innerHTML=rows.join('');
+  /* Tagesplan Threads (19.11.2026): eigene Liste, Merker th_<datei> in gepostet.json */
+  {const TH=[],TL=x=>G[x+'_zeit']||'';
+   TH.push('<tr class="kopf"><td>Zeit</td><td>Beitrag</td><td>Art</td><td>Gepostet</td><td>Nächster Post</td></tr>');
+   const thPlan=T=>{const we=T.wd==0||T.wd==6,L=[],a=(h,n,k,f,ziel)=>L.push({h,n,k,f,ziel});
+     a(we?8:7,'🎬 Morgenvideo mit Max','wetter','Video','vid');a(we?8:7,'🌤️ Morgenbild (Morgen-Story)','story','Bild','vid');
+     if(T.dd=='01')a(17,'📆 Monatsrückblick mit Max','monat','Video','spv');
+     a(12,'🗺️ Mittagskarte','mittag','Bild','bild');
+     if(T.mm=='12'&&T.dd=='30')a(18,'🎆 Jahresrückblick mit Max','jahr','Video','spv');
+     if(T.wd>=1&&T.wd<=5)a(15,'💡 Wetterwissen mit Max','wissen','Video','ww');
+     if(T.wd!=0)a(19,'🎙️ Abendvideo mit Max','abendvideo','Video','vid');
+     if(T.wd==0)a(20,'📅 Wochenausblick mit Max','woche','Video','vid');
+     a(T.wd==0?20:19,'🌙 Abendbild (Abend-Story)','abendstory','Bild','vid');
+     L.sort((x,y)=>x.h-y.h);return L};
+   const thNext=(k,abTag,abH)=>{for(const T of TAGE){for(const y of thPlan(T)){if(y.k!==k)continue;if(T.tag<abTag||(T.tag===abTag&&y.h<=abH))continue;
+       return (T.tag===TAGE[0].tag?'heute':T.tag===TAGE[1].tag?'morgen':WT[T.wd]+' '+T.dd+'.'+T.mm+'.')+' '+y.h+':00'}}return '–'};
+   for(let o=0;o<2;o++){const T=TAGE[o],tag=T.tag;
+     TH.push('<tr class="tag"><td colspan="5">'+(o?'Morgen':'Heute')+' · '+WT[T.wd]+', '+T.dd+'.'+T.mm+'.</td></tr>');
+     thPlan(T).forEach(x=>{const t=new Date(tag+'T'+String(x.h).padStart(2,'0')+':00:00'),z=TL('th_'+x.k),done=z.slice(0,10)===tag,vorbei=now>t;
+       const st=done?'<span class="tpP ok">✓ gepostet um '+z.slice(11,16)+' Uhr</span>':vorbei?(tag<'2026-11-19'||(tag==='2026-11-19'&&x.h<19)?'<span class="tpP au">vor dem Start</span>':'<span class="tpP wa">noch nicht gepostet</span>'):'<span class="tpP tpl">geplant</span>';
+       TH.push('<tr><td class="zt">'+x.h+':00</td><td><a onclick="show(\''+x.ziel+'\')">'+x.n+'</a></td><td style="white-space:nowrap"><span class="pf th" title="Threads">@</span> <span class="tpP au">🤖 Autopost · '+x.f+'</span></td><td>'+st+'</td><td style="white-space:nowrap;color:var(--mut)">'+(done||vorbei?thNext(x.k,tag,x.h):'—')+'</td></tr>')});
+     if(!o){[['th_warn2-story','🟠 Warn-Story (Stufe 2) als Bild','Bild'],['th_warn2-post','🟠 DWD-Warnung (Stufe 2) als Bild','Bild'],['th_special','⚠️ Unwetter-Special (Stufe 3/4)','Video']].forEach(([k,n,f])=>{const z=TL(k);
+       if(z.slice(0,10)===tag)TH.push('<tr><td class="zt">'+z.slice(11,16)+'</td><td><a onclick="show(\'uws\')">'+n+'</a></td><td style="white-space:nowrap"><span class="pf th" title="Threads">@</span> <span class="tpP au">🤖 Autopost · '+f+'</span></td><td><span class="tpP ok">✓ gepostet um '+z.slice(11,16)+' Uhr</span></td><td></td></tr>')});
+       TH.push('<tr><td class="zt">–</td><td><a onclick="show(\'uws\')">⚠️ DWD-Warnungen</a></td><td style="white-space:nowrap"><span class="pf th" title="Threads">@</span> <span class="tpP au">🤖 Autopost · sofort</span></td><td><span class="tpP au">bei Warnung</span></td><td style="color:var(--mut)">rund um die Uhr</td></tr>')}}
+   $('thTab').innerHTML=TH.join('')}
   if(next){const m=Math.round((next.t-now)/6e4),h=Math.floor(m/60);$('tpNext').innerHTML='<b>Als Nächstes:</b> '+next.x.n+' – '+(next.o?'morgen':'heute')+' um '+next.x.h+':00 Uhr · in '+(h?h+' Std. ':'')+(m%60)+' Min.'}
   else $('tpNext').innerHTML='<b>Als Nächstes:</b> heute und morgen ist nichts mehr geplant.'})}
 function musterLoad(){const L=$('fb_musterListe');if(!L||L.dataset.ok)return;const W='https://wetter-badkoenig.de/data/muster/';
@@ -4884,7 +4911,7 @@ var LK_URL='https://wetter-badkoenig.de/';
 var LK_LAGE={klar:'☀️ klar & ruhig',wolkig:'☁️ bewölkt',windig:'💨 windig'};
 var LK_BL=['0–4 Uhr','4–8 Uhr','8–12 Uhr','12–16 Uhr','16–20 Uhr','20–24 Uhr'];
 var LK_MOD={icon_d2:'DWD ICON-D2',icon_eu:'DWD ICON-EU',meteofrance_arome_france_hd:'Météo-France AROME',ecmwf_ifs025:'ECMWF'};
-var LK_ORT={badkoenig:'Bad König',mossautal:'Mossautal',breuberg:'Breuberg',hoechst:'Höchst',michelstadt:'Michelstadt',oberzent:'Oberzent',reichelsheim:'Reichelsheim',brensbach:'Brensbach'};
+var LK_ORT={badkoenig:'Bad König',mossautal:'Mossautal',breuberg:'Breuberg',hoechst:'Höchst',michelstadt:'Michelstadt',oberzent:'Oberzent',reichelsheim:'Reichelsheim',brombachtal:'Brombachtal',brensbach:'Brensbach'};
 function lkJ(u){return fetch(LK_URL+u+(u.indexOf('?')<0?'?':'&')+'t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw r.status;return r.json()})}
 function lkN(v,d){return v==null||isNaN(v)?'–':Number(v).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d})}
 function lkCol(v){var a=Math.min(1,Math.abs(v)/2.5);return v<0?'rgba(59,130,196,'+(0.12+a*0.6)+')':'rgba(216,90,48,'+(0.12+a*0.6)+')'}
@@ -4948,9 +4975,10 @@ function lkLoad(){
     var mxm=Math.max.apply(null,mods.map(function(m){return B.modelle[m].mae}));
     document.getElementById('lkMod').innerHTML='<table><tr><th>Modell</th><th>Temperaturfehler</th><th>Regen-Treffer</th></tr>'+mods.map(function(m,i){var x=B.modelle[m];return '<tr><td>'+(i==0?'🥇 ':i==1?'🥈 ':i==2?'🥉 ':'')+(LK_MOD[m]||m)+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="bar" style="width:'+Math.round(x.mae/mxm*90)+'px"></div>± '+lkN(x.mae,2)+' °C</div></td><td>'+(x.rtreff==null?'–':Math.round(x.rtreff*100)+' %')+' <small style="opacity:.6">('+x.nr+' nasse Std.)</small></td></tr>'}).join('')+'</table>';
     /* Orte – ausführlich, aufgeklappt (19.11.2026) */
-    if(K&&K.orte){var LKQ={badkoenig:['IBADKN33 (eigene Station)',185],breuberg:['IBREUB7 (privat)',160],hoechst:['IHCHST74 (privat)',170],michelstadt:['DWD 03284',208],mossautal:['DWD 03287 Vielbrunn',380],oberzent:['DWD 00330 Beerfelden',430],reichelsheim:['IREICH180 (privat)',215]};
+    if(K&&K.orte){var LKQ={badkoenig:['IBADKN33 (eigene Station)',185],breuberg:['IBREUB7 (privat)',160],hoechst:['IHCHST74 (privat)',170],michelstadt:['DWD 03284',208],mossautal:['DWD 03287 Vielbrunn',380],oberzent:['DWD 00330 Beerfelden',430],reichelsheim:['IREICH180 (privat)',215],brombachtal:['IBROMB4 (privat)',250]};
+      var LK_AB={reichelsheim:'25.11.2026',brombachtal:'25.11.2026'};
       var lkV2=function(v){return (v>0?'+':v<0?'−':'±')+lkN(Math.abs(v),1)};
-      var oo=Object.keys(LKQ).filter(function(o){return K.orte[o]||o==='reichelsheim'}).concat(Object.keys(K.orte).filter(function(o){return !LKQ[o]}));
+      var oo=Object.keys(LKQ).filter(function(o){return K.orte[o]||LK_AB[o]}).concat(Object.keys(K.orte).filter(function(o){return !LKQ[o]}));
       var ok=oo.filter(function(o){var x=K.orte[o];return x&&x.mae&&Object.keys(x.mae).length&&(x.tage||0)>=3});
       var bestM=function(x){return Object.keys(x.mae).sort(function(a,b){return x.mae[a]-x.mae[b]})};
       var o='';
@@ -4961,12 +4989,12 @@ function lkLoad(){
         o+='<div class="lkSatz"><b>Kurz gesagt:</b> '+(bm[top]===ok.length?'In allen Orten':'In '+bm[top]+' von '+ok.length+' Orten')+' ist '+(LK_MOD[top]||top)+' am besten. Am genauesten wird '+(LK_ORT[srt[0]]||srt[0])+' getroffen (± '+e(srt[0])+' °C), am schwierigsten ist '+(LK_ORT[srt[srt.length-1]]||srt[srt.length-1])+' (± '+e(srt[srt.length-1])+' °C). '+(warm>ok.length/2?'Fast überall rechnen die Modelle <b>nachts zu warm</b>.':'Nachts liegen die Modelle unterschiedlich.')+'</div>'}
       o+='<h4 style="margin:12px 0 4px">Korrektur des besten Modells je Ort und Tageszeit</h4><table class="hm"><tr><th style="text-align:left">Ort</th><th>Höhe</th>'+LK_BL.map(function(b){return '<th>'+b+'</th>'}).join('')+'<th>Fehler</th><th>Lerntage</th></tr>';
       oo.forEach(function(k){var x=K.orte[k],q=LKQ[k]||['',''];
-        if(!x||!x.mae||!Object.keys(x.mae).length||(x.tage||0)<3){o+='<tr><td style="text-align:left"><b>'+(LK_ORT[k]||k)+'</b> <span class="tg">neu</span></td><td>'+q[1]+' m</td><td colspan="6" style="opacity:.6">lernt noch – Korrektur ab 3 Tagen Daten'+(x&&x.tage?' ('+x.tage+' bisher)':'')+'</td><td>–</td><td>'+((x&&x.tage)||0)+'</td></tr>';return}
+        if(!x||!x.mae||!Object.keys(x.mae).length||(x.tage||0)<3){o+='<tr><td style="text-align:left"><b>'+(LK_ORT[k]||k)+'</b> <span class="tg">neu</span></td><td>'+q[1]+' m</td><td colspan="6" style="opacity:.6">'+(LK_AB[k]?'sammelt Messwerte seit 19.11. – Korrektur ab '+LK_AB[k]:'lernt noch – Korrektur ab 3 Tagen Daten'+(x&&x.tage?' ('+x.tage+' bisher)':''))+'</td><td>–</td><td>'+((x&&x.tage)||0)+'</td></tr>';return}
         var m=bestM(x)[0];o+='<tr><td style="text-align:left"><b>'+(LK_ORT[k]||k)+'</b></td><td>'+q[1]+' m</td>'+x.bias[m].map(function(v){return '<td style="background:'+lkCol(v)+'">'+lkV2(v)+'</td>'}).join('')+'<td>± '+lkN(x.mae[m],2)+' °C</td><td>'+x.tage+'</td></tr>'});
       o+='</table><h4 style="margin:14px 0 4px">Je Ort im Detail</h4>';
       oo.forEach(function(k){var x=K.orte[k],q=LKQ[k]||['?',''];
         o+='<details class="lkOrt" open><summary>'+(LK_ORT[k]||k)+(q[1]?' · '+q[1]+' m':'')+' · Messung: '+q[0]+(x?' · '+(x.n||0).toLocaleString('de-DE')+' Std. / '+(x.tage||0)+' Tage':'')+'</summary>';
-        if(!x||!x.mae||!Object.keys(x.mae).length||(x.tage||0)<3){o+='<p class="note">Lernt noch – die Korrektur greift ab 3 Tagen Messdaten.</p></details>';return}
+        if(!x||!x.mae||!Object.keys(x.mae).length||(x.tage||0)<3){o+='<p class="note">'+(LK_AB[k]?'Sammelt Messwerte seit 19.11.2026 – die Korrektur greift ab '+LK_AB[k]+'.':'Lernt noch – die Korrektur greift ab 3 Tagen Messdaten.')+'</p></details>';return}
         var ms=bestM(x),bb=x.bias[ms[0]],na=(bb[0]+bb[1]+bb[5])/3,ta=(bb[2]+bb[3]+bb[4])/3,vv=ms.map(function(m){return x.mae[m]}).sort(function(a,b){return a-b}),md=vv[Math.floor(vv.length/2)],w={},sw=0;
         ms.forEach(function(m){w[m]=Math.max(.5,Math.min(2,Math.pow(md/x.mae[m],2)));sw+=w[m]});
         o+='<div class="lkSatz" style="font-size:13px">'+(LK_ORT[k]||k)+': nachts im Schnitt '+lkV2(na)+' °C, tagsüber '+lkV2(ta)+' °C gegenüber '+(LK_MOD[ms[0]]||ms[0])+'. Bestes Modell trifft auf ± '+lkN(x.mae[ms[0]],2)+' °C.</div>';
