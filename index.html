@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 09:14 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 11:43 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2568,6 +2568,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Umschalter oben: „📍 Bad König“ / „🗺️ Odenwaldkreis“ (gemerkt; direkt: #vorhersage-kreis)</li>
 <li>Bad König, von jetzt nach später: Regen-Radar 2 Std. (ohne Regen nur eine Zeile), Tageskacheln (heute + 3 Tage, danach Tendenz), gewählter Tag, Stunden als Tabelle in 3-Stunden-Schritten (Zeitraum, Wetter, Temperatur, Regenrisiko, Regenmenge; Diagramm per Knopf); „Heute“ zeigt ganztags den Tiefstwert der kommenden Nacht, den Frühwert klein</li>
 <li>Odenwaldkreis: Tagwahl, Kreis-Text, sortierbare Ortstabelle (Höhe, Höchst/Tief, Regen), Reliefkarte mit Ebenen-Knöpfen (angetippter Ort gelb markiert), „die anderen Tage“ und Tendenz</li>
+<li>Reichelsheim als 7. Ort der Kreis-Vorhersage (215 m, Talort; Tabelle + Reliefkarte), gelernt mit der privaten Station IREICH180 <span class="tg">neu 19.11.</span></li>
 <li>Regen, Nebel, Frost und Glätte aus derselben Einstufung wie Max; „Bodenfrost möglich“ nur bei klarer, windstiller Nacht</li>
 <li>„📊 Wie genau war die Vorhersage?“: gestern vorhergesagt vs. gemessen, Quote der letzten 14 Tage</li>
 </ul>
@@ -4851,7 +4852,7 @@ var LK_URL='https://wetter-badkoenig.de/';
 var LK_LAGE={klar:'☀️ klar & ruhig',wolkig:'☁️ bewölkt',windig:'💨 windig'};
 var LK_BL=['0–4 Uhr','4–8 Uhr','8–12 Uhr','12–16 Uhr','16–20 Uhr','20–24 Uhr'];
 var LK_MOD={icon_d2:'DWD ICON-D2',icon_eu:'DWD ICON-EU',meteofrance_arome_france_hd:'Météo-France AROME',ecmwf_ifs025:'ECMWF'};
-var LK_ORT={badkoenig:'Bad König',mossautal:'Mossautal',breuberg:'Breuberg',hoechst:'Höchst',michelstadt:'Michelstadt',oberzent:'Oberzent',brensbach:'Brensbach'};
+var LK_ORT={badkoenig:'Bad König',mossautal:'Mossautal',breuberg:'Breuberg',hoechst:'Höchst',michelstadt:'Michelstadt',oberzent:'Oberzent',reichelsheim:'Reichelsheim',brensbach:'Brensbach'};
 function lkJ(u){return fetch(LK_URL+u+(u.indexOf('?')<0?'?':'&')+'t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw r.status;return r.json()})}
 function lkN(v,d){return v==null||isNaN(v)?'–':Number(v).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d})}
 function lkCol(v){var a=Math.min(1,Math.abs(v)/2.5);return v<0?'rgba(59,130,196,'+(0.12+a*0.6)+')':'rgba(216,90,48,'+(0.12+a*0.6)+')'}
