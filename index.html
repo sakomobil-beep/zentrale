@@ -2064,7 +2064,7 @@ td input{width:100%;border:1px solid transparent;background:transparent}td input
 .wx .wh{font-weight:600;font-size:15px;display:flex;justify-content:space-between;align-items:baseline}.wx .wh small{font-weight:400;opacity:.9;color:#fff;font-size:12px}
 .wx .wt{font-size:52px;font-weight:700;line-height:1}.wx .wf{opacity:.85;font-size:13px;margin-top:-6px}
 .wx .wg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.wx .wg div{background:rgba(255,255,255,.12);border-radius:10px;padding:7px 9px;font-size:12px}.wx .wg b{display:block;font-size:16px}
-.wx .ws{font-size:11px;opacity:.7}.wx .wsr{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}.wx .wxbtn{flex:none;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.35)}.wx .wxbtn:active{background:rgba(255,255,255,.35)}
+.wx .ws{font-size:11px;opacity:.7}.wx .wsr{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}.wx .wxbtn{flex:none;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.35)}.wx .wxbtn:active{background:rgba(255,255,255,.35)}.wx .wxbtns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.wx button.wxbtn{cursor:pointer;font-family:inherit}
 .fb{border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.35}.fb b{display:block;font-size:14px;margin-bottom:2px}
 .fb.jetzt,.fb.nacht{background:#e0f2fe;color:#0c4a6e}.fb.glatt{background:#fef3c7;color:#78350f}.fb.boden{background:#dcfce7;color:#14532d}
 .al{background:#fee2e2;color:#7f1d1d;border-radius:10px;padding:8px 12px;font-size:12px;margin-bottom:6px}.al b{display:block;font-size:13px}
@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 19:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 19:35 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2360,7 +2360,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
     <div id="wxFrost"></div>
     <div id="wxAl"></div>
     <div id="wxAur"></div>
-    <div class="wsr"><div class="ws">Station IBADKN33 · wetter-badkoenig.de</div><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zum Wetter ›</a></div>
+    <div class="wsr"><div class="ws">Station IBADKN33 · wetter-badkoenig.de</div><div class="wxbtns"><button type="button" class="wxbtn" onclick="show('cc')">🌦️ Verwalten</button><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zum Wetter ›</a></div></div>
   </div>
   </div>
   <div class="midrow">
@@ -2553,6 +2553,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li>Push „Station sendet nicht“, wenn die Station über 15 Minuten keine Werte schickt (Strom/WLAN), und „Station wieder da“ (Prüfung alle 10 Minuten) <span class="tg">neu 19.11.</span></li>
 <li>Max nennt im Morgenvideo den echten Minutenwert der Station <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li><b>Schneller zur Wetterstation-Verwaltung</b> (19.11.2026, 19:35 Uhr): Knopf „🌦️ Verwalten“ im blauen Wetterkasten der Startseite; App-Verknüpfung „Wetterstation verwalten“ (Zentrale-Symbol lange drücken, auch als eigenes Symbol ablegbar) öffnet direkt das Control Center <span class="tg">neu 19.11.</span></li>
 <li><b>Push-Bestätigung je Plattform</b> (19.11.2026, 19:25 Uhr): jede Push zu einem geposteten Beitrag endet mit „✅ Facebook · ✅ Instagram · ✅ Threads“ – bei einem Fehler steht dort ⚠️ und der Hinweis „(⚠️ = dort nicht geklappt)“; gilt für Morgenvideo, Mittagskarte, Wetterwissen, Abendvideo, Wochenausblick, Rückblicke, Unwetter-Special sowie Stories (Morgen-/Abend-Story inkl. Threads-Bild) <span class="tg">neu 19.11.</span></li>
 <li><b>Auf einen Blick für den Odenwaldkreis</b> (19.11.2026, 18:28 Uhr): eigenes Feld unter „Auf einen Blick · 📍 Station Bad König“ mit Orten (lernen/sammeln), verglichenen Stunden, Fehler reines Modell und mit Korrektur (Kreismittel, bestes Modell), bestem Modell, bestem/schwierigstem Ort; Kreis-Lernen speichert dafür zusätzlich den Fehler ohne Korrektur (mae_roh) <span class="tg">neu 19.11.</span></li>
 <li><b>Lernkurve-Anzeige mit Brombachtal</b> (19.11.2026, 18:15 Uhr): „Was der Odenwaldkreis gelernt hat“ zeigt Brombachtal (IBROMB4) und Reichelsheim (IREICH180) mit „sammelt Messwerte seit 19.11. – Korrektur ab 25.11.2026“ <span class="tg">neu 19.11.</span></li>
@@ -4134,7 +4135,8 @@ function fbOpen(){if(!$('fbSec').childElementCount)fbReload();var h=$('fbH1');if
   $('fbKeyDel').onclick=()=>{if(!confirm('Schlüssel entfernen?'))return;delete db.fbTok;save();fbOpen()}}
 function show(p){if(p=='son')p='uws';var fbv=(p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws')?p:null;document.body.classList.toggle('fbUws',fbv=='uws');document.body.classList.toggle('fbSpv',fbv=='spv');document.body.classList.toggle('fbThv',fbv=='thv');document.body.classList.toggle('fbSon',fbv=='son');document.body.classList.toggle('fbVid',fbv=='vid');document.body.classList.toggle('fbSto',fbv=='sto');document.body.classList.toggle('fbBild',fbv=='bild');if(fbv=='son'||fbv=='uws')setTimeout(musterLoad,300);if(fbv){var h=$('fbH1');if(h)h.textContent={'vid':'🎬 Videos','sto':'📸 Stories','bild':'🖼️ Bildposts','son':'⚡ Sondermeldungen','spv':'🎆 Special-Videos','thv':'🎓 Themenvideos','uws':'⚠️ Warnungen & Sondermeldungen'}[fbv];var _p=p;p='tp';show._fb=_p}else show._fb=null;if(p=='web'){setTimeout(loadWeb,0)}if(p=='tp'){setTimeout(fbOpen,0);setTimeout(()=>{if(!window._tmI){window._tmI=1;tmInit()}else tmLoad()},0)}if(p=='sich'){setTimeout(()=>{if(!window._archI){window._archI=1;archInit()}else archLoad()},0)}if(p=='tk'){if(!window._tkI){window._tkI=1;tkInit()}else tkLoad()}document.querySelectorAll('main').forEach(m=>m.hidden=m.id!=p);if(p=='cc')ccLoad();if(p=='fehler')feLoad();if(p=='ww')wwLoad();const CCS=['web','tp','tk','wf','mx','lk','notes','ideen','fehler','sich','ww'];if(show._fb)p=show._fb;document.body.classList.toggle('wMode',p=='cc'||CCS.includes(p)||p=='vid'||p=='sto'||p=='bild'||p=='son'||p=='spv'||p=='thv'||p=='uws');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.p==p));try{sessionStorage.setItem('kz-page',p)}catch(e){}scrollTo(0,0)}
 /* Zuletzt geöffnete Seite nach dem Neuladen wieder öffnen (sessionStorage kz-page; gilt, solange App/Tab offen ist) */
-function kzSeiteZurueck(){try{const s=sessionStorage.getItem('kz-page');if(!s||s=='home')return;const FB=['vid','sto','bild','spv','thv','uws'],m=document.getElementById(s);if(FB.includes(s)||(m&&m.tagName=='MAIN'))show(s)}catch(e){console.warn(e)}}
+function kzSeiteZurueck(){try{const q=new URLSearchParams(location.search).get('seite');if(q==='cc'){history.replaceState(null,'',location.pathname);show('cc');return}   /* App-Verknüpfung „Wetterstation verwalten“ (19.11.2026) */
+  const s=sessionStorage.getItem('kz-page');if(!s||s=='home')return;const FB=['vid','sto','bild','spv','thv','uws'],m=document.getElementById(s);if(FB.includes(s)||(m&&m.tagName=='MAIN'))show(s)}catch(e){console.warn(e)}}
 function tpLoad(){const _j=u=>fetch(u+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}));Promise.all([_j('https://wetter-badkoenig.de/fb/gepostet.json'),_j('https://wetter-badkoenig.de/fb/sonder.json')]).then(([G,SJ])=>{
   const now=new Date(),fmt=d=>d.toLocaleDateString('sv-SE',{timeZone:'Europe/Berlin'}),WT=['So','Mo','Di','Mi','Do','Fr','Sa'],rows=[],TAGE=[];let next=null;
   const plan=tag=>{const wd=new Date(tag+'T12:00:00').getDay(),we=wd==0||wd==6,dd=tag.slice(8,10),mm=tag.slice(5,7),L=[];const add=(h,n,k,f,ziel)=>L.push({h,n,k,f,ziel});
