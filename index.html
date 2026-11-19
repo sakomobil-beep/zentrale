@@ -2339,7 +2339,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 12:12 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>19.11.2026, 12:45 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2590,7 +2590,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <div class="card">
 <h3 style="margin-top:0">📚 Themenseiten &amp; Extras</h3>
 <ul>
-<li>El Niño 2026/27, Polarwirbel und Vulkane – jeweils mit Themenvideo „Max erklärt“ oben auf der Seite (Kapitel-Sprungmarken); Sommer 2026 ohne Video</li>
+<li>El Niño 2026/27, Polarwirbel und Vulkane – jeweils mit Themenvideo „Max erklärt“ oben auf der Seite (Kapitel-Sprungmarken); Sommer 2026: Video „Der Jahrhundertsommer 2026“ (Max in T-Shirt und Sonnenbrille, eigene Stationswerte, Niedrigwasser und Schifffahrt) gebaut, Einbau auf der Seite nach Freigabe <span class="tg">neu 19.11.</span></li>
 <li>UAP-Observatorium (uap.html, observatory.html) mit vielen Fall-Seiten – soll später eine eigene Homepage werden</li>
 <li>Wetter-Widget für fremde Websites entfernt (Abschnitt auf der Startseite, widget.html, w.html, Fußzeilen-Link); bei Bedarf neu bauen <span class="tg">neu 18.11.</span></li>
 <li>Suchmaschinen: Google Search Console, Bing, Sitemap, robots.txt, IndexNow (geänderte Seiten sofort, montags alle)</li>
@@ -2696,7 +2696,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <tr><td>📅 Monatsrückblick</td><td>am 1. um 17 Uhr aus dem Studio: Monat in Zahlen, Temperaturkurve, Regen je Tag, Vergleich mit Klimamittel und Vorjahr, besondere Momente, Ausblick</td></tr>
 <tr><td>🎆 Jahresrückblick</td><td>30.12. 18 Uhr: Wetterjahr in Zahlen, Rekorde, Höhepunkte, Klimavergleich</td></tr>
 <tr><td>⚠️ Unwetter-Special</td><td>sofort bei DWD-Stufe 3/4, rund um die Uhr: reines Warnvideo (~50 Sek.: Warnung, Zeitraum, DWD-Beschreibung, DWD-Tipps, „Passt auf euch auf“); die Unwetter-Story geht vorab raus <span class="tg">neu 18.11.</span></td></tr>
-<tr><td>🎓 Max erklärt</td><td>lange Themenvideos im Querformat (El Niño, Polarwirbel, Vulkane), kein Autopost, auf der Themenseite eingebaut</td></tr>
+<tr><td>🎓 Max erklärt</td><td>lange Themenvideos im Querformat (El Niño, Polarwirbel, Vulkane, Sommer 2026), kein Autopost, auf der Themenseite eingebaut</td></tr>
 </table>
 <p style="margin:6px 0 0;opacity:.75"><small>Alle Videos lassen sich in der Zentrale neu erstellen (ohne Posten). Solche Probe-Videos werden nie gepostet, kommen nicht in die Videothek, sondern nach Google Drive „Wetterstation – Videos / Probevideos“; Wetterwissen-Proben am Wochenende verbrauchen kein Thema und keine Folgennummer <span class="tg">neu 18.11.</span></small></p>
 </div>
@@ -3069,6 +3069,19 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
         </div>
         <button class="sec" id="fb_vuNeu" style="width:100%;margin-top:8px">🔄 Vulkan-Video neu erstellen (ohne Posten)</button>
         <p class="hint" id="fb_vuNeuSt">Baut das Vulkan-Video neu (ca. 10–15 Min.). Wird <b>nicht</b> automatisch gepostet.</p>
+      </div>
+      <div class="card">
+        <div class="vhead" id="fb_soTitel">🎓 Max erklärt: Der Jahrhundertsommer 2026</div>
+        <div class="datum" id="fb_soDatum">Noch kein Sommer-Video vorhanden.</div>
+        <video id="fb_soVid" controls playsinline preload="metadata" hidden></video>
+        <textarea id="fb_soText" aria-label="Beitragstext zum Sommer-Video" hidden></textarea>
+        <div class="btns" id="fb_soBtns" hidden>
+          <button class="prim teilen" id="fb_soTeilen">📤 Video teilen</button>
+          <button class="sec" id="fb_soKopie">📋 Text kopieren</button>
+          <a class="btn sec" id="fb_soLaden" download="max-erklaert-sommer2026.mp4">💾 Video speichern</a>
+        </div>
+        <button class="sec" id="fb_soNeu" style="width:100%;margin-top:8px">🔄 Sommer-Video neu erstellen (ohne Posten)</button>
+        <p class="hint" id="fb_soNeuSt">Baut das Sommer-2026-Video neu (ca. 10–15 Min.). Wird <b>nicht</b> automatisch gepostet.</p>
       </div>
     </section>
 
@@ -4635,9 +4648,11 @@ function thLaden(px, datei, dl) {
 thLaden('th', 'thema', 'max-erklaert.mp4');
 thLaden('pw', 'thema-polarwirbel', 'max-erklaert-polarwirbel.mp4');
 thLaden('vu', 'thema-vulkan', 'max-erklaert-vulkane.mp4');
+thLaden('so', 'thema-sommer', 'max-erklaert-sommer2026.mp4');
 neuKnopf('thNeu', 'thNeuSt', 'thema');
 neuKnopf('pwNeu', 'pwNeuSt', 'polarwirbel');
 neuKnopf('vuNeu', 'vuNeuSt', 'vulkan');
+neuKnopf('soNeu', 'soNeuSt', 'sommer');
 neuKnopf('woNeu', 'woNeuSt', 'woche');
 (function () {
   var v = Date.now();
