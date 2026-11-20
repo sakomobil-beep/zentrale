@@ -126,15 +126,10 @@ document.getElementById('fxb').innerHTML=Object.keys(FX).map(k=>`<button data-k=
 document.querySelectorAll('#fxb button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;fade('1.2s');ON[k]=!ON[k];FX[k][1](ON[k]);b.style.background=ON[k]?'#f59e0b':'#26303d';b.style.color=ON[k]?'#111':'#e2e8f0';if(k=='mond'||k=='polarlicht'||k=='iss'||k=='sternschnuppen'||k=='silvester'||k=='markt'){if(ON[k]&&document.getElementById('night').getAttribute('opacity')<.3)setMode('night')}});
 // Antippen-Info
 let WHY='';document.querySelector('.hero').addEventListener('click',()=>{const t=document.getElementById('tapinfo');t.textContent=document.getElementById('status').textContent;t.animate([{opacity:0},{opacity:1,offset:.1},{opacity:1,offset:.85},{opacity:0}],{duration:4000})});
-// Handy neigen
-window.addEventListener('deviceorientation',e=>{if(e.gamma==null)return;document.getElementById('paint').style.transform=`translate(${-Math.max(-20,Math.min(20,e.gamma))*.7}px,${-Math.max(-20,Math.min(20,(e.beta||45)-45))*.3}px)`});
 // sanfter Wechsel im Automatik-Modus
 document.querySelectorAll('.fx').forEach(e=>e.style.transition='opacity 1.2s');
 
 const q=new URLSearchParams(location.search).get('m');
 fetch('https://wetter-badkoenig.sakomobil.workers.dev/',{cache:'no-store'}).then(r=>r.json()).then(j=>{live=j.observations[0]}).catch(()=>fetch('https://wetter-badkoenig.de/data/live.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{live=j.cur.observations[0]}).catch(()=>{})).finally(()=>{q?setMode(q):auto()});
 setInterval(()=>{if(!q&&!MAN){fade('30s');auto()}},60000);
-const P=document.getElementById('paint'),hero=document.querySelector('.hero');
-hero.addEventListener('mousemove',e=>{const b=hero.getBoundingClientRect(),dx=(e.clientX-b.left)/b.width-.5,dy=(e.clientY-b.top)/b.height-.5;P.style.transform=`translate(${-dx*14}px,${-dy*6}px)`});
-hero.addEventListener('mouseleave',()=>P.style.transform='');
 </script></body></html>
