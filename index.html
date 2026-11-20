@@ -2355,7 +2355,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 21:43 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 21:45 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2609,6 +2609,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Statistik erweitert</b> (19.11.2026, 23:55 Uhr): 🎬 Video-Auswertung mit Zuschauerverlauf je Video (wo springen Zuschauer ab, Hinweis „nach x Sekunden nur noch die Hälfte“), Länge, Ø Sehdauer, Aufrufe, mind. 30 Sek., Sehzeit, Ø Sehdauer je Videoart; 💬 Reaktionen nach Art, geteilt, Kommentare, gespeichert, Klickarten (Link, Bild, Video); 👥 Follower dazu/entfolgt pro Tag und Anteil Views von Followern vs. anderen; Kacheln Sehzeit gestern, Follower gestern, Instagram-Interaktionen; 📍 Herkunft der Follower (erscheint ab 100 Followern); Ablauf holt dafür zusätzliche Kennzahlen (nur lesen) <span class="tg">neu 19.11.</span></li>
 <li><b>Views-Diagramm mit Zahlen</b> (19.11.2026, 23:35 Uhr): Summe, Ø pro Tag und bester Tag über dem Diagramm, Achse mit Werten, Zahl über jedem Balken (bis 3 Wochen), Balken antippen zeigt Datum, Views und Video-Aufrufe; leere Tage vor dem Start werden ausgeblendet <span class="tg">neu 19.11.</span></li>
 <li><b>Statistik dauerhaft gespeichert</b> (19.11.2026, 23:30 Uhr): Tageswerte (Follower, Views, Video-Aufrufe, Interaktionen, Instagram-Reichweite) ohne Zeitgrenze für immer in fb/insights.json; neues Beitrags-Archiv – jeder Facebook- und Instagram-Beitrag bleibt dauerhaft mit seinen Zahlen erhalten und wird fortgeschrieben, solange Meta neue Werte liefert <span class="tg">neu 19.11.</span></li>
+<li><b>Design-Zentrum: 10 Badge-Ideen fürs Seitenkopf-Logo</b> (20.11.2026, 21:45 Uhr): unter 🏷️ Logo neue Reihe mit zehn Zeichen neben dem Schriftzug „Private Wetterstation Bad König“ – Turm mit Sonne, Torbogen, Wetterfahne, Sonne/Wolke/Schloss, Turm-Thermometer, Monogramm BK, Rundes Siegel, Wappenschild, Regenbogen, Tag &amp; Nacht; je hell und dunkel, beide Farbschemen, als PNG und SVG <span class="tg">neu 20.11.</span></li>
 <li><b>Design-Zentrum: 10 weitere Profilbild-Ideen</b> (20.11.2026, 21:43 Uhr): Thermometer, Windrose, Unterm Regenschirm, Wetter-Tacho, Briefmarke, Karten-Pin, Vier Jahreszeiten, Regenbogen, Mond &amp; Sterne, Wetterkarte Hoch &amp; Tief – jetzt 32 Profilbilder, alle als PNG (1080 px) <span class="tg">neu 20.11.</span></li>
 <li><b>Design-Zentrum: 7 schlichte und moderne Profilbilder</b> (20.11.2026, 21:40 Uhr): schlicht – Linienzeichnung, Weiß mit Silhouette, bk mit Sonnenpunkt; modern – Farbverlauf, Glas-Karte, Wetter-App, Diagonal; jetzt 22 Profilbilder, alle als PNG (1080 px) <span class="tg">neu 20.11.</span></li>
 <li><b>Design-Zentrum: 6 Profilbilder mit großer Schrift</b> (20.11.2026, 21:38 Uhr): BK aus dem Gemälde, Gestapelt bei Nacht, Oben Bild/unten Name, Ortsschild, Krone für Bad König, Retro-Sonnenstrahlen – jetzt 15 Profilbilder, alle als PNG (1080 px) <span class="tg">neu 20.11.</span></li>
@@ -5373,7 +5374,7 @@ body.rf #cc .ccMehr>summary{display:none}
     d.querySelectorAll('#dzL button').forEach(function(b){b.onclick=function(){if(!confirm('Idee löschen?'))return;db.designIdeen.splice(+b.dataset.i,1);save();dzR()}});
     document.getElementById('dzAdd').onclick=function(){var t=document.getElementById('dzNeu').value.trim();if(!t)return;db.designIdeen.push({id:'d'+Date.now(),text:t});save();dzR()};
    }
-   lo.innerHTML='<div class="card"><h3 style="margin-top:0">🏷️ Logo-Varianten</h3><iframe class="dzFr" src="'+VB+'logo/" style="height:1500px" loading="lazy"></iframe></div>';
+   lo.innerHTML='<div class="card"><h3 style="margin-top:0">🏷️ Logo-Varianten</h3><iframe class="dzFr" src="'+VB+'logo/" style="height:3550px" loading="lazy"></iframe></div>';
    ti.innerHTML='<div class="card"><h3 style="margin-top:0">🖼️ Interaktives Titelbild</h3><iframe class="dzFr" src="'+VB+'" style="height:1050px" loading="lazy"></iframe></div>';
    var _s=window.show;window.show=show=function(p){_s(p);if(p=='rfDesign')try{dzR()}catch(e){console.error(e)}};
   })()}catch(e){console.error('Design-Zentrum',e)}
