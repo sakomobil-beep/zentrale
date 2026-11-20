@@ -39,7 +39,7 @@ h1{margin:4px 0 10px;font-size:34px;color:#fff}nav{display:flex;gap:22px;justify
 <rect id="flash" width="1600" height="552" fill="#fff" opacity="0"/><polyline id="bolt" points="" fill="none" stroke="#fff" stroke-width="4" opacity="0" filter="url(#glw)"/>
 <text id="tapinfo" x="800" y="530" text-anchor="middle" fill="#fff" font-size="22" font-family="system-ui" opacity="0" style="paint-order:stroke;stroke:#000a;stroke-width:5px"></text></svg></div>
 <div class="card" style="margin-bottom:12px"><b>Erkannt:</b> <span id="status">lade Stationswerte …</span></div><div class="card" style="margin-top:0"><b>Amtliche Warnungen für Odenwaldkreis</b><br><span style="opacity:.7">Dauerregen bis morgen 0 Uhr · Glätte morgen 2–9 Uhr</span></div></div>
-<div class="card" id="fxp" style="margin-top:12px"><b>Effekte testen</b> <small style="opacity:.7">(an/aus – kombinierbar)</small><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px" id="fxb"></div></div><div class="demo">Testen: <button onclick="auto()">🔄 Automatisch</button><button onclick="setMode('day')">☀️ Tag</button><button onclick="setMode('night')">🌙 Nacht</button><button onclick="setMode('rain')">🌧 Regen</button><button onclick="setMode('fog')">🌫 Nebel</button><button onclick="setMode('snow')">❄️ Schnee</button></div>
+<div class="card" id="fxp" style="margin-top:12px"><b>Effekte testen</b> <small style="opacity:.7">(an/aus – kombinierbar)</small><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px" id="fxb"></div></div><div class="demo">Testen: <button onclick="MAN=false;fade('1.2s');auto()">🔄 Automatisch</button><button onclick="setMode('day')">☀️ Tag</button><button onclick="setMode('night')">🌙 Nacht</button><button onclick="setMode('rain')">🌧 Regen</button><button onclick="setMode('fog')">🌫 Nebel</button><button onclick="setMode('snow')">❄️ Schnee</button></div>
 <script>
 const ns='http://www.w3.org/2000/svg';let s=3;const r=()=>(s=s*16807%2147483647)/2147483647;
 function el(t,a,p){const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
@@ -73,7 +73,8 @@ const R=document.getElementById('rain');for(let i=0;i<130;i++){const x=r()*1680,
 const Sn=document.getElementById('snow');for(let i=0;i<160;i++){const x=r()*1650-40,y=r()*540;el('circle',{cx:x,cy:y,r:(r()*2+1).toFixed(1),fill:'#fff',opacity:.85,style:`animation:sf ${5+r()*5}s linear ${-r()*8}s infinite`},Sn)}
 const M={day:{night:0,grey:0,stars:0,lamps:0,fogl:0,rain:0,snow:0},night:{snow:0,night:.78,grey:0,stars:1,lamps:1,fogl:.15,rain:0},
 rain:{snow:0,night:.35,grey:.55,stars:0,lamps:.6,fogl:.5,rain:1},snow:{night:.25,grey:.35,stars:0,lamps:.5,fogl:.3,rain:0,snow:1},fog:{snow:0,night:.15,grey:.6,stars:0,lamps:.4,fogl:1,rain:0}};
-function setMode(k){for(const id in M[k])document.getElementById(id).setAttribute('opacity',M[k][id])}
+let MAN=false;function fade(s){document.querySelectorAll('.fx').forEach(e=>e.style.transition='opacity '+s)}
+function setMode(k){MAN=true;fade('1.2s');for(const id in M[k])document.getElementById(id).setAttribute('opacity',M[k][id]);if(typeof ON!='undefined'){if(!ON.daemmerung)op('dawn',0);if(!ON.frost)op('frost',0);op('moonL',k=='night'||ON.mond?1:0)}var s=document.getElementById('status');if(s)s.textContent='Test: '+({day:'Tag',night:'Nacht',rain:'Regen',fog:'Nebel',snow:'Schnee'})[k]+' (zurück mit „Automatisch“)'}
 
 function setFx(v){for(const id in v)document.getElementById(id).setAttribute('opacity',v[id])}
 // Sonnenstand Bad König (49.74 N, 9.00 E)
@@ -91,7 +92,7 @@ function auto(){const alt=sunAlt(Date.now());const dark=alt<-6?1:alt<2?(2-alt)/8
  else t.push('Stationswerte nicht erreichbar – nur Tageszeit');
  if(live){const m=live.metric;if(m.temp<0){op('frost',1);t.push('Frost')}else if(!ON.frost)op('frost',0);if((m.windGust||0)>=50){FX.sturm[1](1);t.push(`Sturm (Böen ${m.windGust} km/h)`)}}
  if(alt>-6&&alt<4){op('dawn',1);t.splice(0,1,'Dämmerung')}else if(!ON.daemmerung)op('dawn',0);
- op('moonL',dark>.6?1:0);document.querySelectorAll('.fx').forEach(e=>e.style.transition='opacity 30s');
+ op('moonL',dark>.6||ON.mond?1:0);
  setFx(v);document.getElementById('status').textContent=t.join(' · ')}
 
 const ns2='http://www.w3.org/2000/svg';function E(t,a,p){const e=document.createElementNS(ns2,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
@@ -122,7 +123,7 @@ const FX={gewitter:['⚡ Gewitter',v=>{GW=v}],sturm:['🌪 Sturm',v=>{op('storm'
  ersterschnee:['❄️ Erster Schnee',v=>{op('snow',v);document.querySelectorAll('#snow circle').forEach((c,i)=>{c.style.animationDuration=v?(2+i%3)+'s':''})}],weihnachten:['🎅 Weihnachtsbild',v=>document.getElementById('bgimg').setAttribute('href',v?'titel-weihnachten.jpg':'schlossplatz.jpg')]};
 const ON={};function op(id,v){document.getElementById(id).setAttribute('opacity',v?1:0)}
 document.getElementById('fxb').innerHTML=Object.keys(FX).map(k=>`<button data-k="${k}" style="border:1px solid #ffffff33;background:#26303d;color:#e2e8f0;border-radius:8px;padding:5px 9px;cursor:pointer">${FX[k][0]}</button>`).join('');
-document.querySelectorAll('#fxb button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;ON[k]=!ON[k];FX[k][1](ON[k]);b.style.background=ON[k]?'#f59e0b':'#26303d';b.style.color=ON[k]?'#111':'#e2e8f0';if(k=='mond'||k=='polarlicht'||k=='iss'||k=='sternschnuppen'||k=='silvester'||k=='markt'){if(ON[k]&&document.getElementById('night').getAttribute('opacity')<.3)setMode('night')}});
+document.querySelectorAll('#fxb button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;fade('1.2s');ON[k]=!ON[k];FX[k][1](ON[k]);b.style.background=ON[k]?'#f59e0b':'#26303d';b.style.color=ON[k]?'#111':'#e2e8f0';if(k=='mond'||k=='polarlicht'||k=='iss'||k=='sternschnuppen'||k=='silvester'||k=='markt'){if(ON[k]&&document.getElementById('night').getAttribute('opacity')<.3)setMode('night')}});
 // Antippen-Info
 let WHY='';document.querySelector('.hero').addEventListener('click',()=>{const t=document.getElementById('tapinfo');t.textContent=document.getElementById('status').textContent;t.animate([{opacity:0},{opacity:1,offset:.1},{opacity:1,offset:.85},{opacity:0}],{duration:4000})});
 // Handy neigen
@@ -132,7 +133,7 @@ document.querySelectorAll('.fx').forEach(e=>e.style.transition='opacity 1.2s');
 
 const q=new URLSearchParams(location.search).get('m');
 fetch('https://wetter-badkoenig.sakomobil.workers.dev/',{cache:'no-store'}).then(r=>r.json()).then(j=>{live=j.observations[0]}).catch(()=>fetch('https://wetter-badkoenig.de/data/live.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{live=j.cur.observations[0]}).catch(()=>{})).finally(()=>{q?setMode(q):auto()});
-setInterval(()=>{if(!q)auto()},60000);
+setInterval(()=>{if(!q&&!MAN){fade('30s');auto()}},60000);
 const P=document.getElementById('paint'),hero=document.querySelector('.hero');
 hero.addEventListener('mousemove',e=>{const b=hero.getBoundingClientRect(),dx=(e.clientX-b.left)/b.width-.5,dy=(e.clientY-b.top)/b.height-.5;P.style.transform=`translate(${-dx*14}px,${-dy*6}px)`});
 hero.addEventListener('mouseleave',()=>P.style.transform='');
