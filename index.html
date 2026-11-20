@@ -2355,7 +2355,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 11:37 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 11:58 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2594,6 +2594,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Tagesplan</b>: eine Liste für Facebook, Instagram und Threads mit Plattform-Markierungen, „nachreichen“-Knopf, Heute/Morgen/Woche, Kurzbilanz und „Als Nächstes“; Reiter Plan · Threads nachreichen · Was geht wohin? <span class="tg">neu 19.11.</span></li>
 <li><b>Control Center neu (Refresh)</b>: 6 Bereiche mit Reitern – 🟢 Start (Status, roter Fehler-Hinweis, Als Nächstes, Schnellknöpfe), 📅 Tagesplan (Facebook &amp; Instagram · Threads · Threads nachreichen), 🎬 Max (Videos · Storys · Bilder · Unwetter · Sondervideos · Wetterwissen · Zum Selbst-Posten), 🌐 Website (Besucher · Lernkurve · Newsticker), 🛠️ Technik (Fehler · Zeitplan &amp; Zugänge · Notizen · Ideen · Sicherung), 📖 Handbuch (Website-Funktionen · Was kann Max); alte Ansicht per „↩︎ Alte Ansicht“ und als Sicherung backup-control-center-2026-11-19.html <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li><b>Wetter-Widget wiederhergestellt</b> (20.11.2026, 11:58 Uhr): Widget für fremde Websites wieder wie vor dem 18.11. eingebaut – widget.html (Widget erstellen, drei Größen, hell/dunkel), w.html (Einbettung), data/widget.json (10-Minuten-Lauf schreibt sie wieder), Abschnitt „Diese Station auf Ihrer Website“ auf der Startseite, Fußzeilen-Link, Datenschutz Abschnitt 6e und Sitemap <span class="tg">neu 20.11.</span></li>
 <li><b>Zentrale: Handy-Ansicht „Wetterstation verwalten“</b> (20.11.2026, 11:37 Uhr): Übersicht ohne abgeschnittene Kästen (Gesundheits-Check als 3er-Raster, Kästen untereinander), „Heute gepostet“ senkrecht (Punkt, Uhrzeit, Beitrag je Zeile), Video-Karten mit lesbaren Überschriften und ohne leere Spalte, Zurück-Knopf kurz „‹ Zentrale“; am PC unverändert <span class="tg">neu 20.11.</span></li>
 <li><b>„Heute vor 1 Jahr“ aus eigenem Archiv</b> (20.11.2026, 08:10 Uhr): Vergleichswerte kommen zuerst aus data/archiv/tage-JJJJ.json, WU nur noch, wenn der Tag dort fehlt (spart WU-Abfragen, Kasten fehlte heute früh wegen WU-Aussetzer); gibt es für den Tag gar keine Werte (z. B. 20.11. und 25.11.2025 – IBADKN32 hat damals nichts aufgezeichnet, auch bei WU leer), bleibt der Kasten sichtbar mit Hinweis „Für diesen Tag gibt es keine Vergleichswerte“ statt einer Lücke <span class="tg">neu 20.11.</span></li>
 <li><b>Impressum: Ortssuche ergänzt</b> (20.11.2026, 09:24 Uhr): Datenschutzerklärung Abschnitt 5 nennt jetzt auch die Ortssuche über Open-Meteo (geocoding-api.open-meteo.com, eingegebener Ortsname wird übertragen); Impressum sonst geprüft und aktuell <span class="tg">neu 20.11.</span></li>
@@ -2688,7 +2689,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <ul>
 <li>El Niño 2026/27, Polarwirbel und Vulkane – jeweils mit Themenvideo „Max erklärt“ oben auf der Seite (Kapitel-Sprungmarken); Sommer 2026 mit Video „Der Jahrhundertsommer 2026“ (Max in T-Shirt und Sonnenbrille, eigene Stationswerte, Niedrigwasser und Schifffahrt mit Rhein-Querschnitt) <span class="tg">neu 19.11.</span></li>
 <li>UAP-Observatorium (uap.html, observatory.html) mit vielen Fall-Seiten – soll später eine eigene Homepage werden</li>
-<li>Wetter-Widget für fremde Websites entfernt (Abschnitt auf der Startseite, widget.html, w.html, Fußzeilen-Link); bei Bedarf neu bauen <span class="tg">neu 18.11.</span></li>
+<li>Wetter-Widget für fremde Websites entfernt (18.11.) – am 20.11.2026 wiederhergestellt</li>
 <li>Suchmaschinen: Google Search Console, Bing, Sitemap, robots.txt, IndexNow (geänderte Seiten sofort, montags alle)</li>
 <li>Besucherstatistik ohne Cookies über GoatCounter → Zentrale „📈 Website“</li>
 </ul>
@@ -2740,7 +2741,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <tr><td>Video neu erstellen</td><td>Video zum Ansehen neu bauen (ohne Posten), Ablage als Probe in Google Drive, nicht in der Videothek</td></tr>
 <tr><td>Monats- / Jahresrückblick</td><td>am 1. um 15:30 (zweiter Versuch 16:15) bzw. am 30.12. um 17:15 Uhr bauen</td></tr>
 <tr><td>Vorhersage lernen</td><td>alle 3 Std. Trefferquote und Korrektur (Bad König + Odenwald-Orte)</td></tr>
-<tr><td>Widget-Daten / Live-Daten</td><td>alle 10 Min. Live-Werte für die Website</td></tr>
+<tr><td>Widget-Daten / Live-Daten</td><td>alle 10 Min. Live-Werte für die Website und das Wetter-Widget (data/widget.json)</td></tr>
 <tr><td>Wetterarchiv</td><td>jede Nacht 0:15 Uhr den Vortag sichern</td></tr>
 <tr><td>Solarwetter-Check</td><td>alle 6 Std. die NOAA/SDO-Quellen prüfen</td></tr>
 <tr><td>IndexNow, Termine, Newsticker</td><td>Suchmaschinen melden, Termine für Max und Newsticker aus der Zentrale speichern</td></tr>
