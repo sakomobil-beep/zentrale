@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Vorschau · Facebook-Titelbild und Profilbild</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#111827;color:#e2e8f0}
+.wrap{max-width:1180px;margin:0 auto;padding:18px}
+h1{font-size:22px;margin:4px 0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin:26px 0 10px}
+.sw{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}.sw span{font-size:13px;color:#94a3b8;min-width:70px}
+.sw button{background:#1e293b;color:#e2e8f0;border:2px solid #ffffff22;border-radius:10px;padding:7px 11px;cursor:pointer;font-weight:600}.sw button.on{border-color:#f59e0b}
+.dl{background:#f59e0b!important;color:#111!important;border:0!important}
+.fb{background:#18191a;border-radius:12px;overflow:hidden;border:1px solid #ffffff1a}
+.fb canvas#cover{width:100%;display:block}
+.fbrow{display:flex;gap:16px;align-items:center;padding:14px 20px 18px}
+.fbrow canvas{width:120px;height:120px;border-radius:50%;border:4px solid #18191a;margin-top:-34px;background:#18191a;flex:none}
+.fbrow b{font-size:24px;color:#e4e6eb}.fbrow small{display:block;color:#b0b3b8;font-size:13px;margin-top:2px}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.box{background:#1e293b;border-radius:14px;padding:14px;text-align:center;font-size:12px;color:#94a3b8;border:2px solid transparent;cursor:pointer}.box.on{border-color:#f59e0b}
+.box canvas{width:190px;height:190px;border-radius:50%;display:block;margin:0 auto 8px}
+.box b{color:#e2e8f0;display:block;margin-bottom:6px}
+#mob{width:280px;border-radius:10px;display:block}
+.note{background:#1e293b;border-left:3px solid #f59e0b;padding:10px 14px;border-radius:8px;font-size:13px;color:#cbd5e1;margin-top:20px}
+</style></head><body><div class="wrap">
+<h1>Facebook · Titelbild und Profilbild</h1>
+<div style="color:#94a3b8;font-size:13px">Nur Vorschau. Hochladen bei Facebook machst du selbst über die Download-Knöpfe.</div>
+
+<h2>1 · Neues Titelbild (1640 × 624 px)</h2>
+<div class="sw"><span>Stimmung</span><button data-m="day">☀️ Tag</button><button data-m="dusk">🌅 Abendrot</button><button data-m="night" class="on">🌙 Nacht</button></div>
+<div class="sw"><span>Text</span><button data-t="2" class="on">Titel + Unterzeile</button><button data-t="1">Nur Titel</button><button data-t="0">Ohne Text</button></div>
+<div class="fb"><canvas id="cover" width="1640" height="624"></canvas>
+<div class="fbrow"><canvas id="pmock" width="240" height="240"></canvas><div><b>Private Wetterstation Bad König</b><small>So sieht es zusammen auf der Facebook-Seite aus</small></div></div></div>
+<div class="sw" style="margin-top:12px"><button class="dl" id="dlCover">⬇️ Titelbild als PNG</button></div>
+<div class="row" style="margin-top:6px"><div><canvas id="mob" width="640" height="360"></canvas><div style="font-size:12px;color:#94a3b8;margin-top:4px">Ausschnitt am Handy (Facebook schneidet links und rechts ab)</div></div></div>
+
+<h2>2 · Profilbild passend dazu (1080 × 1080 px) – antippen zum Auswählen</h2>
+<div class="row" id="profs"></div>
+
+<div class="note">Titelbild und die Gemälde-Profilbilder stammen aus deinem eigenen Schlossplatz-Bild. In der Nacht-Version leuchten die ausgemessenen Fenster, der Torbogen und die Laternen wie im Titelbild der Website.</div>
+</div>
+<script>
+const F='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+let MODE='night',TXT=2,PSEL='pn';
+const img=new Image(),fen=new Image();let ready=0;[img,fen].forEach(i=>i.onload=()=>{if(++ready==2)all()});img.src='../schlossplatz.jpg';fen.src='../fenster-nacht.png';
+function rnd(s){return()=>(s=s*16807%2147483647)/2147483647}
+const LAMPS=[[294,421],[312,421],[470,406],[926,378],[941,374],[955,378],[907,395],[1570,352],[1592,352]];
+const NEW=[[1330,430,52],[1410,436,60],[1505,443,70]];
+function glow(c,x,y,r,a){const g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(255,243,176,${.95*a})`);g.addColorStop(.4,`rgba(245,158,11,${.35*a})`);g.addColorStop(1,'rgba(245,158,11,0)');c.fillStyle=g;c.beginPath();c.arc(x,y,r,0,7);c.fill()}
+// malt das Gemälde in Gemälde-Koordinaten (1600x552); Transform setzt der Aufrufer
+function paint(c,mode){
+ c.drawImage(img,0,0,1600,552);
+ NEW.forEach(([x,b,h])=>{const s=h/45,t=b-h;c.strokeStyle='#2a2f3a';c.lineWidth=2.6*s;c.beginPath();c.moveTo(x,b);c.lineTo(x,t+6*s);c.stroke();c.lineWidth=1.4*s;c.beginPath();c.moveTo(x-5*s,t+5*s);c.lineTo(x+5*s,t+5*s);c.stroke();
+  c.fillStyle='#e7edf1';[-5,5].forEach(d=>{c.beginPath();c.arc(x+d*s,t+3*s,3.6*s,0,7);c.fill()})});
+ const heads=LAMPS.map(l=>[l[0],l[1],22]);NEW.forEach(([x,b,h])=>{const s=h/45;heads.push([x-5*s,b-h+3*s,14*s],[x+5*s,b-h+3*s,14*s])});
+ if(mode=='dusk'){c.globalCompositeOperation='soft-light';const g=c.createLinearGradient(0,0,0,552);g.addColorStop(0,'rgba(124,58,237,.6)');g.addColorStop(.35,'rgba(251,113,133,.55)');g.addColorStop(.6,'rgba(245,158,11,.4)');g.addColorStop(.85,'rgba(245,158,11,0)');c.fillStyle=g;c.fillRect(0,0,1600,552);
+  c.globalCompositeOperation='multiply';c.fillStyle='rgba(70,50,100,.32)';c.fillRect(0,0,1600,552);
+  c.globalCompositeOperation='screen';c.globalAlpha=.55;c.drawImage(fen,0,0,1600,552);c.globalAlpha=1;heads.forEach(h=>glow(c,h[0],h[1],h[2],.6));c.globalCompositeOperation='source-over'}
+ if(mode=='night'){c.globalCompositeOperation='multiply';c.globalAlpha=.78;c.fillStyle='#0b1630';c.fillRect(0,0,1600,552);c.globalAlpha=1;
+  c.globalCompositeOperation='screen';c.drawImage(fen,0,0,1600,552);heads.forEach(h=>glow(c,h[0],h[1],h[2],1));
+  [[303,470],[470,450],[940,430],[1580,400],[1330,432],[1410,438],[1505,445]].forEach(p=>{c.save();c.translate(p[0],p[1]);c.scale(1,.3);glow(c,0,0,60,.45);c.restore()});
+  c.globalCompositeOperation='source-over';c.fillStyle='#fff7d1';heads.forEach(h=>{c.beginPath();c.arc(h[0],h[1],h[2]*.17,0,7);c.fill()});
+  const r=rnd(5);c.fillStyle='#fff';for(let i=0;i<90;i++){const x=r()*1600,y=r()*190,s=r()*1.4+.5;if(x>640&&x<1060&&y>40)continue;if(y>150&&(x<480||x>1000))continue;c.globalAlpha=.4+r()*.6;c.beginPath();c.arc(x,y,s,0,7);c.fill()}c.globalAlpha=1;
+  c.fillStyle='rgba(226,232,240,.12)';c.beginPath();c.arc(1320,70,58,0,7);c.fill();c.fillStyle='#f1f5f9';c.beginPath();c.arc(1320,70,23,0,7);c.fill()}
+}
+function fitText(c,t,w,size,weight){do{c.font=`${weight} ${size}px ${F}`;size-=2}while(c.measureText(t).width>w&&size>10)}
+function cover(){const cv=document.getElementById('cover'),c=cv.getContext('2d'),W=1640,H=624;c.save();const sc=Math.max(W/1600,H/552);c.translate((W-1600*sc)/2,(H-552*sc)/2);c.scale(sc,sc);paint(c,MODE);c.restore();
+ if(TXT){const g=c.createLinearGradient(0,0,0,250);g.addColorStop(0,MODE=='day'?'rgba(15,23,42,.62)':'rgba(5,10,24,.78)');g.addColorStop(1,'rgba(5,10,24,0)');c.fillStyle=g;c.fillRect(0,0,W,250);
+  c.textAlign='center';c.textBaseline='middle';c.lineJoin='round';
+  const t='Private Wetterstation Bad König';fitText(c,t,1040,96,800);c.lineWidth=9;c.strokeStyle='rgba(8,14,30,.85)';c.strokeText(t,W/2,82);c.fillStyle='#fff';c.fillText(t,W/2,82);
+  if(TXT==2){const u='Regionales Wetter · Vorhersagen für den Odenwaldkreis · Unwetterhinweise';fitText(c,u,1040,40,700);c.lineWidth=6;c.strokeText(u,W/2,150);c.fillStyle='#fcd34d';c.fillText(u,W/2,150)}}
+ const m=document.getElementById('mob').getContext('2d');m.drawImage(cv,(1640-1109)/2,0,1109,624,0,0,640,360)}
+function arc(c,str,cx,cy,r,top,size,color,sp){c.font=`800 ${size}px ${F}`;c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';const ws=[...str].map(ch=>c.measureText(ch).width+sp),tot=ws.reduce((a,b)=>a+b,0);let acc=0;
+ [...str].forEach((ch,i)=>{const mid=(acc+ws[i]/2)/r;acc+=ws[i];c.save();c.translate(cx,cy);if(top){c.rotate(-tot/(2*r)+mid);c.fillText(ch,0,-r)}else{c.rotate(tot/(2*r)-mid);c.fillText(ch,0,r)}c.restore()})}
+function ring(c,bg,txt1,txt2){c.fillStyle=bg;c.beginPath();c.arc(540,540,536,0,7);c.fill();c.strokeStyle='#f59e0b';c.lineWidth=10;c.beginPath();c.arc(540,540,528,0,7);c.stroke();return()=>{c.strokeStyle='#f59e0b';c.lineWidth=8;c.beginPath();c.arc(540,540,402,0,7);c.stroke();
+ arc(c,'PRIVATE WETTERSTATION',540,540,465,true,64,txt1,9);arc(c,'BAD KÖNIG · ODENWALD',540,540,465,false,64,txt2,9)}}
+function profPaint(c,mode){const fin=ring(c,mode=='day'?'#16335c':'#0b1226','#7dd3fc','#ffffff');c.save();c.beginPath();c.arc(540,540,400,0,7);c.clip();const sc=1.5;c.translate(540-705*sc,540-290*sc);c.scale(sc,sc);paint(c,mode);c.restore();fin()}
+function profFlat(c){const fin=ring(c,'#16335c','#7dd3fc','#ffffff');c.save();c.beginPath();c.arc(540,540,400,0,7);c.clip();
+ let g=c.createLinearGradient(0,140,0,720);g.addColorStop(0,'#8db4ea');g.addColorStop(.6,'#c9b8ea');g.addColorStop(1,'#f8e3a6');c.fillStyle=g;c.fillRect(140,140,800,800);
+ c.lineCap='round';c.lineWidth=22;[['#f8e3a6',210,300,180],['#b9a4e6',700,260,200],['#e8f1fb',420,230,150],['#f8e3a6',760,420,130],['#b9a4e6',250,450,140]].forEach(s=>{c.strokeStyle=s[0];c.globalAlpha=.75;c.beginPath();c.moveTo(s[1],s[2]);c.quadraticCurveTo(s[1]+s[3]/2,s[2]-50,s[1]+s[3],s[2]);c.stroke()});c.globalAlpha=1;
+ c.fillStyle='#fbbf24';c.beginPath();c.arc(720,300,62,0,7);c.fill();c.fillStyle='#fff';[[640,340,46],[590,352,36],[690,356,40],[640,372,40]].forEach(b=>{c.beginPath();c.arc(b[0],b[1],b[2],0,7);c.fill()});
+ const R=(x,y,w,h,f)=>{c.fillStyle=f;c.fillRect(x,y,w,h)},P=(pts,f)=>{c.fillStyle=f;c.beginPath();pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();c.fill()};
+ R(140,700,800,240,'#3f9b6c');P([[430,700],[560,700],[700,940],[300,940]],'#b7a3d6');
+ R(150,560,190,140,'#f2cf63');R(150,650,190,50,'#b3432f');P([[140,560],[180,500],[330,520],[350,560]],'#8a4a32');
+ R(410,400,60,90,'#c8584b');P([[400,400],[440,262],[480,400]],'#2b3440');R(437,236,6,30,'#e2e8f0');R(428,246,24,5,'#e2e8f0');
+ P([[320,530],[360,476],[630,476],[670,530]],'#8f4630');R(335,530,320,110,'#f2cf63');R(335,640,320,60,'#b3271f');
+ c.fillStyle='#fde68a';c.beginPath();c.moveTo(470,700);c.lineTo(470,662);c.arc(495,662,25,Math.PI,0);c.lineTo(520,700);c.fill();
+ P([[650,548],[684,496],[890,496],[924,548]],'#d2622f');R(660,548,254,112,'#f6ecd6');R(660,660,254,40,'#b3432f');
+ c.fillStyle='#31456b';for(let i=0;i<6;i++)c.fillRect(358+i*50,552,22,34);for(let i=0;i<5;i++){c.fillRect(684+i*46,566,22,36);c.fillRect(684+i*46,618,22,30)}for(let i=0;i<3;i++)c.fillRect(170+i*56,578,24,38);
+ c.strokeStyle='#3a2a20';c.lineWidth=12;c.beginPath();c.moveTo(620,700);c.lineTo(620,560);c.stroke();c.lineWidth=6;[[-70,-90],[-30,-120],[30,-125],[75,-85],[-90,-40],[95,-45]].forEach(d=>{c.beginPath();c.moveTo(620,580);c.quadraticCurveTo(620+d[0]*.4,560+d[1]*.3,620+d[0],560+d[1]);c.stroke()});
+ c.restore();fin()}
+const PR=[['pd','Gemälde · Tag',c=>profPaint(c,'day')],['pu','Gemälde · Abendrot',c=>profPaint(c,'dusk')],['pn','Gemälde · Nacht',c=>profPaint(c,'night')],['pf','Gezeichnet · Schloss mit Sonne',profFlat]];
+function save(cv,name){cv.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name+'.png';a.click()})}
+function mock(){const s=document.getElementById(PSEL),m=document.getElementById('pmock').getContext('2d');m.clearRect(0,0,240,240);m.drawImage(s,0,0,240,240);document.querySelectorAll('.box').forEach(b=>b.classList.toggle('on',b.dataset.k==PSEL))}
+function all(){cover();document.getElementById('profs').innerHTML=PR.map(p=>`<div class="box" data-k="${p[0]}"><canvas id="${p[0]}" width="1080" height="1080"></canvas><b>${p[1]}</b><button class="dl" style="border-radius:8px;padding:6px 10px;font-weight:700;cursor:pointer" data-d="${p[0]}">⬇️ PNG</button></div>`).join('');
+ PR.forEach(p=>p[2](document.getElementById(p[0]).getContext('2d')));
+ document.querySelectorAll('.box').forEach(b=>b.onclick=e=>{if(e.target.dataset.d){save(document.getElementById(e.target.dataset.d),'facebook-profilbild-'+e.target.dataset.d);return}PSEL=b.dataset.k;mock()});mock()}
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{MODE=b.dataset.m;document.querySelectorAll('[data-m]').forEach(x=>x.classList.toggle('on',x==b));cover()});
+document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{TXT=+b.dataset.t;document.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('on',x==b));cover()});
+document.getElementById('dlCover').onclick=()=>save(document.getElementById('cover'),'facebook-titelbild-'+MODE);
+</script></body></html>
