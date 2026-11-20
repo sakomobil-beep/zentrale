@@ -2355,7 +2355,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 21:45 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 21:50 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2609,6 +2609,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Statistik erweitert</b> (19.11.2026, 23:55 Uhr): 🎬 Video-Auswertung mit Zuschauerverlauf je Video (wo springen Zuschauer ab, Hinweis „nach x Sekunden nur noch die Hälfte“), Länge, Ø Sehdauer, Aufrufe, mind. 30 Sek., Sehzeit, Ø Sehdauer je Videoart; 💬 Reaktionen nach Art, geteilt, Kommentare, gespeichert, Klickarten (Link, Bild, Video); 👥 Follower dazu/entfolgt pro Tag und Anteil Views von Followern vs. anderen; Kacheln Sehzeit gestern, Follower gestern, Instagram-Interaktionen; 📍 Herkunft der Follower (erscheint ab 100 Followern); Ablauf holt dafür zusätzliche Kennzahlen (nur lesen) <span class="tg">neu 19.11.</span></li>
 <li><b>Views-Diagramm mit Zahlen</b> (19.11.2026, 23:35 Uhr): Summe, Ø pro Tag und bester Tag über dem Diagramm, Achse mit Werten, Zahl über jedem Balken (bis 3 Wochen), Balken antippen zeigt Datum, Views und Video-Aufrufe; leere Tage vor dem Start werden ausgeblendet <span class="tg">neu 19.11.</span></li>
 <li><b>Statistik dauerhaft gespeichert</b> (19.11.2026, 23:30 Uhr): Tageswerte (Follower, Views, Video-Aufrufe, Interaktionen, Instagram-Reichweite) ohne Zeitgrenze für immer in fb/insights.json; neues Beitrags-Archiv – jeder Facebook- und Instagram-Beitrag bleibt dauerhaft mit seinen Zahlen erhalten und wird fortgeschrieben, solange Meta neue Werte liefert <span class="tg">neu 19.11.</span></li>
+<li><b>Titelbild-Vorschau: Testknöpfe wieder erreichbar</b> (20.11.2026, 21:50 Uhr): Vorschau-Fenster im Design-Zentrum höher, damit die Leiste „Testen“ nicht mehr abgeschnitten ist <span class="tg">neu 20.11.</span></li>
 <li><b>Titelbild-Vorschau: Torbogen beleuchtet</b> (20.11.2026, 21:45 Uhr): nachts schimmert warmes Licht im Torbogen des Alten Schlosses, mit leichtem Lichtschein aufs Pflaster davor <span class="tg">neu 20.11.</span></li>
 <li><b>Titelbild-Vorschau: 3 Laternen ergänzt</b> (20.11.2026, 21:40 Uhr): rechts an der Straße hinter den Bäumen drei Doppel-Laternen im Stil der vorhandenen (nach hinten kleiner), tagsüber sichtbar, nachts leuchtend mit Lichtschein am Boden <span class="tg">neu 20.11.</span></li>
 <li><b>Titelbild-Vorschau: natürlicheres Fensterlicht</b> (20.11.2026, 21:35 Uhr): statt gelber Flächen leuchtet nur noch das Glas der Fenster selbst (Rahmen und Sprossen bleiben sichtbar), mit Malstruktur und leichtem Lichtschein nach außen <span class="tg">neu 20.11.</span></li>
@@ -5366,7 +5367,7 @@ body.rf #cc .ccMehr>summary{display:none}
     document.getElementById('dzAdd').onclick=function(){var t=document.getElementById('dzNeu').value.trim();if(!t)return;db.designIdeen.push({id:'d'+Date.now(),text:t});save();dzR()};
    }
    lo.innerHTML='<div class="card"><h3 style="margin-top:0">🏷️ Logo-Varianten</h3><iframe class="dzFr" src="'+VB+'logo/" style="height:1500px" loading="lazy"></iframe></div>';
-   ti.innerHTML='<div class="card"><h3 style="margin-top:0">🖼️ Interaktives Titelbild</h3><iframe class="dzFr" src="'+VB+'" style="height:720px" loading="lazy"></iframe></div>';
+   ti.innerHTML='<div class="card"><h3 style="margin-top:0">🖼️ Interaktives Titelbild</h3><iframe class="dzFr" src="'+VB+'" style="height:1050px" loading="lazy"></iframe></div>';
    var _s=window.show;window.show=show=function(p){_s(p);if(p=='rfDesign')try{dzR()}catch(e){console.error(e)}};
   })()}catch(e){console.error('Design-Zentrum',e)}
   // Menü
