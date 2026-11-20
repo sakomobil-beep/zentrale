@@ -193,7 +193,7 @@ function blitz(){if(!GW)return;const x0=250+Math.random()*1100,m=zack(x0,-5,230+
 setInterval(()=>{if(GW&&r()<.5)blitz()},2500);
 const sty=document.createElement('style');sty.textContent='@keyframes lf{0%{offset-distance:0%;transform:rotate(0)}100%{offset-distance:100%;transform:rotate(720deg)}}';document.head.appendChild(sty);
 // Himmelsmaske: Polarlicht, Sterne, Sternschnuppen, ISS und Feuerwerk bleiben hinter Dächern und Ästen
-(function(){const m=E('mask',{id:'skyM','mask-type':'alpha'},DEF);E('image',{href:'himmel-maske.png',x:-16,y:-8,width:1632,height:568,preserveAspectRatio:'none'},m);['aurora','auroraR','stars','shoot','iss'].forEach(id=>{const n=document.getElementById(id),w=E('g',{mask:'url(#skyM)'});n.parentNode.insertBefore(w,n);w.appendChild(n)});
+(function(){const m=E('mask',{id:'skyM','mask-type':'alpha'},DEF);E('image',{href:'himmel-maske.png',x:-16,y:-8,width:1632,height:568,preserveAspectRatio:'none'},m);['aurora','auroraR','stars','shoot','iss','rainbow'].forEach(id=>{const n=document.getElementById(id),w=E('g',{mask:'url(#skyM)'});n.parentNode.insertBefore(w,n);w.appendChild(n)});
  FC.style.webkitMaskImage=FC.style.maskImage='url(himmel-maske.png)';FC.style.webkitMaskSize=FC.style.maskSize='102% 102.9%';FC.style.webkitMaskPosition=FC.style.maskPosition='50% 50%'})();
 // Effekt-Schalter
 const FX={gewitter:['⚡ Gewitter',v=>{GW=v;GD.setAttribute('opacity',v?.5:0);if(v)setTimeout(blitz,400)}],sturm:['🌪 Sturm',v=>{op('storm',v);document.getElementById('rain').setAttribute('transform',v?'skewX(-25)':'')}],frost:['🥶 Frost/Reif',v=>op('frost',v)],
