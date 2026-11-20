@@ -27,6 +27,7 @@ h1{font-size:22px;margin:4px 0}h2{font-size:13px;text-transform:uppercase;letter
 <div style="color:#94a3b8;font-size:13px">Nur Vorschau – nichts davon ist auf der echten Seite. Farbschema umschalten:</div>
 <div class="sw"><button data-p="goldNight" class="on">Gold / Nachtblau</button><button data-p="castleClassic">Klassisch Rot / Gold (Schloss)</button></div>
 
+<h2>★ Badge passend zu deinem Gemälde-Profilbild</h2><div style="color:#94a3b8;font-size:13px;margin-bottom:8px">Feste Farben wie im Profilbild (Dunkelblau, Gold, Himmelblau) – unabhängig vom Farbschema oben.</div><div class="row" id="gm" style="align-items:stretch"></div>
 <h2>1 · Variante D – Logo im Seitenkopf (dunkel und hell)</h2>
 <div class="grid">
  <div><div class="site dark"><div class="head"><div class="logoD" id="dDark"></div></div><div class="img"></div></div><div class="lab">Dunkler Modus (abends)</div><div id="b1"></div></div>
@@ -321,4 +322,18 @@ function render(k){CUR=k;const p=palettes[k];
  document.getElementById('bdg').innerHTML=BN.map((n,i)=>{LOGOS['badge'+(i+1)+'-hell']=badgeLogo(i,p,light[k]);LOGOS['badge'+(i+1)+'-dunkel']=badgeLogo(i,p);return `<div class="box" style="width:340px;padding:10px"><div style="background:#eef2f7;border-radius:10px;padding:8px 10px">${LOGOS['badge'+(i+1)+'-hell']}</div><div style="background:#19202a;border-radius:10px;padding:8px 10px;margin-top:6px">${LOGOS['badge'+(i+1)+'-dunkel']}</div><b style="color:#e2e8f0;display:block;margin-top:8px">${i+1} · ${n}</b><div style="display:flex;gap:10px;justify-content:center;align-items:center;font-size:11px"><span>Hell</span>${dlb('badge'+(i+1)+'-hell')}<span>Dunkel</span>${dlb('badge'+(i+1)+'-dunkel')}</div></div>`}).join('');
  document.querySelectorAll('.sw button').forEach(b=>b.classList.toggle('on',b.dataset.p==k))}
 document.querySelectorAll('.sw button').forEach(b=>b.onclick=()=>render(b.dataset.p));render('goldNight');
+
+(function(){const FF='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif',img=new Image();
+ const V=[['rund','Rund mit Goldring'],['eckig','Abgerundetes Quadrat'],['band','Rund mit Schriftband-Streifen']];
+ function shape(c,k,cx,cy,r){c.beginPath();if(k=='eckig')c.roundRect(cx-r,cy-r,2*r,2*r,r*.42);else c.arc(cx,cy,r,0,7)}
+ function badge(c,k,cx,cy,r){c.save();shape(c,k,cx,cy,r);c.clip();const sc=.92*r/132;c.drawImage(img,cx-640*sc,cy-262*sc,1600*sc,552*sc);
+  if(k=='band'){c.fillStyle='rgba(11,18,38,.93)';c.fillRect(cx-r,cy+r*.3,2*r,r*.4);c.fillStyle='#f59e0b';c.fillRect(cx-r,cy+r*.3,2*r,r*.045);c.fillRect(cx-r,cy+r*.655,2*r,r*.045)}c.restore();
+  c.lineWidth=r*.075;c.strokeStyle='#f59e0b';shape(c,k,cx,cy,r-r*.0375);c.stroke();c.lineWidth=Math.max(1,r*.015);c.strokeStyle='#0b1226';shape(c,k,cx,cy,r);c.stroke()}
+ function logo(cv,k,dark){const c=cv.getContext('2d');c.clearRect(0,0,cv.width,cv.height);badge(c,k,144,144,134);c.fillStyle='rgba(245,158,11,.45)';c.fillRect(310,54,4,180);
+  c.textBaseline='alphabetic';c.textAlign='left';try{c.letterSpacing='6px'}catch(e){}c.font=`800 37px ${FF}`;c.fillStyle=dark?'#7dd3fc':'#0369a1';c.fillText('PRIVATE WETTERSTATION',348,112);try{c.letterSpacing='0px'}catch(e){}
+  c.font=`900 104px ${FF}`;c.fillStyle=dark?'#ffffff':'#0b1226';c.fillText('Bad König',343,212)}
+ window.gmSave=function(id,name){document.getElementById(id).toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name+'.png';a.click()})};
+ img.onload=function(){document.getElementById('gm').innerHTML=V.map(v=>`<div class="box" style="width:440px;padding:10px"><div style="background:#eef2f7;border-radius:10px;padding:8px 10px"><canvas id="gm-${v[0]}-hell" width="1040" height="288" style="width:100%;display:block"></canvas></div><div style="background:#19202a;border-radius:10px;padding:8px 10px;margin-top:6px"><canvas id="gm-${v[0]}-dunkel" width="1040" height="288" style="width:100%;display:block"></canvas></div><canvas id="gm-${v[0]}-icon" width="512" height="512" style="display:none"></canvas><b style="color:#e2e8f0;display:block;margin-top:8px">${v[1]}</b><div class="dlb"><button onclick="gmSave('gm-${v[0]}-hell','logo-gemaelde-${v[0]}-hell')">⬇️ Hell</button><button onclick="gmSave('gm-${v[0]}-dunkel','logo-gemaelde-${v[0]}-dunkel')">⬇️ Dunkel</button><button onclick="gmSave('gm-${v[0]}-icon','badge-gemaelde-${v[0]}')">⬇️ Nur Badge</button></div></div>`).join('');
+  V.forEach(v=>{logo(document.getElementById(`gm-${v[0]}-hell`),v[0],false);logo(document.getElementById(`gm-${v[0]}-dunkel`),v[0],true);badge(document.getElementById(`gm-${v[0]}-icon`).getContext('2d'),v[0],256,256,252)})};
+ img.src='../schlossplatz.jpg'})();
 </script></body></html>
