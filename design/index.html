@@ -14,7 +14,7 @@ h1{margin:4px 0 10px;font-size:34px;color:#fff}nav{display:flex;gap:22px;justify
 <nav><span>Aktuell Bad König</span><span>Aktuell Odenwald</span><span>Vorhersage</span><span>Grafiken</span><span>Historie</span><span>Statistik</span><span>Klima</span><span>Station</span><span>Webcams</span></nav>
 <div class="hero"><svg viewBox="0 0 1600 552" xmlns="http://www.w3.org/2000/svg">
 <defs><radialGradient id="lg"><stop offset="0" stop-color="#fff3b0" stop-opacity=".95"/><stop offset=".4" stop-color="#f59e0b" stop-opacity=".35"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
-<linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cbd5e1" stop-opacity="0"/><stop offset="1" stop-color="#cbd5e1" stop-opacity=".6"/></linearGradient></defs>
+<filter id="wGl"><feGaussianBlur stdDeviation="1.5"/></filter><linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cbd5e1" stop-opacity="0"/><stop offset="1" stop-color="#cbd5e1" stop-opacity=".6"/></linearGradient></defs>
 <g id="paint" style="transition:transform .6s ease-out"><image id="bgimg" href="schlossplatz.jpg" x="-16" y="-8" width="1632" height="568" preserveAspectRatio="none"/></g>
 <rect id="night" class="fx" width="1600" height="552" fill="#0b1630" style="mix-blend-mode:multiply" opacity="0"/>
 <rect id="grey" class="fx" width="1600" height="552" fill="#5b6675" style="mix-blend-mode:color" opacity="0"/>
@@ -46,9 +46,32 @@ function el(t,a,p){const e=document.createElementNS(ns,t);for(const k in a)e.set
 const St=document.getElementById('stars');for(let i=0;i<70;i++){const x=r()*1600,y=r()*200;if(x>650&&x<1050&&y>60)continue;el('circle',{cx:x,cy:y,r:(r()*1.4+.6).toFixed(1),fill:'#fff',style:`animation:tw ${2+r()*3}s ease-in-out ${r()*3}s infinite`},St)}
 
 const L=document.getElementById('lamps');
-[[468,410,40],[940,382,46],[1575,352,40],[298,418,30],[1073,395,30],[1150,395,30],[666,398,30]].forEach(([x,y,R])=>el('circle',{cx:x,cy:y,r:R,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L));
-// warmes Fensterlicht
-[[190,300],[250,300],[600,300],[640,300],[1060,300],[1140,300],[1200,320],[1220,330],[1040,375],[340,320]].forEach(([x,y])=>el('circle',{cx:x,cy:y,r:34,fill:'url(#lg)',opacity:.55,style:'mix-blend-mode:screen'},L));
+el('circle',{cx:283.9,cy:425.2,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:283.9,cy:425.2,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:302.2,cy:425.2,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:302.2,cy:425.2,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:463.4,cy:409.8,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:463.4,cy:409.8,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:928.5,cy:381.0,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:928.5,cy:381.0,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:943.8,cy:376.8,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:943.8,cy:376.8,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:958.1,cy:381.0,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:958.1,cy:381.0,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:909.1,cy:398.5,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:909.1,cy:398.5,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:1585.4,cy:354.2,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:1585.4,cy:354.2,r:4,fill:'#fff7d1'},L);
+el('circle',{cx:1607.8,cy:354.2,r:22,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L);el('circle',{cx:1607.8,cy:354.2,r:4,fill:'#fff7d1'},L);
+el('ellipse',{cx:293.1,cy:475.6,rx:70,ry:22,fill:'url(#lg)',opacity:.45,style:'mix-blend-mode:screen'},L);
+el('ellipse',{cx:463.4,cy:455.0,rx:70,ry:22,fill:'url(#lg)',opacity:.45,style:'mix-blend-mode:screen'},L);
+el('ellipse',{cx:942.8,cy:434.5,rx:70,ry:22,fill:'url(#lg)',opacity:.45,style:'mix-blend-mode:screen'},L);
+el('ellipse',{cx:1595.6,cy:403.6,rx:70,ry:22,fill:'url(#lg)',opacity:.45,style:'mix-blend-mode:screen'},L);
+el('rect',{x:927.5,y:320.3,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:991.8,y:320.3,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:1066.2,y:320.3,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:1139.7,y:320.3,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:1223.3,y:320.3,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:961.2,y:369.6,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:1032.6,y:369.6,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:1144.8,y:369.6,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:1226.4,y:369.6,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:241.0,y:334.7,width:16,height:24,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:355.3,y:334.7,width:16,height:24,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:443.0,y:334.7,width:16,height:24,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
+el('rect',{x:403.2,y:412.9,width:14,height:22,fill:'#fbbf24',opacity:.5,filter:'url(#wGl)',style:'mix-blend-mode:screen'},L);
 const R=document.getElementById('rain');for(let i=0;i<130;i++){const x=r()*1680,y=r()*500;el('line',{x1:x,y1:y,x2:x-9,y2:y+20,stroke:'#bae6fd','stroke-width':1.4,'stroke-linecap':'round',style:`animation:rf ${.6+r()*.4}s linear ${r()*1.5}s infinite`},R)}
 const Sn=document.getElementById('snow');for(let i=0;i<160;i++){const x=r()*1650-40,y=r()*540;el('circle',{cx:x,cy:y,r:(r()*2+1).toFixed(1),fill:'#fff',opacity:.85,style:`animation:sf ${5+r()*5}s linear ${-r()*8}s infinite`},Sn)}
 const M={day:{night:0,grey:0,stars:0,lamps:0,fogl:0,rain:0,snow:0},night:{snow:0,night:.78,grey:0,stars:1,lamps:1,fogl:.15,rain:0},
