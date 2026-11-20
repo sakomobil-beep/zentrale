@@ -2340,7 +2340,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 07:45 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>20.11.2026, 08:10 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2493,7 +2493,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 #wf td,#wf th{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.2);vertical-align:top}
 </style>
 <div class="card">
-  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 20.11.2026, 07:45 Uhr</small></div>
+  <div class="wfh"><h3 style="margin-top:0">🌦️ Wetterfunktionen – was wetter-badkoenig.de alles kann</h3><small style="opacity:.65">Stand: 20.11.2026, 08:10 Uhr</small></div>
   <p style="margin:4px 0 0;opacity:.8">Übersicht aller Funktionen der Website „Private Wetterstation Bad König“ (Station IBADKN33, Bresser 8-in-1, 184,5 m ü. NN, seit 20.01.2026), der Facebook-Automatik und der Hintergrund-Abläufe – immer der aktuelle Stand; Neues ist mit „neu TT.MM.“ markiert.</p>
   <p style="margin:8px 0 0"><a class="wxbtn" href="https://wetter-badkoenig.de" target="_blank" rel="noopener">Zur Website ›</a></p>
 </div>
@@ -2579,6 +2579,7 @@ button.teilen { display:none !important; }   /* Teilen-Knöpfe ausgeblendet – 
 <li><b>Tagesplan</b>: eine Liste für Facebook, Instagram und Threads mit Plattform-Markierungen, „nachreichen“-Knopf, Heute/Morgen/Woche, Kurzbilanz und „Als Nächstes“; Reiter Plan · Threads nachreichen · Was geht wohin? <span class="tg">neu 19.11.</span></li>
 <li><b>Control Center neu (Refresh)</b>: 6 Bereiche mit Reitern – 🟢 Start (Status, roter Fehler-Hinweis, Als Nächstes, Schnellknöpfe), 📅 Tagesplan (Facebook &amp; Instagram · Threads · Threads nachreichen), 🎬 Max (Videos · Storys · Bilder · Unwetter · Sondervideos · Wetterwissen · Zum Selbst-Posten), 🌐 Website (Besucher · Lernkurve · Newsticker), 🛠️ Technik (Fehler · Zeitplan &amp; Zugänge · Notizen · Ideen · Sicherung), 📖 Handbuch (Website-Funktionen · Was kann Max); alte Ansicht per „↩︎ Alte Ansicht“ und als Sicherung backup-control-center-2026-11-19.html <span class="tg">neu 19.11.</span></li>
 <li>Control Center aufgeräumt: Menü in Gruppen (Posten &amp; Inhalte, Website, Nachschlagen, Werkstatt), zusammengelegt mit Umschalter oben: Warnungen + Specials, Stories + Bildposts, Besucher + Lernkurve, Notizen + Ideen; Übersicht mit 4 Statuskacheln (Station sendet?, Als Nächstes, DWD, Abläufe), Schnellknöpfen, Tagesplan nur heute (Morgen auf Klick), Abläufe &amp; Weckrufe zum Aufklappen <span class="tg">neu 19.11.</span></li>
+<li><b>„Heute vor 1 Jahr“ aus eigenem Archiv</b> (20.11.2026, 08:10 Uhr): Vergleichswerte kommen zuerst aus data/archiv/tage-JJJJ.json, WU nur noch, wenn der Tag dort fehlt (spart WU-Abfragen, Kasten fehlte heute früh wegen WU-Aussetzer); gibt es für den Tag gar keine Werte (z. B. 20.11. und 25.11.2025 – IBADKN32 hat damals nichts aufgezeichnet, auch bei WU leer), bleibt der Kasten sichtbar mit Hinweis „Für diesen Tag gibt es keine Vergleichswerte“ statt einer Lücke <span class="tg">neu 20.11.</span></li>
 <li><b>Kreis-Vorhersage: Regen je Ort</b> (20.11.2026, 07:45 Uhr): Spalte „Regen“ und Karte zeigen jetzt Regenmenge und Regenrisiko aus der eigenen Modellmischung jedes Ortes (vorher überall der Kreiswert der gemeinsamen Einstufung, z. B. 17,8 mm); Symbol und Regen-Stufe kommen weiter aus der gemeinsamen Einstufung, damit nichts Max widerspricht; Bad König unverändert <span class="tg">neu 20.11.</span></li>
 <li><b>Kreis-Vorhersage: Höchst ohne Daten behoben</b> (20.11.2026, 07:40 Uhr): schlug der Abruf der Modellwerte für einen Ort fehl, blieb er bis zu 30 Min. leer („–“ / „keine Daten“, heute früh Höchst i. Odw.); jetzt automatisch bis zu zwei weitere Versuche nach je 2 Sek., bei Dauerfehler neuer Versuch nach 5 Min. <span class="tg">neu 20.11.</span></li>
 <li><b>Control Center Refresh</b> (19.11.2026, 22:00 Uhr): komplett neu sortiert – 6 statt 15 Menüpunkte, Reiter oben je Bereich, Tagesplan und Threads als eigener Bereich, Abläufe &amp; Weckrufe und Schlüssel unter Technik › Zeitplan &amp; Zugänge, Wetterfunktionen + Was kann Max als Handbuch; nichts entfernt. Alte Ansicht bleibt über „↩︎ Alte Ansicht“ (unten im Menü) und als Datei backup-control-center-2026-11-19.html erhalten <span class="tg">neu 19.11.</span></li>
