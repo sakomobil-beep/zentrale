@@ -15,20 +15,36 @@ h1{margin:4px 0 10px;font-size:34px;color:#fff}nav{display:flex;gap:22px;justify
 <div class="hero"><svg viewBox="0 0 1600 552" xmlns="http://www.w3.org/2000/svg">
 <defs><radialGradient id="lg"><stop offset="0" stop-color="#fff3b0" stop-opacity=".95"/><stop offset=".4" stop-color="#f59e0b" stop-opacity=".35"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
 <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cbd5e1" stop-opacity="0"/><stop offset="1" stop-color="#cbd5e1" stop-opacity=".6"/></linearGradient></defs>
-<g id="paint" style="transition:transform .6s ease-out"><image href="schlossplatz.jpg" x="-16" y="-8" width="1632" height="568" preserveAspectRatio="none"/></g>
+<g id="paint" style="transition:transform .6s ease-out"><image id="bgimg" href="schlossplatz.jpg" x="-16" y="-8" width="1632" height="568" preserveAspectRatio="none"/></g>
 <rect id="night" class="fx" width="1600" height="552" fill="#0b1630" style="mix-blend-mode:multiply" opacity="0"/>
 <rect id="grey" class="fx" width="1600" height="552" fill="#5b6675" style="mix-blend-mode:color" opacity="0"/>
 <g id="stars" class="fx" opacity="0"></g>
 <g id="lamps" class="fx" opacity="0"></g>
 <g id="fogl" class="fx" opacity="0"><rect x="-80" y="330" width="1760" height="222" fill="url(#fog)" style="animation:fd 16s ease-in-out infinite"/></g>
-<g id="rain" class="fx" opacity="0"></g><g id="snow" class="fx" opacity="0"></g></svg></div>
+<g id="rain" class="fx" opacity="0"></g><g id="snow" class="fx" opacity="0"></g>
+<defs><radialGradient id="frG" cx="50%" cy="50%" r="70%"><stop offset=".55" stop-color="#e0f2fe" stop-opacity="0"/><stop offset="1" stop-color="#e0f2fe" stop-opacity=".75"/></radialGradient>
+<linearGradient id="dwG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c3aed" stop-opacity=".55"/><stop offset=".35" stop-color="#fb7185" stop-opacity=".5"/><stop offset=".6" stop-color="#f59e0b" stop-opacity=".35"/><stop offset=".8" stop-color="#f59e0b" stop-opacity="0"/></linearGradient>
+<linearGradient id="auG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f43f5e" stop-opacity=".0"/><stop offset=".3" stop-color="#f43f5e" stop-opacity=".35"/><stop offset=".7" stop-color="#22c55e" stop-opacity=".55"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient>
+<filter id="blr"><feGaussianBlur stdDeviation="14"/></filter><filter id="glw"><feGaussianBlur stdDeviation="3"/></filter>
+<mask id="moonM"><rect x="-40" y="-40" width="80" height="80" fill="#fff"/><circle id="moonSh" cx="0" cy="0" r="24" fill="#000"/></mask></defs>
+<rect id="dawn" class="fx" width="1600" height="552" fill="url(#dwG)" style="mix-blend-mode:soft-light" opacity="0"/>
+<g id="aurora" class="fx" opacity="0" filter="url(#blr)" style="mix-blend-mode:screen"><path d="M0,40 Q200,140 400,60 T800,80 T1200,50 T1600,90 L1600,230 Q1200,170 800,220 T0,200Z" fill="url(#auG)"><animate attributeName="d" dur="9s" repeatCount="indefinite" values="M0,40 Q200,140 400,60 T800,80 T1200,50 T1600,90 L1600,230 Q1200,170 800,220 T0,200Z;M0,70 Q200,40 400,110 T800,40 T1200,100 T1600,50 L1600,230 Q1200,200 800,190 T0,230Z;M0,40 Q200,140 400,60 T800,80 T1200,50 T1600,90 L1600,230 Q1200,170 800,220 T0,200Z"/></path></g>
+<g id="rainbow" class="fx" opacity="0" style="mix-blend-mode:screen" filter="url(#glw)"><path d="M150,470 A650,520 0 0,1 1450,470" fill="none" stroke="#8b5cf6" stroke-width="10" stroke-opacity=".35" transform="translate(0,0) scale(1,1)"/><path d="M150,470 A650,520 0 0,1 1450,470" fill="none" stroke="#3b82f6" stroke-width="10" stroke-opacity=".35" transform="translate(0,-10) scale(1,1)"/><path d="M150,470 A650,520 0 0,1 1450,470" fill="none" stroke="#22c55e" stroke-width="10" stroke-opacity=".35" transform="translate(0,-20) scale(1,1)"/><path d="M150,470 A650,520 0 0,1 1450,470" fill="none" stroke="#facc15" stroke-width="10" stroke-opacity=".35" transform="translate(0,-30) scale(1,1)"/><path d="M150,470 A650,520 0 0,1 1450,470" fill="none" stroke="#f97316" stroke-width="10" stroke-opacity=".35" transform="translate(0,-40) scale(1,1)"/><path d="M150,470 A650,520 0 0,1 1450,470" fill="none" stroke="#ef4444" stroke-width="10" stroke-opacity=".35" transform="translate(0,-50) scale(1,1)"/></g>
+<g id="moonL" class="fx" opacity="0"><g transform="translate(1320,70)"><circle r="60" fill="#e2e8f0" opacity=".1"/><circle r="24" fill="#f1f5f9" mask="url(#moonM)"/></g></g>
+<g id="iss" class="fx" opacity="0"><circle r="3.5" fill="#fff" filter="url(#glw)"><animateMotion dur="14s" repeatCount="indefinite" path="M-20,190 Q800,40 1620,150"/></circle><circle r="2.5" fill="#fff"><animateMotion dur="14s" repeatCount="indefinite" path="M-20,190 Q800,40 1620,150"/></circle></g>
+<g id="shoot" class="fx" opacity="0"></g><g id="fw" class="fx" opacity="0"></g>
+<g id="market" class="fx" opacity="0"></g>
+<g id="storm" class="fx" opacity="0"></g>
+<rect id="frost" class="fx" width="1600" height="552" fill="url(#frG)" opacity="0"/>
+<rect id="flash" width="1600" height="552" fill="#fff" opacity="0"/><polyline id="bolt" points="" fill="none" stroke="#fff" stroke-width="4" opacity="0" filter="url(#glw)"/>
+<text id="tapinfo" x="800" y="530" text-anchor="middle" fill="#fff" font-size="22" font-family="system-ui" opacity="0" style="paint-order:stroke;stroke:#000a;stroke-width:5px"></text></svg></div>
 <div class="card" style="margin-bottom:12px"><b>Erkannt:</b> <span id="status">lade Stationswerte …</span></div><div class="card" style="margin-top:0"><b>Amtliche Warnungen für Odenwaldkreis</b><br><span style="opacity:.7">Dauerregen bis morgen 0 Uhr · Glätte morgen 2–9 Uhr</span></div></div>
-<div class="demo">Testen: <button onclick="auto()">🔄 Automatisch</button><button onclick="setMode('day')">☀️ Tag</button><button onclick="setMode('night')">🌙 Nacht</button><button onclick="setMode('rain')">🌧 Regen</button><button onclick="setMode('fog')">🌫 Nebel</button><button onclick="setMode('snow')">❄️ Schnee</button></div>
+<div class="card" id="fxp" style="margin-top:12px"><b>Effekte testen</b> <small style="opacity:.7">(an/aus – kombinierbar)</small><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px" id="fxb"></div></div><div class="demo">Testen: <button onclick="auto()">🔄 Automatisch</button><button onclick="setMode('day')">☀️ Tag</button><button onclick="setMode('night')">🌙 Nacht</button><button onclick="setMode('rain')">🌧 Regen</button><button onclick="setMode('fog')">🌫 Nebel</button><button onclick="setMode('snow')">❄️ Schnee</button></div>
 <script>
 const ns='http://www.w3.org/2000/svg';let s=3;const r=()=>(s=s*16807%2147483647)/2147483647;
 function el(t,a,p){const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
 const St=document.getElementById('stars');for(let i=0;i<70;i++){const x=r()*1600,y=r()*200;if(x>650&&x<1050&&y>60)continue;el('circle',{cx:x,cy:y,r:(r()*1.4+.6).toFixed(1),fill:'#fff',style:`animation:tw ${2+r()*3}s ease-in-out ${r()*3}s infinite`},St)}
-el('circle',{cx:1320,cy:70,r:60,fill:'#e2e8f0',opacity:.12},St);el('circle',{cx:1320,cy:70,r:24,fill:'#f1f5f9'},St);
+
 const L=document.getElementById('lamps');
 [[468,410,40],[940,382,46],[1575,352,40],[298,418,30],[1073,395,30],[1150,395,30],[666,398,30]].forEach(([x,y,R])=>el('circle',{cx:x,cy:y,r:R,fill:'url(#lg)',style:'animation:lp 4s ease-in-out infinite;mix-blend-mode:screen'},L));
 // warmes Fensterlicht
@@ -53,7 +69,47 @@ function auto(){const alt=sunAlt(Date.now());const dark=alt<-6?1:alt<2?(2-alt)/8
   if(hu>=97&&w<6&&!pr){v.fogl=1;v.grey=Math.max(v.grey,.6);t.push(`Nebel (Feuchte ${hu} %)`)}
   t.push(`Station: ${T.toFixed(1).replace('.',',')} °C, ${hu} %, Stand ${live.obsTimeLocal.slice(11,16)} Uhr`)}
  else t.push('Stationswerte nicht erreichbar – nur Tageszeit');
+ if(live){const m=live.metric;if(m.temp<0){op('frost',1);t.push('Frost')}else if(!ON.frost)op('frost',0);if((m.windGust||0)>=50){FX.sturm[1](1);t.push(`Sturm (Böen ${m.windGust} km/h)`)}}
+ if(alt>-6&&alt<4){op('dawn',1);t.splice(0,1,'Dämmerung')}else if(!ON.daemmerung)op('dawn',0);
+ op('moonL',dark>.6?1:0);document.querySelectorAll('.fx').forEach(e=>e.style.transition='opacity 30s');
  setFx(v);document.getElementById('status').textContent=t.join(' · ')}
+
+const ns2='http://www.w3.org/2000/svg';function E(t,a,p){const e=document.createElementNS(ns2,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
+// Sturm-Blätter
+const SG=document.getElementById('storm');for(let i=0;i<40;i++){const l=E('ellipse',{cx:0,cy:0,rx:7,ry:3.5,fill:['#d97706','#b45309','#f59e0b','#92400e'][i%4]},SG);l.style.animation=`lf ${1.4+r()*1.4}s linear ${-r()*3}s infinite`;l.style.offsetPath=`path("M${1650},${r()*480} C1200,${r()*552} 600,${r()*552} -60,${r()*552}")`}
+// Markt-Lichter
+const MK=document.getElementById('market');[[160,420],[240,430],[330,440],[420,430],[520,445],[700,450],[860,440],[1000,450],[1120,440],[1240,445],[1380,430],[1480,440]].forEach(([x,y])=>{E('circle',{cx:x,cy:y,r:46,fill:'url(#lg)',style:'mix-blend-mode:screen;animation:lp 3s ease-in-out infinite'},MK)});
+
+// Mondphase
+(function(){const syn=29.530588853,ref=Date.UTC(2000,0,6,18,14)/864e5,ph=(((Date.now()/864e5-ref)%syn)+syn)%syn/syn;const sh=document.getElementById('moonSh');
+ const x=ph<.5?-48*(ph*2)+0:48*((1-ph)*2);sh.setAttribute('cx',ph<.5?(-48*ph*2+0)*-1+0:-x);window.MOON=ph})();
+// Sternschnuppen
+const SH=document.getElementById('shoot');setInterval(()=>{if(+SH.getAttribute('opacity')<.5)return;const x=200+r()*1200,y=20+r()*120,l=E('line',{x1:x,y1:y,x2:x-90,y2:y+40,stroke:'#fff','stroke-width':2.2,'stroke-linecap':'round',opacity:0},SH);
+ l.animate([{opacity:0,transform:'translate(0,0)'},{opacity:1,offset:.2},{opacity:0,transform:'translate(-260px,115px)'}],{duration:1100,easing:'ease-out'});setTimeout(()=>l.remove(),1200)},1600);
+// Feuerwerk
+const FW=document.getElementById('fw');setInterval(()=>{if(+FW.getAttribute('opacity')<.5)return;const x=250+r()*1100,y=50+r()*140,c=['#f43f5e','#facc15','#22d3ee','#a3e635','#f472b6','#fb923c'][Math.floor(r()*6)];
+ for(let i=0;i<26;i++){const a=i/26*Math.PI*2,d=E('circle',{cx:x,cy:y,r:3,fill:c},FW);d.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${Math.cos(a)*90}px,${Math.sin(a)*90+30}px)`,opacity:0}],{duration:1500,easing:'cubic-bezier(.1,.7,.3,1)'});setTimeout(()=>d.remove(),1550)}},900);
+// Gewitter
+const FL=document.getElementById('flash'),BO=document.getElementById('bolt');let GW=0;
+function blitz(){if(!GW)return;let x=300+r()*1000,y=0,pts=[x+','+y];while(y<300){x+=(r()-.5)*70;y+=30+r()*30;pts.push(x.toFixed(0)+','+y.toFixed(0))}BO.setAttribute('points',pts.join(' '));
+ BO.animate([{opacity:1},{opacity:0}],{duration:350});FL.animate([{opacity:.55},{opacity:0},{opacity:.35},{opacity:0}],{duration:450})}
+setInterval(()=>{if(GW&&r()<.5)blitz()},2500);
+const sty=document.createElement('style');sty.textContent='@keyframes lf{0%{offset-distance:0%;transform:rotate(0)}100%{offset-distance:100%;transform:rotate(720deg)}}';document.head.appendChild(sty);
+// Effekt-Schalter
+const FX={gewitter:['⚡ Gewitter',v=>{GW=v}],sturm:['🌪 Sturm',v=>{op('storm',v);document.getElementById('rain').setAttribute('transform',v?'skewX(-25)':'')}],frost:['🥶 Frost/Reif',v=>op('frost',v)],
+ mond:['🌙 Mondphase',v=>op('moonL',v)],daemmerung:['🌅 Dämmerung',v=>op('dawn',v)],regenbogen:['🌈 Regenbogen',v=>op('rainbow',v)],polarlicht:['🟢 Polarlicht',v=>op('aurora',v)],
+ iss:['🛰 ISS',v=>op('iss',v)],sternschnuppen:['🌠 Sternschnuppen',v=>op('shoot',v)],silvester:['🎆 Silvester',v=>op('fw',v)],markt:['🎄 Nikolausmarkt',v=>op('market',v)],
+ ersterschnee:['❄️ Erster Schnee',v=>{op('snow',v);document.querySelectorAll('#snow circle').forEach((c,i)=>{c.style.animationDuration=v?(2+i%3)+'s':''})}],weihnachten:['🎅 Weihnachtsbild',v=>document.getElementById('bgimg').setAttribute('href',v?'titel-weihnachten.jpg':'schlossplatz.jpg')]};
+const ON={};function op(id,v){document.getElementById(id).setAttribute('opacity',v?1:0)}
+document.getElementById('fxb').innerHTML=Object.keys(FX).map(k=>`<button data-k="${k}" style="border:1px solid #ffffff33;background:#26303d;color:#e2e8f0;border-radius:8px;padding:5px 9px;cursor:pointer">${FX[k][0]}</button>`).join('');
+document.querySelectorAll('#fxb button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;ON[k]=!ON[k];FX[k][1](ON[k]);b.style.background=ON[k]?'#f59e0b':'#26303d';b.style.color=ON[k]?'#111':'#e2e8f0';if(k=='mond'||k=='polarlicht'||k=='iss'||k=='sternschnuppen'||k=='silvester'||k=='markt'){if(ON[k]&&document.getElementById('night').getAttribute('opacity')<.3)setMode('night')}});
+// Antippen-Info
+let WHY='';document.querySelector('.hero').addEventListener('click',()=>{const t=document.getElementById('tapinfo');t.textContent=document.getElementById('status').textContent;t.animate([{opacity:0},{opacity:1,offset:.1},{opacity:1,offset:.85},{opacity:0}],{duration:4000})});
+// Handy neigen
+window.addEventListener('deviceorientation',e=>{if(e.gamma==null)return;document.getElementById('paint').style.transform=`translate(${-Math.max(-20,Math.min(20,e.gamma))*.7}px,${-Math.max(-20,Math.min(20,(e.beta||45)-45))*.3}px)`});
+// sanfter Wechsel im Automatik-Modus
+document.querySelectorAll('.fx').forEach(e=>e.style.transition='opacity 1.2s');
+
 const q=new URLSearchParams(location.search).get('m');
 fetch('https://wetter-badkoenig.sakomobil.workers.dev/',{cache:'no-store'}).then(r=>r.json()).then(j=>{live=j.observations[0]}).catch(()=>fetch('https://wetter-badkoenig.de/data/live.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{live=j.cur.observations[0]}).catch(()=>{})).finally(()=>{q?setMode(q):auto()});
 setInterval(()=>{if(!q)auto()},60000);
