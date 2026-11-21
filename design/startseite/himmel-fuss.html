@@ -5,8 +5,12 @@ var H=document.documentElement;H.classList.add('himmel');
 var here=location.href.split('#')[0];
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.setAttribute('href',here+a.getAttribute('href'))});
 /* Himmel */
-var hs=document.createElement('div');hs.id='hs';hs.className='dm-keep';hs.innerHTML='<div class="sterne"></div><div class="gestirn"></div><div class="wolke" style="width:200px;top:130px;animation-delay:-20s"></div><div class="wolke" style="width:280px;top:290px;animation-delay:-60s;animation-duration:130s"></div><div class="wolke" style="width:160px;top:70px;animation-delay:-85s;animation-duration:110s"></div>';
+var hs=document.createElement('div');hs.id='hs';hs.className='dm-keep';hs.innerHTML='<div class="sterne"></div><div class="gestirn"></div>';
 document.body.insertBefore(hs,document.body.firstChild);
+/* Wolken: kleiner, mehr, nur oberhalb des Schlossbilds (21.11.2026) */
+function wolken(){[].forEach.call(hs.querySelectorAll('.wolke'),function(x){x.remove()});var p=document.querySelector('.photo'),r=p&&p.getBoundingClientRect(),max=r&&r.height?r.top+scrollY-70:160;max=Math.max(60,max);
+ for(var i=0;i<8;i++){var c=document.createElement('div');c.className='wolke';var w=70+Math.random()*80;c.style.width=w+'px';c.style.height=Math.round(w*.22)+'px';c.style.top=Math.round(10+Math.random()*(max-10))+'px';c.style.animationDuration=(70+Math.random()*70)+'s';c.style.animationDelay=(-Math.random()*140)+'s';hs.appendChild(c)}}
+setTimeout(wolken,800);var wT;addEventListener('resize',function(){clearTimeout(wT);wT=setTimeout(wolken,400)});
 var st=hs.querySelector('.sterne');for(var i=0;i<110;i++){var e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.top=Math.random()*90+'%';e.style.animationDelay=Math.random()*3+'s';st.appendChild(e)}
 ['hsfx','hsnebel','hsblitz'].forEach(function(id){var d=document.createElement('div');d.id=id;d.className='dm-keep';document.body.insertBefore(d,hs.nextSibling)});
 /* Bühne im Bildbereich */
