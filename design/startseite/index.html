@@ -1511,10 +1511,10 @@ html.z-tag .h2 .mx{background:#ffffff8c;border-color:#fff}
 .h2 .vid .lab{position:absolute;left:10px;bottom:10px;background:#000a;color:#fff;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px}
 .h2 .vid .mb{position:absolute;right:5%;bottom:0;width:40%;height:90%;background:url(max-kopf.png) center bottom/contain no-repeat}
 .h2 .unter{font-size:12.5px;color:var(--hm);text-align:center;margin-top:8px}
-.h2tb{display:block;border:0;width:min(1560px,100vw);margin:-30px 0 0 50%;transform:translateX(-50%);aspect-ratio:1600/552;background:transparent;position:relative;z-index:2;
- -webkit-mask-image:url(https://sakomobil-beep.github.io/zentrale/design/startseite/boden-maske.png),linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%);-webkit-mask-composite:source-in;
- mask-image:url(https://sakomobil-beep.github.io/zentrale/design/startseite/boden-maske.png),linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%);mask-composite:intersect;
- -webkit-mask-size:102% 102.9%,100% 100%;mask-size:102% 102.9%,100% 100%;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.h2tbr{position:relative;z-index:2;width:100vw;margin:-30px 0 0 50%;transform:translateX(-50%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%)}
+.h2tb{display:block;border:0;width:min(1700px,100%);margin:0 auto;aspect-ratio:1600/552;background:transparent;
+ -webkit-mask-image:url(https://sakomobil-beep.github.io/zentrale/design/startseite/boden-maske.png);mask-image:url(https://sakomobil-beep.github.io/zentrale/design/startseite/boden-maske.png);
+ -webkit-mask-size:102% 102.9%;mask-size:102% 102.9%;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .h2tbfade{height:60px;margin-top:-60px;position:relative;z-index:2;background:linear-gradient(transparent,var(--bg));margin-left:50%;transform:translateX(-50%);width:100vw}
 /* Vorschau-Leiste */
 #hsdemo{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;gap:5px;align-items:center;justify-content:center;max-width:calc(100vw - 24px);padding:8px 10px;background:#0b111ce6;backdrop-filter:blur(8px);border:1px solid #ffffff22;border-radius:14px;font:12px system-ui,sans-serif;color:#cbd5e1;box-shadow:0 8px 30px #0008}
@@ -8506,7 +8506,7 @@ w.innerHTML='<div class="h2"><div><div class="ort">Wetter in Bad König im Odenw
 '<div class="astro2" id="h2as"></div>'+
 '<div class="mx"><div class="av"></div><div><small>Max sagt</small><p id="h2mx">…</p></div></div></div>'+
 '<div><a class="vid" id="h2vid"><div class="mb"></div><div class="pl"><span>▶</span></div><div class="lab">🎬 Video-Wetterbericht mit Max</div></a><div class="unter">Beide Videos (Wetterbericht und Wetterwissen) weiter unten wie gewohnt</div></div></div>'+
-'<iframe class="h2tb" id="h2tb" title="Interaktives Live-Bild Schlossplatz Bad König" scrolling="no" src="titelbild/"></iframe><div class="h2tbfade"></div>';
+'<div class="h2tbr"><iframe class="h2tb" id="h2tb" title="Interaktives Live-Bild Schlossplatz Bad König" scrolling="no" src="titelbild/"></iframe></div><div class="h2tbfade"></div>';
 ph.appendChild(w);
 document.getElementById('h2vid').onclick=function(){var v=document.querySelector('.tvbtn.tvbig')||document.querySelector('.tvbtn');if(v){v.scrollIntoView({behavior:'smooth',block:'center'});}};
 /* Werte */

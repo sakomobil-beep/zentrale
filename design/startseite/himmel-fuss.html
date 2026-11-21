@@ -17,7 +17,7 @@ w.innerHTML='<div class="h2"><div><div class="ort">Wetter in Bad König im Odenw
 '<div class="astro2" id="h2as"></div>'+
 '<div class="mx"><div class="av"></div><div><small>Max sagt</small><p id="h2mx">…</p></div></div></div>'+
 '<div><a class="vid" id="h2vid"><div class="mb"></div><div class="pl"><span>▶</span></div><div class="lab">🎬 Video-Wetterbericht mit Max</div></a><div class="unter">Beide Videos (Wetterbericht und Wetterwissen) weiter unten wie gewohnt</div></div></div>'+
-'<iframe class="h2tb" id="h2tb" title="Interaktives Live-Bild Schlossplatz Bad König" scrolling="no" src="titelbild/"></iframe><div class="h2tbfade"></div>';
+'<div class="h2tbr"><iframe class="h2tb" id="h2tb" title="Interaktives Live-Bild Schlossplatz Bad König" scrolling="no" src="titelbild/"></iframe></div><div class="h2tbfade"></div>';
 ph.appendChild(w);
 document.getElementById('h2vid').onclick=function(){var v=document.querySelector('.tvbtn.tvbig')||document.querySelector('.tvbtn');if(v){v.scrollIntoView({behavior:'smooth',block:'center'});}};
 /* Werte */
