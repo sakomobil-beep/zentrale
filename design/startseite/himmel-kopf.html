@@ -28,8 +28,8 @@ html.w-sturm #hs .wolke{animation-duration:14s!important}
 #hsfx i{position:absolute;top:-20px;width:1.5px;height:18px;background:#cfe3ffaa;animation:hsfall .7s linear infinite}
 html.w-schnee #hsfx i{width:6px;height:6px;border-radius:50%;background:#fff;animation:hsschnee 7s linear infinite}
 @keyframes hsfall{to{transform:translate(-30px,var(--fh))}}@keyframes hsschnee{to{transform:translate(40px,var(--fh))}}@keyframes hssturm{to{transform:translate(-260px,var(--fh))}}
-#hsnebel{position:absolute;left:0;right:0;z-index:3;pointer-events:none;opacity:0;transition:opacity 1.5s;background:linear-gradient(transparent,#c9d2dccc 55%,#c9d2dc00)}
-html.w-nebel #hsnebel{opacity:.85}html.z-nacht.w-nebel #hsnebel{background:linear-gradient(transparent,#5b6676aa 55%,#5b667600)}
+#hsnebel{position:absolute;left:0;right:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.5s;background:linear-gradient(transparent,#c9d2dc55 50%,transparent)}
+html.w-nebel #hsnebel{opacity:.5}html.z-nacht.w-nebel #hsnebel{background:linear-gradient(transparent,#5b667640 50%,transparent)}
 #hsblitz{position:absolute;left:0;right:0;top:0;z-index:3;pointer-events:none;background:#fff;opacity:0}
 html.w-gewitter #hsblitz{animation:hsblitz 6s infinite}@keyframes hsblitz{0%,90%,94%,100%{opacity:0}91%,95%{opacity:.55}}
 /* Kopf auf dem Himmel */
