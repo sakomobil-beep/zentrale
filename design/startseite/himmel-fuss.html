@@ -1,0 +1,56 @@
+<!-- VORSCHAU HIMMEL-STIL: Aufbau und Steuerung -->
+<script>
+(function(){
+var H=document.documentElement;H.classList.add('himmel');
+var here=location.href.split('#')[0];
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.setAttribute('href',here+a.getAttribute('href'))});
+/* Himmel */
+var hs=document.createElement('div');hs.id='hs';hs.innerHTML='<div class="sterne"></div><div class="gestirn"></div><div class="wolke" style="width:200px;top:130px;animation-delay:-20s"></div><div class="wolke" style="width:280px;top:290px;animation-delay:-60s;animation-duration:130s"></div><div class="wolke" style="width:160px;top:70px;animation-delay:-85s;animation-duration:110s"></div>';
+document.body.insertBefore(hs,document.body.firstChild);
+var st=hs.querySelector('.sterne');for(var i=0;i<110;i++){var e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.top=Math.random()*90+'%';e.style.animationDelay=Math.random()*3+'s';st.appendChild(e)}
+['hsfx','hsnebel','hsblitz'].forEach(function(id){var d=document.createElement('div');d.id=id;document.body.insertBefore(d,hs.nextSibling)});
+/* Bühne im Bildbereich */
+var ph=document.querySelector('.photo');var w=document.createElement('div');w.className='h2wrap';
+w.innerHTML='<div class="h2"><div><div class="ort">Wetter in Bad König im Odenwald</div><div class="st"><i></i><span id="h2st">Station IBADKN33 · live</span></div>'+
+'<div class="tt"><span id="h2t">–</span><sup>°C</sup></div>'+
+'<div class="zl"><div>↓ <b id="h2min">–</b> <span>Tiefst</span></div><div>↑ <b id="h2max">–</b> <span>Höchst</span></div><div>💧 <b id="h2fe">–</b></div><div>💨 <b id="h2wi">–</b></div><div>🧭 <b id="h2dr">–</b></div><div>☔ <b id="h2rg">–</b> <span>heute</span></div></div>'+
+'<div class="astro2" id="h2as"></div>'+
+'<div class="mx"><div class="av"></div><div><small>Max sagt</small><p id="h2mx">…</p></div></div></div>'+
+'<div><a class="vid" id="h2vid"><div class="mb"></div><div class="pl"><span>▶</span></div><div class="lab">🎬 Video-Wetterbericht mit Max</div></a><div class="unter">Beide Videos (Wetterbericht und Wetterwissen) weiter unten wie gewohnt</div></div></div>'+
+'<iframe class="h2tb" id="h2tb" title="Interaktives Live-Bild Schlossplatz Bad König" scrolling="no" src="titelbild/"></iframe><div class="h2tbfade"></div>';
+ph.appendChild(w);
+document.getElementById('h2vid').onclick=function(){var v=document.querySelector('.tvbtn.tvbig')||document.querySelector('.tvbtn');if(v){v.scrollIntoView({behavior:'smooth',block:'center'});}};
+/* Werte */
+function f(v,d){return v==null?'–':Number(v).toFixed(d||0).replace('.',',')}
+function werte(){var t=document.getElementById('temp');if(t&&t.textContent.trim()!=='–')document.getElementById('h2t').textContent=t.textContent.trim();
+ var a=document.getElementById('astro');if(a&&a.innerHTML.length>20){var c=document.getElementById('h2as');if(c.getAttribute('data-h')!==a.innerHTML){c.setAttribute('data-h',a.innerHTML);c.innerHTML='<div class="astro">'+a.innerHTML+'</div>'}}
+ var m=document.getElementById('mxkQ');if(m&&m.textContent.length>3&&m.textContent!=='…')document.getElementById('h2mx').textContent=m.textContent;}
+function json(){fetch('data/widget.json?'+Date.now()).then(function(r){return r.json()}).then(function(d){var l=d.live||{};
+ if(document.getElementById('h2t').textContent==='–')document.getElementById('h2t').textContent=f(l.temp,1);
+ document.getElementById('h2fe').textContent=f(l.feuchte)+' %';document.getElementById('h2wi').textContent=f(l.wind)+' km/h'+(l.boe?' · Böen '+f(l.boe):'');
+ document.getElementById('h2dr').textContent=f(l.druck)+' hPa';document.getElementById('h2rg').textContent=f(l.regen,1)+' mm';
+ if(d.tage&&d.tage[0]){document.getElementById('h2min').textContent=f(d.tage[0].min)+'°';document.getElementById('h2max').textContent=f(d.tage[0].max)+'°'}
+ if(d.stand)document.getElementById('h2st').textContent='Station IBADKN33 · Stand '+d.stand.slice(11,16)+' Uhr'}).catch(function(){})}
+werte();json();setInterval(werte,2000);setInterval(json,60000);
+/* Größe des Himmels */
+function mass(){var r=ph.getBoundingClientRect(),vis=r.height>0,hh=vis?r.bottom+scrollY+30:(document.querySelector('.top').getBoundingClientRect().bottom+scrollY+40);
+ hs.style.height=hh+'px';['hsfx','hsblitz'].forEach(function(id){document.getElementById(id).style.height=hh+'px'});document.getElementById('hsfx').style.setProperty('--fh',hh+'px');
+ var n=document.getElementById('hsnebel');n.style.top=(hh*.35)+'px';n.style.height=(hh*.65)+'px'}
+mass();addEventListener('resize',mass);setInterval(mass,1000);
+/* Vorschau-Steuerung */
+var Z='live',W='',A='';
+function zeit(){var d=new Date(),h=d.getHours()+d.getMinutes()/60;return h>=8&&h<16?'tag':(h>=7&&h<8)||(h>=16&&h<17.2)?'daemmerung':'nacht'}
+function bau(){var z=Z=='live'?zeit():Z;H.className=H.className.replace(/\b[zw]-\S+/g,'').trim();H.classList.add('z-'+z);if(W)H.classList.add('w-'+W);
+ var p=Z=='live'&&!W&&!A?[]:[z].concat(W?[W]:[]).concat(A?[A]:[]);
+ var src=location.protocol+'//wetter-badkoenig.de/titelbild/'+(p.length?'?zeige='+encodeURIComponent(p.join(',')):'');var fr=document.getElementById('h2tb');if(fr.src!==src)fr.src=src;
+ var x=document.getElementById('hsfx');x.innerHTML='';if(/regen|gewitter|sturm|schnee/.test(W)){for(var i=0;i<(W=='schnee'?130:170);i++){var e=document.createElement('i');e.style.left=(Math.random()*115)+'%';e.style.animationDelay=(-Math.random()*7)+'s';if(W=='sturm')e.style.animationName='hssturm';x.appendChild(e)}}}
+var dm=document.createElement('div');dm.id='hsdemo';
+dm.innerHTML='<b>Vorschau</b><button data-z="live" aria-pressed="true">🔴 Live</button><button data-z="tag">☀️ Tag</button><button data-z="daemmerung">🌇 Dämmerung</button><button data-z="nacht">🌙 Nacht</button>'+
+'<b>Wetter</b><button data-w="" aria-pressed="true">klar</button><button data-w="regen">🌧</button><button data-w="schnee">❄️</button><button data-w="nebel">🌫</button><button data-w="frost">🧊</button><button data-w="sturm">💨</button><button data-w="gewitter">⛈</button>'+
+'<b>Anlass</b><button data-a="" aria-pressed="true">normal</button><button data-a="markt">Markt</button><button data-a="weihnachten">24.12.</button><button data-a="silvester">Silvester</button><button class="zu" title="Leiste ausblenden">✕</button>';
+document.body.appendChild(dm);
+dm.querySelectorAll('button').forEach(function(b){b.onclick=function(){if(b.className=='zu'){dm.remove();return}var g=b.dataset.z!==undefined?'z':b.dataset.w!==undefined?'w':'a';
+ dm.querySelectorAll('[data-'+g+']').forEach(function(x){x.setAttribute('aria-pressed',x===b)});if(g=='z')Z=b.dataset.z;if(g=='w')W=b.dataset.w;if(g=='a')A=b.dataset.a;bau()}});
+bau();setInterval(function(){if(Z=='live')bau()},300000);
+})();
+</script>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live-Vorschau · Startseite mit interaktivem Live-Bild</title><meta name="robots" content="noindex">
+<style>
+:root{--ink:#f3f6fb;--muted:#b9c6d8;--akz:#f59e0b}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Segoe UI",sans-serif;color:var(--ink);background:#101a2c}
+.demo{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:8px;background:#0b111ccc;backdrop-filter:blur(6px);font-size:12.5px}
+.demo b{color:#94a3b8;font-weight:600;margin:0 4px 0 10px}
+.demo button{background:#1e293b;color:#e2e8f0;border:1px solid #ffffff22;border-radius:8px;padding:5px 11px;cursor:pointer}
+.demo button[aria-pressed=true]{background:#f59e0b;color:#1a1204;border-color:#f59e0b;font-weight:700}
+/* Szene */
+.szene{position:relative;overflow:hidden;min-height:640px;transition:background 1s}
+body.tag .szene{background:linear-gradient(#5b9be0 0%,#9cc6ef 55%,#d8e9f7 100%)}
+body.daemmerung .szene{background:linear-gradient(#2b2f63 0%,#7a4f8f 40%,#e88a5a 78%,#f6c27a 100%)}
+body.nacht .szene{background:linear-gradient(#0c1426 0%,#16233f 55%,#253a5c 100%)}
+.sterne{position:absolute;inset:0;opacity:0;transition:opacity 1s}
+body.nacht .sterne{opacity:1}body.daemmerung .sterne{opacity:.35}
+.sterne i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:fu 3s ease-in-out infinite alternate}
+@keyframes fu{to{opacity:.25}}
+.gestirn{position:absolute;right:9%;top:150px;width:74px;height:74px;border-radius:50%;transition:all 1s}
+body.tag .gestirn{background:radial-gradient(#fff6c8,#ffd34d 60%,#ffb703);box-shadow:0 0 60px 20px #ffd34d88}
+body.daemmerung .gestirn{top:300px;background:radial-gradient(#ffe2a8,#ff9a4d);box-shadow:0 0 70px 30px #ff9a4d66}
+body.nacht .gestirn{background:radial-gradient(circle at 38% 38%,#fffbe6,#f1e4a6);box-shadow:0 0 40px 8px #f1e4a644}
+.wolke{position:absolute;height:60px;border-radius:60px;opacity:.85;animation:zieh 90s linear infinite}
+.wolke::before,.wolke::after{content:"";position:absolute;border-radius:50%;background:inherit}
+.wolke::before{width:55%;height:150%;left:15%;top:-60%}.wolke::after{width:40%;height:120%;left:48%;top:-40%}
+body.tag .wolke{background:#ffffffd9}body.daemmerung .wolke{background:#f3b6a0aa}body.nacht .wolke{background:#33466a}
+@keyframes zieh{from{transform:translateX(-30vw)}to{transform:translateX(120vw)}}
+/* Kopf */
+.kopf{position:relative;z-index:5;max-width:1280px;margin:0 auto;padding:22px 24px 0;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+.badge{width:64px;height:64px;border-radius:16px;background:#7a1e1e;border:3px solid #f5b301;display:grid;place-items:center;font-size:30px}
+.logo small{display:block;color:#f5b301;font-size:11.5px;letter-spacing:.16em;font-weight:700}
+.logo b{font-size:30px;font-weight:800}
+nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:6px 20px;font-size:14.5px;font-weight:600}
+nav a{color:var(--ink);text-decoration:none;opacity:.9}nav a.on{opacity:1;border-bottom:2px solid var(--akz);padding-bottom:3px}
+body.tag .kopf,body.tag .live{--ink:#10243d;--muted:#33506f;color:#10243d}
+body.tag .logo b,body.tag nav a{color:#10243d}
+/* Live-Werte */
+.live{position:relative;z-index:5;max-width:1280px;margin:0 auto;padding:34px 24px 0;display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px}
+.ort{color:var(--akz);font-weight:700;font-size:17px}
+body.tag .ort{color:#b45309}
+.st{font-size:14px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:8px}
+.st i{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px #22c55e33}
+.temp{font:300 clamp(96px,14vw,170px)/1 Georgia,"Times New Roman",serif;letter-spacing:-.03em;margin:10px 0 4px;text-shadow:0 4px 24px #0003}
+.temp sup{font-size:.38em;vertical-align:.95em}
+.zeile{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:15px;margin-top:12px}
+.zeile span{color:var(--muted)}.zeile b{font-weight:700}
+.max{margin-top:22px;display:flex;gap:12px;align-items:center;max-width:560px;background:#0b13234d;border:1px solid #ffffff22;border-radius:16px;padding:12px 16px;backdrop-filter:blur(4px)}
+body.tag .max{background:#ffffff8c;border-color:#ffffffaa}
+.max .av{width:48px;height:48px;border-radius:50%;flex:none;border:2px solid #f97316;background:#fff3e8 url(https://wetter-badkoenig.de/max-kopf.png) center 30%/86% no-repeat}
+.max p{margin:0;font-size:14.5px;line-height:1.45}.max small{color:var(--muted);font-size:12px}
+.rechts{display:flex;flex-direction:column;gap:12px}
+.vid{border-radius:16px;overflow:hidden;border:3px solid #ffffffd9;box-shadow:0 10px 30px #0005;aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#29384f,#121a28) center/cover}
+.vid .pl{position:absolute;inset:0;display:grid;place-items:center}
+.vid .pl span{width:64px;height:64px;border-radius:50%;background:#f97316;display:grid;place-items:center;font-size:24px;color:#fff;box-shadow:0 6px 20px #f9731688}
+.vid .lab{position:absolute;left:10px;bottom:10px;background:#000a;color:#fff;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px}
+.vid .maxbild{position:absolute;right:6%;bottom:0;width:38%;height:88%;background:url(https://wetter-badkoenig.de/max-kopf.png) center bottom/contain no-repeat;opacity:.95}
+.unter{font-size:12.5px;color:var(--muted);text-align:center}
+/* Schloss unten */
+.boden{position:relative;z-index:2;margin-top:-40px;height:330px}
+.boden svg{position:absolute;inset:0;width:100%;height:100%}
+.gemaelde{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:min(1100px,96vw);aspect-ratio:1600/552;background:url(../schlossplatz.jpg) center/cover;
+ -webkit-mask-image:radial-gradient(ellipse 52% 60% at 50% 62%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 52% 60% at 50% 62%,#000 55%,transparent 100%);transition:filter 1s}
+body.nacht .gemaelde{filter:brightness(.45) saturate(.7) hue-rotate(10deg)}
+body.daemmerung .gemaelde{filter:brightness(.75) sepia(.25)}
+body.silhouette .gemaelde{display:none}body.gemaelde-an .sil,body.gemaelde-an .h{display:none}
+.fenster rect{fill:#3b4a63;transition:fill 1s}
+body.nacht .fenster rect.l,body.daemmerung .fenster rect.l{fill:#ffd66b;filter:drop-shadow(0 0 4px #ffcc55)}
+
+.boden{position:relative;z-index:2;margin-top:-10px;height:auto;display:flex;justify-content:center}
+.tb{border:0;width:min(1500px,100%);aspect-ratio:1600/552;display:block;background:transparent;
+ -webkit-mask-image:url(boden-maske.png),linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);-webkit-mask-composite:source-in;
+ mask-image:url(boden-maske.png),linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);mask-composite:intersect;
+ -webkit-mask-size:102% 102.9%,100% 100%;mask-size:102% 102.9%,100% 100%;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.szene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#101a2c);z-index:3;pointer-events:none}
+.fxp{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.fxp i{position:absolute;top:-20px;width:1.5px;height:18px;background:#cfe3ff99;animation:fall .7s linear infinite}
+body.schnee .fxp i{width:6px;height:6px;border-radius:50%;background:#fff;animation:schnee 7s linear infinite}
+@keyframes fall{to{transform:translate(-30px,760px)}}@keyframes schnee{to{transform:translate(40px,760px)}}
+body.sturm .fxp i{animation-duration:.45s}@keyframes sturmfall{to{transform:translate(-260px,760px)}}
+body.sturm .wolke{animation-duration:14s!important}
+.nebelp{position:absolute;inset:auto 0 0 0;height:75%;z-index:4;pointer-events:none;opacity:0;transition:opacity 1.5s;background:linear-gradient(transparent,#c9d2dccc 55%,#c9d2dcee)}
+body.nebel .nebelp{opacity:.85}body.nacht.nebel .nebelp{background:linear-gradient(transparent,#5b6676aa 55%,#5b6676dd)}
+body.nebel .gestirn{opacity:.25}
+.blitz{position:absolute;inset:0;z-index:4;pointer-events:none;background:#fff;opacity:0}
+body.gewitter .blitz{animation:blitz 6s infinite}@keyframes blitz{0%,90%,94%,100%{opacity:0}91%,95%{opacity:.6}}
+body.regen .szene,body.gewitter .szene,body.sturm .szene{filter:saturate(.75)}
+body.regen.tag .szene,body.gewitter.tag .szene{background:linear-gradient(#6f8094,#a3b1c0 60%,#c9d2dc)}
+body.regen .gestirn,body.gewitter .gestirn{opacity:.15}
+body.frost .temp{color:#bfe0ff}
+/* Rest der Seite */
+.rest{max-width:1280px;margin:0 auto;padding:18px 24px 40px;position:relative;z-index:6;margin-top:-30px}
+.warn{background:#1b2638;border-radius:14px;padding:12px 18px;font-size:14px;border-left:4px solid #f5b301}
+.spalten{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.spalten div{background:#1b2638;border-radius:14px;padding:18px;min-height:140px;color:#94a3b8;font-size:13.5px}
+.spalten h4{margin:0 0 8px;font-size:12px;letter-spacing:.12em;color:#cbd5e1}
+.hinweis{max-width:1280px;margin:0 auto;padding:0 24px 30px;color:#94a3b8;font-size:12.5px}
+@media(max-width:860px){.live{grid-template-columns:1fr}.spalten{grid-template-columns:1fr}nav{margin-left:0}.boden{height:220px}}
+</style></head>
+<body class="nacht">
+<div class="demo">
+ <b>Tageszeit</b><button data-z="live" aria-pressed="true">🔴 Live (jetzt)</button><button data-z="tag">☀️ Tag</button><button data-z="daemmerung">🌇 Dämmerung</button><button data-z="nacht">🌙 Nacht</button>
+ <b>Wetter</b><button data-w="" aria-pressed="true">Live / klar</button><button data-w="regen">🌧 Regen</button><button data-w="schnee">❄️ Schnee</button><button data-w="nebel">🌫 Nebel</button><button data-w="frost">🧊 Frost</button><button data-w="sturm">💨 Sturm</button><button data-w="gewitter">⛈ Gewitter</button>
+ <b>Anlass</b><button data-a="" aria-pressed="true">normal</button><button data-a="markt">Nikolausmarkt</button><button data-a="weihnachten">24.12.</button><button data-a="silvester">Silvester</button>
+</div>
+
+<div class="szene">
+ <div class="sterne" id="sterne"></div>
+ <div class="gestirn"></div>
+ <div class="wolke" style="width:200px;top:120px;animation-delay:-20s"></div>
+ <div class="wolke" style="width:280px;top:230px;animation-delay:-55s;animation-duration:120s"></div>
+ <div class="wolke" style="width:160px;top:60px;animation-delay:-80s;animation-duration:100s"></div>
+
+ <header class="kopf">
+  <a class="logo"><span class="badge">🏰</span><span><small>PRIVATE WETTERSTATION</small><b>Bad König</b></span></a>
+  <nav><a class="on">Aktuell Bad König</a><a>Aktuell Odenwald</a><a>Vorhersage</a><a>Grafiken</a><a>Historie</a><a>Statistik</a><a>Klima</a><a>Station</a></nav>
+ </header>
+
+ <section class="live">
+  <div>
+   <div class="ort">Wetter in Bad König im Odenwald</div>
+   <div class="st"><i></i><span id="stand">Station IBADKN33 · live</span></div>
+   <div class="temp"><span id="t">0,3</span><sup>°C</sup></div>
+   <div class="zeile">
+    <div>↓ <b id="tmin">-1°</b> <span>Tiefst</span></div><div>↑ <b id="tmax">7°</b> <span>Höchst</span></div>
+    <div>💧 <b id="fe">97 %</b></div><div>💨 <b id="wi">0 km/h</b></div><div>🧭 <b id="dr">1020 hPa</b></div>
+   </div>
+   <div class="zeile"><div>🌅 <b>07:44</b></div><div>🌇 <b>16:35</b></div><div><span>8 h 50 min Tag</span></div><div>🌙 <b>14:30</b> / <b>03:37</b></div></div>
+   <div class="max"><div class="av"></div><div><small>Max sagt</small><p id="maxq">„Teils wolkig, Tiefstwerte um -3 °C.“</p></div></div>
+  </div>
+  <div class="rechts">
+   <div class="vid"><div class="maxbild"></div><div class="pl"><span>▶</span></div><div class="lab">🎬 Video-Wetterbericht mit Max</div></div>
+   <div class="unter">darunter wie bisher: „Wetterwissen mit Max“</div>
+  </div>
+ </section>
+
+ <div class="boden">
+  <iframe id="tb" class="tb" title="Interaktives Live-Bild Schlossplatz" scrolling="no" src="https://wetter-badkoenig.de/titelbild/"></iframe>
+ </div>
+ <div class="fxp" id="fxp"></div><div class="nebelp"></div><div class="blitz"></div>
+</div>
+
+<div class="rest">
+ <div class="warn"><b>Frost</b> &nbsp;heute 22 – morgen 9 Uhr · ganzer Odenwaldkreis <span style="color:#94a3b8">(Amtliche Warnungen wie bisher)</span></div>
+ <div class="spalten"><div><h4>JETZT</h4>Luftfeuchte, Wind, Luftdruck, Regen – wie bisher, nur ohne die große Temperatur (steht jetzt oben im Himmel).</div><div><h4>HEUTE</h4>Höchst/Tiefst, Sonne &amp; Mond, Verlauf heute – wie bisher.</div><div><h4>WAS KOMMT</h4>Vorhersage-Kacheln, Wetterwissen – wie bisher.</div></div>
+</div>
+<p class="hinweis">Entwurf 21.11.2026 – Werte kommen live von der Station (data/widget.json), Sonne/Mond und Max-Satz sind Beispielwerte. Das Schloss ist das echte interaktive Live-Bild von wetter-badkoenig.de (gemalter Himmel ausgeblendet). Logo-Badge ist hier nur Platzhalter, eingebaut würde dein Rot/Gold-Logo.</p>
+
+<script>
+var s=document.getElementById('sterne');for(var i=0;i<90;i++){var e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.top=Math.random()*55+'%';e.style.animationDelay=(Math.random()*3)+'s';s.appendChild(e);}
+var Z='live',W='',A='';
+function zeit(){var h=new Date().getHours()+new Date().getMinutes()/60;return h>=8&&h<16?'tag':(h>=7&&h<8)||(h>=16&&h<17.2)?'daemmerung':'nacht'}
+function bau(){var z=Z=='live'?zeit():Z;document.body.className=[z,W].filter(Boolean).join(' ');
+ var p=Z=='live'&&!W&&!A?[]:[z=='daemmerung'?'daemmerung':z].concat(W?[W]:[]).concat(A?[A]:[]);
+ var src='https://wetter-badkoenig.de/titelbild/'+(p.length?'?zeige='+encodeURIComponent(p.join(',')):'');var f=document.getElementById('tb');if(f.src!==src)f.src=src;
+ var x=document.getElementById('fxp');x.innerHTML='';if(W=='regen'||W=='gewitter'||W=='sturm'||W=='schnee'){for(var i=0;i<(W=='schnee'?120:160);i++){var e=document.createElement('i');e.style.left=(Math.random()*110)+'%';e.style.animationDelay=(-Math.random()*7)+'s';if(W=='sturm')e.style.animationName='sturmfall';x.appendChild(e)}}}
+document.querySelectorAll('.demo button').forEach(function(b){b.onclick=function(){var g=b.dataset.z!==undefined?'z':b.dataset.w!==undefined?'w':'a';
+ document.querySelectorAll('[data-'+g+']').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+ if(g=='z')Z=b.dataset.z;if(g=='w')W=b.dataset.w;if(g=='a')A=b.dataset.a;bau()}});
+bau();
+fetch('https://wetter-badkoenig.de/data/widget.json?'+Date.now()).then(function(r){return r.json()}).then(function(d){var l=d.live,f=function(v){return String(v).replace('.',',')};
+ document.getElementById('t').textContent=f(l.temp.toFixed(1));document.getElementById('fe').textContent=l.feuchte+' %';document.getElementById('wi').textContent=l.wind+' km/h';document.getElementById('dr').textContent=l.druck+' hPa';
+ if(d.tage&&d.tage[0]){document.getElementById('tmin').textContent=d.tage[0].min+'°';document.getElementById('tmax').textContent=d.tage[0].max+'°'}
+ document.getElementById('stand').textContent='Station IBADKN33 · Stand '+d.stand.slice(11,16)+' Uhr';}).catch(function(){});
+</script>
+</body></html>
