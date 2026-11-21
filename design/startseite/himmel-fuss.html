@@ -16,10 +16,9 @@ w.innerHTML='<div class="h2"><div><div class="ort">Wetter in Bad König im Odenw
 '<div class="zl"><div>↓ <b id="h2min">–</b> <span>Tiefst</span></div><div>↑ <b id="h2max">–</b> <span>Höchst</span></div><div>💧 <b id="h2fe">–</b></div><div>💨 <b id="h2wi">–</b></div><div>🧭 <b id="h2dr">–</b></div><div>☔ <b id="h2rg">–</b> <span>heute</span></div></div>'+
 '<div class="astro2" id="h2as"></div>'+
 '<div class="mx"><div class="av"></div><div><small>Max sagt</small><p id="h2mx">…</p></div></div></div>'+
-'<div><a class="vid" id="h2vid"><div class="mb"></div><div class="pl"><span>▶</span></div><div class="lab">🎬 Video-Wetterbericht mit Max</div></a><div class="unter">Beide Videos (Wetterbericht und Wetterwissen) weiter unten wie gewohnt</div></div></div>'+
+'</div>'+
 '<div class="h2tbr"><iframe class="h2tb" id="h2tb" title="Interaktives Live-Bild Schlossplatz Bad König" scrolling="no" src="titelbild/"></iframe></div><div class="h2tbfade"></div>';
 ph.appendChild(w);
-document.getElementById('h2vid').onclick=function(){var v=document.querySelector('.tvbtn.tvbig')||document.querySelector('.tvbtn');if(v){v.scrollIntoView({behavior:'smooth',block:'center'});}};
 /* Werte */
 function f(v,d){return v==null?'–':Number(v).toFixed(d||0).replace('.',',')}
 function werte(){var t=document.getElementById('temp');if(t&&t.textContent.trim()!=='–')document.getElementById('h2t').textContent=t.textContent.trim();
