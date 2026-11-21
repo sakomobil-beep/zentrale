@@ -29,7 +29,7 @@ html.w-sturm #hs .wolke{animation-duration:14s!important}
 html.w-schnee #hsfx i{width:6px;height:6px;border-radius:50%;background:#fff;animation:hsschnee 7s linear infinite}
 @keyframes hsfall{to{transform:translate(-30px,var(--fh))}}@keyframes hsschnee{to{transform:translate(40px,var(--fh))}}@keyframes hssturm{to{transform:translate(-260px,var(--fh))}}
 #hsnebel{position:absolute;left:0;right:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.5s;background:linear-gradient(transparent,#c9d2dc55 50%,transparent)}
-html.w-nebel #hsnebel{opacity:.5}html.z-nacht.w-nebel #hsnebel{background:linear-gradient(transparent,#5b667640 50%,transparent)}
+html.w-nebel #hsnebel{opacity:0}html.z-nacht.w-nebel #hsnebel{background:linear-gradient(transparent,#5b667640 50%,transparent)}
 #hsblitz{position:absolute;left:0;right:0;top:0;z-index:3;pointer-events:none;background:#fff;opacity:0}
 html.w-gewitter #hsblitz{animation:hsblitz 6s infinite}@keyframes hsblitz{0%,90%,94%,100%{opacity:0}91%,95%{opacity:.55}}
 /* Kopf auf dem Himmel */
@@ -81,7 +81,7 @@ html.z-tag .h2 .mx{background:#ffffff8c;border-color:#fff}
 <style id="himmelImBild">
 .h2wrap{position:relative}
 .h2tbr{margin-top:0!important}
-.h2tb{width:min(1640px,100vw)!important;-webkit-mask-image:radial-gradient(ellipse 60% 62% at 50% 52%,#000 62%,transparent 100%)!important;mask-image:radial-gradient(ellipse 60% 62% at 50% 52%,#000 62%,transparent 100%)!important}
+.h2tb{width:min(1640px,100vw)!important;-webkit-mask-image:radial-gradient(ellipse 58% 60% at 50% 52%,#000 45%,transparent 88%)!important;mask-image:radial-gradient(ellipse 58% 60% at 50% 52%,#000 45%,transparent 88%)!important}
 .h2{position:absolute;left:0;right:0;top:3%;z-index:3;padding-top:0!important;pointer-events:none;--hi:#fff!important;--hm:#e6edf7!important}
 .h2>div{pointer-events:auto;max-width:560px;padding:10px 24px 20px}
 
