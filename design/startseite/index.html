@@ -17,7 +17,7 @@ body.nacht .szene{background:linear-gradient(#0c1426 0%,#16233f 55%,#253a5c 100%
 body.nacht .sterne{opacity:1}body.daemmerung .sterne{opacity:.35}
 .sterne i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:fu 3s ease-in-out infinite alternate}
 @keyframes fu{to{opacity:.25}}
-.gestirn{position:absolute;right:9%;top:70px;width:74px;height:74px;border-radius:50%;transition:all 1s}
+.gestirn{position:absolute;right:9%;top:150px;width:74px;height:74px;border-radius:50%;transition:all 1s}
 body.tag .gestirn{background:radial-gradient(#fff6c8,#ffd34d 60%,#ffb703);box-shadow:0 0 60px 20px #ffd34d88}
 body.daemmerung .gestirn{top:300px;background:radial-gradient(#ffe2a8,#ff9a4d);box-shadow:0 0 70px 30px #ff9a4d66}
 body.nacht .gestirn{background:radial-gradient(circle at 38% 38%,#fffbe6,#f1e4a6);box-shadow:0 0 40px 8px #f1e4a644}
@@ -64,7 +64,7 @@ body.tag .max{background:#ffffff8c;border-color:#ffffffaa}
  -webkit-mask-image:radial-gradient(ellipse 52% 60% at 50% 62%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 52% 60% at 50% 62%,#000 55%,transparent 100%);transition:filter 1s}
 body.nacht .gemaelde{filter:brightness(.45) saturate(.7) hue-rotate(10deg)}
 body.daemmerung .gemaelde{filter:brightness(.75) sepia(.25)}
-body.silhouette .gemaelde{display:none}body.gemaelde-an .sil{display:none}
+body.silhouette .gemaelde{display:none}body.gemaelde-an .sil,body.gemaelde-an .h{display:none}
 .fenster rect{fill:#3b4a63;transition:fill 1s}
 body.nacht .fenster rect.l,body.daemmerung .fenster rect.l{fill:#ffd66b;filter:drop-shadow(0 0 4px #ffcc55)}
 /* Rest der Seite */
