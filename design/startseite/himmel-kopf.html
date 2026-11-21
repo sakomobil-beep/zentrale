@@ -2,6 +2,8 @@
 <style id="himmelStil">
 html.himmel .sky,html.himmel .deko{display:none!important}
 html.himmel,html.himmel body{overflow-x:clip}
+html.himmel .wrap{grid-template-columns:minmax(0,1fr)}html.himmel .wrap>*{min-width:0}
+html.himmel .h2tbr{width:100vw;max-width:none}
 #hs{position:absolute;left:0;right:0;top:0;z-index:0;overflow:hidden;pointer-events:none;transition:background 1s}
 html.z-tag #hs{background:linear-gradient(#5b9be0 0%,#9cc6ef 55%,#d8e9f7 88%,var(--bg) 100%)}
 html.z-daemmerung #hs{background:linear-gradient(#2b2f63 0%,#7a4f8f 38%,#e88a5a 72%,#f6c27a 88%,var(--bg) 100%)}
