@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vorschau · Startseite im Himmel-Stil</title><meta name="robots" content="noindex">
+<title>Live-Vorschau · Startseite mit interaktivem Live-Bild</title><meta name="robots" content="noindex">
 <style>
 :root{--ink:#f3f6fb;--muted:#b9c6d8;--akz:#f59e0b}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,"Segoe UI",sans-serif;color:var(--ink);background:#101a2c}
@@ -67,6 +67,28 @@ body.daemmerung .gemaelde{filter:brightness(.75) sepia(.25)}
 body.silhouette .gemaelde{display:none}body.gemaelde-an .sil,body.gemaelde-an .h{display:none}
 .fenster rect{fill:#3b4a63;transition:fill 1s}
 body.nacht .fenster rect.l,body.daemmerung .fenster rect.l{fill:#ffd66b;filter:drop-shadow(0 0 4px #ffcc55)}
+
+.boden{position:relative;z-index:2;margin-top:-10px;height:auto;display:flex;justify-content:center}
+.tb{border:0;width:min(1500px,100%);aspect-ratio:1600/552;display:block;background:transparent;
+ -webkit-mask-image:url(boden-maske.png),linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);-webkit-mask-composite:source-in;
+ mask-image:url(boden-maske.png),linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);mask-composite:intersect;
+ -webkit-mask-size:102% 102.9%,100% 100%;mask-size:102% 102.9%,100% 100%;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.szene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#101a2c);z-index:3;pointer-events:none}
+.fxp{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.fxp i{position:absolute;top:-20px;width:1.5px;height:18px;background:#cfe3ff99;animation:fall .7s linear infinite}
+body.schnee .fxp i{width:6px;height:6px;border-radius:50%;background:#fff;animation:schnee 7s linear infinite}
+@keyframes fall{to{transform:translate(-30px,760px)}}@keyframes schnee{to{transform:translate(40px,760px)}}
+body.sturm .fxp i{animation-duration:.45s}@keyframes sturmfall{to{transform:translate(-260px,760px)}}
+body.sturm .wolke{animation-duration:14s!important}
+.nebelp{position:absolute;inset:auto 0 0 0;height:75%;z-index:4;pointer-events:none;opacity:0;transition:opacity 1.5s;background:linear-gradient(transparent,#c9d2dccc 55%,#c9d2dcee)}
+body.nebel .nebelp{opacity:.85}body.nacht.nebel .nebelp{background:linear-gradient(transparent,#5b6676aa 55%,#5b6676dd)}
+body.nebel .gestirn{opacity:.25}
+.blitz{position:absolute;inset:0;z-index:4;pointer-events:none;background:#fff;opacity:0}
+body.gewitter .blitz{animation:blitz 6s infinite}@keyframes blitz{0%,90%,94%,100%{opacity:0}91%,95%{opacity:.6}}
+body.regen .szene,body.gewitter .szene,body.sturm .szene{filter:saturate(.75)}
+body.regen.tag .szene,body.gewitter.tag .szene{background:linear-gradient(#6f8094,#a3b1c0 60%,#c9d2dc)}
+body.regen .gestirn,body.gewitter .gestirn{opacity:.15}
+body.frost .temp{color:#bfe0ff}
 /* Rest der Seite */
 .rest{max-width:1280px;margin:0 auto;padding:18px 24px 40px;position:relative;z-index:6;margin-top:-30px}
 .warn{background:#1b2638;border-radius:14px;padding:12px 18px;font-size:14px;border-left:4px solid #f5b301}
@@ -76,10 +98,11 @@ body.nacht .fenster rect.l,body.daemmerung .fenster rect.l{fill:#ffd66b;filter:d
 .hinweis{max-width:1280px;margin:0 auto;padding:0 24px 30px;color:#94a3b8;font-size:12.5px}
 @media(max-width:860px){.live{grid-template-columns:1fr}.spalten{grid-template-columns:1fr}nav{margin-left:0}.boden{height:220px}}
 </style></head>
-<body class="nacht silhouette">
+<body class="nacht">
 <div class="demo">
- <b>Tageszeit</b><button data-z="tag">☀️ Tag</button><button data-z="daemmerung">🌇 Dämmerung</button><button data-z="nacht" aria-pressed="true">🌙 Nacht</button>
- <b>Schloss</b><button data-s="silhouette" aria-pressed="true">Gezeichnete Silhouette</button><button data-s="gemaelde-an">Dein Gemälde</button>
+ <b>Tageszeit</b><button data-z="live" aria-pressed="true">🔴 Live (jetzt)</button><button data-z="tag">☀️ Tag</button><button data-z="daemmerung">🌇 Dämmerung</button><button data-z="nacht">🌙 Nacht</button>
+ <b>Wetter</b><button data-w="" aria-pressed="true">Live / klar</button><button data-w="regen">🌧 Regen</button><button data-w="schnee">❄️ Schnee</button><button data-w="nebel">🌫 Nebel</button><button data-w="frost">🧊 Frost</button><button data-w="sturm">💨 Sturm</button><button data-w="gewitter">⛈ Gewitter</button>
+ <b>Anlass</b><button data-a="" aria-pressed="true">normal</button><button data-a="markt">Nikolausmarkt</button><button data-a="weihnachten">24.12.</button><button data-a="silvester">Silvester</button>
 </div>
 
 <div class="szene">
@@ -113,54 +136,29 @@ body.nacht .fenster rect.l,body.daemmerung .fenster rect.l{fill:#ffd66b;filter:d
  </section>
 
  <div class="boden">
-  <div class="gemaelde"></div>
-  <svg viewBox="0 0 1600 330" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-   <defs><linearGradient id="h1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e4569"/><stop offset="1" stop-color="#1c2c47"/></linearGradient></defs>
-   <path class="h" d="M0 210 C250 150 420 190 640 165 S1100 130 1300 170 1500 160 1600 150 V330 H0Z" fill="#2b3f61" opacity=".7"/>
-   <g class="sil">
-    <!-- Schloss: Hauptbau mit Torbogen, Turm, Seitenbau -->
-    <g fill="#18243b">
-     <rect x="560" y="160" width="420" height="130"/>
-     <path d="M550 162 L600 120 H940 L990 162Z"/>
-     <rect x="690" y="70" width="58" height="95"/><path d="M684 72 L719 0 L754 72Z"/><rect x="717" y="-14" width="4" height="16"/>
-     <rect x="1010" y="185" width="230" height="105"/><path d="M1000 187 L1040 150 H1210 L1250 187Z"/>
-     <rect x="380" y="190" width="180" height="100"/><path d="M372 192 L405 158 H540 L568 192Z"/>
-     <path d="M735 290 V245 a35 35 0 0 1 70 0 V290Z" fill="#0d1526"/>
-    </g>
-    <g class="fenster">
-     <rect x="590" y="185" width="16" height="22" class="l"/><rect x="625" y="185" width="16" height="22"/><rect x="660" y="185" width="16" height="22" class="l"/>
-     <rect x="860" y="185" width="16" height="22"/><rect x="895" y="185" width="16" height="22" class="l"/><rect x="930" y="185" width="16" height="22"/>
-     <rect x="590" y="225" width="16" height="22"/><rect x="660" y="225" width="16" height="22" class="l"/><rect x="895" y="225" width="16" height="22"/>
-     <rect x="710" y="95" width="18" height="22" class="l"/>
-     <rect x="1040" y="205" width="16" height="22" class="l"/><rect x="1080" y="205" width="16" height="22"/><rect x="1120" y="205" width="16" height="22"/><rect x="1160" y="205" width="16" height="22" class="l"/><rect x="1200" y="205" width="16" height="22"/>
-     <rect x="1080" y="245" width="16" height="22" class="l"/><rect x="1160" y="245" width="16" height="22"/>
-     <rect x="405" y="210" width="16" height="22"/><rect x="445" y="210" width="16" height="22" class="l"/><rect x="485" y="210" width="16" height="22"/><rect x="525" y="210" width="16" height="22"/>
-    </g>
-    <path d="M770 252 a18 18 0 0 1 0 0" />
-    <!-- Baum -->
-    <g stroke="#101a2c" stroke-width="5" fill="none" stroke-linecap="round"><path d="M990 290 V200 M990 230 L955 185 M990 215 L1030 170 M990 200 L975 150 M1030 170 L1050 150 M955 185 L940 160"/></g>
-    <!-- Laternen rechts -->
-    <g fill="#101a2c"><rect x="1290" y="220" width="4" height="70"/><rect x="1340" y="210" width="4" height="80"/><rect x="1390" y="200" width="4" height="90"/></g>
-    <g class="fenster"><rect x="1286" y="212" width="12" height="10" class="l"/><rect x="1336" y="202" width="12" height="10" class="l"/><rect x="1386" y="192" width="12" height="10" class="l"/></g>
-   </g>
-   <path d="M0 290 C300 270 600 300 900 285 S1400 275 1600 290 V330 H0Z" fill="url(#h1)"/>
-  </svg>
+  <iframe id="tb" class="tb" title="Interaktives Live-Bild Schlossplatz" scrolling="no" src="https://wetter-badkoenig.de/titelbild/"></iframe>
  </div>
+ <div class="fxp" id="fxp"></div><div class="nebelp"></div><div class="blitz"></div>
 </div>
 
 <div class="rest">
  <div class="warn"><b>Frost</b> &nbsp;heute 22 – morgen 9 Uhr · ganzer Odenwaldkreis <span style="color:#94a3b8">(Amtliche Warnungen wie bisher)</span></div>
  <div class="spalten"><div><h4>JETZT</h4>Luftfeuchte, Wind, Luftdruck, Regen – wie bisher, nur ohne die große Temperatur (steht jetzt oben im Himmel).</div><div><h4>HEUTE</h4>Höchst/Tiefst, Sonne &amp; Mond, Verlauf heute – wie bisher.</div><div><h4>WAS KOMMT</h4>Vorhersage-Kacheln, Wetterwissen – wie bisher.</div></div>
 </div>
-<p class="hinweis">Entwurf 21.11.2026 – Werte kommen live von der Station (data/widget.json), Sonne/Mond und Max-Satz sind Beispielwerte. Logo-Badge ist hier nur Platzhalter, eingebaut würde dein Rot/Gold-Logo.</p>
+<p class="hinweis">Entwurf 21.11.2026 – Werte kommen live von der Station (data/widget.json), Sonne/Mond und Max-Satz sind Beispielwerte. Das Schloss ist das echte interaktive Live-Bild von wetter-badkoenig.de (gemalter Himmel ausgeblendet). Logo-Badge ist hier nur Platzhalter, eingebaut würde dein Rot/Gold-Logo.</p>
 
 <script>
 var s=document.getElementById('sterne');for(var i=0;i<90;i++){var e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.top=Math.random()*55+'%';e.style.animationDelay=(Math.random()*3)+'s';s.appendChild(e);}
-document.querySelectorAll('.demo button').forEach(function(b){b.onclick=function(){var z=b.dataset.z,k=b.dataset.s;
- document.querySelectorAll(z?'[data-z]':'[data-s]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
- if(z){document.body.classList.remove('tag','daemmerung','nacht');document.body.classList.add(z)}
- else{document.body.classList.remove('silhouette','gemaelde-an');document.body.classList.add(k)}}});
-var h=new Date().getHours();var z=h>=8&&h<16?'tag':(h>=16&&h<17)||(h>=7&&h<8)?'daemmerung':'nacht';document.querySelector('[data-z='+z+']').click();
+var Z='live',W='',A='';
+function zeit(){var h=new Date().getHours()+new Date().getMinutes()/60;return h>=8&&h<16?'tag':(h>=7&&h<8)||(h>=16&&h<17.2)?'daemmerung':'nacht'}
+function bau(){var z=Z=='live'?zeit():Z;document.body.className=[z,W].filter(Boolean).join(' ');
+ var p=Z=='live'&&!W&&!A?[]:[z=='daemmerung'?'daemmerung':z].concat(W?[W]:[]).concat(A?[A]:[]);
+ var src='https://wetter-badkoenig.de/titelbild/'+(p.length?'?zeige='+encodeURIComponent(p.join(',')):'');var f=document.getElementById('tb');if(f.src!==src)f.src=src;
+ var x=document.getElementById('fxp');x.innerHTML='';if(W=='regen'||W=='gewitter'||W=='sturm'||W=='schnee'){for(var i=0;i<(W=='schnee'?120:160);i++){var e=document.createElement('i');e.style.left=(Math.random()*110)+'%';e.style.animationDelay=(-Math.random()*7)+'s';if(W=='sturm')e.style.animationName='sturmfall';x.appendChild(e)}}}
+document.querySelectorAll('.demo button').forEach(function(b){b.onclick=function(){var g=b.dataset.z!==undefined?'z':b.dataset.w!==undefined?'w':'a';
+ document.querySelectorAll('[data-'+g+']').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+ if(g=='z')Z=b.dataset.z;if(g=='w')W=b.dataset.w;if(g=='a')A=b.dataset.a;bau()}});
+bau();
 fetch('https://wetter-badkoenig.de/data/widget.json?'+Date.now()).then(function(r){return r.json()}).then(function(d){var l=d.live,f=function(v){return String(v).replace('.',',')};
  document.getElementById('t').textContent=f(l.temp.toFixed(1));document.getElementById('fe').textContent=l.feuchte+' %';document.getElementById('wi').textContent=l.wind+' km/h';document.getElementById('dr').textContent=l.druck+' hPa';
  if(d.tage&&d.tage[0]){document.getElementById('tmin').textContent=d.tage[0].min+'°';document.getElementById('tmax').textContent=d.tage[0].max+'°'}
