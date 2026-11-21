@@ -3,73 +3,10 @@
 html.himmel .sky,html.himmel .deko{display:none!important}
 html.himmel,html.himmel body{overflow-x:clip}
 html.himmel .wrap{grid-template-columns:minmax(0,1fr)}html.himmel .wrap>*{min-width:0}
-html.himmel .h2tbr{width:100vw;max-width:none}
-#hs{position:absolute;left:0;right:0;top:0;z-index:0;overflow:hidden;pointer-events:none;transition:background 1s}
-html.z-tag #hs{background:linear-gradient(#5b9be0 0%,#9cc6ef 55%,#d8e9f7 88%,var(--bg) 100%)}
-html.z-daemmerung #hs{background:linear-gradient(#2b2f63 0%,#7a4f8f 38%,#e88a5a 72%,#f6c27a 88%,var(--bg) 100%)}
-html.z-nacht #hs{background:linear-gradient(#0c1426 0%,#16233f 50%,#253a5c 86%,var(--bg) 100%)}
-html.w-regen.z-tag #hs,html.w-gewitter.z-tag #hs{background:linear-gradient(#6f8094,#a3b1c0 60%,#c9d2dc 88%,var(--bg))}
-#hs .sterne{position:absolute;inset:0 0 30% 0;opacity:0;transition:opacity 1s}
-html.z-nacht #hs .sterne{opacity:1}html.z-daemmerung #hs .sterne{opacity:.35}
-#hs .sterne i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:hsfu 3s ease-in-out infinite alternate}
-@keyframes hsfu{to{opacity:.25}}
-#hs .gestirn{position:absolute;right:7%;top:190px;width:78px;height:78px;border-radius:50%;transition:all 1.2s}
-html.z-tag #hs .gestirn{background:radial-gradient(#fff6c8,#ffd34d 60%,#ffb703);box-shadow:0 0 60px 20px #ffd34d88}
-html.z-daemmerung #hs .gestirn{top:420px;background:radial-gradient(#ffe2a8,#ff9a4d);box-shadow:0 0 70px 30px #ff9a4d66}
-html.z-nacht #hs .gestirn{background:radial-gradient(circle at 38% 38%,#fffbe6,#f1e4a6);box-shadow:0 0 40px 8px #f1e4a644}
-html.w-regen #hs .gestirn,html.w-gewitter #hs .gestirn{opacity:.12}html.w-nebel #hs .gestirn{opacity:.3}
-#hs .wolke{position:absolute;height:60px;border-radius:60px;opacity:.85;animation:hszieh 100s linear infinite}
-#hs .wolke::before,#hs .wolke::after{content:"";position:absolute;border-radius:50%;background:inherit}
-#hs .wolke::before{width:55%;height:150%;left:15%;top:-60%}#hs .wolke::after{width:40%;height:120%;left:48%;top:-40%}
-html.z-tag #hs .wolke{background:#ffffffd9}html.z-daemmerung #hs .wolke{background:#f3b6a0aa}html.z-nacht #hs .wolke{background:#33466a}
-html.w-regen #hs .wolke,html.w-gewitter #hs .wolke{background:#55657acc}
-html.w-sturm #hs .wolke{animation-duration:14s!important}
-@keyframes hszieh{from{transform:translateX(-30vw)}to{transform:translateX(125vw)}}
-#hsfx{position:absolute;left:0;right:0;top:0;z-index:3;pointer-events:none;overflow:hidden}
-#hsfx i{position:absolute;top:-20px;width:1.5px;height:18px;background:#cfe3ffaa;animation:hsfall .7s linear infinite}
-html.w-schnee #hsfx i{width:6px;height:6px;border-radius:50%;background:#fff;animation:hsschnee 7s linear infinite}
-@keyframes hsfall{to{transform:translate(-30px,var(--fh))}}@keyframes hsschnee{to{transform:translate(40px,var(--fh))}}@keyframes hssturm{to{transform:translate(-260px,var(--fh))}}
-#hsnebel{position:absolute;left:0;right:0;z-index:3;pointer-events:none;opacity:0;transition:opacity 1.5s;background:linear-gradient(transparent,#c9d2dccc 55%,#c9d2dc00)}
-html.w-nebel #hsnebel{opacity:.85}html.z-nacht.w-nebel #hsnebel{background:linear-gradient(transparent,#5b6676aa 55%,#5b667600)}
-#hsblitz{position:absolute;left:0;right:0;top:0;z-index:3;pointer-events:none;background:#fff;opacity:0}
-html.w-gewitter #hsblitz{animation:hsblitz 6s infinite}@keyframes hsblitz{0%,90%,94%,100%{opacity:0}91%,95%{opacity:.55}}
-/* Kopf auf dem Himmel */
-html.himmel:not(.z-tag) .top,html.himmel:not(.z-tag) .top a,html.himmel:not(.z-tag) .top .label{color:#eef3fa!important}
-html.himmel.z-tag .top a{color:#10243d!important}
-html.himmel .top{border-bottom:0!important}
-html.himmel .tabnav a[aria-current="page"]{border-bottom-color:#f59e0b!important}
-/* Bildbereich wird zur Himmel-Bühne */
-html.himmel .photo{background:none!important;border-radius:0!important;overflow:visible!important;margin:0}
-html.himmel .photo>img,html.himmel .photo::before,html.himmel .photo>*:not(.h2wrap){display:none!important}
-.h2wrap{position:relative;z-index:2}
-.h2{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:28px;padding-top:18px;max-width:1280px;margin:0 auto;box-sizing:border-box}
-html.himmel:not(.z-tag) .h2{--hi:#f3f6fb;--hm:#b9c6d8}html.z-tag .h2{--hi:#10243d;--hm:#33506f}
-.h2{color:var(--hi)}
-.h2 .ort{color:#f59e0b;font-weight:700;font-size:17px}html.z-tag .h2 .ort{color:#b45309}
-.h2 .st{font-size:14px;color:var(--hm);margin-top:4px;display:flex;align-items:center;gap:8px}
-.h2 .st i{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px #22c55e33}
-.h2 .tt{font:300 clamp(88px,13vw,168px)/1 Georgia,"Times New Roman",serif;letter-spacing:-.03em;margin:10px 0 2px;text-shadow:0 4px 24px #0003}
-html.w-frost .h2 .tt{color:#bfe0ff}
-.h2 .tt sup{font-size:.36em;vertical-align:.95em}
-.h2 .zl{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px;margin-top:10px}
-.h2 .zl span{color:var(--hm)}.h2 .zl b{font-weight:700}
-.h2 .astro2{margin-top:10px;font-size:14px;color:var(--hi)}
-.h2 .astro2 .astro{margin:0!important}.h2 .astro2 .astro .moonph,.h2 .astro2 .astro .moonph b{color:var(--hi)!important}
-.h2 .mx{margin-top:18px;display:flex;gap:12px;align-items:center;max-width:580px;background:#0b13234d;border:1px solid #ffffff22;border-radius:16px;padding:12px 16px;backdrop-filter:blur(4px)}
-html.z-tag .h2 .mx{background:#ffffff8c;border-color:#fff}
-.h2 .mx .av{width:48px;height:48px;border-radius:50%;flex:none;border:2px solid #f97316;background:#fff3e8 url(max-kopf.png) center 30%/86% no-repeat}
-.h2 .mx p{margin:0;font-size:14.5px;line-height:1.45}.h2 .mx small{color:var(--hm);font-size:12px}
-.h2 .vid{display:block;border-radius:16px;overflow:hidden;border:3px solid #ffffffd9;box-shadow:0 10px 30px #0005;aspect-ratio:16/9;position:relative;background:#121a28 center/cover;cursor:pointer}
-.h2 .vid .pl{position:absolute;inset:0;display:grid;place-items:center}
-.h2 .vid .pl span{width:64px;height:64px;border-radius:50%;background:#f97316;display:grid;place-items:center;font-size:24px;color:#fff;box-shadow:0 6px 20px #f9731688}
-.h2 .vid .lab{position:absolute;left:10px;bottom:10px;background:#000a;color:#fff;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px}
-.h2 .vid .mb{position:absolute;right:5%;bottom:0;width:40%;height:90%;background:url(max-kopf.png) center bottom/contain no-repeat}
-.h2 .unter{font-size:12.5px;color:var(--hm);text-align:center;margin-top:8px}
-.h2tbr{position:relative;z-index:2;width:100vw;margin:-30px 0 0 50%;transform:translateX(-50%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%)}
-.h2tb{display:block;border:0;width:min(1700px,100%);margin:0 auto;aspect-ratio:1600/552;background:transparent;
- -webkit-mask-image:url(https://sakomobil-beep.github.io/zentrale/design/startseite/boden-maske.png);mask-image:url(https://sakomobil-beep.github.io/zentrale/design/startseite/boden-maske.png);
- -webkit-mask-size:102% 102.9%;mask-size:102% 102.9%;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.h2tbfade{height:60px;margin-top:-60px;position:relative;z-index:2;background:linear-gradient(transparent,var(--bg));margin-left:50%;transform:translateX(-50%);width:100vw}
+html.himmel .h2tbr{position:relative;z-index:2;margin-top:-20px;display:flex;justify-content:center}
+.h2tb{display:block;border:0;width:min(1100px,96vw);aspect-ratio:1600/552;background:transparent;
+ -webkit-mask-image:radial-gradient(ellipse 52% 60% at 50% 62%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 52% 60% at 50% 62%,#000 55%,transparent 100%)}
+.h2tbfade{display:none;height:60px;margin-top:-60px;position:relative;z-index:2;background:linear-gradient(transparent,var(--bg));margin-left:50%;transform:translateX(-50%);width:100vw}
 /* Vorschau-Leiste */
 #hsdemo{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;gap:5px;align-items:center;justify-content:center;max-width:calc(100vw - 24px);padding:8px 10px;background:#0b111ce6;backdrop-filter:blur(8px);border:1px solid #ffffff22;border-radius:14px;font:12px system-ui,sans-serif;color:#cbd5e1;box-shadow:0 8px 30px #0008}
 #hsdemo b{color:#94a3b8;margin:0 2px 0 8px;font-weight:600}
