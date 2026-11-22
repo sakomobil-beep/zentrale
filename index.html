@@ -2324,7 +2324,12 @@ body.rf #fbSec .rfK{grid-template-columns:1fr!important}
 body.rf #fbSec .rfK>:empty{display:none}
 #wBack{font-size:0!important}#wBack::before{content:"‹ Zentrale";font-size:14px}
 }
-</style></head>
+</style><style id="wkCss">
+.wkb{background:rgba(127,127,127,.09);border-radius:10px;padding:8px 12px;display:grid;gap:2px}.wkb small{font-size:12px;color:var(--mut)}.wkb b{font-size:26px;font-weight:600}
+.wktip{border-radius:10px;padding:8px 12px;font-size:14px}.wktip.ok{background:#e3f5ec;color:#0f6e56}.wktip.neutral{background:rgba(127,127,127,.12)}.wktip.warn{background:#fdecec;color:#a32d2d}
+body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{background:#4a1515;color:#f7c1c1}
+</style>
+</head>
 <body>
 <nav>
   <h1 class="nZ">👑 Kingmans Zentrale</h1>
@@ -2356,7 +2361,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 18:11 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 18:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2381,6 +2386,20 @@ body.rf #fbSec .rfK>:empty{display:none}
   </div>
   </div>
   <div class="midrow">
+    <div class="card" id="wkCard">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap"><h3 style="margin:0">🏠 Wohnklima</h3><small id="wkAt" style="color:var(--mut)"></small></div>
+      <div id="wkSetup" hidden style="margin-top:10px"><p style="margin:0 0 8px;font-size:14px;color:var(--mut)">Einmal den Schlüssel eingeben, den du bei Cloudflare als Secret <b>INNEN_KEY</b> angelegt hast. Er wird verschlüsselt in deinen Daten gespeichert.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><input id="wkKey" type="password" autocomplete="off" placeholder="Schlüssel" style="flex:1;min-width:160px"><button id="wkKeySave" type="button">Speichern</button></div><p id="wkErr" style="color:#b91c1c;font-size:13px;margin:6px 0 0"></p></div>
+      <div id="wkBody" hidden>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0">
+          <div class="wkb"><small>Innen</small><b id="wkT">–</b><small id="wkTa"></small></div>
+          <div class="wkb"><small>Luftfeuchte innen</small><b id="wkH">–</b><small id="wkHs"></small></div>
+        </div>
+        <div id="wkTip" class="wktip"></div>
+        <div id="wkChart" style="margin-top:10px"></div>
+        <div style="display:flex;gap:14px;font-size:12px;color:var(--mut);margin-top:2px"><span><span style="color:#378ADD">━</span> Feuchte</span><span><span style="color:#EF9F27">━</span> Temperatur</span><span>letzte 24 Stunden</span></div>
+        <div id="wkFoot" style="border-top:1px solid var(--line);margin-top:10px;padding-top:8px;font-size:12px;color:var(--mut)"></div>
+      </div>
+    </div>
     <div class="card up">
       <h3>📌 Kommende Termine</h3>
       <div id="upList"></div>
@@ -2616,6 +2635,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Interaktives Live-Bild: echte Seite in der Zentrale</b> (20.11.2026, 22:53 Uhr): unter 🌐 Website › 🖼️ Interaktives Live-Bild ist statt der Muster-Vorschau jetzt wetter-badkoenig.de selbst im Testmodus eingebettet, mit Knöpfen für alle Stimmungen und Effekte (wechseln nur das Bild, ohne die Seite neu zu laden) <span class="tg">neu 20.11.</span></li>
 <li><b>Vorhersage-Reliefkarte: Striche zu den Orten</b> (20.11.2026, 23:58 Uhr): auf der Vorhersageseite verbindet jetzt ein deutlich sichtbarer dunkler Strich jedes Ortsschild mit Temperatur mit seinem Ortspunkt <span class="tg">neu 20.11.</span></li>
 <li><b>Odenwald-Karte: Ortsschilder versetzt</b> (20.11.2026, 23:54 Uhr): auf „Jetzt im Odenwald“ steht das Schild Reichelsheim links auf Höhe seines Punkts, Mossautal unter seinem Punkt (leicht links), Höchst etwas höher – Schilder überlappen sich und den Kartenrand weniger <span class="tg">neu 20.11.</span></li>
+<li><b>Zentrale: Kachel „🏠 Wohnklima“</b> (22.11.2026, 18:25 Uhr): oben auf der Startseite (über „Kommende Termine“): Innentemperatur und -feuchte der Basisstation (40–60 % grün), Lüftungstipp aus Wasser je m³ Luft innen/außen („Lüften lohnt sich“ / „bringt gerade nichts“), Schimmel-Warnung bei über 3 Std. über 60 %, Verlauf 24 Std. mit 60-%-Linie, Taupunkt innen. Worker „wetter-badkoenig“ speichert dafür alle 10 Min. die Innenwerte (KV „innen“, 24 Std.) und gibt sie nur unter /innen mit Secret INNEN_KEY heraus; Schlüssel verschlüsselt in den Zentrale-Daten. Nicht auf der Website <span class="tg">neu 22.11.</span></li>
 <li><b>Startseite: Kachel „Luftqualität“</b> (22.11.2026, 18:10 Uhr): in der Spalte „Heute“ unter „Heute vor 1 Jahr“ (das Fenster dadurch wieder normal hoch): amtliche Bewertung der Luftmessstation Michelstadt (HLNUG DEHE045 über die Schnittstelle des Umweltbundesamts, sehr gut … sehr schlecht mit Farbpunkt), Feinstaub PM10, PM2,5, Ozon, PM10-Kurve 24 Std.; darunter privater Feinstaubsensor Bad König (Sensor.Community SPS30, 0,5 km) mit Hinweis „Nebel – zu hoch“ ab 80 % Feuchte. Daten: luftqualitaet.py im 10-Minuten-Lauf, Abruf höchstens alle 30 Min. → data/luft.json <span class="tg">neu 22.11.</span></li>
 <li><b>Odenwald: alle Orte alle 20 Minuten</b> (22.11.2026, 17:36 Uhr): alle 8 privaten Stationen (6 Hauptorte + Reichelsheim, Brombachtal, Lützelbach) einheitlich zur Minute :00, :20, :40 abgerufen (vorher Hauptorte 10 Min., Zusatzorte 30 Min.) – ca. 650 statt 910 WU-Abfragen/Tag; eigene Station weiter bei jedem 10-Minuten-Lauf; Texte auf der Seite angepasst <span class="tg">neu 22.11.</span></li>
 <li><b>Fränkisch-Crumbach ganz entfernt</b> (22.11.2026, 17:18 Uhr): wird nicht mehr abgerufen (vorher nur ausgeblendet, ca. 48 WU-Abfragen/Tag gespart); Hinweis unter der Karte nennt nur noch Reichelsheim, Brombachtal, Lützelbach. Live-Orte jetzt: Breuberg, Höchst, Bad König, Michelstadt, Mossautal, Oberzent + Reichelsheim, Brombachtal, Lützelbach <span class="tg">neu 22.11.</span></li>
@@ -4469,7 +4489,7 @@ function init(){
   $('cPrev').onclick=()=>{cM.setMonth(cM.getMonth()-1);renderCal()};$('cNext').onclick=()=>{cM.setMonth(cM.getMonth()+1);renderCal()};
   $('cToday').onclick=()=>{cM=new Date();cM.setDate(1);renderCal()};
   $('eAdd').onclick=()=>{if(!$('eDate').value||!$('eText').value)return alert('Bitte Datum und Text eingeben');db.cal=db.cal||[];db.cal.push({id:Date.now()+'',date:$('eDate').value,text:$('eText').value});$('eText').value='';save();renderCal();renderUp()};
-  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}try{initGcal()}catch(e){console.warn(e)}try{initNotes()}catch(e){console.warn(e)}try{initIdeas()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
+  initSav();initKas();render();renderCal();initShow();loadWx();setInterval(loadWx,10*60000);try{wkLaden()}catch(e){}renderHomeSky();renderSky();initQuick();renderUp();initGarden();initCar();initFuel();setTimeout(renderBrief,0);setInterval(renderBrief,5*60000);fsInit();loadAurora();setInterval(loadAurora,15*60000);try{renderPlanets();renderAmpel();initSkyMap()}catch(e){console.warn(e)}try{initLaunches()}catch(e){console.warn(e)}try{initGcal()}catch(e){console.warn(e)}try{initNotes()}catch(e){console.warn(e)}try{initIdeas()}catch(e){console.warn(e)}setInterval(()=>{try{renderPlanets();renderAmpel()}catch(e){}},30*60000);
 }
 /* ===== Facebook-Bereich: Skripte (früher fb.html) ===== */
 function fbInit(){
@@ -6048,5 +6068,48 @@ body.rf #cc .ccMehr>summary{display:none}
    fetch('https://api.github.com/repos/sakomobil-beep/wetterstation/actions/workflows/saison.yml/dispatches',{method:'POST',headers:{Authorization:'Bearer '+tok,Accept:'application/vnd.github+json'},body:JSON.stringify({ref:'main',inputs:{zeilen:JSON.stringify(Z)}})}).then(function(r){if(r.status!==204)throw new Error('GitHub antwortet '+r.status);G('dzSaM').textContent='✅ Gespeichert – auf der Website in ca. 1–2 Minuten aktiv.';setTimeout(laden,100000)}).catch(function(e){G('dzSaM').textContent='❌ '+e.message})}}
  setInterval(function(){var c=G('dzSa');if(c&&c.offsetParent)init()},700);
 })();</script>
+<script>
+/* 22.11.2026: Wohnklima – Innenwerte der Basisstation über den Worker (/innen, geschützt mit INNEN_KEY; Schlüssel verschlüsselt in db.innenKey) */
+(function(){
+  var W='https://wetter-badkoenig.sakomobil.workers.dev';
+  function $w(i){return document.getElementById(i)}
+  function ah(t,rh){return 6.112*Math.exp(17.67*t/(t+243.5))*rh*2.1674/(273.15+t)}
+  function tp(t,rh){var g=Math.log(rh/100)+17.62*t/(243.12+t);return 243.12*g/(17.62-g)}
+  function de(v,n){return v.toFixed(n).replace('.',',')}
+  async function wkLaden(){
+    if(typeof db==='undefined'||!db)return;
+    var key=db.innenKey||'';
+    $w('wkSetup').hidden=!!key;$w('wkBody').hidden=!key;if(!key)return;
+    try{
+      var r=await fetch(W+'/innen?key='+encodeURIComponent(key)+'&x='+Date.now(),{cache:'no-store'});
+      if(r.status===401){$w('wkSetup').hidden=false;$w('wkBody').hidden=true;$w('wkErr').textContent='Schlüssel passt nicht zum Secret INNEN_KEY bei Cloudflare.';return}
+      var a=await r.json();
+      if(!a.length){$w('wkTip').className='wktip neutral';$w('wkTip').textContent='Noch keine Innenwerte – die Station schickt sie jede Minute, gespeichert wird alle 10 Minuten.';return}
+      var o=null;try{o=(await (await fetch(W+'/?x='+Date.now())).json()).observations[0]}catch(e){}
+      var L=a[a.length-1],t=L[1],h=L[2];
+      $w('wkAt').textContent='Basisstation · '+new Date(L[0]).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';
+      $w('wkT').textContent=de(t,1)+' °C';$w('wkH').textContent=h+' %';
+      var ta=o&&o.metric?o.metric.temp:null,ha=o?o.humidity:null;
+      $w('wkTa').textContent=ta!=null?'außen '+de(ta,1).replace('-','−')+' °C':'';
+      var hs=$w('wkHs');hs.textContent=h<40?'zu trocken (unter 40 %)':h<=60?'im grünen Bereich (40–60 %)':'zu feucht (über 60 %)';hs.style.color=h<40?'#b45309':h<=60?'#1D9E75':'#b91c1c';
+      var n3=a.filter(function(x){return L[0]-x[0]<=3*3600000});var schimmel=n3.length>=12&&n3.every(function(x){return x[2]>60});
+      var tip=$w('wkTip');
+      if(schimmel){tip.className='wktip warn';tip.innerHTML='<b>Schimmelgefahr.</b> Die Feuchte liegt seit über 3 Stunden über 60 % – lüften und Räume nicht auskühlen lassen.'}
+      else if(ta!=null&&ha!=null){var ai=ah(t,h),aa=ah(ta,ha);
+        if(aa<ai-1&&h>40){tip.className='wktip ok';tip.innerHTML='<b>Lüften lohnt sich.</b> Draußen '+de(aa,1)+' g Wasser je m³ Luft, drinnen '+de(ai,1)+' g – kurz Stoßlüften senkt die Feuchte.'}
+        else if(aa>=ai){tip.className='wktip neutral';tip.innerHTML='<b>Lüften bringt gerade nichts.</b> Draußen ist mehr Wasser in der Luft ('+de(aa,1)+' g/m³) als drinnen ('+de(ai,1)+' g/m³).'}
+        else{tip.className='wktip neutral';tip.innerHTML='Raumklima in Ordnung. Draußen '+de(aa,1)+' g/m³, drinnen '+de(ai,1)+' g/m³ Wasser in der Luft.'}}
+      else{tip.className='wktip neutral';tip.textContent='Außenwerte gerade nicht verfügbar.'}
+      var w=320,hh=64,t0=L[0]-86400000,xs=function(z){return ((z-t0)/86400000*w).toFixed(1)};
+      var tm=a.map(function(x){return x[1]}),tmin=Math.min.apply(null,tm)-1,tmax=Math.max.apply(null,tm)+1;
+      var yH=function(v){return (hh-4-(v-20)/(80-20)*(hh-8)).toFixed(1)},yT=function(v){return (hh-4-(v-tmin)/(tmax-tmin)*(hh-8)).toFixed(1)};
+      $w('wkChart').innerHTML='<svg viewBox="0 0 '+w+' '+hh+'" width="100%" height="'+hh+'" preserveAspectRatio="none"><line x1="0" x2="'+w+'" y1="'+yH(60)+'" y2="'+yH(60)+'" stroke="#E24B4A" stroke-dasharray="3 3" stroke-width="1"/><polyline fill="none" stroke="#378ADD" stroke-width="2" points="'+a.map(function(x){return xs(x[0])+','+yH(x[2])}).join(' ')+'"/><polyline fill="none" stroke="#EF9F27" stroke-width="2" points="'+a.map(function(x){return xs(x[0])+','+yT(x[1])}).join(' ')+'"/></svg>';
+      $w('wkFoot').textContent='Rote Linie: 60 % Schimmelgrenze · Warnung, wenn die Feuchte 3 Stunden darüber liegt · Taupunkt innen '+de(tp(t,h),1)+' °C';
+    }catch(e){$w('wkTip').className='wktip neutral';$w('wkTip').textContent='Wohnklima gerade nicht abrufbar.'}
+  }
+  document.addEventListener('click',function(ev){if(ev.target&&ev.target.id==='wkKeySave'){var k=$w('wkKey').value.trim();if(k.length<6){$w('wkErr').textContent='Bitte den Schlüssel vollständig eingeben.';return}db.innenKey=k;save();$w('wkKey').value='';$w('wkErr').textContent='';wkLaden()}});
+  window.wkLaden=wkLaden;setInterval(wkLaden,10*60000);
+})();
+</script>
 </body>
 </html>
