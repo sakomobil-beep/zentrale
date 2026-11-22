@@ -2356,7 +2356,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 16:11 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 16:15 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2615,6 +2615,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Interaktives Live-Bild: echte Seite in der Zentrale</b> (20.11.2026, 22:53 Uhr): unter 🌐 Website › 🖼️ Interaktives Live-Bild ist statt der Muster-Vorschau jetzt wetter-badkoenig.de selbst im Testmodus eingebettet, mit Knöpfen für alle Stimmungen und Effekte (wechseln nur das Bild, ohne die Seite neu zu laden) <span class="tg">neu 20.11.</span></li>
 <li><b>Vorhersage-Reliefkarte: Striche zu den Orten</b> (20.11.2026, 23:58 Uhr): auf der Vorhersageseite verbindet jetzt ein deutlich sichtbarer dunkler Strich jedes Ortsschild mit Temperatur mit seinem Ortspunkt <span class="tg">neu 20.11.</span></li>
 <li><b>Odenwald-Karte: Ortsschilder versetzt</b> (20.11.2026, 23:54 Uhr): auf „Jetzt im Odenwald“ steht das Schild Reichelsheim links auf Höhe seines Punkts, Mossautal unter seinem Punkt (leicht links), Höchst etwas höher – Schilder überlappen sich und den Kartenrand weniger <span class="tg">neu 20.11.</span></li>
+<li><b>Lernen: Mossautal auf private Station</b> (22.11.2026, 16:14 Uhr): Odenwald-Lernen misst Mossautal jetzt mit IMOSSA13 im Ort (315 m) statt DWD 03287 Michelstadt-Vielbrunn (453 m) – gleiche Station wie „Aktuell Odenwald“. Alte Lerndaten von Mossautal (519 Stunden mit der DWD-Station) entfernt, damit sich die Stationen nicht vermischen; sammelt 6 Tage, Korrektur ab 28.11.2026 (bis dahin Mossautal ohne Lern-Korrektur) <span class="tg">neu 22.11.</span></li>
 <li><b>Brombachtal: Luftdruck von Nachbarstation</b> (22.11.2026, 16:10 Uhr): IBROMB4 („Reiner“, WH2600) hat keinen Drucksensor – Temperatur, Regen, Strahlung usw. bleiben von IBROMB4, nur der Luftdruck kommt von IBROMB18 (1,2 km), korrigiert um −5,4 hPa auf IBADKN33 (P_ERSATZ/P_KORR in odenwald_live.py); Abstand nach einigen Stunden nochmal prüfen <span class="tg">neu 22.11.</span></li>
 <li><b>Odenwald: Luftdruck aller Stationen abgeglichen</b> (22.11.2026, 15:56 Uhr): private WU-Stationen meldeten den Luftdruck bis 7 hPa zu niedrig; jetzt feste Korrektur je Station auf IBADKN33 (= DWD): Breuberg +0,7, Höchst +6,4, Mossautal +7,1, Oberzent +3,4, Michelstadt +2,4, Reichelsheim +7,3, Fränkisch-Crumbach +7,8, Lützelbach +1,0 hPa (Brombachtal: siehe 16:10 Uhr). Heutiger Luftdruck-Verlauf nachträglich korrigiert (Michelstadt alte Station +15,9 hPa); das Messwert-Archiv speichert keinen Luftdruck, dort war nichts zu ändern <span class="tg">neu 22.11.</span></li>
 <li><b>Michelstadt: neue Station IMICHE124</b> (22.11.2026, 15:50 Uhr): „Aktuell Odenwald“ und Mittags-Story nutzen für Michelstadt IMICHE124 statt IMICHELS20 – die alte Station zeigte den Luftdruck ca. 16 hPa zu niedrig (nicht auf Meereshöhe abgeglichen, z. B. 995 statt 1011 hPa); Luftdruck von IMICHE124 um +2,4 hPa auf DWD Michelstadt-Vielbrunn/IBADKN33 abgeglichen (P_KORR in odenwald_live.py) <span class="tg">neu 22.11.</span></li>
@@ -5220,8 +5221,8 @@ function lkLoad(){
         kpK('Fehler mit Korrektur',km!=null?'± '+lkN(km,2)+' °C':'–',g!=null?(g>=0?g+' % genauer':Math.abs(g)+' % ungenauer'):'Kreismittel, bestes Modell')+
         kpK('Bestes Modell',top?(LK_MOD[top]||top):'–',top?'in '+cnt[top]+' von '+ks.length+' Orten':'')+
         (srt.length>1?kpK('Bester / schwierigster Ort',nm(srt[0])+' / '+nm(srt[srt.length-1]),'± '+lkN(KO[srt[0]].mae[bm(KO[srt[0]])],1)+' / ± '+lkN(KO[srt[srt.length-1]].mae[bm(KO[srt[srt.length-1]])],1)+' °C'):'')}
-    if(K&&K.orte){var LKQ={badkoenig:['IBADKN33 (eigene Station)',185],breuberg:['IBREUB7 (privat)',160],hoechst:['IHCHST74 (privat)',170],michelstadt:['DWD 03284',208],mossautal:['DWD 03287 Vielbrunn',380],oberzent:['DWD 00330 Beerfelden',430],reichelsheim:['IREICH180 (privat)',215],brombachtal:['IBROMB4 (privat)',250]};
-      var LK_AB={reichelsheim:'25.11.2026',brombachtal:'25.11.2026'};
+    if(K&&K.orte){var LKQ={badkoenig:['IBADKN33 (eigene Station)',185],breuberg:['IBREUB7 (privat)',160],hoechst:['IHCHST74 (privat)',170],michelstadt:['DWD 03284',208],mossautal:['IMOSSA13 (privat)',315],oberzent:['DWD 00330 Beerfelden',430],reichelsheim:['IREICH180 (privat)',215],brombachtal:['IBROMB4 (privat)',250]};
+      var LK_AB={reichelsheim:'25.11.2026',brombachtal:'25.11.2026',mossautal:'28.11.2026'};
       var lkV2=function(v){return (v>0?'+':v<0?'−':'±')+lkN(Math.abs(v),1)};
       var oo=Object.keys(LKQ).filter(function(o){return K.orte[o]||LK_AB[o]}).concat(Object.keys(K.orte).filter(function(o){return !LKQ[o]}));
       var ok=oo.filter(function(o){var x=K.orte[o];return x&&x.mae&&Object.keys(x.mae).length&&(x.tage||0)>=3});
