@@ -2356,7 +2356,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 13:45 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 13:50 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2615,6 +2615,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Interaktives Live-Bild: echte Seite in der Zentrale</b> (20.11.2026, 22:53 Uhr): unter 🌐 Website › 🖼️ Interaktives Live-Bild ist statt der Muster-Vorschau jetzt wetter-badkoenig.de selbst im Testmodus eingebettet, mit Knöpfen für alle Stimmungen und Effekte (wechseln nur das Bild, ohne die Seite neu zu laden) <span class="tg">neu 20.11.</span></li>
 <li><b>Vorhersage-Reliefkarte: Striche zu den Orten</b> (20.11.2026, 23:58 Uhr): auf der Vorhersageseite verbindet jetzt ein deutlich sichtbarer dunkler Strich jedes Ortsschild mit Temperatur mit seinem Ortspunkt <span class="tg">neu 20.11.</span></li>
 <li><b>Odenwald-Karte: Ortsschilder versetzt</b> (20.11.2026, 23:54 Uhr): auf „Jetzt im Odenwald“ steht das Schild Reichelsheim links auf Höhe seines Punkts, Mossautal unter seinem Punkt (leicht links), Höchst etwas höher – Schilder überlappen sich und den Kartenrand weniger <span class="tg">neu 20.11.</span></li>
+<li><b>Lern-Apps: Installieren-Link repariert</b> (22.11.2026, 13:50 Uhr): Knopf „📲 Als App installieren“ fehlte unter der Baum-Detektiv-Kachel – jetzt eingebaut; öffnet auf Android direkt Chrome (aus der Zentrale-App heraus war keine Installation möglich); im Zentrale-Fenster zeigt der Baum-Detektiv stattdessen „🌐 Im Browser öffnen &amp; installieren“ <span class="tg">neu 22.11.</span></li>
 <li><b>Lern-Apps: Installieren-Link</b> (22.11.2026, 13:45 Uhr): unter der Baum-Detektiv-Kachel Knopf „📲 Als App installieren“; in der App selbst unten rechts Knopf „📲 App installieren“ (Android/Chrome: Installation direkt, iPad/iPhone: kurze Anleitung), verschwindet nach der Installation <span class="tg">neu 22.11.</span></li>
 <li><b>Lern-Apps: Baum-Detektiv installierbar</b> (22.11.2026, 13:40 Uhr): Baum-Detektiv als App (PWA) mit eigenem Symbol (Eiche auf Grün), läuft im Vollbild und nach dem ersten Öffnen auch offline; Installation auf Handy/Tablet über „Zum Startbildschirm hinzufügen“; Hinweis auf der Kachel unter 🎓 Lern-Apps <span class="tg">neu 22.11.</span></li>
 <li><b>Zentrale: neue Seite „🎓 Lern-Apps“</b> (22.11.2026, 13:35 Uhr): Menüpunkt „🎓 Lern-Apps“ in der Seitenleiste direkt unter „🌦️ Wetterstation verwalten“ führt zur Seite „Lern-Apps für Luca“; erste App dort: Baum-Detektiv (Master) als Kachel, öffnet sich in eigenem Fenster (Ordner lern-apps/baum-detektiv/ im Repo zentrale) <span class="tg">neu 22.11.</span></li>
@@ -3357,6 +3358,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <div style="display:flex;gap:6px;padding:12px 16px 4px;justify-content:center"><img src="lern-apps/baum-detektiv/img/eiche_baum.jpg" alt="" style="height:90px"><img src="lern-apps/baum-detektiv/img/ahorn_blatt.jpg" alt="" style="height:60px;align-self:center"><img src="lern-apps/baum-detektiv/img/kastanie_frucht.jpg" alt="" style="height:50px;align-self:center"></div>
 <div style="padding:8px 16px 14px;color:#24331b;font-size:14px;line-height:1.45">Laub- und Nadelbäume: Lernkarten, Baum–Blatt–Frucht, Laub oder Nadel, Aufbau Laubbaum &amp; Blatt, Steckbriefe.<br><b>Sachkundearbeit 27.11.2026</b> · Bienenklasse<br></div>
 </a>
+<a href="lern-apps/baum-detektiv/index.html?install=1" target="_blank" rel="noopener" onclick="if(/Android/i.test(navigator.userAgent)){location.href='intent://sakomobil-beep.github.io/zentrale/lern-apps/baum-detektiv/?install=1#Intent;scheme=https;package=com.android.chrome;end';return false}" style="display:inline-block;margin-top:10px;background:#4f8f2f;color:#fff;text-decoration:none;border-radius:20px;padding:8px 16px;font-size:15px">📲 Als App installieren</a>
 </div>
 </main>
 <main id="car" hidden>
