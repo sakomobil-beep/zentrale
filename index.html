@@ -6096,7 +6096,8 @@ body.rf #cc .ccMehr>summary{display:none}
       var tip=$w('wkTip');
       if(schimmel){tip.className='wktip warn';tip.innerHTML='<b>Schimmelgefahr.</b> Die Feuchte liegt seit über 3 Stunden über 60 % – lüften und Räume nicht auskühlen lassen.'}
       else if(ta!=null&&ha!=null){var ai=ah(t,h),aa=ah(ta,ha);
-        if(aa<ai-1&&h>40){tip.className='wktip ok';tip.innerHTML='<b>Lüften lohnt sich.</b> Draußen '+de(aa,1)+' g Wasser je m³ Luft, drinnen '+de(ai,1)+' g – kurz Stoßlüften senkt die Feuchte.'}
+        if(h<40){tip.className='wktip neutral';tip.innerHTML='<b>Luft eher trocken.</b> Lüften macht sie noch trockener – nur kurz Stoßlüften (draußen '+de(aa,1)+' g/m³, drinnen '+de(ai,1)+' g/m³ Wasser).'}
+        else if(aa<ai-1){tip.className='wktip ok';tip.innerHTML='<b>Lüften lohnt sich.</b> Draußen '+de(aa,1)+' g Wasser je m³ Luft, drinnen '+de(ai,1)+' g – kurz Stoßlüften senkt die Feuchte.'}
         else if(aa>=ai){tip.className='wktip neutral';tip.innerHTML='<b>Lüften bringt gerade nichts.</b> Draußen ist mehr Wasser in der Luft ('+de(aa,1)+' g/m³) als drinnen ('+de(ai,1)+' g/m³).'}
         else{tip.className='wktip neutral';tip.innerHTML='Raumklima in Ordnung. Draußen '+de(aa,1)+' g/m³, drinnen '+de(ai,1)+' g/m³ Wasser in der Luft.'}}
       else{tip.className='wktip neutral';tip.textContent='Außenwerte gerade nicht verfügbar.'}
