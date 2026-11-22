@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Baum-Detektiv (Master)</title>
+<title>Baum-Detektiv</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#4f8f2f"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Baum-Detektiv">
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:"Comic Sans MS","Chalkboard SE",sans-serif;background:#eaf7e1;color:#24331b}
 header{background:#4f8f2f;color:#fff;padding:12px;text-align:center}header h1{margin:0;font-size:26px}
@@ -253,4 +254,5 @@ buildLabels('tree');buildLabels('leaf');
 cards.innerHTML=T.map(t=>`<div class="card ${t.t==='Nadelbaum'?'n':''}"><b>${t.a} ${t.n}</b> <small>(${t.t})</small>
 <div class="row"><img src="${img(t.k,'baum')}"><img src="${img(t.k,'blatt')}"><img src="${img(t.k,'frucht')}"></div>
 🌰 Frucht: ${t.f}</div>`).join('');
-</script></body></html>
+</script><script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js")</script>
+</body></html>
