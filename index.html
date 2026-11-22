@@ -2355,7 +2355,7 @@ body.rf #fbSec .rfK>:empty{display:none}
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 11:16 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>22.11.2026, 11:24 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -2532,6 +2532,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li>Automatisch ab Sonnenuntergang in Bad König dunkel, ab Sonnenaufgang hell; runder Knopf 🌙 / ☀️ oben rechts zum Umschalten (gilt bis zum nächsten Sonnenauf- bzw. -untergang)</li>
 <li>Gilt für alle hellen Seiten; fremde Inhalte (Radar, Webcams, YouTube, DWD-Karten) bleiben wie geliefert, Bilder leicht abgedunkelt. Technik: theme.js</li>
 <li><b>Menü im Dunkelmodus gut lesbar</b>: halbtransparenter dunkler Balken hinter beiden Menüreihen, fast weiße Schrift mit leichtem Schatten, aktiver Punkt orange <span class="tg">neu 22.11.</span></li>
+<li><b>Lernkurve: „🎯 Wie gut lag die Vorhersage gestern?“</b> (Zentrale, Control Center → Website → Lernkurve, unter dem grünen Kasten): Vorhersage vom Vorabend gegen die Messung für Höchstwert, Tiefstwert, Regen und stärkste Böe, mit „x von 4 getroffen“, „🧠 Was die Station daraus macht“ (wie sich die Korrektur für klare/wolkige Tage und Nächte verändert hat, ob sie dazugelernt hat, bestes Modell) und Haken der letzten 7 Tage <span class="tg">neu 22.11.</span></li>
 <li><b>Menü im hellen Modus mit Milchglas-Kasten</b>: halbtransparenter heller Kasten mit feinem weißem Rand hinter beiden Menüreihen, Schrift dunkel (nicht während der Weihnachtsszene, die eigene helle Menüschrift hat) <span class="tg">neu 22.11.</span></li>
 </ul></details>
 <details><summary>🎄 Saison-Deko</summary><ul>
@@ -2609,6 +2610,7 @@ body.rf #fbSec .rfK>:empty{display:none}
 <li><b>Vorhersage-Reliefkarte: Striche zu den Orten</b> (20.11.2026, 23:58 Uhr): auf der Vorhersageseite verbindet jetzt ein deutlich sichtbarer dunkler Strich jedes Ortsschild mit Temperatur mit seinem Ortspunkt <span class="tg">neu 20.11.</span></li>
 <li><b>Odenwald-Karte: Ortsschilder versetzt</b> (20.11.2026, 23:54 Uhr): auf „Jetzt im Odenwald“ steht das Schild Reichelsheim links auf Höhe seines Punkts, Mossautal unter seinem Punkt (leicht links), Höchst etwas höher – Schilder überlappen sich und den Kartenrand weniger <span class="tg">neu 20.11.</span></li>
 <li><b>Startseite: „☕ Max einen Kaffee ausgeben“</b> (22.11.2026, 10:10 Uhr): brauner Balken in voller Breite unter den Knöpfen Facebook/Instagram/Threads („Die Wetterstation ist privat und werbefrei – wenn sie dir gefällt, kannst du Max über PayPal einen Kaffee spendieren“) plus Link „☕ Max einen Kaffee ausgeben“ im Seitenfuß hinter Instagram; beide führen zu paypal.me/wettermax. Bewusst ohne Kostenanzeige.</li>
+<li><b>Lernkurve: Kachel „Wie gut lag die Vorhersage gestern?“</b> (22.11.2026, 11:24 Uhr): Neue Kachel im Lernkurve-Tab direkt unter dem grünen Trefferquoten-Kasten. Vergleicht die Vorhersage vom Vorabend mit den Messwerten von gestern (Höchst, Tief, Regen, stärkste Böe; getroffen = ±1 °C, Regen ja/nein ab 0,2 mm, Böe ±10 km/h). Darunter „🧠 Was die Station daraus macht“: wie sich die Korrektur für klare/wolkige Tage bzw. Nächte geändert hat und ob sie dadurch dazugelernt hat, plus bestes Modell; Regen und Wind werden nur beobachtet. Dazu Haken der letzten 7 Tage. Website: fb_post.py speichert in fb/treffer.json jetzt auch die vorhergesagte und gemessene stärkste Böe (Werte ab dem 23.11.2026).</li>
 <li><b>Menü im hellen Modus mit Milchglas-Kasten</b> (22.11.2026, 11:15 Uhr): Passend zum Dunkelmodus liegt das Menü jetzt auch im hellen Modus in einem Kasten: halbtransparent weiß (Himmel scheint durch, leicht weichgezeichnet), feiner weißer Rand, Schrift dunkel wie bisher. Während der Weihnachtsszene (23.11.–28.12.) bleibt das Menü wie gehabt, weil dort die Schrift hell ist. Technik: theme.js</li>
 <li><b>Menü im Dunkelmodus lesbar</b> (22.11.2026, 08:46 Uhr): Die Menüschrift (beide Reihen) war im Dunkelmodus hellgrau auf hellem Himmel kaum lesbar. Jetzt liegt dahinter ein halbtransparenter dunkler Balken (leicht weichgezeichnet), die Schrift ist fast weiß mit leichtem Schatten, die zweite Reihe etwas gedämpfter, der aktive Punkt orange. Gilt für alle Seiten mit diesem Menü, heller Modus unverändert. Technik: theme.js</li>
 <li><b>Himmel im Dunkelmodus ohne hellen Streifen</b> (22.11.2026, 08:28 Uhr): Der Himmel oben auf der Website folgt weiter der Tageszeit (tagsüber hell mit Sonne). Im Dunkelmodus läuft der Taghimmel (auch bei Regen/Gewitter) jetzt ohne hellen weißgrauen Streifen direkt in den dunklen Seitenhintergrund aus.</li>
@@ -5622,6 +5624,44 @@ body.rf #cc .ccMehr>summary{display:none}
        if(!n){hero.style.display='none';return}var p=Math.round(ok/n*100),col=p>=80?'#22c55e':p>=60?'#f59e0b':'#ef4444';
        hero.style.display='flex';hero.innerHTML='<div class="ring" style="background:conic-gradient('+col+' 0 '+p+'%,rgba(128,128,128,.25) '+p+'% 100%)"><div>'+p+' %</div></div><div style="flex:1"><small style="opacity:.75;letter-spacing:.05em">TREFFERQUOTE HÖCHSTWERT · LETZTE '+n+' TAGE</small><div style="font-size:21px;font-weight:700;margin:3px 0">An '+ok+' von '+n+' Tagen lag die Vorhersage höchstens 1 °C daneben</div><div style="opacity:.8;font-size:14px">Vorhersage vom Vorabend gegen die Messung der Station Bad König</div></div>'}catch(e){console.warn(e)}};
      var lt=$$('lkTreff');if(lt)new MutationObserver(hr).observe(lt,{childList:true,subtree:true});hr();
+     /* 22.11.2026: Kachel „Wie gut lag die Vorhersage gestern?“ + was die Station daraus lernt */
+     var tg=document.createElement('div');tg.id='rfGestern';tg.style.cssText='background:var(--surface,#1f2835);border-radius:14px;padding:16px 18px;margin:0 0 14px';hero.parentNode.insertBefore(tg,hero.nextSibling);
+     Promise.all([lkJ('fb/treffer.json'),lkJ('data/lernen-verlauf.json').catch(function(){return null})]).then(function(r){try{
+       var T=r[0]||{},K=(r[1]&&r[1].korrektur)||{},f1=function(x){return (Math.round(x*10)/10).toString().replace('.',',').replace('-','−')};
+       var WT=['So','Mo','Di','Mi','Do','Fr','Sa'],dd=function(k){var d=new Date(k+'T12:00');return WT[d.getDay()]+' '+k.slice(8,10)+'.'+k.slice(5,7)+'.'};
+       var nass=function(x){return (x||0)>=0.2};
+       var bew=function(e){var v=e.abend||e.morgen,i=e.ist,o=[];if(!v||!i)return null;
+         var t=function(n,a,b){if(a==null||b==null)return;var d=a-b;o.push({n:n,txt:f1(a)+' °C → '+f1(b)+' °C',ok:Math.abs(d)<=1,d:d,info:Math.abs(d)<=1?f1(Math.abs(d))+' °C daneben':f1(Math.abs(d))+' °C zu '+(d>0?'warm':'kalt')+' vorhergesagt'})};
+         t('Höchstwert',v.tmax,i.tmax);t('Tiefstwert',v.tmin,i.tmin);
+         var rv=nass(v.regen),ri=nass(i.regen);o.push({n:'Regen',txt:f1(v.regen||0)+' mm → '+f1(i.regen||0)+' mm',ok:rv==ri,info:(rv==ri?'✓ ':'')+(rv?'nass':'trocken')+' vorhergesagt, '+(ri?'nass':'trocken')+' gewesen'});
+         if(v.boe!=null&&i.boe!=null){var d=v.boe-i.boe;o.push({n:'Stärkste Böe',txt:Math.round(v.boe)+' → '+Math.round(i.boe)+' km/h',ok:Math.abs(d)<=10,info:Math.abs(d)<=10?Math.abs(Math.round(d))+' km/h daneben':Math.abs(Math.round(d))+' km/h zu '+(d>0?'stark':'schwach')+' vorhergesagt'})}
+         return {v:v,o:o,wann:e.abend?'Vorabend':'frühen Morgen'}};
+       var ks=Object.keys(T).sort().filter(function(k){return T[k].ist&&(T[k].abend||T[k].morgen)});
+       if(!ks.length){tg.style.display='none';return}
+       var k=ks[ks.length-1],B=bew(T[k]),ok=B.o.filter(function(x){return x.ok}).length,am=B.v.am||'';
+       var h='<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><b style="font-size:17px">🎯 Wie gut lag die Vorhersage gestern? · '+dd(k)+k.slice(0,4)+'</b><span style="font-size:13px;padding:3px 10px;border-radius:8px;background:'+(ok==B.o.length?'rgba(92,201,149,.18);color:#5cc995':'rgba(245,181,71,.18);color:#ffc867')+'">'+ok+' von '+B.o.length+' getroffen</span></div>';
+       h+='<div style="font-size:12px;opacity:.7;margin:2px 0 12px">Vorhersage vom '+B.wann+(am?' ('+dd(am.slice(0,10))+', '+am.slice(11,16)+' Uhr)':'')+' gegen die Messung der Station Bad König</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px">';
+       B.o.forEach(function(x){h+='<div style="background:rgba(128,128,128,.12);border-radius:10px;padding:10px 12px"><div style="font-size:12px;opacity:.7">'+x.n+'</div><div style="font-size:19px;font-weight:600;margin:2px 0">'+x.txt+'</div><div style="font-size:12px;color:'+(x.ok?'#5cc995':'#f08a5d')+'">'+(x.ok?'✅ ':'❌ ')+x.info.replace(/^✓ /,'')+'</div></div>'});
+       h+='</div>';
+       /* Was macht die Station daraus? */
+       var kk=Object.keys(K).sort(),kn=kk.filter(function(x){return x>k})[0],kv=kk.filter(function(x){return x<=k}).pop(),L=[];
+       if(kn&&kv){var a=K[kv],b=K[kn];
+         var lern=function(name,teil,miss){var f1k=teil+'_'+(Math.abs(b['klar_'+teil]-a['klar_'+teil])>=Math.abs(b['wolkig_'+teil]-a['wolkig_'+teil])?'klar':'wolkig');f1k=f1k.split('_').reverse().join('_');
+           var alt=a[f1k],neu=b[f1k],lage=(f1k.indexOf('klar')==0?'klare ':'wolkige ')+(teil=='nacht'?'Nächte':'Tage'),dl=neu-alt;
+           var s='<b>'+name+':</b> Korrektur für '+lage+' von '+f1(alt)+' auf '+f1(neu)+' °C';
+           if(miss==null)return s+' (gestern getroffen, Feinschliff).';
+           var soll=miss>0?-1:1;
+           if(Math.abs(dl)<0.03)return s+' – praktisch unverändert. Ein einzelner Fehltag zählt kaum, die Station wertet alle Stunden der letzten 14 Tage.';
+           return s+(dl*soll>0?' – <span style="color:#5cc995">hat dazugelernt</span>: rechnet jetzt '+f1(Math.abs(dl))+' °C '+(soll<0?'kälter':'wärmer')+'.':' – <span style="color:#ffc867">noch nicht gelernt</span>: Die übrigen Stunden zeigten eher das Gegenteil, darum ging die Korrektur leicht in die andere Richtung. Passiert der Fehler öfter, zieht sie nach.')};
+         var hx=B.o.filter(function(x){return x.n=='Höchstwert'})[0],tx=B.o.filter(function(x){return x.n=='Tiefstwert'})[0];
+         if(hx)L.push(lern('Höchstwert','tag',hx.ok?null:hx.d));if(tx)L.push(lern('Tiefstwert','nacht',tx.ok?null:tx.d));
+         if(b.bestes)L.push('<b>Bestes Modell</b> bleibt '+(b.bestes!=a.bestes?'<span style="color:#ffc867">neu</span> ':'')+({icon_d2:'DWD ICON-D2',icon_eu:'DWD ICON-EU',ecmwf_ifs025:'ECMWF',meteofrance_arome_france_hd:'AROME'}[b.bestes]||b.bestes)+' – es bekommt in der Mischung das größte Gewicht.');}
+       L.push('<b>Regen und Wind</b> werden nicht korrigiert, nur beobachtet. Daneben liegende Tage fließen in die Gewichtung der Wettermodelle ein.');
+       h+='<div style="margin-top:14px;padding:10px 12px;border-left:3px solid #6fb1e6;background:rgba(111,177,230,.08);font-size:13.5px;line-height:1.55"><div style="font-weight:600;margin-bottom:4px">🧠 Was die Station daraus macht</div>'+L.map(function(x){return '<div>• '+x+'</div>'}).join('')+'</div>';
+       var last=ks.slice(-7);h+='<div style="font-size:12px;opacity:.7;margin:14px 0 6px">Die letzten '+last.length+' Tage (Höchst · Tief · Regen · Böe)</div><div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px">';
+       last.forEach(function(x){var o=bew(T[x]).o;h+='<span style="background:rgba(128,128,128,.12);padding:4px 8px;border-radius:6px'+(x==k?';outline:1px solid #ffc867':'')+'">'+x.slice(8,10)+'.'+x.slice(5,7)+'. '+o.map(function(y){return y.ok?'✅':'❌'}).join('')+'</span>'});
+       h+='</div><div style="font-size:11px;opacity:.6;margin-top:6px">Getroffen = Temperatur höchstens 1 °C daneben, Regen ja/nein richtig (ab 0,2 mm), Böe höchstens 10 km/h daneben. Böe wird seit 22.11.2026 mitgespeichert.</div>';
+       tg.innerHTML=h}catch(e){console.warn('rfGestern',e);tg.style.display='none'}}).catch(function(){tg.style.display='none'});
    }}catch(e){console.warn('rfLk',e)}
    /* Newsticker */
    try{var tc=$$('tkCard');if(tc){
