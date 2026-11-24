@@ -2341,6 +2341,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nZ" data-p="car">🚗 Dacia</button>
   <button class="nZ" data-p="cc" style="margin-top:10px;border-top:1px solid rgba(255,255,255,.15);padding-top:12px">🌦️ Wetterstation verwalten</button>
   <button class="nZ" onclick="window.open('https://sakomobil-beep.github.io/lern-apps/','_blank','noopener')">🎓 Lern-Apps ↗</button>
+  <button class="nZ" data-p="spiel">🎮 Spielentwicklung</button>
   <button class="nW" id="wBack" onclick="show('home')" style="color:#93c5fd;font-size:14px">‹ Zurück zu Kingmans Zentrale</button>
   <h1 class="nW" style="margin-top:8px">🌦️ Wetterstation</h1>
   <button class="nW" data-p="cc">🏠 Übersicht</button>
@@ -2361,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>24.11.2026, 21:40 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>25.11.2026, 00:20 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3428,6 +3429,128 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
     </div>
     <small id="archSt" style="display:block;margin-top:8px;opacity:.7"></small>
   </div>
+</main>
+<main id="spiel" hidden>
+<style>
+#spiel .sgHero{border-radius:14px;padding:22px 24px;color:#fff;background:linear-gradient(120deg,#3b2a14,#6b4a1e 55%,#2f5a2a);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+#spiel .sgHero h2{margin:0 0 4px;font-size:26px}#spiel .sgBtn{display:inline-block;padding:9px 14px;border-radius:9px;background:#c9a24a;color:#2a1d12;font-weight:700;text-decoration:none;margin:4px 6px 0 0}
+#spiel .sgBtn.alt{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35)}
+#spiel .sgGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+#spiel .sgK{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+#spiel .sgK h4{margin:0 0 6px}#spiel .sgK ul{margin:4px 0 0;padding-left:18px;line-height:1.5}
+#spiel details{background:var(--card);border-radius:12px;padding:12px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+#spiel summary{font-weight:700;cursor:pointer;font-size:16px}#spiel details ul{line-height:1.55}
+#spiel .sgImgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}#spiel .sgImgs figure{margin:0}#spiel .sgImgs img{width:100%;border-radius:10px;display:block}#spiel figcaption{font-size:12px;opacity:.7;margin-top:4px}
+#spiel table{border-collapse:collapse;width:100%;font-size:14px}#spiel td,#spiel th{border-bottom:1px solid rgba(128,128,128,.25);padding:6px 8px;text-align:left}
+#spiel .sgTag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:8px;background:#e8f5e0;color:#2f5a2a;margin-left:6px}#spiel .sgTag.o{background:#fff3d6;color:#7a5a10}
+body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
+#spiel svg text{font-family:inherit}
+</style>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="opacity:.85">Eigene Spiele, gebaut zusammen mit Claude · Stand: <b id="sgStand">25.11.2026, 00:20 Uhr</b></div></div>
+<div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Odenwald-Siedler spielen</a><a class="sgBtn alt" href="https://github.com/sakomobil-beep/odenwaldsiedler" target="_blank" rel="noopener">📦 Repo</a></div></div>
+
+<div class="card"><h3 style="margin-top:0">🔗 Links</h3>
+<div class="sgGrid">
+<div class="sgK"><h4>🏰 Odenwald-Siedler</h4><ul>
+<li><a href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">Spiel öffnen</a> (nach Änderungen Strg + F5)</li>
+<li><a href="https://github.com/sakomobil-beep/odenwaldsiedler" target="_blank" rel="noopener">GitHub-Repo</a> · <a href="https://github.com/sakomobil-beep/odenwaldsiedler/commits/main" target="_blank" rel="noopener">Änderungsverlauf</a></li>
+<li><a href="https://drive.google.com/drive/folders/1WVVa1wKV8VNe3kHX9RpiAXZ5Vc5WSm_6" target="_blank" rel="noopener">Vorschau-Bilder (Drive „Siedlerspiel“)</a></li></ul></div>
+<div class="sgK"><h4>🎄 Spiele für Luca</h4><ul>
+<li><a href="https://sakomobil-beep.github.io/lern-apps/" target="_blank" rel="noopener">Lern-Apps-Seite</a> (dort auch „Rette die Geschenke!“)</li></ul></div>
+<div class="sgK"><h4>🛠️ Werkzeuge &amp; Wissen</h4><ul>
+<li><a href="https://threejs.org/" target="_blank" rel="noopener">three.js</a> – 3D-Grafik im Browser (Grundlage des Spiels)</li>
+<li><a href="https://godotengine.org/" target="_blank" rel="noopener">Godot Engine</a> – geplanter späterer Umzug</li>
+<li><a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> – Hosting</li></ul></div>
+<div class="sgK"><h4>🎯 Vorbilder</h4><ul><li>Die Siedler 2 (Wirtschaft, Träger, Militär)</li><li>Anno 117 (Bedürfnisse, Stufen)</li><li>Manor Lords · Pioneers of Pagonia (Look &amp; Gefühl)</li></ul></div>
+</div></div>
+
+<div class="card"><h3 style="margin-top:0">📸 Bilder aus dem Spiel</h3><div class="sgImgs">
+<figure><img src="Spiele/ai.jpg" alt="KI-Siedlung" loading="lazy"><figcaption>Siedlung eines KI-Gegners mit Wachstube und Schweinezucht</figcaption></figure>
+<figure><img src="Spiele/posts.jpg" alt="Militärposten" loading="lazy"><figcaption>Wachturm mit Aussichtsplattform – Bogenschützen stehen sichtbar oben</figcaption></figure>
+<figure><img src="Spiele/war.jpg" alt="Angriff" loading="lazy"><figcaption>Angriffsfenster für einen gegnerischen Posten</figcaption></figure>
+</div></div>
+
+<div class="card"><h3 style="margin-top:0">🏰 Odenwald-Siedler – Überblick</h3>
+<p>3D-Aufbauspiel im Stil von „Die Siedler“, läuft direkt im Browser (three.js). Jede Ware wird von sichtbaren Trägern bewegt, jeder Beruf hat eine eigene Arbeitsanimation. Gegner bauen eigene Siedlungen, es gibt Kämpfe, Eroberungen, Sieg und Niederlage.</p>
+<svg viewBox="0 0 900 250" width="100%" style="max-width:900px">
+<defs><marker id="sgA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#a07a3a"/></marker></defs>
+<g font-size="13" text-anchor="middle">
+<g fill="#e8f0dc" stroke="#6b8a4a"><rect x="10" y="20" width="120" height="36" rx="8"/><rect x="10" y="80" width="120" height="36" rx="8"/><rect x="10" y="140" width="120" height="36" rx="8"/><rect x="10" y="200" width="120" height="36" rx="8"/></g>
+<text x="70" y="43">🪓 Holz, Stein</text><text x="70" y="103">🌾 Getreide, Tiere</text><text x="70" y="163">⛏️ Erz, Kohle, Gold</text><text x="70" y="223">🔮 Rutengänger</text>
+<g fill="#f6ead2" stroke="#a07a3a"><rect x="210" y="20" width="140" height="36" rx="8"/><rect x="210" y="80" width="140" height="36" rx="8"/><rect x="210" y="140" width="140" height="36" rx="8"/></g>
+<text x="280" y="43">🪵 Bretter, Ziegel</text><text x="280" y="103">🍞 Brot, Wurst, Käse</text><text x="280" y="163">🔥 Eisen, Münzen</text>
+<g fill="#fbe3d6" stroke="#b05a3a"><rect x="430" y="20" width="150" height="36" rx="8"/><rect x="430" y="80" width="150" height="36" rx="8"/><rect x="430" y="140" width="150" height="36" rx="8"/></g>
+<text x="505" y="43">🏠 Häuser (5 Stufen)</text><text x="505" y="103">⛏️ Bergleute, Arbeiter</text><text x="505" y="163">⚔️ Waffen → Kaserne</text>
+<g fill="#e3e6fb" stroke="#4a5ab0"><rect x="660" y="50" width="220" height="36" rx="8"/><rect x="660" y="140" width="220" height="36" rx="8"/></g>
+<text x="770" y="73">💰 Steuern, Wachstum, Luxus</text><text x="770" y="163">🏴 Posten, Gebiet, Eroberung</text>
+<g stroke="#a07a3a" stroke-width="2" marker-end="url(#sgA)"><line x1="130" y1="38" x2="208" y2="38"/><line x1="130" y1="98" x2="208" y2="98"/><line x1="130" y1="158" x2="208" y2="158"/><line x1="350" y1="38" x2="428" y2="38"/><line x1="350" y1="98" x2="428" y2="98"/><line x1="350" y1="158" x2="428" y2="158"/><line x1="580" y1="38" x2="658" y2="64"/><line x1="580" y1="158" x2="658" y2="158"/><line x1="130" y1="218" x2="208" y2="165"/></g>
+</g></svg>
+<p style="font-size:13px;opacity:.7;margin:4px 0 0">Grober Ablauf der Wirtschaft: Rohstoffe → Verarbeitung → Versorgung → Wachstum &amp; Militär.</p></div>
+
+<h3>✨ Alle Funktionen</h3>
+<details open><summary>🎮 Spielstart &amp; Bedienung</summary><ul>
+<li>Hauptmenü mit Neues Spiel, Laden, <b>Tutorial (15 Schritte)</b></li>
+<li>Neues Spiel: Kartengröße, Gelände, Wasser, Wald, Rohstoffe, Startwaren, Tempo, Seed, Freischaltung („Alles von Anfang an“ möglich)</li>
+<li><b>Spielart:</b> 🕊️ Friedlich siedeln oder ⚔️ Mit Kämpfen · <b>KI-Gegner:</b> 0–3 · <b>KI-Stärke:</b> Leicht / Mittel / Schwer</li>
+<li>Obere Leiste mit Warengruppen, Trends, Uhr, Tempo ⏸ ▶ ⏩ ⏭, 🔔 Meldungen, Münzen im eigenen Goldfeld</li>
+<li>Bauen: Mausrad oder Q/E dreht in 15°-Schritten, weiches Drehen, Pfeil zeigt die Tür, Ausrichtung wird gemerkt</li>
+<li>Speichern/Laden mit mehreren Spielständen und Autosave</li></ul></details>
+<details><summary>🏗️ Bauen &amp; Logistik</summary><ul>
+<li>Baumenü: Siedlung, Baustoffe, Landwirtschaft, Lebensmittel, Bergbau, Metall, Handwerk, Militär</li>
+<li>Träger bringen das Baumaterial zur Baustelle, Bauarbeiter baut sichtbar</li>
+<li>Haupthaus + Lagerhaus (Steinhalle mit Laderampen, +2 Träger); Trägerwarnung bei Engpass</li>
+<li>Gebäude-Upgrade +20 % (Dachziegel/Münzen), Schnellbau, Siedler anwerben</li>
+<li>Freischaltung in 5 Stufen; Felder folgen dem Gelände (mit Furchen)</li></ul></details>
+<details><summary>🌾 Wirtschaft &amp; Produktionsketten</summary><ul>
+<li>Holzfäller, Förster, Sägewerk, Steinbruch, Lehmgrube, Ziegelei, Köhlerei</li>
+<li>Bauernhof (12 Felder), Mühle, Bäckerei, Brunnen, Fischer, Jäger, Schweinezucht, Metzger (auch Wurst), Kuhstall, Käserei, Räucherei, Konditorei, Imkerei (Honig + Kerzen)</li>
+<li>Hopfenbauer, Brauerei, Wirtshaus · Schäferei, Weberei, Schneiderei · Töpferei</li>
+<li>Winzer, Kelterei (Wein), Goldschmied (Schmuck), Denkmal</li>
+<li>Markt mit Händler: kaufen/verkaufen (höchstens 5 🪙 pro Besuch)</li>
+<li>🔗 Produktionsketten-Ansicht und 📈 Wirtschaftsbilanz (Taste B, rote/gelbe Zeilen)</li>
+<li>Mehrstufige Arbeitsanimationen für alle Werkstätten („Wuselfaktor“)</li></ul></details>
+<details><summary>⛏️ Bergbau &amp; Gold</summary><ul>
+<li>Eigenes Zechengebäude je Mine (Kohle, Eisen, Gold), Steinbruch</li>
+<li>Rutengänger findet verborgene Vorkommen und stellt kleine Holzschilder auf</li>
+<li>Goldadern mit 100 Einheiten; Münzprägerei: 2 Golderz + 1 Kohle → 1 Münze</li>
+<li>Bergleute brauchen feines Essen</li></ul></details>
+<details><summary>🏠 Bevölkerung &amp; Häuser</summary><ul>
+<li>5 Hausstufen: Hütte, Bauernhaus, Fachwerkhaus, Bürgerhaus, Herrenhaus mit Garten</li>
+<li>Bedürfnisse je Stufe, Steuern (0 / 0,1 / 0,2 / 0,4 Münzen), keine Stufen-Schaukelei</li>
+<li>Denkmal in der Nähe hebt die Zufriedenheit</li></ul></details>
+<details><summary>⚔️ Militär</summary><ul>
+<li>Waffenschnitzer (Kampfstock), Bogenbauer (Bögen + Pfeile), Waffenschmied, Kaserne mit Übungsplatz</li>
+<li>Ränge Schwert: Wächter → Landsknecht → Waffenknecht → Ritter → Burgmann · Bogen: Jäger → Schütze → Meisterschütze</li>
+<li><b>Posten:</b>
+<table><tr><th>Posten</th><th>Besatzung</th><th>Gebiet</th></tr>
+<tr><td>Wachstube</td><td>2 ⚔️ (auch Miliz mit Kampfstock)</td><td>16</td></tr>
+<tr><td>Wachturm</td><td>4 🏹 sichtbar auf der Plattform</td><td>22</td></tr>
+<tr><td>Wehrturm (Stufe 3)</td><td>3 ⚔️ + 2 🏹 auf den Zinnen</td><td>30</td></tr>
+<tr><td>Burg</td><td>6 ⚔️ + 4 🏹 auf den Mauern</td><td>40</td></tr></table></li>
+<li>Kaserne schickt automatisch die passende Soldatenart; Soldaten brauchen Essen (hungrig = schwächer)</li></ul></details>
+<details open><summary>🤖 KI-Gegner &amp; Kämpfe <span class="sgTag">neu</span></summary><ul>
+<li>Graf von Erbach (rot), Fürst von Breuberg (gold), Abt von Amorbach (lila) – eigene Siedlungen, Siedler, Grenzfahnen, Gebiet auf der Minikarte</li>
+<li>KI-Wirtschaft vereinfacht im Hintergrund (komplette Simulation erst nach Fertigstellung / beim Godot-Umzug)</li>
+<li>Angreifen: gegnerisches Gebäude anklicken, Anzahl ⚔️/🏹 wählen, „⚔ Angreifen“</li>
+<li>Sichtbare Kämpfe: Marsch, Pfeile mit Flugbahn, Duelle Mann gegen Mann, Gefallene kippen um</li>
+<li>Eroberung: Posten wechselt den Besitzer, fremde Gebäude außerhalb des Gebiets versinken in Rauch</li>
+<li>Warnmeldungen bei Angriffen, Verstärkung aus nahen Posten</li>
+<li>Leicht = passiv · Mittel = normal · Schwer = aggressiv &amp; hinterhältig (sucht schwächsten Posten, Ablenkungsangriffe)</li>
+<li>🏆 Sieg, wenn alle Haupthäuser erobert sind · 🔥 Niederlage, wenn dein Haupthaus fällt</li></ul></details>
+
+<div class="card" style="margin-top:16px"><h3 style="margin-top:0">🗺️ Wie geht es weiter?</h3>
+<ul style="line-height:1.6">
+<li><span class="sgTag o">als Nächstes</span> KI-Gegner ausprobieren und Stärke/Zeiten feinjustieren</li>
+<li>Laufende Angriffe mitspeichern</li>
+<li>Diplomatie-Übersicht (Stärke, Gebiet, Soldaten je Gegner)</li>
+<li>Später: Umzug nach Godot (bessere Leistung, komplette KI-Simulation)</li></ul></div>
+
+<div class="card"><h3 style="margin-top:0">📜 Änderungsprotokoll</h3><ul style="line-height:1.6">
+<li><b>24.11.2026, 23:55 Uhr</b> – KI-Gegner Teil 2: Angriffe, Duelle, Pfeile, Eroberung, Taktik je Stärke, Sieg/Niederlage</li>
+<li><b>24.11.2026, 21:45 Uhr</b> – KI-Gegner Teil 1: Spielart, Anzahl, Stärke; KI-Siedlungen mit Gebieten und Grenzfahnen</li>
+<li><b>24.11.2026, 21:30 Uhr</b> – Militärposten: Wachstube, Wachturm mit Aussichtsplattform, Wehrturm; Bogenschützen sichtbar oben</li>
+<li><b>24.11.2026</b> – Gold-Balancing, Arbeitsanimationen, Luxuswaren, 5 Hausstufen, Rutengänger-Schilder, Tutorial, Freischaltung, Lagerhaus, Bergwerke u. v. m.</li>
+<li><b>25.11.2026, 00:20 Uhr</b> – Seite „🎮 Spielentwicklung“ in der Zentrale angelegt</li></ul></div>
 </main>
 <main id="car" hidden>
 <div id="tdModal" hidden onclick="if(event.target===this)this.hidden=true" style="position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center"><div style="background:#fff;color:#222;max-width:720px;width:92%;max-height:88vh;overflow:auto;border-radius:16px;padding:22px 28px;position:relative"><button onclick="document.getElementById('tdModal').hidden=true" style="position:absolute;top:12px;right:14px;border:0;background:none;font-size:22px;cursor:pointer">✕</button><h3 style="margin-top:0">🚗 Technische Daten – Sandero Stepway TCe 110 Extreme</h3><div class="tdtabs"><button class="on" onclick="tdTab(this,'tdAus')">Ausstattung</button><button onclick="tdTab(this,'tdMotor')">Motor &amp; Maße</button></div><div id="tdAus"><table class="tdt"><tr><td>Marke</td><td>Dacia</td></tr><tr><td>Modell</td><td>Sandero III</td></tr><tr><td>Version</td><td>TCe 110</td></tr><tr><td>Kraftstoff</td><td>Benzin</td></tr><tr><td>Innenraum</td><td>Extreme-spezifisches Interieur</td></tr><tr><td>Sitzbezüge</td><td>Extreme-spezifische Stoffpolsterung</td></tr></table><h4>Zusatzausstattung</h4><ul><li>UP&amp;GO-Paket</li></ul><h4>Sicherheit</h4><ul><li>Front-Airbags (Fahrer und Beifahrer)</li><li>Seiten-Thorax-Airbags vorne und Vorhang-Airbags</li><li>ABS</li><li>Automatischer Notbremsassistent</li><li>Bremsassistent</li><li>Feste Sicherheitsgurte vorne, mit Gurtstraffer</li><li>3 Dreipunkt-Sicherheitsgurte hinten</li><li>Totwinkel-Warner</li><li>Müdigkeitswarner</li><li>Spurhalteassistent</li><li>ISOFIX an den äußeren Rücksitzen</li><li>Parksensoren vorne &amp; hinten</li><li>Rückfahrkamera</li><li>Vorrüstung für Alkohol-Wegfahrsperre</li><li>Nebelscheinwerfer</li><li>Notruf 112 (eCall)</li><li>Tempomat</li><li>Geschwindigkeitswarner (Tempolimit)</li><li>Reifendruck-Kontrollsystem</li><li>Reserverad</li></ul><h4>Fahrerplatz</h4><ul><li>Bordcomputer</li><li>Automatisches Fahrlicht</li><li>Schaltpunktanzeige (Schaltgetriebe)</li><li>Zentralverriegelung</li><li>Beheizbare Heckscheibe</li><li>Elektrisch verstell- und beheizbare Außenspiegel</li></ul><h4>Komfort</h4><ul><li>Klimaautomatik</li><li>3 Kopfstützen hinten</li><li>Hohe Mittelkonsole mit Armlehne und Ablagefach</li><li>Elektrische Parkbremse</li><li>Kofferraumbeleuchtung</li><li>Elektrische Fensterheber vorne (Fahrerseite mit Impulsfunktion)</li><li>Elektrische Fensterheber hinten</li><li>Kofferraumboden</li><li>Schlüsselloser Tankdeckel</li><li>Sitzheizung vorne</li><li>Rückbank 1/3 – 2/3 umklappbar</li><li>Höhenverstellbarer Fahrersitz</li><li>Keycard Handsfree (schlüsselloses Starten)</li><li>Lederlenkrad</li><li>Lenkrad höhen- und tiefenverstellbar</li></ul><h4>Design</h4><ul><li>Blinker mit Komfort-Impulsfunktion</li><li>Modulare Dachreling</li><li>Stoßfänger vorne und hinten in Wagenfarbe</li><li>LED-Tagfahrlicht in Y-Lichtsignatur</li><li>Eco-LED-Scheinwerfer (Abblendlicht LED, Fernlicht Halogen)</li><li>16″-Leichtmetallfelgen „Mahalia“</li><li>Extreme-spezifische Stoffpolsterung</li></ul><h4>Multimedia</h4><ul><li>Kartenpaket</li><li>TFT-Display im Kombiinstrument</li><li>Media Nav: 8″-Bildschirm, Navigation, 6 Lautsprecher, Bluetooth</li></ul></div><div id="tdMotor" hidden><h4>Motorisierung</h4><table class="tdt"><tr><td>Motor</td><td>TCe 110</td></tr><tr><td>Max. Leistung</td><td>81 kW (110 PS)</td></tr><tr><td>Max. Drehmoment</td><td>200 Nm</td></tr><tr><td>Getriebe</td><td>6-Gang-Schaltgetriebe</td></tr><tr><td>Antrieb</td><td>Frontantrieb</td></tr><tr><td>Hubraum</td><td>999 cm³</td></tr><tr><td>Kraftstoff</td><td>Benzin</td></tr></table><h4>Verbrauch (WLTP)</h4><table class="tdt"><tr><td>Verbrauch kombiniert</td><td>5,6 l/100 km</td></tr><tr><td>CO₂-Emission kombiniert</td><td>128 g/km</td></tr><tr><td>Energiekosten (Herstellerangabe)</td><td>84 €/Monat</td></tr></table><h4>Fahrleistung</h4><table class="tdt"><tr><td>Höchstgeschwindigkeit</td><td>180 km/h</td></tr><tr><td>0–100 km/h</td><td>10,0 s</td></tr></table><h4>Reifen &amp; Bremsen</h4><table class="tdt"><tr><td>Reifen vorne/hinten</td><td>205/60 R16</td></tr><tr><td>Bremsen vorne</td><td>Scheibenbremsen</td></tr><tr><td>Bremsen hinten</td><td>Trommelbremsen</td></tr></table><h4>Abmessungen</h4><table class="tdt"><tr><td>Länge</td><td>4.102 mm</td></tr><tr><td>Breite</td><td>1.853 mm</td></tr><tr><td>Breite inkl. Außenspiegel</td><td>2.012 mm</td></tr><tr><td>Höhe mit geöffneter Heckklappe</td><td>1.976 mm</td></tr><tr><td>Radstand</td><td>2.604 mm</td></tr><tr><td>Wendekreis</td><td>10,64 m</td></tr><tr><td>Kofferraum minimal</td><td>312–396 l</td></tr><tr><td>Kofferraum maximal</td><td>1.108–1.153 l</td></tr><tr><td>Tank</td><td>50 l</td></tr></table><h4>Gewichte</h4><table class="tdt"><tr><td>Leergewicht fahrbereit (inkl. 75 kg Fahrer)</td><td>1.170 kg</td></tr><tr><td>Zulässiges Gesamtgewicht</td><td>1.585 kg</td></tr><tr><td>Zulässiges Gesamtzuggewicht</td><td>2.685 kg</td></tr><tr><td>Anhängelast gebremst</td><td>1.100 kg</td></tr><tr><td>Anhängelast ungebremst</td><td>585 kg</td></tr></table><h4>Sonstiges</h4><table class="tdt"><tr><td>Sitzplätze</td><td>5</td></tr><tr><td>Türen</td><td>5</td></tr></table></div></div></div>
