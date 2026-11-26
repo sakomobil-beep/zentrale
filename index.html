@@ -2362,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>26.11.2026, 16:58 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>26.11.2026, 17:42 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3448,7 +3448,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
 body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
 #spiel svg text{font-family:inherit}
 </style>
-<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">26.11.2026, 16:58 Uhr</b></div></div>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">26.11.2026, 17:42 Uhr</b></div></div>
 <div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Valewright spielen (Browser)</a><a class="sgBtn alt" href="https://sakomobil-beep.github.io/valewright/" target="_blank" rel="noopener">🧪 Godot-Version</a><a class="sgBtn alt" href="https://odenforge.itch.io/" target="_blank" rel="noopener">🕹️ itch.io</a></div></div>
 
 <div class="card"><h3 style="margin-top:0">🔗 Links</h3>
@@ -3590,6 +3590,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 <li><b>26.11.2026, 16:12 Uhr</b> – Godot-Version: Fehler behoben – Baustellen, die noch auf einen freien Baumeister warten, zeigten sofort das fertige Gebäude (z. B. Sägewerk); jetzt ist von Anfang an nur der echte Baufortschritt zu sehen</li>
 <li><b>26.11.2026, 16:25 Uhr</b> – Godot-Version: Gebäudeschilder neu als gut lesbare Tafeln – dunkler Hintergrund mit Holzrahmen, Name in Gold, Status farbig (grün = läuft, orange = wartet/fehlt etwas, rot = pausiert), immer scharf und ab großer Entfernung ausgeblendet; gestoppte Produktion zeigt jetzt immer (auch ohne Schilder) ein rotes Pause-Zeichen über dem Gebäude</li>
 <li><b>26.11.2026, 16:58 Uhr</b> – Godot-Version: Bevölkerung in der Leiste neu – „Frei“ (zuteilbare Einwohner, orange/rot bei Mangel), „Einwohner“ (gesamt/Platz), „Arbeiter“ (nur in Gebäuden, Baumeister nicht mehr doppelt), Träger, Baumeister, Soldaten; gefallene Kämpfer fehlen danach als Einwohner (bei Spieler und KI gleich), Platz im Haus wird frei und füllt sich über zufriedene Wohnhäuser; KI-Verteidigungsbonus auf „Schwer“ entfernt; zurückkehrende KI-Kämpfer gehen wieder ins Lager; Lehm und Dachziegel jetzt unter Baustoffe</li>
+<li><b>26.11.2026, 17:42 Uhr</b> – Godot-Version: fertige Waren liegen vor dem Haus als echtes Produkt (Holzfäller: gestapelte Stämme, Sägewerk: Bretter, Mühle: Säcke, Bäcker: Körbe, Schmied: Kisten …) statt grauer Quader; Bauvorschau der Tierzuchten zeigt jetzt das Gatter mit (halbtransparent) und prüft, ob dafür Platz ist; bestehende Gatter werden nicht mehr überbaut; neue Baumenü-Bilder der drei Höfe; Leiste: Einwohner zuerst, dann Frei</li>
 <li><b>26.11.2026, 09:25 Uhr</b> – Godot-Version: Einwohner-System – Haupthaus bietet 10 Plätze, Wohnhäuser je nach Stufe 1–4; jeder Beruf, Träger, Baumeister und Soldat braucht einen freien Einwohner; Zuzug alle 45 s, über 10 nur mit zufriedenen Wohnhäusern; neue Anzeige 🏠 frei/gesamt in der Leiste</li>
 <li><b>26.11.2026, 09:30 Uhr</b> – Godot-Version: Tooltip-Fenster im Baumenü (Beschreibung, Kosten, braucht / stellt her, Gebietsradius, Sperre); Militärposten erweitern das Gebiet deutlich mehr – Wachstube 30 (wie das Startgebiet), Wachturm 34, Wehrturm 40, Burg 48</li>
 <li><b>26.11.2026, 09:20 Uhr</b> – Godot-Version: neues Gebäude Handwerkskammer (Fachwerk-Zunfthaus mit offener Werkstatt, Zunftschild Hammer &amp; Zirkel) bildet Baumeister und Träger aus – je 1 Werkzeug, 5 Minuten, Warteschlange. Start mit nur 2 Trägern und 1 Baumeister; Baustellen warten auf einen freien Baumeister; Wohnhäuser und Lagerhäuser bringen keine Träger mehr</li>
