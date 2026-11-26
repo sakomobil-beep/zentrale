@@ -2362,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>26.11.2026, 07:55 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br><b>26.11.2026, 08:03 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3447,7 +3447,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
 body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
 #spiel svg text{font-family:inherit}
 </style>
-<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">26.11.2026, 07:55 Uhr</b></div></div>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">26.11.2026, 08:03 Uhr</b></div></div>
 <div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Valewright spielen (Browser)</a><a class="sgBtn alt" href="https://sakomobil-beep.github.io/valewright/" target="_blank" rel="noopener">🧪 Godot-Version</a><a class="sgBtn alt" href="https://odenforge.itch.io/" target="_blank" rel="noopener">🕹️ itch.io</a></div></div>
 
 <div class="card"><h3 style="margin-top:0">🔗 Links</h3>
@@ -3528,7 +3528,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 <li>Bergleute brauchen feines Essen</li></ul></details>
 <details><summary>🏠 Bevölkerung &amp; Häuser</summary><ul>
 <li>5 Hausstufen: Hütte, Bauernhaus, Fachwerkhaus, Bürgerhaus, Herrenhaus mit Garten</li>
-<li>Bedürfnisse je Stufe, Steuern (0 / 0,1 / 0,2 / 0,4 Münzen), keine Stufen-Schaukelei</li>
+<li>Bedürfnisse je Stufe, Steuern (0 / 0,1 / 0,2 / 0,4 Münzen); kein Abstieg – unzufriedene Häuser zahlen nur keine Steuern</li>
 <li>Denkmal in der Nähe hebt die Zufriedenheit</li></ul></details>
 <details><summary>⚔️ Militär</summary><ul>
 <li>Waffenschnitzer (Kampfstock), Bogenbauer (Bögen + Pfeile), Waffenschmied, Kaserne mit Übungsplatz</li>
@@ -3570,6 +3570,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 
 <div class="card"><h3 style="margin-top:0">📜 Änderungsprotokoll</h3><ul style="line-height:1.6">
 <li><b>26.11.2026, 01:40 Uhr</b> – Automatische Testpartien mit einem Bot: Fehler behoben (Mühle, Werkzeug-Sackgasse, Wirtshaus ohne Wirt, Arbeiter als Träger missbraucht, Rauch nach Haus-Aufstieg, Reh-Fehler), 20 Startwerkzeuge, Werkzeugkette ohne Werkzeug, Lager-Obergrenze; Gebirgszüge wie bei Siedler mit mehr Vorkommen (Gold tief im Gebirge); Markenprüfung Valewright/Odenforge ohne Treffer</li>
+<li><b>26.11.2026, 08:03 Uhr</b> – Wohnhäuser steigen nicht mehr ab (Browser und Godot): fehlen Waren, bleibt die Stufe, das Haus ist unzufrieden und zahlt keine Steuern</li>
 <li><b>26.11.2026, 07:55 Uhr</b> – Godot-Version: Hilfe-Seite stark erweitert (15 Themen von „Erste Schritte“ bis „Tipps“, alle Warenketten, Hausstufen, Info-Fenster, Tastenkürzel), Deutsch &amp; Englisch; automatischer Testlauf ohne Skriptfehler</li>
 <li><b>26.11.2026, 00:50 Uhr</b> – valewright.de: Highlights „Was dich erwartet“ und erste Screenshots; odenforge.de ohne Markennamen (inspiriert von klassischen Aufbau- und Wirtschaftsspielen); beide Seiten mit HTTPS, Impressum und Datenschutz</li>
 <li><b>25.11.2026, 21:50 Uhr</b> – odenforge.de: Studio-Seite mit Infos zu Odenforge und Valewright (Repo odenforge-web)</li>
