@@ -2362,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>26.11.2026, 18:35 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>26.11.2026, 19:05 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3448,7 +3448,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
 body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
 #spiel svg text{font-family:inherit}
 </style>
-<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">26.11.2026, 18:35 Uhr · Alpha 0.0.0.0.5</b></div></div>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">26.11.2026, 19:05 Uhr · Alpha 0.0.0.0.6</b></div></div>
 <div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Valewright spielen (Browser)</a><a class="sgBtn alt" href="https://sakomobil-beep.github.io/valewright/" target="_blank" rel="noopener">🧪 Godot-Version</a><a class="sgBtn alt" href="https://odenforge.itch.io/" target="_blank" rel="noopener">🕹️ itch.io</a></div></div>
 
 <div class="card"><h3 style="margin-top:0">🔗 Links</h3>
@@ -3604,6 +3604,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 <li><b>26.11.2026, 18:20 Uhr · Alpha 0.0.0.0.3</b> – Godot-Version: Sägewerk – der Säger läuft nicht mehr durch die Sägebank, sondern vorne links um sie herum (Hin- und Rückweg); beim Sägen hat er den Stamm nicht mehr auf der Schulter, der Stamm liegt auf der Bank; die Kreissäge dreht sich wieder, solange das Sägewerk arbeitet</li>
 <li><b>26.11.2026, 18:45 Uhr · Alpha 0.0.0.0.4</b> – Godot-Version: Sägewerk – der Stamm auf der Sägebank ist jetzt ein echtes 3D-Modell (gleiches Modell wie beim Tragen), liegt längs auf der Bank, die Kreissäge läuft mitten hindurch</li>
 <li><b>26.11.2026, 18:35 Uhr · Alpha 0.0.0.0.5</b> – Godot-Version: Spielstart mit 2 Baumeistern statt 1 (für Spieler und KI gleich); Tutorial-Schritt 8 bildet jetzt den 3. Baumeister aus. Alle anderen Startwerte unverändert</li>
+<li><b>26.11.2026, 19:05 Uhr · Alpha 0.0.0.0.6</b> – Godot-Version: Versorgung der Wohnhäuser repariert – Fehler: Hütten bekamen nie Essen geliefert und konnten deshalb nie zum Bauernhaus aufsteigen; jetzt wird Essen für die nächste Stufe vorab geliefert. Träger beliefern Wohnhäuser, denen eine Ware ganz fehlt, vor dem Abholen. Gebäude pausieren schon ab 6 statt 8 fertigen Waren vor der Tür. Start mit 4 Trägern statt 2 (Spieler und KI; im Test lief erst damit die Brotkette)</li>
 <li><b>26.11.2026, 09:25 Uhr</b> – Godot-Version: Einwohner-System – Haupthaus bietet 10 Plätze, Wohnhäuser je nach Stufe 1–4; jeder Beruf, Träger, Baumeister und Soldat braucht einen freien Einwohner; Zuzug alle 45 s, über 10 nur mit zufriedenen Wohnhäusern; neue Anzeige 🏠 frei/gesamt in der Leiste</li>
 <li><b>26.11.2026, 09:30 Uhr</b> – Godot-Version: Tooltip-Fenster im Baumenü (Beschreibung, Kosten, braucht / stellt her, Gebietsradius, Sperre); Militärposten erweitern das Gebiet deutlich mehr – Wachstube 30 (wie das Startgebiet), Wachturm 34, Wehrturm 40, Burg 48</li>
 <li><b>26.11.2026, 09:20 Uhr</b> – Godot-Version: neues Gebäude Handwerkskammer (Fachwerk-Zunfthaus mit offener Werkstatt, Zunftschild Hammer &amp; Zirkel) bildet Baumeister und Träger aus – je 1 Werkzeug, 5 Minuten, Warteschlange. Start mit nur 2 Trägern und 1 Baumeister; Baustellen warten auf einen freien Baumeister; Wohnhäuser und Lagerhäuser bringen keine Träger mehr</li>
