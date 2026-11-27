@@ -2362,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>27.11.2026, 16:05 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>27.11.2026, 16:25 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3451,7 +3451,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
 body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
 #spiel svg text{font-family:inherit}
 </style>
-<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">Alpha 0.0.0.4.2 · 27.11.2026, 16:05 Uhr</b></div></div>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">Alpha 0.0.0.4.3 · 27.11.2026, 16:25 Uhr</b></div></div>
 <div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Valewright spielen (Browser)</a><a class="sgBtn alt" href="https://sakomobil-beep.github.io/valewright/" target="_blank" rel="noopener">🧪 Godot-Version</a><a class="sgBtn alt" href="https://odenforge.itch.io/" target="_blank" rel="noopener">🕹️ itch.io</a></div></div>
 
 <div class="card"><h3 style="margin-top:0">🔗 Links</h3>
@@ -3467,6 +3467,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 <li><b>27.11.2026, 13:20 Uhr · Alpha 0.0.0.4.0</b> – Nach Testpartie: 10 Träger wohnen fest im Haupthaus (zählen nicht als Einwohner, weitere wie gewohnt über die Handwerkskammer); Warnung, wenn Werkzeug unter 5 fällt („Baue einen Schmied“); Wachturm zeigt „Besetzt“ statt „wartet auf Wache“; rund ums Startgebiet ca. 50 % mehr Felsen mit doppelt so viel Stein; <b>Ruckler behoben</b>: das Gras wurde bei jedem neuen Gebäude/Feld/Kameraschwenk komplett in einem Bild neu gestreut (bis 1,5 s) – jetzt verteilt über mehrere Bilder (max. 4 ms pro Bild).</li>
 <li><b>27.11.2026, 15:40 Uhr · Alpha 0.0.0.4.1</b> – Klügere Träger: alle freien Träger werden gemeinsam eingeteilt (jeder Auftrag geht an den nächsten Träger), Dringliches zuerst (stillstehende Werkstatt, volllaufender Ausgang), keine Doppelwege, nach dem Abliefern kein Leerweg zurück zum Lager, 2 Stück je Gang (Karren weiterhin 4). Testpartie: „Ausgang voll“ von 7–11 auf 1–2 Gebäude gesunken.</li>
 <li><b>27.11.2026, 16:05 Uhr · Alpha 0.0.0.4.2</b> – Eigenes Träger-Konzept „Zunft &amp; Nachbarschaft“, Teil 1: <b>Nachbarschaftshilfe</b> – jedes Wohnhaus stellt 1 Helfer (ab Stufe 2: 2), der nur im Umkreis von 25 m um sein Haus trägt (Abholen und Abliefern), kurze Wege im Viertel bevorzugt übernimmt, danach an seine Haustür zurückkehrt und nicht als Arbeitskraft zählt; Kiepe neben der Tür zeigt das Helferhaus. Testpartie: „Ausgang voll“ fast immer 0. Geplant: Zunft-Erfahrung (Lehrling/Geselle/Meister), Umschlagplätze.</li>
+<li><b>27.11.2026, 16:25 Uhr · Alpha 0.0.0.4.3</b> – Nachbarschaftshilfe nach Variante C: Der erste Helfer jedes Hauses ist fest (zählt nicht als Arbeitskraft). Der zweite Helfer (ab Stufe 2) ist ein Bewohner – er zählt mit, kommt nur, wenn jemand frei ist, und wird als Erster abgerufen, wenn ein Betrieb, die Handwerkskammer oder ein Turm jemanden braucht (ist er gerade unterwegs, trägt er noch fertig ab). Danach 20 s Pause, bevor ein neuer zweiter Helfer kommt.</li>
 <li><a href="https://github.com/sakomobil-beep/odenwaldsiedler" target="_blank" rel="noopener">GitHub-Repo „odenwaldsiedler“</a> · <a href="https://github.com/sakomobil-beep/odenwaldsiedler/commits/main" target="_blank" rel="noopener">Änderungsverlauf</a></li>
 <li><a href="https://drive.google.com/drive/folders/1WVVa1wKV8VNe3kHX9RpiAXZ5Vc5WSm_6" target="_blank" rel="noopener">Vorschau-Bilder (Drive „Siedlerspiel“)</a></li></ul></div>
 <div class="sgK"><h4>🧪 Valewright – Godot 4 (DE/EN)</h4><ul>
