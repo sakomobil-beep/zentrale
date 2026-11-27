@@ -6,7 +6,7 @@
 >
 > Achtung: Das Repo `zentrale` ist öffentlich – hier nur Spiel-Wissen, keine Passwörter, keine privaten Daten.
 
-**Stand: 27.11.2026, 19:55 Uhr · Alpha 0.0.0.4.5**
+**Stand: 27.11.2026, 20:05 Uhr · Alpha 0.0.0.4.5**
 
 ---
 
@@ -88,6 +88,9 @@
 
 ## 6. Verlauf (kurz)
 
+- **23.11.2026 – Start als Browser-Spiel „Odenwald-Siedler“ (three.js):** Demo mit Holzfäller, Sägewerk, Steinmetz, Bauernhof (sät sichtbar), Mühle, Brunnen, Bäckerei; Bauen in zwei Schritten (Platz wählen → bestätigen); Baumenü in Kategorien; Berge mit Stein/Eisenerz/Kohle, Zechen brauchen Brot bzw. Fisch; Eisenschmelze → Werkzeugschmied; Siedler brauchen Werkzeug; Gebiete mit Fähnchen, Waffenschnitzer (Kampfstöcke), Wächter und Wachtürme; Seen, Fluss mit Fischen, Fischer, Brücke, echte Wegfindung; sanfte Ufer; Schweinezucht + Metzger.
+- **23./24.11.2026 – Ausbau Browser-Version:** Speichern/Laden, Statistik, Vorrang, Abreißen, Gold + Münzprägerei, zweites Lager (später: nur ein Lagerhaus im Baumenü), Träger; Straßen ausprobiert und verworfen; Grafik (Umgebungsverdeckung, Bloom, Schatten, Gras/Blumen, detaillierte Bäume, Berufskleidung), Arbeit im Freien, Geräusche; Fachwerkstil gemischt (Voll-, Giebel-, Putzfassaden); Name **Valewright** und Studio **Odenforge** gewählt; KI-Gegner wählbar (Friedlich/mit Kampf, Leicht/Mittel/Schwer), Nebel des Krieges; Kampagne „Die Chronik von Valewright – Buch I: Das Erbe des Tals“ (Kapitel 1 friedlich, Kapitel 2 mit Gegner, Finale Kapitel 4); Spielziele wählbar (Endlos/Sieg, nach Sieg weiterspielen); Godot-Leistungstest 195 FPS → Umzug nach Godot 4.7.2 begonnen (Repo `valewright`).
+- **25.11.2026:** Domains valewright.de/odenforge.de (netcup) auf GitHub Pages, itch.io-Konto „odenforge“; ab jetzt nur noch Godot. Wohnhäuser steigen nie ab, Abreißen gibt 50 % zurück, Handwerkskammer (Ausbildung 5 Min., 1 Werkzeug), Einwohner-System, Ausbau mit Bonus kostet Münzen.
 - **25.11.2026:** Godot an Browser-Version angeglichen, Holzrahmen-UI, Domains umgestellt, Zentrale-Seite angelegt.
 - **26.11.2026:** Testpartien mit Bot, Gebirgszüge; Tutorial, Sägewerk-3D, Zechen, Tierzucht neu, Statistik, moderne Menüs, Produktionsketten, Wasser, Emoji-Schrift, Mühle, Haus-Gerüst, Katzen, Haupthaus-Wache, Karren-Parkplatz, Angriffswarnung, Grafik Stufe 1+2, Windows-Installer, Grafik-Einstellungen, Intro, odenforge.de in Ich-Form, Musik (erst selbst komponiert, dann CC0), Credits, Absturzschutz, Wehrmauer (bis 0.0.0.3.8).
 - **27.11.2026 nachts (0.0.0.3.9):** Umgebungsgeräusche, Erfolge, 24 animierte Werkstätten + Video.
@@ -96,3 +99,10 @@
 - **0.0.0.4.2/4.3:** Nachbarschaftshilfe, Variante C.
 - **0.0.0.4.4:** Umschlagplatz.
 - **0.0.0.4.5:** Trägerzunft (Lehrling/Geselle/Meister).
+
+## 7. Weitere Spiele im Claude-Projekt „Spiele für Luca“
+
+- **Grundsatz für neue Spiele:** HTML + Phaser, Level und Grafik getrennt vom Code (späterer Umzug nach Godot/APK möglich); Comic-Stil (dunkle Umrisse, weiche Lichter, Sprite-Sheets); Vorschauen in Drive „Spiele für Luca – Vorschauen“. Ausnahme: Valewright läuft in Godot.
+- **Rette die Geschenke!** (Weihnachts-Jump'n'Run für Luca): 5 Welten, optionale Rechentore, Adventskalender am 23.11.2026 wieder entfernt – normal durchspielbar. Live: sakomobil-beep.github.io/lern-apps/rette-die-geschenke/ (Repo `lern-apps`).
+- **Baum-Detektiv** (Lern-App, Laub- und Nadelbäume für die Sachkundearbeit am 27.11.2026) auf sakomobil-beep.github.io/lern-apps.
+- **Auto-Tycoon** (für Kingman, Version 1 als Claude-Artefakt): Autos entwickeln, in der Fabrik bauen, über Läden in einer Stadt verkaufen; Anno-artig, isometrisch, Echtzeit mit Pause; Wünsche: komplexere Entwicklung mit Autobildern, größere lebendige Stadt, Grafik-Ausbau Stufe 1+2 (Gebäude, Gelände/Wasser/Straßen), 1 Spieltag = 1 Minute, langsamere Autos/Fußgänger. Ruht derzeit.
