@@ -2362,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>28.11.2026, 00:15 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>28.11.2026, 00:55 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3454,7 +3454,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
 body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
 #spiel svg text{font-family:inherit}
 </style>
-<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">Alpha 0.0.0.4.15 · 28.11.2026, 00:15 Uhr</b></div></div>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">Alpha 0.0.0.4.16 · 28.11.2026, 00:55 Uhr</b></div></div>
 <div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Valewright spielen (Browser)</a><a class="sgBtn alt" href="https://sakomobil-beep.github.io/valewright/" target="_blank" rel="noopener">🧪 Godot-Version</a><a class="sgBtn alt" href="https://odenforge.itch.io/" target="_blank" rel="noopener">🕹️ itch.io</a></div></div>
 
 <div class="card"><h3 style="margin-top:0">🧠 valewright-save</h3>
@@ -3487,6 +3487,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 <li><b>27.11.2026, 23:40 Uhr · Alpha 0.0.0.4.13</b> – Sägewerk: Am Ablageplatz liegt jetzt genau ein Brett pro fertigem Brett im Ausgang (vorher 2 Modelle je Brett), Bretter kleiner (0,9 m statt 1,4 m). Hinweis: 1 Stamm ergibt 2 Bretter, nach einem Durchgang liegen also 2 Bretter da.</li>
 <li><b>27.11.2026, 23:50 Uhr · Alpha 0.0.0.4.14</b> – Baustelle neu: nur Absteckung (4 Pflöcke, Schnur) mit großem X in der Mitte; kein Einebnen, kein Gerüst, keine Leiter, kein Sägebock, keine Stapel. Das Gebäude wächst gleichmäßig von unten nach oben und ist dabei innen hohl (Innenseiten dunkler); der Bauarbeiter geht ums Haus und hämmert. Mühle: Vordach über den Mühlsteinen entfernt (war den Flügeln im Weg); Mehlsäcke liegen vorne am Abholplatz der Träger und zeigen genau den fertigen Vorrat.</li>
 <li><b>28.11.2026, 00:15 Uhr · Alpha 0.0.0.4.15</b> – Animation und Vorrat sind jetzt ein Ablauf (alle 25 Werkstätten mit eigenem Arbeitsablauf): Die fertige Ware zählt erst, wenn der Arbeiter sie im Ablage-Schritt hinlegt (vorher nach einer Uhr, unabhängig von der Animation). Rückfall: nach 3-facher Laufzeit wird trotzdem gebucht, damit nichts hängen bleibt. Sägewerk/Mühle: der zusätzliche große Warenhaufen vor der Tür entfällt – dort liegen nur die eigenen Stapel (Bretter einzeln mit Stapelleisten, Mehlsäcke), genau so viele wie fertig sind.</li>
+<li><b>28.11.2026, 00:55 Uhr · Alpha 0.0.0.4.16</b> – Alle Werkstätten (außer Sägewerk/Mühle mit eigener Ablage): Der Arbeiter trägt das fertige Produkt nach dem letzten Arbeitsschritt selbst zum Abholplatz vor dem Haus und legt es dort ab – erst dann zählt es und erscheint im Haufen. Sägewerk: neuer Sägewagen auf zwei Schienen, fährt mit dem Stamm durch das Blatt und danach zurück.</li>
 <li><b>27.11.2026, 19:55 Uhr</b> – Gedächtnisdatei <b>valewright-save</b> angelegt (valewright-save.md im Zentrale-Repo, Karte oben auf dieser Seite): alles zum Spiel für Claude dauerhaft gespeichert, wird nach jeder Änderung ergänzt.</li>
 <li><a href="https://github.com/sakomobil-beep/odenwaldsiedler" target="_blank" rel="noopener">GitHub-Repo „odenwaldsiedler“</a> · <a href="https://github.com/sakomobil-beep/odenwaldsiedler/commits/main" target="_blank" rel="noopener">Änderungsverlauf</a></li>
 <li><a href="https://drive.google.com/drive/folders/1WVVa1wKV8VNe3kHX9RpiAXZ5Vc5WSm_6" target="_blank" rel="noopener">Vorschau-Bilder (Drive „Siedlerspiel“)</a></li></ul></div>
