@@ -57,9 +57,10 @@
 - **Planung:** alle freien Träger gemeinsam alle 0,4 s; Auftrag an den nächsten Träger; Dringliches zuerst (stillstehende Werkstatt, volllaufender Ausgang, Haus ohne Ware); keine Doppelwege; nach dem Abliefern kein Leerweg zum Lager; **2 Stück je Gang** (Karren 4, Meister 3).
 - **Nachbarschaftshilfe:** jedes Wohnhaus 1 fester Helfer, ab Stufe 2 ein zweiter (der zweite ist Bewohner, zählt mit und wird bei Arbeitermangel zuerst abgerufen – „Variante C“). Helfer tragen nur im Umkreis 25 m, Kiepe neben der Haustür.
 - **Umschlagplatz** (Baumenü Siedlung, 4 Bretter + 2 Stämme, 12 Waren): Wege > 35 m werden geteilt, wenn ein Platz auf der Strecke liegt.
+- **Untätige Träger** gehen nach ca. 4 s ins nächste Lager hinein (Helfer ins eigene Haus) und warten drinnen unsichtbar (`w.inside`); beim nächsten Auftrag kommen sie an der Tür heraus.
 - **Trägerzunft:** Lehrling → Geselle (40 Waren, blaue Schärpe, +12 % Tempo) → Meister (120 Waren, goldene Schärpe + Hut, +22 %, 3 Stück). Erfahrung wird gespeichert.
 
-**Militär:** 2 Wächter am Haupthaus ab Start (Einberufen/Entlassen, Ränge zählen), Angriffswarnung, **Wehrmauer** (Holzpalisade +35 %/+2 Plätze, Steinmauer +80 %/+4), Wachtürme zeigen „Besetzt“.
+**Militär:** 2 Wächter am Haupthaus ab Start, postiert links und rechts vom Eingang (2,4 m seitlich, kehren auf den Posten zurück) (Einberufen/Entlassen, Ränge zählen), Angriffswarnung, **Wehrmauer** (Holzpalisade +35 %/+2 Plätze, Steinmauer +80 %/+4), Wachtürme zeigen „Besetzt“.
 
 **Klang:** Musik CC0 (RandomMind: The Old Tower Inn, The Bard's Tale, Minstrel Dance, King's Feast, Lament for a Warrior's Soul; Cethiel: Lament of the War) als Loops – Menü/Aufbau/Kampf. Umgebungs- und Arbeitsgeräusche selbst erzeugt (`tools/compose_ambient.py`). Drei Regler.
 
@@ -106,3 +107,4 @@
 - **Rette die Geschenke!** (Weihnachts-Jump'n'Run für Luca): 5 Welten, optionale Rechentore, Adventskalender am 23.11.2026 wieder entfernt – normal durchspielbar. Live: sakomobil-beep.github.io/lern-apps/rette-die-geschenke/ (Repo `lern-apps`).
 - **Baum-Detektiv** (Lern-App, Laub- und Nadelbäume für die Sachkundearbeit am 27.11.2026) auf sakomobil-beep.github.io/lern-apps.
 - **Auto-Tycoon** (für Kingman, Version 1 als Claude-Artefakt): Autos entwickeln, in der Fabrik bauen, über Läden in einer Stadt verkaufen; Anno-artig, isometrisch, Echtzeit mit Pause; Wünsche: komplexere Entwicklung mit Autobildern, größere lebendige Stadt, Grafik-Ausbau Stufe 1+2 (Gebäude, Gelände/Wasser/Straßen), 1 Spieltag = 1 Minute, langsamere Autos/Fußgänger. Ruht derzeit.
+- **0.0.0.4.6:** untätige Träger gehen ins Haus, Wachen links/rechts vom Eingang. Gedächtnisdatei valewright-save angelegt.
