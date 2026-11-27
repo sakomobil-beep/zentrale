@@ -108,3 +108,5 @@
 - **Baum-Detektiv** (Lern-App, Laub- und Nadelbäume für die Sachkundearbeit am 27.11.2026) auf sakomobil-beep.github.io/lern-apps.
 - **Auto-Tycoon** (für Kingman, Version 1 als Claude-Artefakt): Autos entwickeln, in der Fabrik bauen, über Läden in einer Stadt verkaufen; Anno-artig, isometrisch, Echtzeit mit Pause; Wünsche: komplexere Entwicklung mit Autobildern, größere lebendige Stadt, Grafik-Ausbau Stufe 1+2 (Gebäude, Gelände/Wasser/Straßen), 1 Spieltag = 1 Minute, langsamere Autos/Fußgänger. Ruht derzeit.
 - **0.0.0.4.6:** untätige Träger gehen ins Haus, Wachen links/rechts vom Eingang. Gedächtnisdatei valewright-save angelegt.
+
+- 27.11.2026, 21:15 · Alpha 0.0.0.4.7: Neue Mühle (scripts/mill.gd) und neues Sägewerk ohne Dach über der Säge (scripts/sawmill.gd), Abläufe in workshops.gd. Nächstes Thema: neuer Bauablauf in 4 Phasen (Fundament, Gerüst/Fachwerk, Dachstuhl, Dach) – Plan an Kingman, wartet auf OK.
