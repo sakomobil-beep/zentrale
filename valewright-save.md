@@ -1,0 +1,98 @@
+# valewright-save – Gedächtnis für Valewright
+
+> **Für Claude:** Diese Datei ist das dauerhafte Gedächtnis zum Spiel Valewright. Lies sie zu Beginn jeder Arbeit am Spiel
+> (`git clone https://github.com/sakomobil-beep/zentrale` → `valewright-save.md`) und **ergänze sie nach jeder Änderung**
+> (Abschnitt 6 „Verlauf“ + betroffene Abschnitte). Die Zentrale-Seite „🎮 Spielentwicklung“ verlinkt sie.
+>
+> Achtung: Das Repo `zentrale` ist öffentlich – hier nur Spiel-Wissen, keine Passwörter, keine privaten Daten.
+
+**Stand: 27.11.2026, 19:55 Uhr · Alpha 0.0.0.4.5**
+
+---
+
+## 1. Eckdaten
+
+| | |
+|---|---|
+| Spiel | **Valewright – Baue. Wirtschafte. Herrsche.** (früher „Odenwald-Siedler“) |
+| Studio | **Odenforge** – Ein-Mann-Entwicklung von Kingman (Homepage in Ich-Form) |
+| Genre | Aufbauspiel nach Vorbild Die Siedler 3: freies Laufen ohne Straßen, Warenketten wie Anno, Gebiete, KI-Gegner |
+| Stil | Fachwerkhäuser aus dem Odenwald (im Spiel keine echten Ortsnamen) |
+| Engine | **Godot 4.7.2** (wird weiterentwickelt) – Repo `sakomobil-beep/valewright`, Web-Build sakomobil-beep.github.io/valewright |
+| Alte Browser-Version | three.js, eingefroren – Repo `sakomobil-beep/odenwaldsiedler` |
+| Webseiten | valewright.de (Coming Soon, Repo `valewright-web`) · odenforge.de (Studio, Repo `odenforge-web`) |
+| Windows | Installer (NSIS) als ZIP an Kingman, **kein** GitHub-Release (wird blockiert) |
+| Veröffentlichung | itch.io-Konto „odenforge“ – Steam vielleicht später |
+| Vorschaubilder/Videos | Google Drive, Ordner **„Siedlerspiel“** |
+| Protokoll | Zentrale → „🎮 Spielentwicklung“ (jede Änderung mit Datum, Uhrzeit, Version) |
+
+## 2. Feste Regeln (von Kingman)
+
+- **Vorher fragen**, bevor etwas Neues angefangen wird. Erst Info/Vorschlag, dann auf „Ja/los“ warten.
+- **Antworten auf Deutsch**, Kingman mit „Kingman“ ansprechen.
+- **Jede Änderung:** fortlaufende Version „Alpha 0.0.0.x.y“ + STAMP (`scripts/build_info.gd`), Eintrag in der Zentrale (`<li>` nach dem letzten Eintrag, `id="sgStand"` und Seitenleiste „Zentrale-Stand“ aktualisieren), Vorschaubilder in Drive „Siedlerspiel“.
+- **Eigene Ideen statt Kopie:** Siedler ist Vorbild, aber Konzepte, Namen und Grafik sind eigen (z. B. Träger-Konzept „Zunft & Nachbarschaft“).
+- **Zusehen bei der Produktion ist ein Hauptpunkt** – Abläufe detailliert und flüssig animieren.
+- **Keine Tageszeit, keine Nacht** (auch keine Nachtgeräusche). Jahreszeiten-Farben vielleicht später.
+- **Keine Straßen.** Niemand läuft durch Häuser. Dächer dürfen Arbeitsplätze nicht verdecken.
+- **Alles hat einen Zusammenhang** – keine Deko ohne Bezug. Boote nur bei Fischern.
+- **Zweisprachig** (DE/EN). **Keine Emoji-Platzhalter** für Waren/Gebäude (eigene Bilder).
+- **Rechtsklick schließt** Fenster/Menüs; Mausrad über Fenstern zoomt nicht die Karte.
+- **Nur freie Inhalte:** Musik CC0 oder selbst erzeugt, alles in `CREDITS.md` und im „Über“-Fenster.
+- **Erze nur im Gebirge**, Erweiterung mit Wachtürmen.
+- Update-Prüfung beim Start: **vorerst nicht gewünscht**.
+
+## 3. Was im Spiel steckt (Stand 0.0.0.4.5)
+
+**Oberfläche:** Holzrahmen-Stil, moderne Hausmenüs (Wohnhaus, Werkstätten, Militär, Handwerkskammer, Haupthaus mit Reitern Lager/Wache/Mauer), Statistik/Bilanz/Militär/Produktionsketten, Grafik-Einstellungen mit Voreinstellungen (Schatten, Kantenglättung, FSR, Baumweite, Dunst), Intro mit Odenforge-Logo, Tutorial (12 Schritte, „Schließen und weiterspielen“), Kampagne Kapitel 1, Erfolge (18), Statistik der Probleme.
+
+**Welt & Grafik:** Gebirgszüge mit Stein/Kohle/Eisen/Gold, Startgebiet 43,2 m, Wasser-Shader, Gras mit Wind/Klee/Farn (zeitlich verteilt gestreut), HD-Bäume (6 Arten, LOD), Katzen jagen Mäuse, Haus-Aufstieg mit Gerüst-Animation, Mühlenflügel drehen.
+
+**Wirtschaft:** Rezepte in `economy.gd` (`REC`), Lager-Obergrenze 60 (Holz/Bretter/Stein 250), Werkzeuge (Werkzeug-Warnung unter 5), Felsen im Startgebiet: ca. 50 % mehr und doppelt ergiebig, Bäckerei backt 2 Brote je Durchgang.
+
+**Werkstätten** (`scripts/workshops.gd`): 24 Gebäude mit animierter Station am Haus und Ablauf in Schritten, synchron zum Arbeiter, Ware wandert in der Hand, aktueller Schritt im Gebäudefenster. Eigene Animationen außerdem: Sägewerk (3D-Stamm, Säge), Mühle, Zechen (`mines3d.gd`), Tierzucht (`farms.gd`), Bauernhof-Felder. Brunnen hat noch keinen eigenen Ablauf.
+
+**Träger – eigenes Konzept „Zunft & Nachbarschaft“:**
+- **10 Zunftträger wohnen im Haupthaus** (zählen nicht als Einwohner); weitere über die Handwerkskammer aus den Einwohnern.
+- **Planung:** alle freien Träger gemeinsam alle 0,4 s; Auftrag an den nächsten Träger; Dringliches zuerst (stillstehende Werkstatt, volllaufender Ausgang, Haus ohne Ware); keine Doppelwege; nach dem Abliefern kein Leerweg zum Lager; **2 Stück je Gang** (Karren 4, Meister 3).
+- **Nachbarschaftshilfe:** jedes Wohnhaus 1 fester Helfer, ab Stufe 2 ein zweiter (der zweite ist Bewohner, zählt mit und wird bei Arbeitermangel zuerst abgerufen – „Variante C“). Helfer tragen nur im Umkreis 25 m, Kiepe neben der Haustür.
+- **Umschlagplatz** (Baumenü Siedlung, 4 Bretter + 2 Stämme, 12 Waren): Wege > 35 m werden geteilt, wenn ein Platz auf der Strecke liegt.
+- **Trägerzunft:** Lehrling → Geselle (40 Waren, blaue Schärpe, +12 % Tempo) → Meister (120 Waren, goldene Schärpe + Hut, +22 %, 3 Stück). Erfahrung wird gespeichert.
+
+**Militär:** 2 Wächter am Haupthaus ab Start (Einberufen/Entlassen, Ränge zählen), Angriffswarnung, **Wehrmauer** (Holzpalisade +35 %/+2 Plätze, Steinmauer +80 %/+4), Wachtürme zeigen „Besetzt“.
+
+**Klang:** Musik CC0 (RandomMind: The Old Tower Inn, The Bard's Tale, Minstrel Dance, King's Feast, Lament for a Warrior's Soul; Cethiel: Lament of the War) als Loops – Menü/Aufbau/Kampf. Umgebungs- und Arbeitsgeräusche selbst erzeugt (`tools/compose_ambient.py`). Drei Regler.
+
+**Sicherheit:** Autosave alle 5 Min. in 3 Ständen im Wechsel, sicheres Schreiben über Temp-Datei, Speichern beim Schließen.
+
+## 4. Offene Punkte
+
+1. Große Testpartie bis Stufe 3 mit allen Träger-Neuerungen (Käse/Kleidung bisher nie erreicht; Getreide knapp bei Mühle+Brauerei+Schweinezucht+Kuhstall).
+2. Brot: ggf. 3 je Durchgang oder Hinweis „Mehl da, Brot fehlt“ – nach Testpartie entscheiden.
+3. Jahreszeiten-Farben; Brunnen-Kurbel animieren; optional Name auf odenforge.de.
+4. Rechenaufwand der Trägerplanung (+10–15 %) beobachten.
+5. Bei Kingman: Werkstätten unter Windows ansehen, Kiepe-Position prüfen, itch.io-E-Mail bestätigen.
+
+## 5. Technik-Notizen für Claude
+
+- **Pfade:** Godot-Repo `/home/claude/valewright`, Zentrale `/home/claude/zentrale`, Godot-Binary `/home/claude/tools/Godot_v4.7.2-stable_linux.x86_64` (sonst neu laden; Export-Vorlagen in `~/.local/share/godot/export_templates/4.7.2.stable`).
+- **Commits:** `git -c user.name="Claude" -c user.email="noreply@anthropic.com" commit` mit Trailern `Co-Authored-By: Claude …` und `Claude-Session: …`; vorher `git fetch/pull`; Push `git -c push.negotiate=true push -q origin HEAD:main`.
+- **Windows-Build:** `--headless --import`, dann `--headless --export-release "Windows Desktop" build/windows/Valewright.exe`, Version in `build/windows/installer.nsi` per sed, `makensis -V1`, ZIP nach `/home/claude/`, per SendUserFile.
+- **Texte:** `translations/texts.tsv` – genau 3 Spalten, `\n` wörtlich. Neue Emojis → `sh tools/make_emoji_font.sh`.
+- **GDScript:** kein `:=` bei Werten ohne festen Typ (Array-Elemente, `.any()`, Dictionary-Werte). Shader-Kommentare nur `//`. Gebäude-Dictionaries **nie als Dictionary-Schlüssel** (Rekursion) – Instanz-ID nehmen.
+- **Werkstätten:** `Workshops.STEPS` {id, p, l, a, t, hw}, Bau `_b_<typ>`, Animation `_a_<typ>(b, P, schritt, f, dt, t, working)`; `settlers._seq_next` setzt `b.ws_i/ws_el/ws_d`; Hof-Ausstattung rechts vom Haus wird ausgeblendet (außer `KEEP`).
+- **Träger:** `settlers._carrier_jobs` (Zuteilung), `_carrier_job_list` (Aufträge), `_start_carry` (Ablauf), `_helper_spawn`/`release_helper` (Nachbarschaft), `Umschlag.pick` (scripts/umschlag.gd), `_gain_xp/_set_rank` (Zunft), `economy.take_person()` (ruft zweite Helfer ab), `economy.HQ_CARRIERS`, `carriers_n` = zusätzliche Träger.
+- **Gras:** `grass.gd` streut in Häppchen (`_scatter_step`, max. 4 ms/Bild) – früher Ursache der Ruckler bis 1,5 s.
+- **Tests:** headless `--fixed-fps 20 -s skript.gd`; Bilder mit `xvfb-run … --rendering-driver opengl3`; während Wartezeiten `root.get_viewport().disable_3d = true`. Test-Bot `_sim.gd` (nicht im Repo, nach `/home/claude/sim/`): baut nach Bedarf, erweitert mit Türmen, stockt Träger auf, setzt Umschlagplätze, loggt alle 3 Spielminuten (Einwohner, Lager, Status, Ruckler).
+- **Drive-Upload:** Datei unter `/home/claude`, `sha256sum` als Referenz; große Videos vorher verkleinern (≈2 MB ok, 17 MB nicht).
+
+## 6. Verlauf (kurz)
+
+- **25.11.2026:** Godot an Browser-Version angeglichen, Holzrahmen-UI, Domains umgestellt, Zentrale-Seite angelegt.
+- **26.11.2026:** Testpartien mit Bot, Gebirgszüge; Tutorial, Sägewerk-3D, Zechen, Tierzucht neu, Statistik, moderne Menüs, Produktionsketten, Wasser, Emoji-Schrift, Mühle, Haus-Gerüst, Katzen, Haupthaus-Wache, Karren-Parkplatz, Angriffswarnung, Grafik Stufe 1+2, Windows-Installer, Grafik-Einstellungen, Intro, odenforge.de in Ich-Form, Musik (erst selbst komponiert, dann CC0), Credits, Absturzschutz, Wehrmauer (bis 0.0.0.3.8).
+- **27.11.2026 nachts (0.0.0.3.9):** Umgebungsgeräusche, Erfolge, 24 animierte Werkstätten + Video.
+- **27.11.2026 (0.0.0.4.0):** 10 Träger im Haupthaus, Werkzeug-Warnung, Turm „Besetzt“, mehr Felsen, Gras-Ruckler behoben.
+- **0.0.0.4.1:** klügere Träger (gemeinsame Planung, 2 Stück je Gang).
+- **0.0.0.4.2/4.3:** Nachbarschaftshilfe, Variante C.
+- **0.0.0.4.4:** Umschlagplatz.
+- **0.0.0.4.5:** Trägerzunft (Lehrling/Geselle/Meister).
