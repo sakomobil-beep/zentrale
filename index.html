@@ -2362,7 +2362,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
   <button class="nW" data-p="notes" data-p2="ideen">📝 Notizen &amp; Ideen</button>
   <button class="nW" data-p="fehler">🚨 Fehlermeldungen <span id="feBadge" style="display:none;background:#d2261b;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px"></span></button>
   <button class="nW" data-p="sich">💾 Sicherung</button>
-  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>28.11.2026, 11:20 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
+  <div id="zStand" style="font-size:11px;opacity:.7;padding:0 2px 6px;line-height:1.35">Zentrale-Stand:<br>28.11.2026, 12:40 Uhr<b>26.11.2026, 20:25 Uhr</b></div>
   <button id="dmBtn" onclick="dmToggle()">🌙 Dunkel</button>
   <div id="fsBox"><div class="fst" id="fsSt"></div><button id="fsBtn" hidden></button></div>
 </nav>
@@ -3454,7 +3454,7 @@ body.dark .wktip.ok{background:#0b3b2e;color:#9fe1cb}body.dark .wktip.warn{backg
 body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag.o{background:#4a3a10;color:#f3d48a}
 #spiel svg text{font-family:inherit}
 </style>
-<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">Alpha 0.0.0.4.24 · 28.11.2026, 11:20 Uhr</b></div></div>
+<div class="sgHero"><div><h2>🎮 Spielentwicklung</h2><div style="font-size:20px;font-weight:700">⚒️ Odenforge</div><div style="opacity:.85">Kingmans Spieleschmiede · Stand: <b id="sgStand">Alpha 0.0.0.4.25 · 28.11.2026, 12:40 Uhr</b></div></div>
 <div><a class="sgBtn" href="https://sakomobil-beep.github.io/odenwaldsiedler/" target="_blank" rel="noopener">▶ Valewright spielen (Browser)</a><a class="sgBtn alt" href="https://sakomobil-beep.github.io/valewright/" target="_blank" rel="noopener">🧪 Godot-Version</a><a class="sgBtn alt" href="https://odenforge.itch.io/" target="_blank" rel="noopener">🕹️ itch.io</a></div></div>
 
 <div class="card"><h3 style="margin-top:0">🧠 valewright-save</h3>
@@ -3496,6 +3496,7 @@ body.dark #spiel .sgTag{background:#1f3a22;color:#a8e0a0}body.dark #spiel .sgTag
 <li><b>28.11.2026, 10:00 Uhr · Alpha 0.0.0.4.22</b> – Testpartie (große Karte 640 m, 1 Gegner, 60 min): regelmäßige Ruckler gefunden – die Statistik berechnete alle 20 s den Gebietsanteil über die ganze Karte neu. Das bebaubare Land wird jetzt einmal zwischengespeichert. Weitere Beobachtungen (noch offen): Eisen nicht im eigenen Gebiet gefunden → Werkzeug 0 → Stillstand ab Minute 30; Häuser bleiben ohne Töpferei/Ziegel beim Fachwerkhaus; nach 60 min alle 38 Träger beschäftigt; Wald und Felsen in Startnähe nach ~40 min leer.</li>
 <li><b>28.11.2026, 10:55 Uhr · Alpha 0.0.0.4.23</b> – Erze: In Startnähe liegen jetzt immer 1× Stein, 2× Kohle und 2× Eisen (Suchradius wächst mit der Kartengröße, notfalls nächstgelegene Bergstelle). Große Karten haben mehr Vorkommen je Gebirgszug (640 m: +33 %, 800 m: +67 %). Hinweis: Stein-, Kohle- und Eisenminen sind unerschöpflich, nur Gold geht aus. Testpartie 640 m danach: Werkzeug 56 statt 0, Eisenmine ab Minute ~15, Häuser erreichen das Bürgerhaus, Ruckler 17 statt 192. Offen: Wald und Felsen in Startnähe nach ~40 min leer.</li>
 <li><b>28.11.2026, 11:20 Uhr · Alpha 0.0.0.4.24</b> – Holz &amp; Stein: Förster pflanzt schneller (Pflanzen 1,8 s statt 2,5 s, Pause 1,2 s statt 3 s) und sucht bis 45 m statt 30 m nach gefällten Bäumen. Felsen ergiebiger: 20 statt 12 Ladungen in Startnähe (Startgegend wächst mit der Karte), sonst 10 statt 6. Statushinweise: „Keine Bäume – baue einen Förster daneben“, „Keine Felsen – Steinbruch umsetzen oder Steinmine im Gebirge bauen“. Test 640 m: 50 Gebäude und alle Häuser Bürgerhaus bei Minute 42; Holzmangel danach v. a. weil der Test-Bot zu wenige Förster baut.</li>
+<li><b>28.11.2026, 12:40 Uhr · Alpha 0.0.0.4.25</b> – Neuer Wald: Findet der Förster in 14 m keine gefällte Baumstelle, pflanzt er auf freier Fläche (5–25 m um sein Haus, im eigenen Gebiet, nicht auf Gebäude, Türen, Felder oder Wasser, mit Abstand zu anderen Bäumen) einen neuen Baum – Buche, Eiche, Ahorn, am Berg Fichte. Setzlinge wachsen in 2,5 Minuten zum fällbaren Baum, Holzfäller warten so lange. Platz für 400 neue Bäume je Baumart. Neue Bäume werden mitgespeichert. Test: ca. 3 neue Bäume pro Minute je Förster.</li>
 <li><b>27.11.2026, 19:55 Uhr</b> – Gedächtnisdatei <b>valewright-save</b> angelegt (valewright-save.md im Zentrale-Repo, Karte oben auf dieser Seite): alles zum Spiel für Claude dauerhaft gespeichert, wird nach jeder Änderung ergänzt.</li>
 <li><a href="https://github.com/sakomobil-beep/odenwaldsiedler" target="_blank" rel="noopener">GitHub-Repo „odenwaldsiedler“</a> · <a href="https://github.com/sakomobil-beep/odenwaldsiedler/commits/main" target="_blank" rel="noopener">Änderungsverlauf</a></li>
 <li><a href="https://drive.google.com/drive/folders/1WVVa1wKV8VNe3kHX9RpiAXZ5Vc5WSm_6" target="_blank" rel="noopener">Vorschau-Bilder (Drive „Siedlerspiel“)</a></li></ul></div>
